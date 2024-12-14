@@ -6,7 +6,6 @@ import { MdDarkMode, MdLightMode } from "react-icons/md";
 const ThemeButton = () => {
   const { resolvedTheme, setTheme } = useTheme();
 
-  console.log(resolvedTheme);
   return (
     <Button
       variant="ghost"
