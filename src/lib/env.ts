@@ -16,7 +16,7 @@ export const env = createEnv({
      * 💡 You'll get type errors if these are not prefixed with NEXT_PUBLIC_.
      */
     client: {
-        NEXT_PUBLIC_HOST_NAME: z.string().min(1),
+        NEXT_PUBLIC_HOST_URL: z.string().min(1),
     },
     /*
      * Due to how Next.js bundles environment variables on Edge and Client,
@@ -25,7 +25,7 @@ export const env = createEnv({
      * 💡 You'll get type errors if not all variables from `server` & `client` are included here.
      */
     runtimeEnv: {
-        NEXT_PUBLIC_HOST_NAME: process.env.NEXT_PUBLIC_HOST_NAME,
+        NEXT_PUBLIC_HOST_URL: process.env.NEXT_PUBLIC_HOST_URL,
         SUPERTOKENS_CONNECTION_URI: process.env.SUPERTOKENS_CONNECTION_URI,
         SUPERTOKENS_API_KEY: process.env.SUPERTOKENS_API_KEY,
     },
