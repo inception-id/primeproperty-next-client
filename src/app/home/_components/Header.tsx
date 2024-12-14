@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
+import HeaderMenuDialog from "@/app/home/_components/HeaderMenuDialog";
 
 const ThemeButton = dynamic(() => import("./ThemeButton"), { ssr: false });
 
@@ -10,8 +11,9 @@ const HomeHeader = () => {
       <Link href="/" className={buttonVariants({ variant: "link" })}>
         INCEPTION
       </Link>
-      <div>
+      <div className="flex items-center gap-2">
         <ThemeButton />
+          <HeaderMenuDialog />
       </div>
     </nav>
   );
