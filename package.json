@@ -13,6 +13,7 @@
     "next": "14.2.20",
     "react": "^18",
     "react-dom": "^18",
+    "supertokens-node": "^21.0.0",
     "zod": "^3.24.1"
   },
   "devDependencies": {
