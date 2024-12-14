@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import {Inter} from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import {cn} from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({style: "normal", subsets: ["latin"]})
+const inter = Inter({ style: "normal", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Inception.id",

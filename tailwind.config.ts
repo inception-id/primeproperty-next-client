@@ -52,14 +52,14 @@ const config: Config = {
         },
       },
       keyframes: {
-        'fade-in-full': {
-          '0%': {opacity: '0.0'},
-          '100%': {opacity: '1.0'}
+        "fade-in-full": {
+          "0%": { opacity: "0.0" },
+          "100%": { opacity: "1.0" },
         },
-        'fade-in-three-fourth': {
-          '0%': {opacity: '0.0'},
-          '100%': {opacity: '0.75'}
-        }
+        "fade-in-three-fourth": {
+          "0%": { opacity: "0.0" },
+          "100%": { opacity: "0.75" },
+        },
       },
     },
   },
