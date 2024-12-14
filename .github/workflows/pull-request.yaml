@@ -28,3 +28,5 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/inception-next:develop
           build-args: |
             NEXT_PUBLIC_HOST_URL=${{ secrets.NEXT_PUBLIC_HOST_URL }}
+            SUPERTOKENS_CONNECTION_URI=${{ secrets.SUPERTOKENS_CONNECTION_URI }}
+            SUPERTOKENS_API_KEY=${{ secrets.SUPERTOKENS_API_KEY }}
