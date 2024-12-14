@@ -51,6 +51,16 @@ const config: Config = {
           "5": "hsl(var(--chart-5))",
         },
       },
+      keyframes: {
+        'fade-in-full': {
+          '0%': {opacity: '0.0'},
+          '100%': {opacity: '1.0'}
+        },
+        'fade-in-three-fourth': {
+          '0%': {opacity: '0.0'},
+          '100%': {opacity: '0.75'}
+        }
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
