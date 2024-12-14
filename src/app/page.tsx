@@ -7,7 +7,7 @@ const Home = async () => {
   return (
     <main>
       {!splashCookie && <SplashScreen />}
-        <HomeHeader />
+      <HomeHeader />
     </main>
   );
 };
