@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@t3-oss/env-nextjs": "^0.11.1",
+    "husky": "^9.1.7",
     "next": "14.2.20",
+    "prettier": "^3.4.2",
     "react": "^18",
     "react-dom": "^18",
     "supertokens-node": "^21.0.0",
