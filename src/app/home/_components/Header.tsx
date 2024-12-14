@@ -13,7 +13,7 @@ const HomeHeader = () => {
       </Link>
       <div className="flex items-center gap-2">
         <ThemeButton />
-          <HeaderMenuDialog />
+        <HeaderMenuDialog />
       </div>
     </nav>
   );
