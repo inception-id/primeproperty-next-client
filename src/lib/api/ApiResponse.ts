@@ -1,6 +1,5 @@
-
 export type TApiResponse<T = null> = {
-    status: number;
-    data: T;
-    message: string;
-}
+  status: number;
+  data: T;
+  message: string;
+};
