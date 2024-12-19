@@ -2606,6 +2606,13 @@ react-style-singleton@^2.2.1:
     invariant "^2.2.4"
     tslib "^2.0.0"
 
+react-toastify@^11.0.0:
+  version "11.0.0"
+  resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-11.0.0.tgz#6607ea55531012cbc4f78979ef6fb0501a4428b3"
+  integrity sha512-NLTt0hNNlVZPLnY+uzUvmE2H2jRHUpaPi7H3+84+3fMjZSpfngyL/r+2VcaepNItWuN0BCBiZdVluXixXYSFmw==
+  dependencies:
+    clsx "^2.1.1"
+
 react@^18:
   version "18.3.1"
   resolved "https://registry.yarnpkg.com/react/-/react-18.3.1.tgz#49ab892009c53933625bd16b2533fc754cab2891"

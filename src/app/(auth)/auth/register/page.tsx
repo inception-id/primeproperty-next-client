@@ -3,9 +3,9 @@ import RegisterForm from "@/app/(auth)/auth/register/_components/RegisterForm";
 
 const Register = () => {
   return (
-    <main className="flex flex-col items-center justify-center h-screen ">
+    <main className="flex flex-col items-center justify-center h-screen">
       <h1 className="text-center mb-4">INCEPTION</h1>
-      <div className="shadow-lg p-4 rounded-lg">
+      <div className="shadow-lg p-4 rounded-lg w-full max-w-sm">
         <h2 className="mb-4 font-bold">Sign up</h2>
         <RegisterForm />
         <div>
