@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { signupSupertokens } from "@/lib/supertokens/signupSupertokens";
 import { createUser } from "@/lib/api/createUser";
 import { SUPERTOKENS_EMAIL_ALREADY_EXIST } from "@/lib/supertokens/constant";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
   const router = useRouter();
