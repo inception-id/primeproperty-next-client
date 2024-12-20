@@ -1,6 +1,6 @@
 "use server";
 import { fetchSupertokens } from "@/lib/supertokens/fetchSupertokens";
-import {TSupertokensAuthResponse} from "@/lib/supertokens/signupSupertokens";
+import { TSupertokensAuthResponse } from "@/lib/supertokens/signupSupertokens";
 
 export const signinSupertokens = async (
   email: string,

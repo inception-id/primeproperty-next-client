@@ -4,12 +4,12 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-import { SUPERTOKENS_WRONG_CREDENTIALS} from "@/lib/supertokens/constant";
+import { SUPERTOKENS_WRONG_CREDENTIALS } from "@/lib/supertokens/constant";
 import { useRouter } from "next/navigation";
-import {signinSupertokens} from "@/lib/supertokens/signinSupertokens";
-import {findUser} from "@/lib/api/findUser";
-import {createSupertokensSession} from "@/lib/supertokens/createSupertokensSession";
-import {embedCookieToken} from "@/lib/supertokens/embedCookieToken";
+import { signinSupertokens } from "@/lib/supertokens/signinSupertokens";
+import { findUser } from "@/lib/api/findUser";
+import { createSupertokensSession } from "@/lib/supertokens/createSupertokensSession";
+import { embedCookieToken } from "@/lib/supertokens/embedCookieToken";
 
 const LoginForm = () => {
   const router = useRouter();
@@ -33,11 +33,17 @@ const LoginForm = () => {
 
       if (supertokens.status === "OK") {
         const user = await findUser(email);
-        const token = await createSupertokensSession(supertokens.recipeUserId, user.data)
-        const cookieToken = await  embedCookieToken(token.accessToken.token, token.refreshToken.token);
-        if (cookieToken.accessToken && cookieToken.refreshToken){
+        const token = await createSupertokensSession(
+          supertokens.recipeUserId,
+          user.data,
+        );
+        const cookieToken = await embedCookieToken(
+          token.accessToken.token,
+          token.refreshToken.token,
+        );
+        if (cookieToken.accessToken && cookieToken.refreshToken) {
           toast.success("Sign in successful, redirecting to account");
-          setTimeout(()=> router.push("/account"), 1000)
+          setTimeout(() => router.push("/account"), 1000);
           return;
         }
 
