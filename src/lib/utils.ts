@@ -7,5 +7,5 @@ export function cn(...inputs: ClassValue[]) {
 
 export const formatDateToIndonesian = (dateString: string) => {
   const date = new Date(dateString);
-  return Intl.DateTimeFormat("id-ID", {dateStyle: "medium"}).format(date);
-}
+  return Intl.DateTimeFormat("id-ID", { dateStyle: "medium" }).format(date);
+};
