@@ -7,7 +7,7 @@ const ThemeButton = dynamic(() => import("./ThemeButton"), { ssr: false });
 
 const Header = () => {
   return (
-    <nav className="shadow flex items-center justify-between fixed left-0 top-0 w-full">
+    <nav className="shadow flex items-center justify-between fixed left-0 top-0 w-full bg-background">
       <Link href="/" className={buttonVariants({ variant: "link" })}>
         INCEPTION
       </Link>
