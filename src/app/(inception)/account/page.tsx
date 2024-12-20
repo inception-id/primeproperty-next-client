@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { decode, JwtPayload } from "jsonwebtoken";
-import { cn, formatDateToIndonesian } from "@/lib/utils";
+import { formatDateToIndonesian } from "@/lib/utils";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import AccountLogoutButton from "@/app/(inception)/account/_components/AccountLogoutButton";
