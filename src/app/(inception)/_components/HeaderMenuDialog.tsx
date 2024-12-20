@@ -1,68 +1,64 @@
+'use client'
 import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogTitle,
-  DialogTrigger,
+    Dialog,
+    DialogClose,
+    DialogContent,
+    DialogTitle,
+    DialogTrigger,
 } from "@/components/ui/dialog";
-import { LuMenu, LuX } from "react-icons/lu";
-import { buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
+import {LuMenu, LuX} from "react-icons/lu";
+import {buttonVariants} from "@/components/ui/button";
+import {cn} from "@/lib/utils";
+import {usePathname, useRouter} from "next/navigation";
 
 const HeaderMenuDialog = () => {
-  return (
-    <Dialog>
-      <DialogTrigger
-        className={buttonVariants({ variant: "ghost", size: "icon" })}
-      >
-        <LuMenu />
-      </DialogTrigger>
-      <DialogContent>
-        <div className="flex items-center justify-between mb-4">
-          <DialogTitle>Menu</DialogTitle>
-          <DialogClose>
-            <LuX />
-          </DialogClose>
-        </div>
-        <div className="flex flex-col">
-          <DialogClose>
-            <Link
-              href="/"
-              className={cn(
-                buttonVariants({ variant: "link" }),
-                "w-full justify-start",
-              )}
+    const pathname = usePathname();
+    const router = useRouter()
+
+    const MENUS = [
+        {
+            title: "Home",
+            href: "/"
+        },
+        {
+            title: "Retail Solution",
+            href: "/retail"
+        },
+        {
+            title: "Account",
+            href: "/account"
+        },
+    ]
+    return (
+        <Dialog>
+            <DialogTrigger
+                className={buttonVariants({variant: "ghost", size: "icon"})}
             >
-              Home
-            </Link>
-          </DialogClose>
-          <DialogClose>
-            <Link
-                href="/retail"
-                className={cn(
-                    buttonVariants({ variant: "link" }),
-                    "w-full justify-start",
-                )}
-            >
-              Retail solution
-            </Link>
-          </DialogClose>
-          <DialogClose>
-            <Link
-                href="/account"
-                className={cn(
-                    buttonVariants({ variant: "link" }),
-                    "w-full justify-start",
-                )}
-            >
-              Account
-            </Link>
-          </DialogClose>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
+                <LuMenu/>
+            </DialogTrigger>
+            <DialogContent>
+                <div className="flex items-center justify-between mb-4">
+                    <DialogTitle>Menu</DialogTitle>
+                    <DialogClose>
+                        <LuX/>
+                    </DialogClose>
+                </div>
+                <div className="flex flex-col">
+                    {MENUS.map((menu) =>
+                        <DialogClose key={menu.href}
+                                     className={cn(
+                                         buttonVariants({variant: pathname === menu.href ? "secondary" : "link"}),
+                                         "w-full justify-start",
+                                     )}
+                                     onClick={() => router.push(menu.href)}
+                        >
+                            {menu.title}
+                        </DialogClose>
+                    )}
+                </div>
+            </DialogContent>
+        </Dialog>
+    );
 };
 
 export default HeaderMenuDialog;
