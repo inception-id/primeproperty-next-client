@@ -9,7 +9,7 @@ type TSupertokensToken = {
   createdTime: number;
 };
 
-type TResponse = {
+export type TSupertokensSession = {
   status: string;
   session: {
     handle: string;
@@ -25,7 +25,7 @@ type TResponse = {
 export const createSupertokensSession = async (
   supertokensUserId: string,
   userData: TUser,
-): Promise<TResponse> => {
+): Promise<TSupertokensSession> => {
   try {
     const payload = {
       userId: supertokensUserId,
