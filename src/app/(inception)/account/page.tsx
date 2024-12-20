@@ -1,10 +1,5 @@
-
 const AccountPage = () => {
-    return (
-       <section>
-
-       </section>
-    )
+  return <section></section>;
 };
 
 export default AccountPage;
