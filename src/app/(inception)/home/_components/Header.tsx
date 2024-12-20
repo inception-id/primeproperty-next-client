@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import HomeHeaderMenuDialog from "@/app/home/_components/HomeHeaderMenuDialog";
+import HomeHeaderMenuDialog from "@/app/(inception)/home/_components/HomeHeaderMenuDialog";
 
 const ThemeButton = dynamic(() => import("./ThemeButton"), { ssr: false });
 

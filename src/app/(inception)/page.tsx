@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
-import SplashScreen from "@/app/home/_components/SplashScreen";
-import HomeHeader from "@/app/home/_components/Header";
+import SplashScreen from "@/app/(inception)/home/_components/SplashScreen";
+import HomeHeader from "@/app/(inception)/home/_components/Header";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 
