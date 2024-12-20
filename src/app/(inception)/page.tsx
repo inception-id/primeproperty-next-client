@@ -1,15 +1,14 @@
 import { cookies } from "next/headers";
-import SplashScreen from "@/app/(inception)/home/_components/SplashScreen";
-import HomeHeader from "@/app/(inception)/home/_components/Header";
+import SplashScreen from "@/app/(inception)/_components/SplashScreen";
+import HomeHeader from "@/app/(inception)/_components/Header";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 
 const Home = async () => {
   const splashCookie = cookies().get("show-splash")?.value;
   return (
-    <main>
+    <section>
       {!splashCookie && <SplashScreen />}
-      <HomeHeader />
       <div className="h-screen flex flex-col items-center justify-center px-4 lg:px-0">
         <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-4 text-center">
           &quot;We bring your ideas into life&quot;
@@ -24,7 +23,7 @@ const Home = async () => {
           I have an idea
         </Link>
       </div>
-    </main>
+    </section>
   );
 };
 

@@ -10,7 +10,7 @@ import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-const HomeHeaderMenuDialog = () => {
+const HeaderMenuDialog = () => {
   return (
     <Dialog>
       <DialogTrigger
@@ -39,24 +39,24 @@ const HomeHeaderMenuDialog = () => {
           </DialogClose>
           <DialogClose>
             <Link
-              href="/languageai"
-              className={cn(
-                buttonVariants({ variant: "link" }),
-                "w-full justify-start",
-              )}
+                href="/retail"
+                className={cn(
+                    buttonVariants({ variant: "link" }),
+                    "w-full justify-start",
+                )}
             >
-              Language ai
+              Retail solution
             </Link>
           </DialogClose>
           <DialogClose>
             <Link
-              href="/bps"
-              className={cn(
-                buttonVariants({ variant: "link" }),
-                "w-full justify-start",
-              )}
+                href="/account"
+                className={cn(
+                    buttonVariants({ variant: "link" }),
+                    "w-full justify-start",
+                )}
             >
-              Indonesia Statistic
+              Account
             </Link>
           </DialogClose>
         </div>
@@ -65,4 +65,4 @@ const HomeHeaderMenuDialog = () => {
   );
 };
 
-export default HomeHeaderMenuDialog;
+export default HeaderMenuDialog;

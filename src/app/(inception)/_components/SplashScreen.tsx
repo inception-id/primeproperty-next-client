@@ -7,7 +7,7 @@ const SplashScreen = () => {
   useEffect(() => {
     setTimeout(async () => {
       await setSplashCookie();
-    }, 24000);
+    }, 24000); // Only set the cookie after the splash ends (24 secs)
   }, []);
 
   return (
