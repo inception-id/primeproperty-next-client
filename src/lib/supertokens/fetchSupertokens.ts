@@ -6,6 +6,7 @@ export const fetchSupertokens = async (path: string, init?: RequestInit) => {
     const url = env.SUPERTOKENS_CONNECTION_URI + path;
     const response = await fetch(url, {
       headers: {
+        'Content-Type': 'application/json',
         Authorization: env.SUPERTOKENS_API_KEY,
         ...init?.headers,
       },

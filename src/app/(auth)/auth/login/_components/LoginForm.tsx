@@ -4,12 +4,14 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-import { signupSupertokens } from "@/lib/supertokens/signupSupertokens";
-import { createUser } from "@/lib/api/createUser";
-import { SUPERTOKENS_EMAIL_ALREADY_EXIST } from "@/lib/supertokens/constant";
+import { SUPERTOKENS_WRONG_CREDENTIALS} from "@/lib/supertokens/constant";
 import { useRouter } from "next/navigation";
+import {signinSupertokens} from "@/lib/supertokens/signinSupertokens";
+import {findUser} from "@/lib/api/findUser";
+import {createSupertokensSession} from "@/lib/supertokens/createSupertokensSession";
+import {embedCookieToken} from "@/lib/supertokens/embedCookieToken";
 
-const RegisterForm = () => {
+const LoginForm = () => {
   const router = useRouter();
 
   const handleAction = async (formData: FormData) => {
@@ -23,19 +25,19 @@ const RegisterForm = () => {
     }
 
     try {
-      const supertokens = await signupSupertokens(email, password);
-      if (supertokens.status === SUPERTOKENS_EMAIL_ALREADY_EXIST) {
-        toast.error("Email already exist");
+      const supertokens = await signinSupertokens(email, password);
+      if (supertokens.status === SUPERTOKENS_WRONG_CREDENTIALS) {
+        toast.error("Wrong email or password");
         return;
       }
 
       if (supertokens.status === "OK") {
-        const user = await createUser(supertokens.recipeUserId, email);
-        if (user.data?.id) {
-          toast.success("Sign up successfully, redirecting to login");
-          setTimeout(()=>
-              router.push("/auth/login")
-          , 1000)
+        const user = await findUser(email);
+        const token = await createSupertokensSession(supertokens.recipeUserId, user.data)
+        const cookieToken = await  embedCookieToken(token.accessToken.token, token.refreshToken.token);
+        if (cookieToken.accessToken && cookieToken.refreshToken){
+          toast.success("Sign in successful, redirecting to account");
+          setTimeout(()=> router.push("/account"), 1000)
           return;
         }
 
@@ -74,10 +76,10 @@ const RegisterForm = () => {
       />
 
       <Button type="submit" className="w-full">
-        Sign up
+        Sign in
       </Button>
     </form>
   );
 };
 
-export default RegisterForm;
+export default LoginForm;

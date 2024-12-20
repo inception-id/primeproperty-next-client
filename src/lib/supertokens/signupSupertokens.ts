@@ -1,7 +1,7 @@
 "use server";
 import { fetchSupertokens } from "@/lib/supertokens/fetchSupertokens";
 
-type TLoginMethod = {
+export type TSupertokensLoginMethod = {
   tenantIds: string[];
   recipeUserId: string;
   verified: boolean;
@@ -10,7 +10,7 @@ type TLoginMethod = {
   email: string;
 };
 
-type TResponse = {
+export type TSupertokensAuthResponse = {
   status: string;
   user: {
     id: string;
@@ -20,7 +20,7 @@ type TResponse = {
     emails: string[];
     phoneNumbers: any[];
     thirdParty: any[];
-    loginMethods: TLoginMethod[];
+    loginMethods: TSupertokensLoginMethod[];
   };
   recipeUserId: string;
 };
@@ -28,7 +28,7 @@ type TResponse = {
 export const signupSupertokens = async (
   email: string,
   password: string,
-): Promise<TResponse> => {
+): Promise<TSupertokensAuthResponse> => {
   try {
     return await fetchSupertokens("/recipe/signup", {
       method: "POST",
