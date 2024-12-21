@@ -4,6 +4,7 @@ import { decode, JwtPayload } from "jsonwebtoken";
 import { refreshSupertokensSession } from "@/lib/supertokens/refreshSupertokensSession";
 import { embedCookieToken } from "@/lib/supertokens/embedCookieToken";
 import { removeCookieToken } from "@/lib/supertokens/removeCookieToken";
+import {verifySupertokensSession} from "@/lib/supertokens/verifySupertokensSession";
 
 export async function middleware(request: NextRequest) {
   const accessToken = request.cookies.get("accessToken")?.value as string;
@@ -14,18 +15,24 @@ export async function middleware(request: NextRequest) {
     return loginRedirect;
   }
 
+  const isSessionVerified = await verifySupertokensSession();
+  if (isSessionVerified.status !== "OK") {
+    request.cookies.delete("accessToken");
+    request.cookies.delete("refreshToken");
+    return loginRedirect;
+  }
+
   const response = NextResponse.next();
   const jwtPayload = decode(accessToken) as JwtPayload;
   if (new Date().getTime() > Number(jwtPayload.exp) * 1000) {
     const newSession = await refreshSupertokensSession();
     if (newSession?.accessToken?.token && newSession?.refreshToken?.token) {
-      await embedCookieToken(
-        newSession.accessToken.token,
-        newSession.refreshToken.token,
-      );
+      request.cookies.set("accessToken", newSession.accessToken.token);
+      request.cookies.set("refreshToken", newSession.refreshToken.token);
       return response;
     } else {
-      await removeCookieToken();
+      request.cookies.delete("accessToken");
+      request.cookies.delete("refreshToken");
       return loginRedirect;
     }
   }
@@ -34,5 +41,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/account/:path"],
+  matcher: ["/account", "/account/change-password"],
 };

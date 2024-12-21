@@ -10,14 +10,16 @@ type TSupertokensToken = {
 };
 
 export type TSupertokensSession = {
+  handle: string;
+  userId: string;
+  recipeUserId: string;
+  userDataInJwt: TUser;
+  tenantId: string;
+}
+
+export type TSupertokensSessionResponse = {
   status: string;
-  session: {
-    handle: string;
-    userId: string;
-    recipeUserId: string;
-    userDataInJwt: TUser;
-    tenantId: string;
-  };
+  session:  TSupertokensSession;
   accessToken: TSupertokensToken;
   refreshToken: TSupertokensToken;
 };

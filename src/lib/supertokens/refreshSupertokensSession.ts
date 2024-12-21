@@ -1,10 +1,10 @@
 "use server";
 import { cookies } from "next/headers";
 import { fetchSupertokens } from "@/lib/supertokens/fetchSupertokens";
-import { TSupertokensSession } from "@/lib/supertokens/createSupertokensSession";
+import {TSupertokensSessionResponse} from "@/lib/supertokens/createSupertokensSession";
 
 export const refreshSupertokensSession =
-  async (): Promise<TSupertokensSession> => {
+  async (): Promise<TSupertokensSessionResponse> => {
     const refreshToken = cookies().get("refreshToken")?.value as string;
     try {
       return await fetchSupertokens("/recipe/session/refresh", {

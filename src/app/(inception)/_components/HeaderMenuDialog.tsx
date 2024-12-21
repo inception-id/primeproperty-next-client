@@ -21,10 +21,6 @@ const HeaderMenuDialog = () => {
       href: "/",
     },
     {
-      title: "Retail Solution",
-      href: "/retail",
-    },
-    {
       title: "Account",
       href: "/account",
     },
