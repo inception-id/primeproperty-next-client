@@ -12,7 +12,6 @@ export const fetchApi = async (
     const accessToken = requireToken
       ? (cookies().get("accessToken")?.value as string)
       : "";
-    console.log(url);
     const response = await fetch(url, {
       headers: {
         "Content-Type": "application/json",

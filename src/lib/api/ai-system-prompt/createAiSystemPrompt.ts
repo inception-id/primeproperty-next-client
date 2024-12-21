@@ -3,12 +3,13 @@
 import { fetchApi } from "@/lib/api/fetchApi";
 import { TApiResponse } from "@/lib/api/ApiResponse";
 
-type TAiSystemPrompt = {
+export type TAiSystemPrompt = {
   id: number;
   created_at: string;
   updated_at: string;
   product_name: string;
   prompt: string;
+  name: string
 };
 
 export const createAiSystemPrompt = async (

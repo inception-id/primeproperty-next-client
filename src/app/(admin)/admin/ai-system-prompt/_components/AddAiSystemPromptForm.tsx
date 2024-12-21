@@ -9,6 +9,7 @@ import { useAiSystemPromptStore } from "@/app/(admin)/admin/ai-system-prompt/_li
 import { useShallow } from "zustand/react/shallow";
 import { LuLoader } from "react-icons/lu";
 import { useRouter } from "next/navigation";
+import {Textarea} from "@/components/ui/textarea";
 
 const AddAiSystemPromptForm = () => {
   const router = useRouter();
@@ -57,7 +58,7 @@ const AddAiSystemPromptForm = () => {
       <Input id="name" type="text" name="name" required className="mb-4" />
 
       <Label htmlFor="prompt">System prompt</Label>
-      <Input id="prompt" type="text" name="prompt" required className="mb-4" />
+        <Textarea id="prompt" name="prompt" required className="mb-4 max-h-96" />
 
       <Button type="submit">
         {isLoading ? <LuLoader className="animate-spin" /> : "Add"}
