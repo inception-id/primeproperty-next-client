@@ -15,10 +15,13 @@ const AdminLayout = async ({ children }: TInceptionBaseLayout) => {
   if (isSessionVerified.status === "OK") {
     const accessToken = cookies().get("accessToken")?.value as string;
     const decoded = decode(accessToken) as JwtPayload;
-    if (decoded.email === env.ADMIN_EMAIL) return <main className="flex w-full relative min-h-screen">
-      <AdminSidebar />
-      {children}
-    </main>;
+    if (decoded.email === env.ADMIN_EMAIL)
+      return (
+        <main className="flex w-full relative min-h-screen">
+          <AdminSidebar />
+          {children}
+        </main>
+      );
   }
   redirect("/");
 };
