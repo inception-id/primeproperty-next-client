@@ -9,11 +9,10 @@ export const fetchApi = async (
 ) => {
   try {
     const url = env.API_URL + path;
-    const accessToken =
-        requireToken
-            ? (cookies().get("accessToken")?.value as string)
-            : "";
-    console.log(url)
+    const accessToken = requireToken
+      ? (cookies().get("accessToken")?.value as string)
+      : "";
+    console.log(url);
     const response = await fetch(url, {
       headers: {
         "Content-Type": "application/json",

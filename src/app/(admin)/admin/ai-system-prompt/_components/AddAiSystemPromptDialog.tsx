@@ -38,7 +38,7 @@ const AddAiSystemPromptDialog = () => {
             <LuX />
           </DialogClose>
         </div>
-          <AddAiSystemPromptForm />
+        <AddAiSystemPromptForm />
       </DialogContent>
     </Dialog>
   );

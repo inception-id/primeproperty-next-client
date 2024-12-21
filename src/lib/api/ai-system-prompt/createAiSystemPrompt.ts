@@ -4,14 +4,18 @@ import { fetchApi } from "@/lib/api/fetchApi";
 import { TApiResponse } from "@/lib/api/ApiResponse";
 
 type TAiSystemPrompt = {
-  id:number;
+  id: number;
   created_at: string;
   updated_at: string;
   product_name: string;
   prompt: string;
-}
+};
 
-export const createAiSystemPrompt = async (product_name: string, prompt: string, name:string): Promise<TApiResponse<TAiSystemPrompt>> => {
+export const createAiSystemPrompt = async (
+  product_name: string,
+  prompt: string,
+  name: string,
+): Promise<TApiResponse<TAiSystemPrompt>> => {
   try {
     return await fetchApi(true, "/ai-system-prompts/create", {
       method: "POST",
