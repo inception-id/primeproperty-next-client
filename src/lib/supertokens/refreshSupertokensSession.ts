@@ -1,7 +1,7 @@
 "use server";
 import { cookies } from "next/headers";
 import { fetchSupertokens } from "@/lib/supertokens/fetchSupertokens";
-import {TSupertokensSessionResponse} from "@/lib/supertokens/createSupertokensSession";
+import { TSupertokensSessionResponse } from "@/lib/supertokens/createSupertokensSession";
 
 export const refreshSupertokensSession =
   async (): Promise<TSupertokensSessionResponse> => {

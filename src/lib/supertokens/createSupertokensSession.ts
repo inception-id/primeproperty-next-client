@@ -15,11 +15,11 @@ export type TSupertokensSession = {
   recipeUserId: string;
   userDataInJwt: TUser;
   tenantId: string;
-}
+};
 
 export type TSupertokensSessionResponse = {
   status: string;
-  session:  TSupertokensSession;
+  session: TSupertokensSession;
   accessToken: TSupertokensToken;
   refreshToken: TSupertokensToken;
 };

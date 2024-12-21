@@ -4,7 +4,7 @@ import { decode, JwtPayload } from "jsonwebtoken";
 import { refreshSupertokensSession } from "@/lib/supertokens/refreshSupertokensSession";
 import { embedCookieToken } from "@/lib/supertokens/embedCookieToken";
 import { removeCookieToken } from "@/lib/supertokens/removeCookieToken";
-import {verifySupertokensSession} from "@/lib/supertokens/verifySupertokensSession";
+import { verifySupertokensSession } from "@/lib/supertokens/verifySupertokensSession";
 
 export async function middleware(request: NextRequest) {
   const accessToken = request.cookies.get("accessToken")?.value as string;
