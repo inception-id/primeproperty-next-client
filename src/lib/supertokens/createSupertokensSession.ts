@@ -27,7 +27,7 @@ export type TSupertokensSessionResponse = {
 export const createSupertokensSession = async (
   supertokensUserId: string,
   userData: TUser,
-): Promise<TSupertokensSession> => {
+): Promise<TSupertokensSessionResponse> => {
   try {
     const payload = {
       userId: supertokensUserId,
