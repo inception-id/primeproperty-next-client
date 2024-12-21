@@ -3,7 +3,6 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
-import { verifySupertokensSession } from "@/lib/supertokens/verifySupertokensSession";
 import { changePassword } from "@/lib/supertokens/changePassword";
 import { useRouter } from "next/navigation";
 import { removeSupertokensSession } from "@/lib/supertokens/removeSupertokensSession";

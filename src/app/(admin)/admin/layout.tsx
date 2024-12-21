@@ -1,4 +1,3 @@
-import Header from "@/app/(inception)/_components/Header";
 import { cookies } from "next/headers";
 import { decode, JwtPayload } from "jsonwebtoken";
 import { env } from "@/lib/env";
