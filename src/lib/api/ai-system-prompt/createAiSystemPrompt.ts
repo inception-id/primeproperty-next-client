@@ -9,7 +9,7 @@ export type TAiSystemPrompt = {
   updated_at: string;
   product_name: string;
   prompt: string;
-  name: string
+  name: string;
 };
 
 export const createAiSystemPrompt = async (
