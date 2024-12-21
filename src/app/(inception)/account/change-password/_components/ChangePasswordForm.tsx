@@ -37,8 +37,6 @@ const ChangePasswordForm = () => {
       toast.error("Something went wrong, please try again");
       console.error(e.message);
     }
-
-    return;
   };
 
   return (
