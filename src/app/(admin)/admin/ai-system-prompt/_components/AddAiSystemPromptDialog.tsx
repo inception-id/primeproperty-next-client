@@ -1,4 +1,5 @@
 "use client";
+import { useShallow } from "zustand/react/shallow";
 import { LuPlus, LuX } from "react-icons/lu";
 import {
   Dialog,
@@ -10,7 +11,7 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useAiSystemPromptStore } from "@/app/(admin)/admin/ai-system-prompt/_lib/store";
-import { useShallow } from "zustand/react/shallow";
+import AddAiSystemPromptForm from "@/app/(admin)/admin/ai-system-prompt/_components/AddAiSystemPromptForm";
 
 const AddAiSystemPromptDialog = () => {
   const { openAddDialog, updateStore } = useAiSystemPromptStore(
@@ -29,7 +30,7 @@ const AddAiSystemPromptDialog = () => {
         System prompt
       </DialogTrigger>
       <DialogContent onOverlayClick={() => updateStore("openAddDialog", false)}>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-4">
           <DialogTitle className="font-semibold">
             Add new system prompt
           </DialogTitle>
@@ -37,6 +38,7 @@ const AddAiSystemPromptDialog = () => {
             <LuX />
           </DialogClose>
         </div>
+          <AddAiSystemPromptForm />
       </DialogContent>
     </Dialog>
   );
