@@ -32,7 +32,7 @@ const RegisterForm = () => {
       if (supertokens.status === "OK") {
         const user = await createUser(supertokens.recipeUserId, email);
         if (user.data?.id) {
-          toast.success("Sign up successfully, redirecting to login");
+          toast.success("Sign up successfully, please login");
           setTimeout(() => router.push("/auth/login"), 1000);
           return;
         }

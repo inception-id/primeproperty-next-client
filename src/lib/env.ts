@@ -11,7 +11,7 @@ export const env = createEnv({
     SUPERTOKENS_API_KEY: z.string(),
     API_URL: z.string().min(1),
     API_KEY: z.string().min(1),
-    ADMIN_EMAIL: z.string().min(1)
+    ADMIN_EMAIL: z.string().min(1),
   },
   /*
    * Environment variables available on the client (and server).

@@ -1,10 +1,5 @@
-
 const AdminHome = () => {
-    return (
-        <section>
-            woi
-        </section>
-    )
+  return <section>woi</section>;
 };
 
-export default AdminHome
+export default AdminHome;

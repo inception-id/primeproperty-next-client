@@ -4,6 +4,7 @@ import { formatDateToIndonesian } from "@/lib/utils";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import AccountLogoutButton from "@/app/(inception)/account/_components/AccountLogoutButton";
+import {env} from "@/lib/env";
 
 const AccountPage = () => {
   const token = cookies().get("accessToken")?.value as string;
@@ -17,6 +18,12 @@ const AccountPage = () => {
       <div className="mb-4">{formatDateToIndonesian(decoded.created_at)}</div>
 
       <div className="flex flex-col gap-4 w-fit">
+          {decoded.email === env.ADMIN_EMAIL && <Link
+              href="/admin/"
+              className={buttonVariants({ })}
+          >
+              Admin panel
+          </Link>}
         <Link
           href="/account/change-password"
           className={buttonVariants({ variant: "secondary" })}
