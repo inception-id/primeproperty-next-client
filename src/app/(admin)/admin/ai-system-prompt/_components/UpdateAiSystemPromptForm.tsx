@@ -4,7 +4,6 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
-import { createAiSystemPrompt } from "@/lib/api/ai-system-prompt/createAiSystemPrompt";
 import { useAiSystemPromptStore } from "@/app/(admin)/admin/ai-system-prompt/_lib/store";
 import { useShallow } from "zustand/react/shallow";
 import { LuLoader } from "react-icons/lu";

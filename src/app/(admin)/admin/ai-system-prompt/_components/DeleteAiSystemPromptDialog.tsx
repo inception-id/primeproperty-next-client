@@ -1,5 +1,5 @@
 "use client";
-import { LuPlus, LuTrash, LuX } from "react-icons/lu";
+import { LuTrash} from "react-icons/lu";
 import {
   Dialog,
   DialogClose,
