@@ -33,8 +33,10 @@ export const AiSystemPromptTableColumns: ColumnDef<TAiSystemPrompt>[] = [
   {
     accessorKey: "action",
     header: "Action",
-    cell: ({ row }) => <>
-      <DeleteAiSystemPromptDialog row={row} />
-    </>,
-  }
+    cell: ({ row }) => (
+      <>
+        <DeleteAiSystemPromptDialog row={row} />
+      </>
+    ),
+  },
 ];
