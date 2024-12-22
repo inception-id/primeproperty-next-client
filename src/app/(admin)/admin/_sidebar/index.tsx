@@ -3,6 +3,8 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import {LuHouse} from "react-icons/lu";
+import {TbBrandOpenai} from "react-icons/tb";
 
 const AdminSidebar = () => {
   const pathname = usePathname();
@@ -11,16 +13,18 @@ const AdminSidebar = () => {
     {
       title: "Home",
       href: "/",
+      icon: <LuHouse />
     },
     {
       title: "System prompt",
       href: "/admin/ai-system-prompt",
+      icon: <TbBrandOpenai />
     },
   ];
 
   return (
     <aside className="p-4 bg-primary text-primary-foreground sticky left-0 top-0">
-      <div className="mb-4 text-center font-semibold">INCEPTION.ID</div>
+      <div className="mb-4 text-center font-semibold hidden lg:block">INCEPTION.ID</div>
 
       <div className="flex flex-col gap-4">
         {MENUS.map((menu) => (
@@ -34,7 +38,8 @@ const AdminSidebar = () => {
               "justify-start",
             )}
           >
-            {menu.title}
+            {menu.icon}
+            <span className="hidden lg:block">{menu.title}</span>
           </Link>
         ))}
       </div>

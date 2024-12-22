@@ -34,7 +34,7 @@ const AddAiSystemPromptDialog = () => {
           <DialogTitle className="font-semibold">
             Add new system prompt
           </DialogTitle>
-          <DialogClose>
+          <DialogClose onClick={()=> updateStore("openAddDialog", false)}>
             <LuX />
           </DialogClose>
         </div>

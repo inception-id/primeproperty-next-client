@@ -16,7 +16,7 @@ const AdminLayout = async ({ children }: TInceptionBaseLayout) => {
     const decoded = decode(accessToken) as JwtPayload;
     if (decoded.email === env.ADMIN_EMAIL)
       return (
-        <main className="flex w-full relative min-h-screen">
+        <main className="flex w-full relative h-screen">
           <AdminSidebar />
           {children}
         </main>
