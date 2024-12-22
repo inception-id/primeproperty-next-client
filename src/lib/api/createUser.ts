@@ -16,7 +16,7 @@ export const createUser = async (
   email: string,
 ): Promise<TApiResponse<TUser>> => {
   try {
-    return await fetchApi(false, "/users/create-user", {
+    return await fetchApi("/users/create-user", {
       method: "POST",
       body: JSON.stringify({ supertokens_user_id, email }),
     });
