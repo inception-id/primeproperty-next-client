@@ -7,7 +7,7 @@ const AiSystemPromptAdmin = () => {
   return (
     <section className="p-4 w-full">
       <AddAiSystemPromptDialog />
-        <UpdateAiSystemPromptDialog />
+      <UpdateAiSystemPromptDialog />
       <Suspense>
         <AiSystemPromptsTableWrapper />
       </Suspense>

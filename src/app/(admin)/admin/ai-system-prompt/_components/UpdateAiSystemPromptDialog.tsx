@@ -13,18 +13,20 @@ import UpdateAiSystemPromptForm from "@/app/(admin)/admin/ai-system-prompt/_comp
 const UpdateAiSystemPromptDialog = () => {
   const { openUpdateDialog, updateStore } = useAiSystemPromptStore(
     useShallow((state) => ({
-        openUpdateDialog: state.openUpdateDialog,
+      openUpdateDialog: state.openUpdateDialog,
       updateStore: state.updateStore,
     })),
   );
   return (
     <Dialog open={openUpdateDialog}>
-      <DialogContent onOverlayClick={() => updateStore("openUpdateDialog", false)}>
+      <DialogContent
+        onOverlayClick={() => updateStore("openUpdateDialog", false)}
+      >
         <div className="flex items-center justify-between mb-4">
           <DialogTitle className="font-semibold">
             Update system prompt
           </DialogTitle>
-          <DialogClose onClick={()=> updateStore("openUpdateDialog", false)}>
+          <DialogClose onClick={() => updateStore("openUpdateDialog", false)}>
             <LuX />
           </DialogClose>
         </div>

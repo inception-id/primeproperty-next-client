@@ -10,7 +10,7 @@ import { useShallow } from "zustand/react/shallow";
 import { LuLoader } from "react-icons/lu";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
-import {updateAiSystemPrompt} from "@/lib/api/ai-system-prompt/updateAiSystemPrompt";
+import { updateAiSystemPrompt } from "@/lib/api/ai-system-prompt/updateAiSystemPrompt";
 
 const UpdateAiSystemPromptForm = () => {
   const router = useRouter();
@@ -18,7 +18,7 @@ const UpdateAiSystemPromptForm = () => {
     useShallow((state) => ({
       isLoading: state.isLoading,
       updateStore: state.updateStore,
-        updateTarget: state.updateTarget,
+      updateTarget: state.updateTarget,
     })),
   );
 
@@ -29,11 +29,14 @@ const UpdateAiSystemPromptForm = () => {
     const name = formData.get("name") as string;
 
     try {
-      const systemPrompt = await updateAiSystemPrompt(Number(updateTarget?.id), {
+      const systemPrompt = await updateAiSystemPrompt(
+        Number(updateTarget?.id),
+        {
           product_name,
           prompt,
-          name
-      });
+          name,
+        },
+      );
       updateStore("openUpdateDialog", false);
       toast.success(systemPrompt.message);
       router.refresh();
@@ -58,10 +61,23 @@ const UpdateAiSystemPromptForm = () => {
       />
 
       <Label htmlFor="name">Prompt name</Label>
-      <Input id="name" type="text" name="name" required className="mb-4" defaultValue={updateTarget?.name} />
+      <Input
+        id="name"
+        type="text"
+        name="name"
+        required
+        className="mb-4"
+        defaultValue={updateTarget?.name}
+      />
 
       <Label htmlFor="prompt">System prompt</Label>
-      <Textarea id="prompt" name="prompt" required className="mb-4 max-h-96" defaultValue={updateTarget?.prompt} />
+      <Textarea
+        id="prompt"
+        name="prompt"
+        required
+        className="mb-4 max-h-96"
+        defaultValue={updateTarget?.prompt}
+      />
 
       <Button type="submit">
         {isLoading ? <LuLoader className="animate-spin" /> : "Add"}

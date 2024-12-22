@@ -8,10 +8,11 @@ type TUpdatePayload = {
   product_name?: string;
   name?: string;
   prompt?: string;
-}
+};
 
-export const updateAiSystemPrompt= async (
-  id: number, payload: TUpdatePayload
+export const updateAiSystemPrompt = async (
+  id: number,
+  payload: TUpdatePayload,
 ): Promise<TApiResponse<TAiSystemPrompt>> => {
   try {
     return await fetchApi(`/ai-system-prompts/update/${id}`, {

@@ -2,8 +2,7 @@ import { ColumnDef } from "@tanstack/table-core";
 import { TAiSystemPrompt } from "@/lib/api/ai-system-prompt/createAiSystemPrompt";
 import { formatDateToIndonesian } from "@/lib/utils";
 import DeleteAiSystemPromptDialog from "@/app/(admin)/admin/ai-system-prompt/_components/DeleteAiSystemPromptDialog";
-import UpdateAiSystemPromptDialogTrigger
-  from "@/app/(admin)/admin/ai-system-prompt/_components/UpdateAiSystemPromptDialogTrigger";
+import UpdateAiSystemPromptDialogTrigger from "@/app/(admin)/admin/ai-system-prompt/_components/UpdateAiSystemPromptDialogTrigger";
 
 export const AiSystemPromptTableColumns: ColumnDef<TAiSystemPrompt>[] = [
   {
