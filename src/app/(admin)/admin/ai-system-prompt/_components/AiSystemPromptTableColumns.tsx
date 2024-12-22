@@ -1,6 +1,7 @@
 import { ColumnDef } from "@tanstack/table-core";
 import { TAiSystemPrompt } from "@/lib/api/ai-system-prompt/createAiSystemPrompt";
 import { formatDateToIndonesian } from "@/lib/utils";
+import DeleteAiSystemPromptDialog from "@/app/(admin)/admin/ai-system-prompt/_components/DeleteAiSystemPromptDialog";
 
 export const AiSystemPromptTableColumns: ColumnDef<TAiSystemPrompt>[] = [
   {
@@ -29,4 +30,11 @@ export const AiSystemPromptTableColumns: ColumnDef<TAiSystemPrompt>[] = [
     accessorKey: "prompt",
     header: "Prompt",
   },
+  {
+    accessorKey: "action",
+    header: "Action",
+    cell: ({ row }) => <>
+      <DeleteAiSystemPromptDialog row={row} />
+    </>,
+  }
 ];

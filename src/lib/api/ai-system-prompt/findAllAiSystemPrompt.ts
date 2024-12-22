@@ -8,7 +8,7 @@ export const findAllAiSystemPrompt = async (): Promise<
   TApiResponse<TAiSystemPrompt[]>
 > => {
   try {
-    return await fetchApi(false, `/ai-system-prompts/find-all`, {});
+    return await fetchApi(`/ai-system-prompts/find-all`, {});
   } catch (e) {
     throw e;
   }

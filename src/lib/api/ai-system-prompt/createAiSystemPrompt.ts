@@ -18,7 +18,7 @@ export const createAiSystemPrompt = async (
   name: string,
 ): Promise<TApiResponse<TAiSystemPrompt>> => {
   try {
-    return await fetchApi(true, "/ai-system-prompts/create", {
+    return await fetchApi("/ai-system-prompts/create", {
       method: "POST",
       body: JSON.stringify({ product_name, prompt, name }),
     });
