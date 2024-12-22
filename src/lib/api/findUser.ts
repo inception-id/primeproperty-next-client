@@ -6,7 +6,7 @@ import { TUser } from "@/lib/api/createUser";
 
 export const findUser = async (email: string): Promise<TApiResponse<TUser>> => {
   try {
-    return await fetchApi(false, `/users/find-user?email=${email}`);
+    return await fetchApi(`/users/find-user?email=${email}`);
   } catch (e) {
     throw e;
   }
