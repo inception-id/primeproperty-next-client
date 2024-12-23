@@ -3,7 +3,7 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { LuHouse } from "react-icons/lu";
+import {LuHouse, LuLanguages} from "react-icons/lu";
 import { TbBrandOpenai } from "react-icons/tb";
 
 const AdminSidebar = () => {
@@ -16,9 +16,14 @@ const AdminSidebar = () => {
       icon: <LuHouse />,
     },
     {
-      title: "System prompt",
+      title: "System prompts",
       href: "/admin/ai-system-prompt",
       icon: <TbBrandOpenai />,
+    },
+    {
+      title: "Languages",
+      href: "/admin/language",
+      icon: <LuLanguages/>,
     },
   ];
 
