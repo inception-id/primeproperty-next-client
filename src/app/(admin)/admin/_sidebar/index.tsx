@@ -3,7 +3,7 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import {LuHouse, LuLanguages} from "react-icons/lu";
+import { LuHouse, LuLanguages } from "react-icons/lu";
 import { TbBrandOpenai } from "react-icons/tb";
 
 const AdminSidebar = () => {
@@ -23,7 +23,7 @@ const AdminSidebar = () => {
     {
       title: "Languages",
       href: "/admin/language",
-      icon: <LuLanguages/>,
+      icon: <LuLanguages />,
     },
   ];
 

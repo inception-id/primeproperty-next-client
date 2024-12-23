@@ -7,8 +7,8 @@ import { toast } from "react-toastify";
 import { useShallow } from "zustand/react/shallow";
 import { LuLoader } from "react-icons/lu";
 import { useRouter } from "next/navigation";
-import {useLanguageStore} from "@/app/(admin)/admin/language/_lib/store";
-import {createLanguage} from "@/lib/api/languages/createLanguage";
+import { useLanguageStore } from "@/app/(admin)/admin/language/_lib/store";
+import { createLanguage } from "@/lib/api/languages/createLanguage";
 
 const AddLanguageForm = () => {
   const router = useRouter();
@@ -25,7 +25,7 @@ const AddLanguageForm = () => {
     const iso_639_1 = formData.get("iso_code") as string;
 
     try {
-        const language = await createLanguage(title, iso_639_1);
+      const language = await createLanguage(title, iso_639_1);
       updateStore("openAddDialog", false);
       toast.success(language.message);
       router.refresh();
@@ -40,17 +40,17 @@ const AddLanguageForm = () => {
   return (
     <form action={handleAction}>
       <Label htmlFor="title">Title</Label>
-      <Input
-        id="title"
-        type="text"
-        name="title"
-        required
-        className="mb-4"
-      />
+      <Input id="title" type="text" name="title" required className="mb-4" />
 
       <Label htmlFor="iso_code">ISO 639 Code</Label>
-      <Input id="iso_code" type="text" name="iso_code" required className="mb-4" maxLength={2} />
-
+      <Input
+        id="iso_code"
+        type="text"
+        name="iso_code"
+        required
+        className="mb-4"
+        maxLength={2}
+      />
 
       <Button type="submit">
         {isLoading ? <LuLoader className="animate-spin" /> : "Add"}
