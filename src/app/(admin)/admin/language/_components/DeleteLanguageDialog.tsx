@@ -12,8 +12,8 @@ import { cn } from "@/lib/utils";
 import { Row } from "@tanstack/table-core";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import {TLanguage} from "@/lib/api/languages/createLanguage";
-import {deleteLanguage} from "@/lib/api/languages/deleteLanguage";
+import { TLanguage } from "@/lib/api/languages/createLanguage";
+import { deleteLanguage } from "@/lib/api/languages/deleteLanguage";
 
 const DeleteLanguageDialog = ({ row }: { row: Row<TLanguage> }) => {
   const router = useRouter();
