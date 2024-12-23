@@ -1,11 +1,11 @@
 import { create } from "zustand";
-import {TLanguage} from "@/lib/api/languages/createLanguage";
+import { TLanguage } from "@/lib/api/languages/createLanguage";
 
 type TUseLanguageStore = {
   isLoading: boolean;
   openAddDialog: boolean;
   openUpdateDialog: boolean;
-  updateTarget: TLanguage| null;
+  updateTarget: TLanguage | null;
   updateStore: (key: keyof TUseLanguageStore, value: any) => void;
 };
 

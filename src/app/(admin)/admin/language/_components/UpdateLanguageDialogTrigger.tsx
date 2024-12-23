@@ -1,15 +1,11 @@
 import { LuPen } from "react-icons/lu";
 import { useShallow } from "zustand/react/shallow";
 import { Button } from "@/components/ui/button";
-import {useLanguageStore} from "@/app/(admin)/admin/language/_lib/store";
+import { useLanguageStore } from "@/app/(admin)/admin/language/_lib/store";
 import { Row } from "@tanstack/table-core";
-import {TLanguage} from "@/lib/api/languages/createLanguage";
+import { TLanguage } from "@/lib/api/languages/createLanguage";
 
-const UpdateLanguageDialogTrigger = ({
-  row,
-}: {
-  row: Row<TLanguage>;
-}) => {
+const UpdateLanguageDialogTrigger = ({ row }: { row: Row<TLanguage> }) => {
   const { updateStore } = useLanguageStore(
     useShallow((state) => ({
       updateStore: state.updateStore,

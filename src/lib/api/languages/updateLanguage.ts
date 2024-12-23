@@ -2,14 +2,14 @@
 
 import { fetchApi } from "@/lib/api/fetchApi";
 import { TApiResponse } from "@/lib/api/ApiResponse";
-import {TLanguage} from "@/lib/api/languages/createLanguage";
+import { TLanguage } from "@/lib/api/languages/createLanguage";
 
-type TUpdateLanguage= {
+type TUpdateLanguage = {
   title?: string;
   iso_639_1?: string;
 };
 
-export const updateLanguage= async (
+export const updateLanguage = async (
   id: number,
   payload: TUpdateLanguage,
 ): Promise<TApiResponse<TLanguage>> => {

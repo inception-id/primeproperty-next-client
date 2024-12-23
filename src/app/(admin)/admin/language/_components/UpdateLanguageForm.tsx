@@ -8,7 +8,7 @@ import { useShallow } from "zustand/react/shallow";
 import { LuLoader } from "react-icons/lu";
 import { useRouter } from "next/navigation";
 import { useLanguageStore } from "@/app/(admin)/admin/language/_lib/store";
-import {updateLanguage} from "@/lib/api/languages/updateLanguage";
+import { updateLanguage } from "@/lib/api/languages/updateLanguage";
 
 const UpdateLanguageForm = () => {
   const router = useRouter();
@@ -16,7 +16,7 @@ const UpdateLanguageForm = () => {
     useShallow((state) => ({
       isLoading: state.isLoading,
       updateStore: state.updateStore,
-        updateTarget: state.updateTarget
+      updateTarget: state.updateTarget,
     })),
   );
 
@@ -26,7 +26,10 @@ const UpdateLanguageForm = () => {
     const iso_639_1 = formData.get("iso_code") as string;
 
     try {
-      const language = await updateLanguage(Number(updateTarget?.id), {title, iso_639_1});
+      const language = await updateLanguage(Number(updateTarget?.id), {
+        title,
+        iso_639_1,
+      });
       updateStore("openUpdateDialog", false);
       toast.success(language.message);
       router.refresh();
@@ -41,7 +44,14 @@ const UpdateLanguageForm = () => {
   return (
     <form action={handleAction}>
       <Label htmlFor="title">Title</Label>
-      <Input id="title" type="text" name="title" required className="mb-4" defaultValue={updateTarget?.title} />
+      <Input
+        id="title"
+        type="text"
+        name="title"
+        required
+        className="mb-4"
+        defaultValue={updateTarget?.title}
+      />
 
       <Label htmlFor="iso_code">ISO 639 Code</Label>
       <Input
