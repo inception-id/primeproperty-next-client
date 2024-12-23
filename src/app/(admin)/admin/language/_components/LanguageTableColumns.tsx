@@ -3,6 +3,7 @@ import { formatDateToIndonesian } from "@/lib/utils";
 import { TLanguage } from "@/lib/api/languages/createLanguage";
 import { Button } from "@/components/ui/button";
 import { LuArrowUpDown, LuChevronDown } from "react-icons/lu";
+import DeleteLanguageDialog from "@/app/(admin)/admin/language/_components/DeleteLanguageDialog";
 
 export const LanguageTableColumns: ColumnDef<TLanguage>[] = [
   {
@@ -40,6 +41,7 @@ export const LanguageTableColumns: ColumnDef<TLanguage>[] = [
     header: "Action",
     cell: ({ row }) => (
       <div className="flex gap-2">
+        <DeleteLanguageDialog row={row} />
         {/*<UpdateAiSystemPromptDialogTrigger row={row} />*/}
         {/*<DeleteAiSystemPromptDialog row={row} />*/}
       </div>
