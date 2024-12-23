@@ -4,7 +4,7 @@ import AiSystemPromptsTable from "@/app/(admin)/admin/ai-system-prompt/_componen
 const AiSystemPromptsTableWrapper = async () => {
   const aiSystemPrompts = await findAllAiSystemPrompt();
   if (!aiSystemPrompts.data || aiSystemPrompts.data.length === 0) {
-    return "No data";
+    return <>No data</>;
   }
   return <AiSystemPromptsTable data={aiSystemPrompts.data} />;
 };
