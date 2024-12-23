@@ -5,7 +5,7 @@ const LanguageAdmin = () => {
   return (
     <section className="p-4 w-full">
       <AddLanguageDialog />
-        <LanguageTableWrapper />
+      <LanguageTableWrapper />
     </section>
   );
 };

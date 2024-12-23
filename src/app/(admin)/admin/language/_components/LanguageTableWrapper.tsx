@@ -1,4 +1,4 @@
-import {findAllLanguages} from "@/lib/api/languages/findAllLanguages";
+import { findAllLanguages } from "@/lib/api/languages/findAllLanguages";
 import LanguageTable from "@/app/(admin)/admin/language/_components/LanguageTable";
 
 const LanguageTableWrapper = async () => {
