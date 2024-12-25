@@ -2,7 +2,7 @@
 
 import { ThemeProvider } from "next-themes";
 import { ToastContainer } from "react-toastify";
-import {TanstackProviders} from "@/components/custom-ui/tanstack-providers";
+import { TanstackProviders } from "@/components/custom-ui/tanstack-providers";
 
 type TProviders = {
   children: React.ReactNode;
@@ -11,9 +11,7 @@ type TProviders = {
 const Providers = ({ children }: TProviders) => {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <TanstackProviders>
-      {children}
-        </TanstackProviders>
+      <TanstackProviders>{children}</TanstackProviders>
       <ToastContainer
         position="top-center"
         autoClose={2000}
