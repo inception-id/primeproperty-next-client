@@ -10,8 +10,7 @@ const LanguageaiLayout = ({ children }: TLanguageaiLayout) => {
     <div className="flex w-full h-screen overflow-hidden">
       <LanguageaiHeader />
       <LanguageaiSidebar />
-      {/*<Sidebar />*/}
-      <main className="mt-12 lg:mt-0">{children}</main>
+      <main className="mt-10 lg:mt-0 w-full">{children}</main>
     </div>
   );
 };

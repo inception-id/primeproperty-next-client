@@ -8,8 +8,8 @@ export const LANGUAGEAI_MENUS = [
     icon: <LuHouse />,
   },
   {
-    title: "Translation",
-    href: "/languageai/translation",
+    title: "Translate",
+    href: "/languageai/translate",
     icon: <LuLanguages />,
   },
   {

@@ -1,5 +1,5 @@
 const Languageai = () => {
-  return <section>hi</section>;
+  return <section></section>;
 };
 
 export default Languageai;
