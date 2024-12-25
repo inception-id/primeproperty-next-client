@@ -14,7 +14,7 @@ const TranslateMobile = () => {
           <TranslateForm />
         </ResizablePanel>
         <ResizableHandle withHandle />
-        <ResizablePanel minSize={15}  defaultSize={25}>
+        <ResizablePanel minSize={15} defaultSize={25}>
           <TranslateResult />
         </ResizablePanel>
       </ResizablePanelGroup>

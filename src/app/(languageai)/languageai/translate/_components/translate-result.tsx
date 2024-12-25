@@ -2,10 +2,10 @@
 
 import { useContext } from "react";
 import { TranslateContext } from "@/app/(languageai)/languageai/translate/_components/translate-provider";
-import {UseCompletionHelpers} from "@ai-sdk/react";
+import { UseCompletionHelpers } from "@ai-sdk/react";
 import { LuCopy, LuGripHorizontal } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
-import {copyToClipboard} from "@/lib/copyToClipboard";
+import { copyToClipboard } from "@/lib/copyToClipboard";
 
 const TranslateResult = () => {
   const { completion, isLoading } =
@@ -17,8 +17,8 @@ const TranslateResult = () => {
       </div>
       <div className="flex gap-2">
         <div className="flex-1 text-sm h-[90vh]  lg:h-[95vh] overflow-y-auto">
-            {completion
-                ? completion
+          {completion
+            ? completion
             : isLoading
               ? "Translating..."
               : "Translation will show here"}

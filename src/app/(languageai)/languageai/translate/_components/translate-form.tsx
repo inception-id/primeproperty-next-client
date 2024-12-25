@@ -7,8 +7,6 @@ import { TranslateContext } from "@/app/(languageai)/languageai/translate/_compo
 import { UseCompletionHelpers } from "@ai-sdk/react";
 import { LuLoader } from "react-icons/lu";
 import { toast } from "react-toastify";
-import { useQuery } from "@tanstack/react-query";
-import { findAllAiSystemPrompt } from "@/lib/api/ai-system-prompt/findAllAiSystemPrompt";
 import { createTranslateSystemPrompt } from "@/app/(languageai)/languageai/translate/_lib/createTranslateSystemPrompt";
 
 const TranslateForm = () => {
@@ -20,7 +18,7 @@ const TranslateForm = () => {
     const targetLanguage = formData.get("target_language") as string;
 
     try {
-      await complete(translateContent, {
+       await complete(translateContent, {
         body: {
           system: createTranslateSystemPrompt(contentLanguage, targetLanguage),
         },

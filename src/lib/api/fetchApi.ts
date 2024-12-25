@@ -9,8 +9,8 @@ export const fetchApi = async (path: string, init?: RequestInit) => {
     const response = await fetch(url, {
       headers: {
         "Content-Type": "application/json",
-        ApiKey: env.API_KEY,
-        AccessToken: accessToken,
+        "x-api-key": env.API_KEY,
+        "x-access-token": accessToken,
         ...init?.headers,
       },
       ...init,
