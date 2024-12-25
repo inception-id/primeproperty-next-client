@@ -18,7 +18,7 @@ const TranslateForm = () => {
     const targetLanguage = formData.get("target_language") as string;
 
     try {
-       await complete(translateContent, {
+      await complete(translateContent, {
         body: {
           system: createTranslateSystemPrompt(contentLanguage, targetLanguage),
         },
