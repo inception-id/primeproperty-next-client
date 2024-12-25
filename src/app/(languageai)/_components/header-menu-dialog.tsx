@@ -10,25 +10,12 @@ import { LuMenu, LuX } from "react-icons/lu";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
+import {LANGUAGEAI_MENUS} from "@/app/(languageai)/_lib/constant";
 
-const HeaderMenuDialog = () => {
+const LanguageaiHeaderMenuDialog = () => {
   const pathname = usePathname();
   const router = useRouter();
 
-  const MENUS = [
-    {
-      title: "Home",
-      href: "/",
-    },
-    {
-      title: "Account",
-      href: "/account",
-    },
-    {
-      title: "Language AI",
-      href: "/languageai",
-    },
-  ];
   return (
     <Dialog>
       <DialogTrigger
@@ -38,13 +25,13 @@ const HeaderMenuDialog = () => {
       </DialogTrigger>
       <DialogContent>
         <div className="flex items-center justify-between mb-4">
-          <DialogTitle>Menu</DialogTitle>
+          <DialogTitle>LANGUAGE AI</DialogTitle>
           <DialogClose>
             <LuX />
           </DialogClose>
         </div>
         <div className="flex flex-col">
-          {MENUS.map((menu) => (
+          {LANGUAGEAI_MENUS.map((menu) => (
             <DialogClose
               key={menu.href}
               className={cn(
@@ -64,4 +51,4 @@ const HeaderMenuDialog = () => {
   );
 };
 
-export default HeaderMenuDialog;
+export default LanguageaiHeaderMenuDialog;

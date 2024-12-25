@@ -19,7 +19,7 @@ const AccountPage = () => {
 
       <div className="flex flex-col gap-4 w-fit">
         {decoded.email === env.ADMIN_EMAIL && (
-          <Link href="/admin/" className={buttonVariants({})}>
+          <Link href="/admin/ai-system-prompt" className={buttonVariants({})}>
             Admin panel
           </Link>
         )}
