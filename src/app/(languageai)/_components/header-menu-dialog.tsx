@@ -10,7 +10,7 @@ import { LuMenu, LuX } from "react-icons/lu";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
-import {LANGUAGEAI_MENUS} from "@/app/(languageai)/_lib/constant";
+import { LANGUAGEAI_MENUS } from "@/app/(languageai)/_lib/constant";
 
 const LanguageaiHeaderMenuDialog = () => {
   const pathname = usePathname();
