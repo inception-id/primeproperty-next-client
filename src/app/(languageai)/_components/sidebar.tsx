@@ -20,7 +20,7 @@ const LanguageaiSidebar = () => {
         LANGUAGE AI
       </div>
 
-      <div className="flex flex-col gap-4 flex-1">
+      <div className="flex flex-col gap-2 flex-1">
         {LANGUAGEAI_MENUS.map((menu) => (
           <Link
             href={menu.href}
@@ -33,7 +33,7 @@ const LanguageaiSidebar = () => {
             )}
           >
             {menu.icon}
-            <span className="hidden lg:block">{menu.title}</span>
+            {menu.title}
           </Link>
         ))}
       </div>
