@@ -40,8 +40,8 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-      "/account",
-      "/account/change-password",
+    "/account",
+    "/account/change-password",
     /*
      * Match all request paths except for the ones starting with:
      * - api (API routes)

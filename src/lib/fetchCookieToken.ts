@@ -1,6 +1,6 @@
-'use server'
-import {cookies} from "next/headers";
+"use server";
+import { cookies } from "next/headers";
 
 export const fetchCookieToken = async () => {
-    return cookies().get("accessToken")?.value;
-}
+  return cookies().get("accessToken")?.value;
+};
