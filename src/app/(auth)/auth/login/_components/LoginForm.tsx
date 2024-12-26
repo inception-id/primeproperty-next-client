@@ -62,7 +62,7 @@ const LoginForm = () => {
   };
 
   return (
-    <form action={handleAction} className="mb-4">
+    <form action={handleAction} className="mb-2">
       <Label htmlFor="email">Email</Label>
       <Input
         type="email"
@@ -88,7 +88,7 @@ const LoginForm = () => {
         className="mb-4"
       />
 
-      <Button type="submit" className="w-full">
+      <Button type="submit" className="w-full ">
         Sign in
       </Button>
     </form>

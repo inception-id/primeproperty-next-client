@@ -20,6 +20,7 @@ export const env = createEnv({
    */
   client: {
     NEXT_PUBLIC_HOST_URL: z.string().min(1),
+    NEXT_PUBLIC_GOOGLE_CLIENT_ID: z.string().min(1),
   },
   /*
    * Due to how Next.js bundles environment variables on Edge and Client,
@@ -29,6 +30,7 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NEXT_PUBLIC_HOST_URL: process.env.NEXT_PUBLIC_HOST_URL,
+    NEXT_PUBLIC_GOOGLE_CLIENT_ID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
     SUPERTOKENS_CONNECTION_URI: process.env.SUPERTOKENS_CONNECTION_URI,
     SUPERTOKENS_API_KEY: process.env.SUPERTOKENS_API_KEY,
     API_URL: process.env.API_URL,

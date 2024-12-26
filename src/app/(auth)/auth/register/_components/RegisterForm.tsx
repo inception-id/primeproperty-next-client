@@ -32,7 +32,7 @@ const RegisterForm = () => {
       if (supertokens.status === "OK") {
         const user = await createUser(supertokens.recipeUserId, email);
         if (user.data?.id) {
-          toast.success("Sign up successfully, please login");
+          toast.success("Sign up successful, please login to continue");
           setTimeout(() => router.push("/auth/login"), 1000);
           return;
         }
@@ -51,7 +51,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <form action={handleAction} className="mb-4">
+    <form action={handleAction} className="mb-2">
       <Label htmlFor="email">Email</Label>
       <Input
         type="email"
