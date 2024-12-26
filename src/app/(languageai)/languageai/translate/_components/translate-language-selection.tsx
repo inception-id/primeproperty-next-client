@@ -49,7 +49,6 @@ const TranslateLanguageSelection = () => {
           <SelectValue placeholder="Target language" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="detect">Target language</SelectItem>
           {data &&
             data?.length > 0 &&
             data?.map((language) => (

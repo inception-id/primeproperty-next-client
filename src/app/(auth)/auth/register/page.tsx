@@ -1,6 +1,6 @@
 import Link from "next/link";
 import RegisterForm from "@/app/(auth)/auth/register/_components/RegisterForm";
-import GoogleRegisterButton from "@/app/(auth)/auth/register/_components/google-register-button";
+import GoogleAuthButton from "@/app/(auth)/auth/login/_components/google-auth-button";
 
 const Register = () => {
   return (
@@ -16,7 +16,7 @@ const Register = () => {
           </Link>
         </div>
         <div className="flex items-center justify-center">
-          <GoogleRegisterButton />
+          <GoogleAuthButton />
         </div>
       </div>
     </main>

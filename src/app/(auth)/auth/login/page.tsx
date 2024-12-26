@@ -1,6 +1,6 @@
 import Link from "next/link";
 import LoginForm from "@/app/(auth)/auth/login/_components/LoginForm";
-import GoogleLoginBtn from "@/app/(auth)/auth/login/_components/google-login-button";
+import GoogleAuthButton from "@/app/(auth)/auth/login/_components/google-auth-button";
 
 const LoginPage = () => {
   return (
@@ -16,7 +16,7 @@ const LoginPage = () => {
           </Link>
         </div>
         <div className="flex items-center justify-center">
-          <GoogleLoginBtn />
+          <GoogleAuthButton />
         </div>
       </div>
     </main>
