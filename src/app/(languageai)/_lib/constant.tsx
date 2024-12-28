@@ -1,5 +1,5 @@
-import { LuHouse, LuLanguages, LuUser } from "react-icons/lu";
-import { FcAbout } from "react-icons/fc";
+import {LuHouse, LuLanguages, LuSquareTerminal, LuUser} from "react-icons/lu";
+import {GiSpinningTop} from "react-icons/gi";
 
 export const LANGUAGEAI_MENUS = [
   {
@@ -13,9 +13,14 @@ export const LANGUAGEAI_MENUS = [
     icon: <LuLanguages />,
   },
   {
+    title: "Checkbot",
+    href: "/languageai/checkbot",
+    icon: <LuSquareTerminal />,
+  },
+  {
     title: "Inception",
     href: "/",
-    icon: <FcAbout />,
+    icon: <GiSpinningTop/>,
   },
   {
     title: "Account",

@@ -83,7 +83,7 @@ const TranslateForm = () => {
         className="focus-visible:ring-0 focus-visible:ring-offset-0 h-96 lg:h-[90vh] lg:flex-1 resize-none"
       />
       <TranslateLanguageSelection />
-      <div className="flex justify-end pr-4">
+      <div className="flex justify-end pr-2">
         <Button type="submit" disabled={isLoading}>
           {isLoading ? <LuLoader className="animate-spin" /> : "Translate"}
         </Button>
