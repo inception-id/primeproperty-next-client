@@ -4,7 +4,7 @@ import { useTranslateStore } from "@/app/(languageai)/languageai/translate/_lib/
 import { useShallow } from "zustand/react/shallow";
 import { createTranslation } from "@/lib/api/translation/createTranslation";
 import { toast } from "react-toastify";
-import {updateTranslation} from "@/lib/api/translation/updateTranslation";
+import { updateTranslation } from "@/lib/api/translation/updateTranslation";
 
 const SaveTranslationButton = () => {
   const {
@@ -13,9 +13,9 @@ const SaveTranslationButton = () => {
     targetLanguage,
     content,
     completion,
-      updateStore,
-      updatedCompletion,
-      translationId
+    updateStore,
+    updatedCompletion,
+    translationId,
   } = useTranslateStore(
     useShallow((state) => ({
       aiSystemPrompt: state.aiSystemPrompt,
@@ -25,14 +25,17 @@ const SaveTranslationButton = () => {
       completion: state.completion,
       updatedCompletion: state.updatedCompletion,
       updateStore: state.updateStore,
-      translationId: state.translationId
+      translationId: state.translationId,
     })),
   );
 
   const onSaveClick = async () => {
     try {
       if (translationId) {
-        const updatedTranslation = await  updateTranslation(translationId, updatedCompletion);
+        const updatedTranslation = await updateTranslation(
+          translationId,
+          updatedCompletion,
+        );
         if (updatedTranslation.data.id) {
           toast.success("Translation updated");
           return;
@@ -59,7 +62,6 @@ const SaveTranslationButton = () => {
         toast.error(translation.message);
         return;
       }
-
     } catch (e) {
       console.error(e);
       toast.error("Fail to save, please try again");

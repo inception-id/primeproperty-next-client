@@ -26,7 +26,7 @@ const TranslateForm = () => {
   const { updateCreateTranslatioStore, updateStore } = useTranslateStore(
     useShallow((state) => ({
       updateCreateTranslatioStore: state.updateCreateTranslationStore,
-      updateStore: state.updateStore
+      updateStore: state.updateStore,
     })),
   );
   const handleAction = async (formData: FormData) => {
@@ -70,7 +70,7 @@ const TranslateForm = () => {
           completion,
           updated_completion: completion,
         };
-        updateStore("translationId", "")
+        updateStore("translationId", "");
         updateCreateTranslatioStore(createTranslationPayload);
       }
     } catch (e) {

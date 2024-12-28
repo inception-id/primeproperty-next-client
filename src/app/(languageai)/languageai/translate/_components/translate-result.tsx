@@ -9,10 +9,9 @@ import SaveTranslationButton from "@/app/(languageai)/languageai/translate/_comp
 import TranslateTextarea from "@/app/(languageai)/languageai/translate/_components/translate-textarea";
 
 const TranslateResult = () => {
-
   const { updatedCompletion } = useTranslateStore(
     useShallow((state) => ({
-        updatedCompletion: state.updatedCompletion
+      updatedCompletion: state.updatedCompletion,
     })),
   );
 
@@ -22,7 +21,7 @@ const TranslateResult = () => {
         * Drag <LuGripHorizontal /> icon to resize
       </div>
       <div className="flex gap-4 w-full">
-          <TranslateTextarea />
+        <TranslateTextarea />
         <div className="flex flex-col gap-2 flex-1">
           <SaveTranslationButton />
           <Button

@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { TCreateTranslationPayload } from "@/lib/api/translation/createTranslation";
 
 type TUseTranslateStore = {
-    translationId: string;
+  translationId: string;
   aiSystemPrompt: string;
   contentLanguage: string;
   targetLanguage: string;
@@ -14,7 +14,7 @@ type TUseTranslateStore = {
 };
 
 export const useTranslateStore = create<TUseTranslateStore>((set) => ({
-    translationId: "",
+  translationId: "",
   aiSystemPrompt: "",
   contentLanguage: "",
   targetLanguage: "",
