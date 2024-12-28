@@ -7,13 +7,21 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { findAllAiSystemPrompt } from "@/lib/api/ai-system-prompt/findAllAiSystemPrompt";
+import {useCheckbotStore} from "@/app/(languageai)/languageai/checkbot/_lib/useCheckbotStore";
+import {useShallow} from "zustand/react/shallow";
 
 const CheckbotInstructionSelection = () => {
+  const {updateStore} = useCheckbotStore(
+      useShallow((state) => ({
+        updateStore: state.updateStore,
+      }))
+  )
   const { data } = useQuery({
     queryKey: ["checkbotInstructionSelection"],
     queryFn: async () => {
       try {
         const instructions = await findAllAiSystemPrompt("checkbot");
+        updateStore("instructions", instructions.data)
         return instructions.data;
       } catch (e: any) {
         console.error(e);
@@ -24,18 +32,19 @@ const CheckbotInstructionSelection = () => {
 
   return (
     <div className="p-2">
-      <Select name="ai_system_prompt">
+      <Select name="instruction_id">
         <SelectTrigger className="capitalize">
           <SelectValue placeholder="Select instruction" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent >
           {data &&
             data?.length > 0 &&
             data?.map((instruction) => (
               <SelectItem
-                value={instruction.prompt}
+                value={String(instruction.id)}
                 key={`detect_${instruction.id}`}
                 className="capitalize"
+                onSelect={()=> console.log("hi")}
               >
                 {instruction.name}
               </SelectItem>

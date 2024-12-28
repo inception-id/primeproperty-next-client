@@ -10,6 +10,8 @@ import { useShallow } from "zustand/react/shallow";
 import { fetchCookieToken } from "@/lib/fetchCookieToken";
 import { CheckbotContext } from "@/app/(languageai)/languageai/checkbot/_components/checkbot-provider";
 import CheckbotInstructionSelection from "@/app/(languageai)/languageai/checkbot/_components/checkbot-instruction-select";
+import {useCheckbotStore} from "@/app/(languageai)/languageai/checkbot/_lib/useCheckbotStore";
+import {createCheckbot} from "@/lib/api/checkbot/createCheckbot";
 
 const CheckbotForm = () => {
   const { complete, isLoading, completion } =
@@ -21,20 +23,27 @@ const CheckbotForm = () => {
     })),
   );
 
+  const {instructions} = useCheckbotStore(
+      useShallow((state) => ({
+        instructions: state.instructions,
+      }))
+  )
+
   const handleAction = async (formData: FormData) => {
     const content = formData.get("checkbot_content") as string;
-    const aiSystemPrompt = formData.get("ai_system_prompt") as string;
+    const instructionId= formData.get("instruction_id") as string;
 
     if (!content) {
       toast.error("Please enter your text");
       return;
     }
 
-    if (!aiSystemPrompt) {
+    if (!instructionId) {
       toast.error("Please select instruction");
       return;
     }
 
+      const selectedInstruction= instructions.filter((instruction) => String(instruction.id) === instructionId)[0];
     try {
       const token = await fetchCookieToken();
       if (!token) {
@@ -42,9 +51,10 @@ const CheckbotForm = () => {
         return;
       }
 
+
       await complete(content, {
         body: {
-          system: aiSystemPrompt,
+          system: selectedInstruction.prompt,
         },
       });
     } catch (e) {
@@ -52,18 +62,17 @@ const CheckbotForm = () => {
       toast.error("Something went wrong, please try again");
     } finally {
       // no need to handle if error
-      // if (completion) {
-      //   const createTranslationPayload = {
-      //     ai_system_prompt: ai_system_prompt,
-      //     content_language,
-      //     target_language,
-      //     content,
-      //     completion,
-      //     updated_completion: completion,
-      //   };
-      //
-      //   await createTranslation(createTranslationPayload);
-      // }
+      if (completion) {
+        const createCheckbotPayload = {
+          instruction: selectedInstruction.name,
+          ai_system_prompt: selectedInstruction.prompt,
+          content,
+          completion,
+          updated_completion: completion,
+        };
+
+        await createCheckbot(createCheckbotPayload);
+      }
     }
   };
   return (
