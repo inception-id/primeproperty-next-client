@@ -8,21 +8,26 @@ import { UseCompletionHelpers } from "@ai-sdk/react";
 import { LuLoader } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { createTranslateSystemPrompt } from "@/app/(languageai)/languageai/translate/_lib/createTranslateSystemPrompt";
-import { createTranslation } from "@/lib/api/translation/createTranslation";
 import { useLoginStore } from "@/app/(auth)/auth/login/_lib/useLoginStore";
 import { useShallow } from "zustand/react/shallow";
 import { fetchCookieToken } from "@/lib/fetchCookieToken";
+import {useTranslateStore} from "@/app/(languageai)/languageai/translate/_lib/useTranslateStore";
 
 const TranslateForm = () => {
-  const { complete, isLoading, completion } =
+  const { complete, isLoading } =
     useContext<UseCompletionHelpers>(TranslateContext);
 
-  const { updateStore } = useLoginStore(
+  const { updateLoginStore } = useLoginStore(
     useShallow((state) => ({
-      updateStore: state.updateStore,
+      updateLoginStore: state.updateStore,
     })),
   );
 
+  const { updateCreateTranslatioStore } = useTranslateStore(
+      useShallow((state) => ({
+        updateCreateTranslatioStore: state.updateCreateTranslationStore,
+      })),
+  );
   const handleAction = async (formData: FormData) => {
     const content = formData.get("translate_content") as string;
     const content_language = formData.get("content_language") as string;
@@ -38,40 +43,38 @@ const TranslateForm = () => {
       return;
     }
 
-    const ai_system_prompt = createTranslateSystemPrompt(
-      content_language,
-      target_language,
-    );
 
     try {
       const token = await fetchCookieToken();
       if (!token) {
-        updateStore("openLoginDialog", true);
+        updateLoginStore("openLoginDialog", true);
         return;
       }
 
-      await complete(content, {
+      const ai_system_prompt = createTranslateSystemPrompt(
+          content_language,
+          target_language,
+      );
+      const completion = await complete(content, {
         body: {
           system: ai_system_prompt,
         },
       });
+
+      if (completion) {
+            const createTranslationPayload = {
+              ai_system_prompt,
+              content_language,
+              target_language,
+              content,
+              completion,
+              updated_completion: completion,
+            };
+            updateCreateTranslatioStore(createTranslationPayload)
+      }
     } catch (e) {
       console.error(e);
       toast.error("Something went wrong, please try again");
-    } finally {
-      // no need to handle if error
-      if (completion) {
-        const createTranslationPayload = {
-          ai_system_prompt: ai_system_prompt,
-          content_language,
-          target_language,
-          content,
-          completion,
-          updated_completion: completion,
-        };
-
-        await createTranslation(createTranslationPayload);
-      }
     }
   };
   return (
@@ -83,7 +86,7 @@ const TranslateForm = () => {
         className="focus-visible:ring-0 focus-visible:ring-offset-0 h-96 lg:h-[90vh] lg:flex-1 resize-none"
       />
       <TranslateLanguageSelection />
-      <div className="flex justify-end pr-4">
+      <div className="flex justify-end pr-2">
         <Button type="submit" disabled={isLoading}>
           {isLoading ? <LuLoader className="animate-spin" /> : "Translate"}
         </Button>
