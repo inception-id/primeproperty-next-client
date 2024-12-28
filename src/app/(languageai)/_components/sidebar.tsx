@@ -15,7 +15,7 @@ const LanguageaiSidebar = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="p-4 bg-primary text-primary-foreground hidden lg:flex flex-col">
+    <aside className="p-4 bg-secondary text-secondary-foreground hidden lg:flex flex-col">
       <div className="mb-4 text-center font-semibold hidden lg:block">
         LANGUAGE AI
       </div>
@@ -27,7 +27,7 @@ const LanguageaiSidebar = () => {
             key={menu.href}
             className={cn(
               buttonVariants({
-                variant: pathname === menu.href ? "secondary" : "ghost",
+                variant: pathname === menu.href ? "default" : "ghost",
               }),
               "justify-start",
             )}
