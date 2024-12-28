@@ -27,7 +27,7 @@ const LanguageaiSidebar = () => {
             key={menu.href}
             className={cn(
               buttonVariants({
-                variant: pathname === menu.href ? "default" : "secondary",
+                variant: pathname === menu.href ? "default" : "ghost",
               }),
               "justify-start",
             )}
