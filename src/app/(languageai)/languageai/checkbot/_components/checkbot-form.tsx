@@ -10,8 +10,8 @@ import { useShallow } from "zustand/react/shallow";
 import { fetchCookieToken } from "@/lib/fetchCookieToken";
 import { CheckbotContext } from "@/app/(languageai)/languageai/checkbot/_components/checkbot-provider";
 import CheckbotInstructionSelection from "@/app/(languageai)/languageai/checkbot/_components/checkbot-instruction-select";
-import {useCheckbotStore} from "@/app/(languageai)/languageai/checkbot/_lib/useCheckbotStore";
-import {createCheckbot} from "@/lib/api/checkbot/createCheckbot";
+import { useCheckbotStore } from "@/app/(languageai)/languageai/checkbot/_lib/useCheckbotStore";
+import { createCheckbot } from "@/lib/api/checkbot/createCheckbot";
 
 const CheckbotForm = () => {
   const { complete, isLoading, completion } =
@@ -23,15 +23,15 @@ const CheckbotForm = () => {
     })),
   );
 
-  const {instructions} = useCheckbotStore(
-      useShallow((state) => ({
-        instructions: state.instructions,
-      }))
-  )
+  const { instructions } = useCheckbotStore(
+    useShallow((state) => ({
+      instructions: state.instructions,
+    })),
+  );
 
   const handleAction = async (formData: FormData) => {
     const content = formData.get("checkbot_content") as string;
-    const instructionId= formData.get("instruction_id") as string;
+    const instructionId = formData.get("instruction_id") as string;
 
     if (!content) {
       toast.error("Please enter your text");
@@ -43,14 +43,15 @@ const CheckbotForm = () => {
       return;
     }
 
-      const selectedInstruction= instructions.filter((instruction) => String(instruction.id) === instructionId)[0];
+    const selectedInstruction = instructions.filter(
+      (instruction) => String(instruction.id) === instructionId,
+    )[0];
     try {
       const token = await fetchCookieToken();
       if (!token) {
         updateStore("openLoginDialog", true);
         return;
       }
-
 
       await complete(content, {
         body: {

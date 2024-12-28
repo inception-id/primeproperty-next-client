@@ -1,7 +1,7 @@
 import { TApiResponse } from "@/lib/api/ApiResponse";
 import { fetchApi } from "@/lib/api/fetchApi";
 
-export type TCheckbot= {
+export type TCheckbot = {
   id: number;
   user_id: string;
   created_at: string;
