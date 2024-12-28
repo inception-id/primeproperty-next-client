@@ -11,7 +11,7 @@ import { createTranslateSystemPrompt } from "@/app/(languageai)/languageai/trans
 import { useLoginStore } from "@/app/(auth)/auth/login/_lib/useLoginStore";
 import { useShallow } from "zustand/react/shallow";
 import { fetchCookieToken } from "@/lib/fetchCookieToken";
-import {useTranslateStore} from "@/app/(languageai)/languageai/translate/_lib/useTranslateStore";
+import { useTranslateStore } from "@/app/(languageai)/languageai/translate/_lib/useTranslateStore";
 
 const TranslateForm = () => {
   const { complete, isLoading } =
@@ -23,10 +23,11 @@ const TranslateForm = () => {
     })),
   );
 
-  const { updateCreateTranslatioStore } = useTranslateStore(
-      useShallow((state) => ({
-        updateCreateTranslatioStore: state.updateCreateTranslationStore,
-      })),
+  const { updateCreateTranslatioStore, updateStore } = useTranslateStore(
+    useShallow((state) => ({
+      updateCreateTranslatioStore: state.updateCreateTranslationStore,
+      updateStore: state.updateStore
+    })),
   );
   const handleAction = async (formData: FormData) => {
     const content = formData.get("translate_content") as string;
@@ -43,7 +44,6 @@ const TranslateForm = () => {
       return;
     }
 
-
     try {
       const token = await fetchCookieToken();
       if (!token) {
@@ -52,8 +52,8 @@ const TranslateForm = () => {
       }
 
       const ai_system_prompt = createTranslateSystemPrompt(
-          content_language,
-          target_language,
+        content_language,
+        target_language,
       );
       const completion = await complete(content, {
         body: {
@@ -62,15 +62,16 @@ const TranslateForm = () => {
       });
 
       if (completion) {
-            const createTranslationPayload = {
-              ai_system_prompt,
-              content_language,
-              target_language,
-              content,
-              completion,
-              updated_completion: completion,
-            };
-            updateCreateTranslatioStore(createTranslationPayload)
+        const createTranslationPayload = {
+          ai_system_prompt,
+          content_language,
+          target_language,
+          content,
+          completion,
+          updated_completion: completion,
+        };
+        updateStore("translationId", "")
+        updateCreateTranslatioStore(createTranslationPayload);
       }
     } catch (e) {
       console.error(e);
