@@ -1,21 +1,20 @@
 "use client";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import TranslateLanguageSelection from "@/app/(languageai)/languageai/translate/_components/translate-language-selection";
+import CheckbotLanguageSelection from "@/app/(languageai)/languageai/translate/_components/translate-language-selection";
 import { useContext } from "react";
-import { TranslateContext } from "@/app/(languageai)/languageai/translate/_components/translate-provider";
 import { UseCompletionHelpers } from "@ai-sdk/react";
 import { LuLoader } from "react-icons/lu";
 import { toast } from "react-toastify";
-import { createTranslateSystemPrompt } from "@/app/(languageai)/languageai/translate/_lib/createTranslateSystemPrompt";
 import { createTranslation } from "@/lib/api/translation/createTranslation";
 import { useLoginStore } from "@/app/(auth)/auth/login/_lib/useLoginStore";
 import { useShallow } from "zustand/react/shallow";
 import { fetchCookieToken } from "@/lib/fetchCookieToken";
+import {CheckbotContext} from "@/app/(languageai)/languageai/checkbot/_components/checkbot-provider";
 
-const TranslateForm = () => {
+const CheckbotForm = () => {
   const { complete, isLoading, completion } =
-    useContext<UseCompletionHelpers>(TranslateContext);
+    useContext<UseCompletionHelpers>(CheckbotContext);
 
   const { updateStore } = useLoginStore(
     useShallow((state) => ({
@@ -38,10 +37,10 @@ const TranslateForm = () => {
       return;
     }
 
-    const ai_system_prompt = createTranslateSystemPrompt(
-      content_language,
-      target_language,
-    );
+    // const ai_system_prompt = createCheckbotSystemPrompt(
+    //   content_language,
+    //   target_language,
+    // );
 
     try {
       const token = await fetchCookieToken();
@@ -50,28 +49,28 @@ const TranslateForm = () => {
         return;
       }
 
-      await complete(content, {
-        body: {
-          system: ai_system_prompt,
-        },
-      });
+      // await complete(content, {
+      //   body: {
+      //     system: ai_system_prompt,
+      //   },
+      // });
     } catch (e) {
       console.error(e);
       toast.error("Something went wrong, please try again");
     } finally {
       // no need to handle if error
-      if (completion) {
-        const createTranslationPayload = {
-          ai_system_prompt: ai_system_prompt,
-          content_language,
-          target_language,
-          content,
-          completion,
-          updated_completion: completion,
-        };
-
-        await createTranslation(createTranslationPayload);
-      }
+      // if (completion) {
+      //   const createTranslationPayload = {
+      //     ai_system_prompt: ai_system_prompt,
+      //     content_language,
+      //     target_language,
+      //     content,
+      //     completion,
+      //     updated_completion: completion,
+      //   };
+      //
+      //   await createTranslation(createTranslationPayload);
+      // }
     }
   };
   return (
@@ -82,14 +81,14 @@ const TranslateForm = () => {
         placeholder="Enter text"
         className="focus-visible:ring-0 focus-visible:ring-offset-0 h-96 lg:h-[90vh] lg:flex-1 resize-none"
       />
-      <TranslateLanguageSelection />
+      <CheckbotLanguageSelection />
       <div className="flex justify-end pr-4">
         <Button type="submit" disabled={isLoading}>
-          {isLoading ? <LuLoader className="animate-spin" /> : "Translate"}
+          {isLoading ? <LuLoader className="animate-spin" /> : "Check"}
         </Button>
       </div>
     </form>
   );
 };
 
-export default TranslateForm;
+export default CheckbotForm;

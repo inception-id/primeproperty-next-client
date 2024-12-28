@@ -14,7 +14,7 @@ export type TTranslation = {
   updated_completion: string;
 };
 
-export type TCreateTranslationPayload = {
+type TCreateTranslationPayload = {
   ai_system_prompt: string;
   content_language: string;
   target_language: string;

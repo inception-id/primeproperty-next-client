@@ -1,15 +1,15 @@
 "use client";
 
 import { useContext } from "react";
-import { TranslateContext } from "@/app/(languageai)/languageai/translate/_components/translate-provider";
+import {CheckbotContext} from "@/app/(languageai)/languageai/checkbot/_components/checkbot-provider";
 import { UseCompletionHelpers } from "@ai-sdk/react";
 import { LuCopy, LuGripHorizontal } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 import { copyToClipboard } from "@/lib/copyToClipboard";
 
-const TranslateResult = () => {
+const CheckbotResult = () => {
   const { completion, isLoading } =
-    useContext<UseCompletionHelpers>(TranslateContext);
+    useContext<UseCompletionHelpers>(CheckbotContext);
   return (
     <div className="p-2 border rounded-md overflow-hidden">
       <div className="text-xs flex items-center gap-1 mb-2 lg:hidden opacity-50">
@@ -20,8 +20,8 @@ const TranslateResult = () => {
           {completion
             ? completion
             : isLoading
-              ? "Translating..."
-              : "Translation will show here"}
+              ? "Processing..."
+              : "Result will show here"}
         </div>
         <Button
           type="button"
@@ -36,4 +36,4 @@ const TranslateResult = () => {
   );
 };
 
-export default TranslateResult;
+export default CheckbotResult;
