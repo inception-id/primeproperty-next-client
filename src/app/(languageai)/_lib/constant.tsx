@@ -1,5 +1,5 @@
-import {LuHouse, LuLanguages, LuSquareTerminal, LuUser} from "react-icons/lu";
-import {GiSpinningTop} from "react-icons/gi";
+import { LuHouse, LuLanguages, LuSquareTerminal, LuUser } from "react-icons/lu";
+import { GiSpinningTop } from "react-icons/gi";
 
 export const LANGUAGEAI_MENUS = [
   {
@@ -20,7 +20,7 @@ export const LANGUAGEAI_MENUS = [
   {
     title: "Inception",
     href: "/",
-    icon: <GiSpinningTop/>,
+    icon: <GiSpinningTop />,
   },
   {
     title: "Account",

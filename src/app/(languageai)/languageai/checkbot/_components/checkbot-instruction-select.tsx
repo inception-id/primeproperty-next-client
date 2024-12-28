@@ -6,14 +6,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {findAllAiSystemPrompt} from "@/lib/api/ai-system-prompt/findAllAiSystemPrompt";
+import { findAllAiSystemPrompt } from "@/lib/api/ai-system-prompt/findAllAiSystemPrompt";
 
-const CheckbotInstructionSelection  = () => {
+const CheckbotInstructionSelection = () => {
   const { data } = useQuery({
     queryKey: ["checkbotInstructionSelection"],
     queryFn: async () => {
       try {
-        const instructions = await findAllAiSystemPrompt('checkbot');
+        const instructions = await findAllAiSystemPrompt("checkbot");
         return instructions.data;
       } catch (e: any) {
         console.error(e);
@@ -23,8 +23,7 @@ const CheckbotInstructionSelection  = () => {
   });
 
   return (
-      <div className="p-2">
-
+    <div className="p-2">
       <Select name="ai_system_prompt">
         <SelectTrigger className="capitalize">
           <SelectValue placeholder="Select instruction" />
@@ -43,8 +42,8 @@ const CheckbotInstructionSelection  = () => {
             ))}
         </SelectContent>
       </Select>
-      </div>
+    </div>
   );
 };
 
-export default  CheckbotInstructionSelection;
+export default CheckbotInstructionSelection;

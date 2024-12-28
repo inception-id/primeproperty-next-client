@@ -4,8 +4,8 @@ import CheckbotResult from "@/app/(languageai)/languageai/checkbot/_components/c
 const CheckbotDesktop = () => {
   return (
     <div className="hidden lg:grid grid-cols-2 p-4 gap-4 h-full">
-        <CheckbotForm />
-        <CheckbotResult />
+      <CheckbotForm />
+      <CheckbotResult />
     </div>
   );
 };

@@ -8,9 +8,8 @@ import { toast } from "react-toastify";
 import { useLoginStore } from "@/app/(auth)/auth/login/_lib/useLoginStore";
 import { useShallow } from "zustand/react/shallow";
 import { fetchCookieToken } from "@/lib/fetchCookieToken";
-import {CheckbotContext} from "@/app/(languageai)/languageai/checkbot/_components/checkbot-provider";
-import CheckbotInstructionSelection
-  from "@/app/(languageai)/languageai/checkbot/_components/checkbot-instruction-select";
+import { CheckbotContext } from "@/app/(languageai)/languageai/checkbot/_components/checkbot-provider";
+import CheckbotInstructionSelection from "@/app/(languageai)/languageai/checkbot/_components/checkbot-instruction-select";
 
 const CheckbotForm = () => {
   const { complete, isLoading, completion } =

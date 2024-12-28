@@ -3,15 +3,14 @@ import CheckbotMobile from "@/app/(languageai)/languageai/checkbot/_components/c
 import CheckbotDesktop from "@/app/(languageai)/languageai/checkbot/_components/checkbot-desktop";
 
 const LanguageaiCheckbot = () => {
-    return (
-        <CheckbotProvider>
-
-        <section className="w-full h-screen overflow-hidden">
-            <CheckbotMobile />
-            <CheckbotDesktop />
-        </section>
-        </CheckbotProvider>
-    )
+  return (
+    <CheckbotProvider>
+      <section className="w-full h-screen overflow-hidden">
+        <CheckbotMobile />
+        <CheckbotDesktop />
+      </section>
+    </CheckbotProvider>
+  );
 };
 
 export default LanguageaiCheckbot;
