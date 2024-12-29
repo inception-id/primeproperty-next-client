@@ -10,12 +10,13 @@ export type TSpeechToText = {
   transcription_text: string;
 };
 
-export const createSpeechToText= async (
-transcription_text: string): Promise<TApiResponse<TSpeechToText>> => {
+export const createSpeechToText = async (
+  transcription_text: string,
+): Promise<TApiResponse<TSpeechToText>> => {
   try {
     return await fetchApi("/transcription/create", {
       method: "POST",
-      body: JSON.stringify({ transcription_text}),
+      body: JSON.stringify({ transcription_text }),
     });
   } catch (e) {
     throw e;

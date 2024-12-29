@@ -10,7 +10,7 @@ import { useShallow } from "zustand/react/shallow";
 import { createTranscription } from "@/lib/openai/createTranscription";
 import { useTranscriptionStore } from "@/app/(languageai)/languageai/speech-to-text/_lib/useTranscriptionStore";
 import { LuLoader } from "react-icons/lu";
-import {createSpeechToText} from "@/lib/api/speech-to-text/createTextToSpeech";
+import { createSpeechToText } from "@/lib/api/speech-to-text/createTextToSpeech";
 
 const TranscriptionForm = () => {
   const { updateLoginStore } = useLoginStore(
@@ -45,10 +45,10 @@ const TranscriptionForm = () => {
         return;
       }
       const transcription = await createTranscription(formData);
-        const speechToText = await  createSpeechToText(transcription);
-        updateStore("text", speechToText.data.transcription_text);
-        toast.success("Transcription success");
-        return;
+      const speechToText = await createSpeechToText(transcription);
+      updateStore("text", speechToText.data.transcription_text);
+      toast.success("Transcription success");
+      return;
     } catch (e: any) {
       console.error(e.message);
       toast.error("Something went wrong, please try again");
