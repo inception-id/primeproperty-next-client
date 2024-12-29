@@ -31,7 +31,7 @@ export const LANGUAGEAI_MENUS = [
   {
     title: "Inception",
     href: "/",
-    icon: <GiSpinningTop />,
+    icon: <GiSpinningTop className="-rotate-45" />,
   },
   {
     title: "Account",
