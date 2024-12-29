@@ -1,20 +1,9 @@
 "use server";
-import OpenAI from "openai";
 import { env } from "@/lib/env";
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
+import {openai} from "@/lib/openai/openai";
+import {s3client} from "@/lib/s3cliet";
 
-const s3client = new S3Client({
-  region: "idn",
-  endpoint: env.S3_ENDPOINT,
-  credentials: {
-    accessKeyId: env.S3_ACCESS_KEY,
-    secretAccessKey: env.S3_SECRET_KEY,
-  },
-});
-
-const openai = new OpenAI({
-  apiKey: env.OPENAI_API_KEY,
-});
 export type TOpenAiVoice =
   | "alloy"
   | "echo"
@@ -22,6 +11,7 @@ export type TOpenAiVoice =
   | "onyx"
   | "nova"
   | "shimmer";
+
 export const createSpeech = async (
   voice: TOpenAiVoice,
   response_format: "mp3" | "wav",

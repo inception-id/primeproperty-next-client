@@ -10,7 +10,7 @@ const Home = async () => {
       {!splashCookie && <SplashScreen />}
       <div className="h-screen flex flex-col items-center justify-center px-4 lg:px-0">
         <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-4 text-center">
-          &quot;We bring your ideas into life&quot;
+          &quot;We bring your ideas to life&quot;
         </h1>
         <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight text-center mb-4">
           INCEPTION.ID

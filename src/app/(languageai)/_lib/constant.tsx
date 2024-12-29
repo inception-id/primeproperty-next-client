@@ -6,6 +6,7 @@ import {
   LuUser,
 } from "react-icons/lu";
 import { GiSpinningTop } from "react-icons/gi";
+import {CgTranscript} from "react-icons/cg";
 
 export const LANGUAGEAI_MENUS = [
   {
@@ -27,6 +28,11 @@ export const LANGUAGEAI_MENUS = [
     title: "Text to Speech",
     href: "/languageai/text-to-speech",
     icon: <LuAudioLines />,
+  },
+  {
+    title: "Speech to Text",
+    href: "/languageai/speech-to-text",
+    icon: <CgTranscript />,
   },
   {
     title: "Inception",
