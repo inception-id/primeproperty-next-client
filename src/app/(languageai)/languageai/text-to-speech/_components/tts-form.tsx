@@ -49,15 +49,10 @@ const TtsForm = () => {
         return;
       }
       const audioUrl = await createSpeech(voice, responseFormat, input);
-      if (audioUrl) {
         const tts = await createTextToSpeech(input, audioUrl);
         updateStore("audioUrl", tts.data.audio_url);
         toast.success("Success");
         return;
-      }
-      updateStore("audioUrl", "");
-      toast.error("Something went wrong, please try again");
-      return;
     } catch (e: any) {
       console.error(e.message);
       toast.error("Something went wrong, please try again");
