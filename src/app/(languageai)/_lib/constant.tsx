@@ -1,4 +1,4 @@
-import { LuHouse, LuLanguages, LuSquareTerminal, LuUser } from "react-icons/lu";
+import {LuAudioLines, LuHouse, LuLanguages, LuSquareTerminal, LuUser} from "react-icons/lu";
 import { GiSpinningTop } from "react-icons/gi";
 
 export const LANGUAGEAI_MENUS = [
@@ -16,6 +16,11 @@ export const LANGUAGEAI_MENUS = [
     title: "Checkbot",
     href: "/languageai/checkbot",
     icon: <LuSquareTerminal />,
+  },
+  {
+    title: "Text to Speech",
+    href: "/languageai/text-to-speech",
+    icon: <LuAudioLines />,
   },
   {
     title: "Inception",

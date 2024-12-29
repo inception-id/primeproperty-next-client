@@ -44,7 +44,6 @@ const CheckbotInstructionSelection = () => {
                 value={String(instruction.id)}
                 key={`detect_${instruction.id}`}
                 className="capitalize"
-                onSelect={() => console.log("hi")}
               >
                 {instruction.name}
               </SelectItem>
