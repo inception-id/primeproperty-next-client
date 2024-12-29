@@ -11,13 +11,13 @@ export type TTextToSpeech = {
 };
 
 export const createTextToSpeech = async (
-    input_content: string,
-    audio_url: string,
+  input_content: string,
+  audio_url: string,
 ): Promise<TApiResponse<TTextToSpeech>> => {
   try {
     return await fetchApi("/tts/create", {
       method: "POST",
-      body: JSON.stringify({input_content, audio_url}),
+      body: JSON.stringify({ input_content, audio_url }),
     });
   } catch (e) {
     throw e;

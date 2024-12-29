@@ -10,7 +10,7 @@ import TtsFormatSelect from "@/app/(languageai)/languageai/text-to-speech/_compo
 import { createSpeech, TOpenAiVoice } from "@/lib/openai/createSpeech";
 import { useTextToSpeechStore } from "@/app/(languageai)/languageai/text-to-speech/_lib/useTextToSpeechStore";
 import { LuLoader } from "react-icons/lu";
-import {createTextToSpeech} from "@/lib/api/text-to-speech/createTextToSpeech";
+import { createTextToSpeech } from "@/lib/api/text-to-speech/createTextToSpeech";
 
 const TtsForm = () => {
   const { updateLoginStore } = useLoginStore(
