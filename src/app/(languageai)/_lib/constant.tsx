@@ -6,7 +6,7 @@ import {
   LuUser,
 } from "react-icons/lu";
 import { GiSpinningTop } from "react-icons/gi";
-import {CgTranscript} from "react-icons/cg";
+import { CgTranscript } from "react-icons/cg";
 
 export const LANGUAGEAI_MENUS = [
   {

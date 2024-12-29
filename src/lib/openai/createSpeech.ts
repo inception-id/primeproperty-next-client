@@ -1,8 +1,8 @@
 "use server";
 import { env } from "@/lib/env";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
-import {openai} from "@/lib/openai/openai";
-import {s3client} from "@/lib/s3cliet";
+import { openai } from "@/lib/openai/openai";
+import { s3client } from "@/lib/s3cliet";
 
 export type TOpenAiVoice =
   | "alloy"
