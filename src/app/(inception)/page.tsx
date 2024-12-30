@@ -35,7 +35,7 @@ const Home = async () => {
           <div className="w-full h-96 lg:h-full">
             <GithubGlobe />
           </div>
-          <div className="px-4">
+          <div className="px-4 text-2xl">
             Inception.id is data processing, visualization, and analytics
             company that delivers high-quality web application on demand based
             on your requested IDEAS and features.
