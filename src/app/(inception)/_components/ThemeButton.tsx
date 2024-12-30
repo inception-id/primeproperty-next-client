@@ -14,8 +14,8 @@ const ThemeButton = () => {
         resolvedTheme === "dark" ? setTheme("light") : setTheme("dark")
       }
     >
-      {resolvedTheme === "light" && <MdDarkMode />}
-      {resolvedTheme === "dark" && <MdLightMode />}
+      {resolvedTheme === "dark" && <MdDarkMode />}
+      {resolvedTheme === "light" && <MdLightMode />}
     </Button>
   );
 };
