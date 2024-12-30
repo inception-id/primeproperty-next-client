@@ -1,10 +1,8 @@
 import { cookies } from "next/headers";
 import SplashScreen from "@/app/(inception)/_components/SplashScreen";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { GithubGlobe } from "@/components/custom-ui/github-globe";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
-import { copyToClipboard } from "@/lib/copyToClipboard";
 import HomeTellYourIdeasSection from "@/app/(inception)/_components/HomeTellYourIdeasSection";
 
 const Home = async () => {
@@ -37,11 +35,10 @@ const Home = async () => {
           <div className="w-full h-96 lg:h-full">
             <GithubGlobe />
           </div>
-          <TextGenerateEffect
-            className="px-4"
-            words={`Inception.id is data processing, visualization, and analytics company that 
-                            delivers high-quality web application on demand based on your requested IDEAS and features.`}
-          />
+            <div className="px-4">
+                Inception.id is data processing, visualization, and analytics company that
+                delivers high-quality web application on demand based on your requested IDEAS and features.
+            </div>
         </div>
       </div>
       <HomeTellYourIdeasSection />
