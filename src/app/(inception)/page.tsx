@@ -35,10 +35,11 @@ const Home = async () => {
           <div className="w-full h-96 lg:h-full">
             <GithubGlobe />
           </div>
-            <div className="px-4">
-                Inception.id is data processing, visualization, and analytics company that
-                delivers high-quality web application on demand based on your requested IDEAS and features.
-            </div>
+          <div className="px-4">
+            Inception.id is data processing, visualization, and analytics
+            company that delivers high-quality web application on demand based
+            on your requested IDEAS and features.
+          </div>
         </div>
       </div>
       <HomeTellYourIdeasSection />
