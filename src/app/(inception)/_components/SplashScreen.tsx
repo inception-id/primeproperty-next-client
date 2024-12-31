@@ -7,18 +7,18 @@ const SplashScreen = () => {
   useEffect(() => {
     setTimeout(async () => {
       await setSplashCookie();
-    }, 4000);
+    }, 24000);
   }, []);
 
   return (
     <div
       className={cn(
-        "bg-slate-950 text-slate-50 fixed left-0 top-0 w-full h-full p-8 lg:text-center",
+        "bg-slate-950 text-slate-50 fixed left-0 top-0 w-full h-full p-8 lg:text-center z-50",
         "animate-out slide-out-to-top duration-1000 fill-mode-forwards",
       )}
       style={{ animationDelay: "24000ms" }}
     >
-      <div className="text-4xl mb-4 opacity-0 animate-[fade-in-full_1s_ease-in_2s_forwards]">
+      <div className="text-4xl mb-4 mt-8 lg:mt-12 opacity-0 animate-[fade-in-full_1s_ease-in_2s_forwards]">
         What&apos;s the most resilient parasite?
       </div>
       <div className="text-2xl mb-2 opacity-0 animate-[fade-in-three-fourth_1s_ease-in_4s_forwards]">

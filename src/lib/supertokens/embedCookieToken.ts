@@ -5,8 +5,9 @@ export const embedCookieToken = async (
   accessToken: string,
   refreshToken: string,
 ) => {
-  cookies().set("accessToken", accessToken);
-  cookies().set("refreshToken", refreshToken);
+  // one day
+  cookies().set("accessToken", accessToken, { maxAge: 60 * 60 * 24});
+  cookies().set("refreshToken", refreshToken, { maxAge: 60 * 60 * 24});
 
   return { accessToken, refreshToken };
 };
