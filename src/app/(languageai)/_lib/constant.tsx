@@ -1,5 +1,6 @@
 import {
-  LuAudioLines, LuClock,
+  LuAudioLines,
+  LuClock,
   LuHouse,
   LuLanguages,
   LuSquareTerminal,

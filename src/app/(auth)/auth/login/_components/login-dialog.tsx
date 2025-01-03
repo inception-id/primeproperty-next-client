@@ -19,7 +19,7 @@ const LoginDialog = () => {
         <DialogTitle className="mb-4 font-bold">
           Sign in to continue
         </DialogTitle>
-        <LoginForm onSuccess={()=> updateStore("openLoginDialog", false)} />
+        <LoginForm onSuccess={() => updateStore("openLoginDialog", false)} />
         <div className="mb-4">
           <span>Don&apos;t have an account?</span>
           <Link href="/auth/register" className="underline ml-1">
@@ -27,7 +27,9 @@ const LoginDialog = () => {
           </Link>
         </div>
         <div className="flex items-center justify-center">
-          <GoogleAuthButton onSuccess={()=> updateStore("openLoginDialog", false)} />
+          <GoogleAuthButton
+            onSuccess={() => updateStore("openLoginDialog", false)}
+          />
         </div>
       </DialogContent>
     </Dialog>

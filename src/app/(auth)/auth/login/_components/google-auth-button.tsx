@@ -20,8 +20,8 @@ import { useLoginStore } from "@/app/(auth)/auth/login/_lib/useLoginStore";
 import { useShallow } from "zustand/react/shallow";
 type TGoogleAuthButtonProps = {
   onSuccess: () => void;
-}
-const GoogleAuthButton = ({onSuccess}: TGoogleAuthButtonProps) => {
+};
+const GoogleAuthButton = ({ onSuccess }: TGoogleAuthButtonProps) => {
   const id = useId();
   const pathname = usePathname();
   const router = useRouter();
@@ -61,7 +61,7 @@ const GoogleAuthButton = ({onSuccess}: TGoogleAuthButtonProps) => {
         );
         if (cookieToken.accessToken && cookieToken.refreshToken) {
           toast.success("Sign in successful");
-          onSuccess()
+          onSuccess();
           return;
         }
       }
