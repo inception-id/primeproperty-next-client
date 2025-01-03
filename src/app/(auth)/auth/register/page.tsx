@@ -1,8 +1,10 @@
 import Link from "next/link";
 import RegisterForm from "@/app/(auth)/auth/register/_components/RegisterForm";
 import GoogleAuthButton from "@/app/(auth)/auth/login/_components/google-auth-button";
+import {useRouter} from "next/navigation";
 
 const Register = () => {
+  const router = useRouter();
   return (
     <main className="flex flex-col items-center justify-center h-screen px-4 lg:px-0">
       <h1 className="text-center mb-4">INCEPTION</h1>
@@ -16,7 +18,7 @@ const Register = () => {
           </Link>
         </div>
         <div className="flex items-center justify-center">
-          <GoogleAuthButton />
+          <GoogleAuthButton onSuccess={()=> router.push("/account")} />
         </div>
       </div>
     </main>
