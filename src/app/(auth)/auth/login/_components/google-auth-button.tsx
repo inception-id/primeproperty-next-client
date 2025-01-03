@@ -10,27 +10,16 @@ import { decode, JwtPayload } from "jsonwebtoken";
 import { signupSupertokens } from "@/lib/supertokens/signupSupertokens";
 import { SUPERTOKENS_EMAIL_ALREADY_EXIST } from "@/lib/supertokens/constant";
 import { createUser, TUser } from "@/lib/api/createUser";
-import { usePathname, useRouter } from "next/navigation";
 import { useId } from "react";
 import { createSupertokensSession } from "@/lib/supertokens/createSupertokensSession";
 import { embedCookieToken } from "@/lib/supertokens/embedCookieToken";
 import { findUser } from "@/lib/api/findUser";
 import { TApiResponse } from "@/lib/api/ApiResponse";
-import { useLoginStore } from "@/app/(auth)/auth/login/_lib/useLoginStore";
-import { useShallow } from "zustand/react/shallow";
 type TGoogleAuthButtonProps = {
   onSuccess: () => void;
 };
 const GoogleAuthButton = ({ onSuccess }: TGoogleAuthButtonProps) => {
   const id = useId();
-  const pathname = usePathname();
-  const router = useRouter();
-
-  const { updateStore } = useLoginStore(
-    useShallow((state) => ({
-      updateStore: state.updateStore,
-    })),
-  );
 
   const handleGoogleLogin = async (credential: CredentialResponse) => {
     try {

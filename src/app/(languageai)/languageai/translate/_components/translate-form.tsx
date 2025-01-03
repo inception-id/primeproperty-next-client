@@ -1,5 +1,4 @@
 "use client";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import TranslateLanguageSelection from "@/app/(languageai)/languageai/translate/_components/translate-language-selection";
 import { useContext } from "react";
