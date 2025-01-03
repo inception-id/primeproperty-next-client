@@ -11,7 +11,6 @@ export type TTranslation = {
   target_language: string;
   content: string;
   completion: string;
-  updated_completion: string;
 };
 
 type TCreateTranslationPayload = {
@@ -20,7 +19,6 @@ type TCreateTranslationPayload = {
   target_language: string;
   content: string;
   completion: string;
-  updated_completion: string;
 };
 export const createTranslation = async (
   payload: TCreateTranslationPayload,

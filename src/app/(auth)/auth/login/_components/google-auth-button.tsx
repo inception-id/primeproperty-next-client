@@ -18,8 +18,10 @@ import { findUser } from "@/lib/api/findUser";
 import { TApiResponse } from "@/lib/api/ApiResponse";
 import { useLoginStore } from "@/app/(auth)/auth/login/_lib/useLoginStore";
 import { useShallow } from "zustand/react/shallow";
-
-const GoogleAuthButton = () => {
+type TGoogleAuthButtonProps = {
+  onSuccess: () => void;
+}
+const GoogleAuthButton = ({onSuccess}: TGoogleAuthButtonProps) => {
   const id = useId();
   const pathname = usePathname();
   const router = useRouter();
@@ -59,11 +61,7 @@ const GoogleAuthButton = () => {
         );
         if (cookieToken.accessToken && cookieToken.refreshToken) {
           toast.success("Sign in successful");
-          if (pathname.includes("auth")) {
-            router.push("/account");
-          } else {
-            updateStore("openLoginDialog", false);
-          }
+          onSuccess()
           return;
         }
       }
