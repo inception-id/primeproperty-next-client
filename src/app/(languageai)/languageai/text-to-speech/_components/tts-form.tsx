@@ -1,5 +1,4 @@
 "use client";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
 import { useLoginStore } from "@/app/(auth)/auth/login/_lib/useLoginStore";
@@ -11,6 +10,7 @@ import { createSpeech, TOpenAiVoice } from "@/lib/openai/createSpeech";
 import { useTextToSpeechStore } from "@/app/(languageai)/languageai/text-to-speech/_lib/useTextToSpeechStore";
 import { LuLoader } from "react-icons/lu";
 import { createTextToSpeech } from "@/lib/api/text-to-speech/createTextToSpeech";
+import TtsTextarea from "@/app/(languageai)/languageai/text-to-speech/_components/tts-textarea";
 
 const TtsForm = () => {
   const { updateLoginStore } = useLoginStore(
@@ -63,12 +63,7 @@ const TtsForm = () => {
   };
   return (
     <form action={handleAction} className="mb-4">
-      <Textarea
-        autoFocus
-        name="input"
-        placeholder="Enter text"
-        className="focus-visible:ring-0 focus-visible:ring-offset-0 h-96 resize-none"
-      />
+      <TtsTextarea />
       <div className="flex items-center justify-end w-full gap-2 lg:gap-4 p-2">
         <TtsVoiceSelect />
         <TtsFormatSelect />
