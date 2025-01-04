@@ -1,5 +1,4 @@
 "use client";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useContext } from "react";
 import { UseCompletionHelpers } from "@ai-sdk/react";
