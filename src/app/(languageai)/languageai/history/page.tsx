@@ -42,14 +42,14 @@ const LanguageaiHistory = () => {
           Checkbot History
         </Link>
         <Link
-          href="/languageai/history/speech-to-text"
+          href="/languageai/history/text-to-speech"
           className={cn(buttonVariants({}), "w-full")}
         >
           <LuAudioLines />
           TTS History
         </Link>
         <Link
-          href="/languageai/history/text-to-speech"
+          href="/languageai/history/speech-to-text"
           className={cn(buttonVariants({}), "w-full")}
         >
           <CgTranscript />

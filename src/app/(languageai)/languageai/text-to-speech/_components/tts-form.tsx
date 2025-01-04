@@ -49,7 +49,7 @@ const TtsForm = () => {
         return;
       }
       const audioUrl = await createSpeech(voice, responseFormat, input);
-      const tts = await createTextToSpeech(input, audioUrl);
+      const tts = await createTextToSpeech(input, audioUrl, voice);
       updateStore("audioUrl", tts.data.audio_url);
       toast.success("Success");
       return;

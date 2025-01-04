@@ -1,13 +1,13 @@
 "use server";
 import { fetchApi } from "@/lib/api/fetchApi";
 import { TApiResponse } from "@/lib/api/ApiResponse";
-import { TCheckbot } from "@/lib/api/checkbot/createCheckbot";
+import {TTextToSpeech} from "@/lib/api/text-to-speech/createTextToSpeech";
 
-export const findCheckbotHistory = async (init?: RequestInit): Promise<
-  TApiResponse<TCheckbot[]>
+export const findTextToSpeechHistory= async (init?: RequestInit): Promise<
+  TApiResponse<TTextToSpeech[]>
 > => {
   try {
-    return await fetchApi("/checkbot/history", init);
+    return await fetchApi("/tts/history", init);
   } catch (e: any) {
     return {
       status: 500,

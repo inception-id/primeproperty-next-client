@@ -12,7 +12,7 @@ const CheckbotHistory = () => {
     <section className="w-full h-screen overflow-hidden p-4">
       <div className="flex justify-between mb-4">
         <div>
-          <h1 className="text-xl lg:text-2xl font-bold">Translation History</h1>
+          <h1 className="text-xl lg:text-2xl font-bold">Checkbot History</h1>
           <p className="text-sm">Showing 10 latest history</p>
         </div>
         <Link
