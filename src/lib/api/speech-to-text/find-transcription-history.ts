@@ -1,9 +1,9 @@
 "use server";
 import { fetchApi } from "@/lib/api/fetchApi";
 import { TApiResponse } from "@/lib/api/ApiResponse";
-import {TSpeechToText} from "@/lib/api/speech-to-text/createTextToSpeech";
+import { TSpeechToText } from "@/lib/api/speech-to-text/createTextToSpeech";
 
-export const findSpeechToTextHistory= async (
+export const findSpeechToTextHistory = async (
   init?: RequestInit,
 ): Promise<TApiResponse<TSpeechToText[]>> => {
   try {
