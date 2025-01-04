@@ -12,6 +12,7 @@ import { CheckbotContext } from "@/app/(languageai)/languageai/checkbot/_compone
 import CheckbotInstructionSelection from "@/app/(languageai)/languageai/checkbot/_components/checkbot-instruction-select";
 import { useCheckbotStore } from "@/app/(languageai)/languageai/checkbot/_lib/useCheckbotStore";
 import { createCheckbot } from "@/lib/api/checkbot/createCheckbot";
+import CheckbotTextarea from "@/app/(languageai)/languageai/checkbot/_components/checkbot-textarea";
 
 const CheckbotForm = () => {
   const { complete, isLoading } =
@@ -76,12 +77,7 @@ const CheckbotForm = () => {
   };
   return (
     <form action={handleAction} className="flex flex-col">
-      <Textarea
-        autoFocus
-        name="checkbot_content"
-        placeholder="Enter text"
-        className="focus-visible:ring-0 focus-visible:ring-offset-0 h-96 lg:h-[90vh] lg:flex-1 resize-none"
-      />
+      <CheckbotTextarea />
       <CheckbotInstructionSelection />
       <div className="flex justify-end pr-2">
         <Button type="submit" disabled={isLoading}>

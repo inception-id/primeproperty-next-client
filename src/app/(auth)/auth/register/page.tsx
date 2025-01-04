@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Link from "next/link";
 import RegisterForm from "@/app/(auth)/auth/register/_components/RegisterForm";
 import GoogleAuthButton from "@/app/(auth)/auth/login/_components/google-auth-button";

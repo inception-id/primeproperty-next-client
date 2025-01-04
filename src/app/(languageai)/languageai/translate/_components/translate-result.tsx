@@ -17,13 +17,11 @@ const TranslateResult = () => {
       </div>
       <div className="flex gap-2">
         <div className="flex-1 text-sm h-[90vh]  lg:h-[95vh] overflow-y-auto p-2">
-          {completion ? (
-            completion
-          ) : (
+          {completion ||
             <span className="opacity-50">
               {isLoading ? "Translating ..." : " Translation will show here"}{" "}
             </span>
-          )}
+          }
         </div>
         <Button
           type="button"
