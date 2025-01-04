@@ -3,7 +3,7 @@ import { formatDateToIndonesian } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { LuCopy } from "react-icons/lu";
 import { copyToClipboard } from "@/lib/copyToClipboard";
-import {TCheckbot} from "@/lib/api/checkbot/createCheckbot";
+import { TCheckbot } from "@/lib/api/checkbot/createCheckbot";
 
 type TCheckbotOriginalTextColumnProps = {
   row: Row<TCheckbot>;

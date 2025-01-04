@@ -2,18 +2,14 @@
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { TTranslation } from "@/lib/api/translation/createTranslation";
 import { DataTable } from "@/components/ui/data-table";
-import {
-  CheckbotHistoryColumn
-} from "@/app/(languageai)/languageai/history/checkbot/_components/checkbot-history-column";
-import {TCheckbot} from "@/lib/api/checkbot/createCheckbot";
+import { CheckbotHistoryColumn } from "@/app/(languageai)/languageai/history/checkbot/_components/checkbot-history-column";
+import { TCheckbot } from "@/lib/api/checkbot/createCheckbot";
 
 type TCheckbotHistoryDataTableProps = {
   data: TCheckbot[];
 };
 
-const CheckbotHistoryDataTable = ({
-  data,
-}: TCheckbotHistoryDataTableProps) => {
+const CheckbotHistoryDataTable = ({ data }: TCheckbotHistoryDataTableProps) => {
   const table = useReactTable({
     data,
     columns: CheckbotHistoryColumn,
