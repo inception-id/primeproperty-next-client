@@ -52,7 +52,11 @@ const TranscriptionForm = () => {
         return;
       }
       const transcription = await createTranscription(formData);
-      const speechToText = await createSpeechToText(transcription.audio_url, transcription.transcription.text, language);
+      const speechToText = await createSpeechToText(
+        transcription.audio_url,
+        transcription.transcription.text,
+        language,
+      );
       updateStore("text", speechToText.data.transcription_text);
       toast.success("Transcription success");
       return;
