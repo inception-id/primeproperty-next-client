@@ -1,5 +1,4 @@
 import { Row } from "@tanstack/table-core";
-import { formatDateToIndonesian } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { LuCopy } from "react-icons/lu";
 import { copyToClipboard } from "@/lib/copyToClipboard";
