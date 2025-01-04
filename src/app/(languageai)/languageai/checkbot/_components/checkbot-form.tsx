@@ -65,7 +65,6 @@ const CheckbotForm = () => {
           ai_system_prompt: selectedInstruction.prompt,
           content,
           completion,
-          updated_completion: completion,
         };
 
         await createCheckbot(createCheckbotPayload);

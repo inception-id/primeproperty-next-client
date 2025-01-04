@@ -10,7 +10,6 @@ export type TCheckbot = {
   ai_system_prompt: string;
   content: string;
   completion: string;
-  updated_completion: string;
 };
 
 type TCreateCheckbotPayload = {
@@ -18,7 +17,6 @@ type TCreateCheckbotPayload = {
   ai_system_prompt: string;
   content: string;
   completion: string;
-  updated_completion: string;
 };
 export const createCheckbot = async (
   payload: TCreateCheckbotPayload,

@@ -10,10 +10,10 @@ export const revalidate = 0;
 const TranslateHistory = () => {
   return (
     <section className="w-full h-screen overflow-hidden p-4">
-      <div className="flex justify-between">
+      <div className="flex justify-between mb-4">
         <div>
           <h1 className="text-xl lg:text-2xl font-bold">Translation History</h1>
-          <p className="text-sm mb-4">Showing 10 latest history</p>
+          <p className="text-sm">Showing 10 latest history</p>
         </div>
         <Link
           href="/languageai/history"
