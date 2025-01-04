@@ -32,6 +32,13 @@ const TranscriptionForm = () => {
       toast.error("Please upload audio file");
       return;
     }
+
+    const maxFileSize = 24 * 1024 * 1024; // 24MB
+    if (audioFile.size > maxFileSize) {
+      toast.error("Max file size is 24MB");
+      return;
+    }
+
     if (!language) {
       toast.error("Please select audio language");
       return;
@@ -45,7 +52,7 @@ const TranscriptionForm = () => {
         return;
       }
       const transcription = await createTranscription(formData);
-      const speechToText = await createSpeechToText(transcription);
+      const speechToText = await createSpeechToText(transcription.audio_url, transcription.transcription.text, language);
       updateStore("text", speechToText.data.transcription_text);
       toast.success("Transcription success");
       return;
@@ -72,7 +79,7 @@ const TranscriptionForm = () => {
         <TranscriptionLanguageSelection />
 
         <div className="flex justify-end">
-          <Button type="submit">
+          <Button type="submit" disabled={isLoading}>
             {isLoading ? <LuLoader className="animate-spin" /> : "Convert"}
           </Button>
         </div>
