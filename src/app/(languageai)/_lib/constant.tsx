@@ -1,8 +1,10 @@
 import {
   LuAudioLines,
-  LuClock, LuFileQuestion,
+  LuClock,
+  LuFileQuestion,
   LuHouse,
-  LuLanguages, LuMail,
+  LuLanguages,
+  LuMail,
   LuSquareTerminal,
   LuUser,
 } from "react-icons/lu";
@@ -43,7 +45,7 @@ export const LANGUAGEAI_MENUS = [
   {
     title: "Support",
     href: "/languageai/support",
-    icon: <LuFileQuestion/>,
+    icon: <LuFileQuestion />,
   },
   {
     title: "Request",
