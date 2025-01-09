@@ -12,7 +12,7 @@ import { useLoginStore } from "@/app/(auth)/auth/login/_lib/useLoginStore";
 import { useShallow } from "zustand/react/shallow";
 import { fetchCookieToken } from "@/lib/fetchCookieToken";
 import TranslateTextarea from "@/app/(languageai)/languageai/translate/_components/translate-textarea";
-import {useTranslationStore} from "@/app/(languageai)/languageai/translate/_lib/useTranslateStore";
+import { useTranslationStore } from "@/app/(languageai)/languageai/translate/_lib/useTranslateStore";
 
 const TranslateForm = () => {
   const { complete, isLoading } =
@@ -23,9 +23,11 @@ const TranslateForm = () => {
       updateLoginStore: state.updateStore,
     })),
   );
-  const {updateStore} = useTranslationStore(useShallow((state) => ({
-    updateStore: state.updateStore
-  })))
+  const { updateStore } = useTranslationStore(
+    useShallow((state) => ({
+      updateStore: state.updateStore,
+    })),
+  );
 
   const handleAction = async (formData: FormData) => {
     const content = formData.get("translate_content") as string;
@@ -54,7 +56,7 @@ const TranslateForm = () => {
         return;
       }
 
-      updateStore("updatedCompletion", "")
+      updateStore("updatedCompletion", "");
       const completion = await complete(content, {
         body: {
           system: ai_system_prompt,
@@ -71,12 +73,12 @@ const TranslateForm = () => {
 
         const translation = await createTranslation(createTranslationPayload);
         updateStore("translationId", translation.data.id);
-        updateStore("updatedCompletion", translation.data.completion)
+        updateStore("updatedCompletion", translation.data.completion);
       } else {
         toast.error("Something went wrong, please try again");
       }
       return;
-    } catch (e:any) {
+    } catch (e: any) {
       console.error(e.message);
     }
   };
