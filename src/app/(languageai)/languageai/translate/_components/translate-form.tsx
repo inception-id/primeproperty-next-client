@@ -12,16 +12,20 @@ import { useLoginStore } from "@/app/(auth)/auth/login/_lib/useLoginStore";
 import { useShallow } from "zustand/react/shallow";
 import { fetchCookieToken } from "@/lib/fetchCookieToken";
 import TranslateTextarea from "@/app/(languageai)/languageai/translate/_components/translate-textarea";
+import {useTranslationStore} from "@/app/(languageai)/languageai/translate/_lib/useTranslateStore";
 
 const TranslateForm = () => {
   const { complete, isLoading } =
     useContext<UseCompletionHelpers>(TranslateContext);
 
-  const { updateStore } = useLoginStore(
+  const { updateLoginStore } = useLoginStore(
     useShallow((state) => ({
-      updateStore: state.updateStore,
+      updateLoginStore: state.updateStore,
     })),
   );
+  const {updateStore} = useTranslationStore(useShallow((state) => ({
+    updateStore: state.updateStore
+  })))
 
   const handleAction = async (formData: FormData) => {
     const content = formData.get("translate_content") as string;
@@ -46,10 +50,11 @@ const TranslateForm = () => {
     try {
       const token = await fetchCookieToken();
       if (!token) {
-        updateStore("openLoginDialog", true);
+        updateLoginStore("openLoginDialog", true);
         return;
       }
 
+      updateStore("updatedCompletion", "")
       const completion = await complete(content, {
         body: {
           system: ai_system_prompt,
@@ -57,18 +62,22 @@ const TranslateForm = () => {
       });
       if (completion) {
         const createTranslationPayload = {
-          ai_system_prompt: ai_system_prompt,
+          ai_system_prompt,
           content_language,
           target_language,
           content,
           completion,
         };
 
-        await createTranslation(createTranslationPayload);
+        const translation = await createTranslation(createTranslationPayload);
+        updateStore("translationId", translation.data.id);
+        updateStore("updatedCompletion", translation.data.completion)
+      } else {
+        toast.error("Something went wrong, please try again");
       }
       return;
-    } catch (e) {
-      console.error(e);
+    } catch (e:any) {
+      console.error(e.message);
     }
   };
   return (
