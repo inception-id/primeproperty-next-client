@@ -1,12 +1,12 @@
 "use server";
-import { cookies } from "next/headers";
 import { fetchSupertokens } from "@/lib/supertokens/fetchSupertokens";
 import { decode, JwtPayload } from "jsonwebtoken";
+import {fetchCookieToken} from "@/lib/fetchCookieToken";
 
 type TResponse = { status: string; sessionHandlesRevoked: string[] };
 
 export const removeSupertokensSession = async (): Promise<TResponse> => {
-  const accessToken = (await cookies().get("accessToken")?.value) as string;
+  const accessToken = await fetchCookieToken();
   const decoded = decode(accessToken) as JwtPayload;
   try {
     return await fetchSupertokens("/recipe/session/remove", {

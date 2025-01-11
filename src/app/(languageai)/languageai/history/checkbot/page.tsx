@@ -5,8 +5,6 @@ import { Suspense } from "react";
 import LanguageaiHistoryFallback from "@/app/(languageai)/languageai/history/_components/history-fallback";
 import CheckbotHistoryTable from "@/app/(languageai)/languageai/history/checkbot/_components/checkbot-history-table";
 
-export const revalidate = 0;
-
 const CheckbotHistory = () => {
   return (
     <section className="w-full h-screen overflow-hidden p-4">

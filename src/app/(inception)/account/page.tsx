@@ -1,13 +1,13 @@
-import { cookies } from "next/headers";
 import { decode, JwtPayload } from "jsonwebtoken";
 import { formatDateToIndonesian } from "@/lib/utils";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import AccountLogoutButton from "@/app/(inception)/account/_components/AccountLogoutButton";
 import { env } from "@/lib/env";
+import {fetchCookieToken} from "@/lib/fetchCookieToken";
 
-const AccountPage = () => {
-  const token = cookies().get("accessToken")?.value as string;
+const AccountPage = async () => {
+  const token = await fetchCookieToken();
   const decoded = decode(token) as JwtPayload;
   return (
     <section className="mt-12 lg:mt-16 p-4 lg:py-0">

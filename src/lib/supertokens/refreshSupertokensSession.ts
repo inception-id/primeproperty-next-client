@@ -5,7 +5,8 @@ import { TSupertokensSessionResponse } from "@/lib/supertokens/createSupertokens
 
 export const refreshSupertokensSession =
   async (): Promise<TSupertokensSessionResponse> => {
-    const refreshToken = cookies().get("refreshToken")?.value as string;
+    const cookieStore = await cookies();
+    const refreshToken = cookieStore.get("refreshToken")?.value as string;
     try {
       return await fetchSupertokens("/recipe/session/refresh", {
         method: "POST",

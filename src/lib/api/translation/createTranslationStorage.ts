@@ -14,7 +14,7 @@ export type TTranslationStorage = {
 };
 
 export const createTranslationStorage = async (
-  translation_id: string,
+  translation_id: number,
   updated_completion: string,
 ): Promise<TApiResponse<TTranslationStorage>> => {
   try {
