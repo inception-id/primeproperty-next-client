@@ -2,7 +2,7 @@
 import LoginCard from "@/app/(auth)/auth/login/_components/login-card";
 import { useRouter } from "next/navigation";
 
-const LanguageaiHistoryLoginCard = () => {
+const LanguageaiLoginCard = () => {
   const router = useRouter();
   return (
     <div className="p-4 flex items-center justify-center w-full h-screen">
@@ -14,4 +14,4 @@ const LanguageaiHistoryLoginCard = () => {
   );
 };
 
-export default LanguageaiHistoryLoginCard;
+export default LanguageaiLoginCard;

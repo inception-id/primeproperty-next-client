@@ -1,6 +1,6 @@
 import {
   LuAudioLines,
-  LuClock,
+  LuClock, LuDatabase,
   LuFileQuestion,
   LuHouse,
   LuLanguages,
@@ -36,6 +36,11 @@ export const LANGUAGEAI_MENUS = [
     title: "Speech to Text",
     href: "/languageai/speech-to-text",
     icon: <CgTranscript />,
+  },
+  {
+    title: "Storage",
+    href: "/languageai/storage",
+    icon: <LuDatabase />,
   },
   {
     title: "History",

@@ -1,16 +1,16 @@
-import LanguageaiHistoryLoginCard from "@/app/(languageai)/languageai/history/_components/history-login-card";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { LuAudioLines, LuLanguages, LuSquareTerminal } from "react-icons/lu";
 import { CgTranscript } from "react-icons/cg";
 import { fetchCookieToken } from "@/lib/fetchCookieToken";
+import LanguageaiLoginCard from "@/app/(languageai)/_components/languageai-login-card";
 
 const LanguageaiHistory = async () => {
   const accessToken = await fetchCookieToken();
 
   if (!accessToken) {
-    return <LanguageaiHistoryLoginCard />;
+    return <LanguageaiLoginCard/>;
   }
 
   return (
