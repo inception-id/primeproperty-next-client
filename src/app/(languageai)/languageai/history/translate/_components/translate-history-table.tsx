@@ -3,9 +3,7 @@ import EmptyHistory from "@/app/(languageai)/languageai/history/_components/empt
 import TranslateHistoryDataTable from "@/app/(languageai)/languageai/history/translate/_components/translate-history-data-table";
 
 const TranslateHistoryTable = async () => {
-  const translationHistory = await findTranslationHistory({
-    cache: "no-store",
-  });
+  const translationHistory = await findTranslationHistory();
 
   if (!translationHistory || translationHistory.data.length === 0) {
     return <EmptyHistory />;

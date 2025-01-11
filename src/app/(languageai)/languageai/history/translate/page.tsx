@@ -5,8 +5,6 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { LuChevronLeft } from "react-icons/lu";
 
-export const revalidate = 0;
-
 const TranslateHistory = () => {
   return (
     <section className="w-full h-screen overflow-hidden p-4">
