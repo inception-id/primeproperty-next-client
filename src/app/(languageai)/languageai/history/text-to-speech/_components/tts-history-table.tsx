@@ -3,7 +3,7 @@ import { findTextToSpeechHistory } from "@/lib/api/text-to-speech/find-tts-histo
 import TtsHistoryDataTable from "@/app/(languageai)/languageai/history/text-to-speech/_components/tts-history-data-table";
 
 const TextToSpeechHistoryTable = async () => {
-  const ttsHistory = await findTextToSpeechHistory();
+  const ttsHistory = await findTextToSpeechHistory({ cache: "no-store" });
 
   if (!ttsHistory || ttsHistory.data.length === 0) {
     return <EmptyHistory />;

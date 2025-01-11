@@ -1,16 +1,16 @@
 "use server";
 
+import { cookies } from "next/headers";
 import { decode, JwtPayload } from "jsonwebtoken";
 import { TApiResponse } from "@/lib/api/ApiResponse";
 import { env } from "@/lib/env";
-import { fetchCookieToken } from "@/lib/fetchCookieToken";
 
 export const changePassword = async (
   oldPassword: string,
   newPassword: string,
 ): Promise<TApiResponse<{ status: string; message: string }>> => {
   try {
-    const accessToken = await fetchCookieToken();
+    const accessToken = cookies().get("accessToken")?.value as string;
     const decoded = decode(accessToken) as JwtPayload;
 
     const payload = {

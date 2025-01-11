@@ -1,7 +1,7 @@
 "use server";
 import { fetchSupertokens } from "@/lib/supertokens/fetchSupertokens";
+import { cookies } from "next/headers";
 import { TSupertokensSession } from "@/lib/supertokens/createSupertokensSession";
-import { fetchCookieToken } from "@/lib/fetchCookieToken";
 
 type TResponse = {
   status: string;
@@ -12,7 +12,7 @@ type TResponse = {
 export const verifySupertokensSession = async (
   defaultToken?: string,
 ): Promise<TResponse> => {
-  const accessToken = await fetchCookieToken();
+  const accessToken = cookies().get("accessToken")?.value;
   try {
     const payload = {
       accessToken: defaultToken ?? accessToken,

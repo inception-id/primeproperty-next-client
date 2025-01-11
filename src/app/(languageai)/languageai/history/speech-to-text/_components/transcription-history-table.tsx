@@ -3,7 +3,9 @@ import { findSpeechToTextHistory } from "@/lib/api/speech-to-text/find-transcrip
 import TranscriptionHistoryDataTable from "@/app/(languageai)/languageai/history/speech-to-text/_components/transcription-history-data-table";
 
 const TranscriptionHistoryTable = async () => {
-  const transcriptionHistory = await findSpeechToTextHistory();
+  const transcriptionHistory = await findSpeechToTextHistory({
+    cache: "no-store",
+  });
 
   if (!transcriptionHistory || transcriptionHistory.data.length === 0) {
     return <EmptyHistory />;
