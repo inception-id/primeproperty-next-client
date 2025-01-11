@@ -23,7 +23,7 @@ const TranslateOriginalTextColumn = ({
         </div>
       )}
       <div className="flex gap-1">
-        <div className="flex-1">{row.original.content}</div>
+        <div className="flex-1 whitespace-pre-line">{row.original.content}</div>
         <Button
           type="button"
           size="icon"

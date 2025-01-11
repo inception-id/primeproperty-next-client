@@ -42,7 +42,7 @@ const TranslateResult = () => {
           >
             <LuCopy />
           </Button>
-          {translationId && (
+          {translationId !== 0 && (
             <Button
               type="button"
               size="icon"

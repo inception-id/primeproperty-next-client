@@ -11,7 +11,7 @@ type TTranscriptionTextColumnProps = {
 const TranscriptionTextColumn = ({ row }: TTranscriptionTextColumnProps) => {
   return (
     <div className="flex gap-1">
-      <div className="flex-1">{row.original.transcription_text}</div>
+      <div className="flex-1 whitespace-pre-line">{row.original.transcription_text}</div>
       <Button
         type="button"
         size="icon"
