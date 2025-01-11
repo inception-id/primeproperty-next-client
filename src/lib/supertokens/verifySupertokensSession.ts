@@ -1,7 +1,7 @@
 "use server";
 import { fetchSupertokens } from "@/lib/supertokens/fetchSupertokens";
 import { TSupertokensSession } from "@/lib/supertokens/createSupertokensSession";
-import {fetchCookieToken} from "@/lib/fetchCookieToken";
+import { fetchCookieToken } from "@/lib/fetchCookieToken";
 
 type TResponse = {
   status: string;

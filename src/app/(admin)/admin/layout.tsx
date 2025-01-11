@@ -3,7 +3,7 @@ import { env } from "@/lib/env";
 import { redirect } from "next/navigation";
 import { verifySupertokensSession } from "@/lib/supertokens/verifySupertokensSession";
 import AdminSidebar from "@/app/(admin)/admin/_sidebar";
-import {fetchCookieToken} from "@/lib/fetchCookieToken";
+import { fetchCookieToken } from "@/lib/fetchCookieToken";
 
 type TInceptionBaseLayout = {
   children: React.ReactNode;

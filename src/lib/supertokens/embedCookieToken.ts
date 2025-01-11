@@ -7,7 +7,7 @@ export const embedCookieToken = async (
 ) => {
   // one day
   const cookieStore = await cookies();
- cookieStore.set("accessToken", accessToken, { maxAge: 60 * 60 * 24 });
+  cookieStore.set("accessToken", accessToken, { maxAge: 60 * 60 * 24 });
   cookieStore.set("refreshToken", refreshToken, { maxAge: 60 * 60 * 24 });
 
   return { accessToken, refreshToken };

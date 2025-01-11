@@ -4,7 +4,7 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import AccountLogoutButton from "@/app/(inception)/account/_components/AccountLogoutButton";
 import { env } from "@/lib/env";
-import {fetchCookieToken} from "@/lib/fetchCookieToken";
+import { fetchCookieToken } from "@/lib/fetchCookieToken";
 
 const AccountPage = async () => {
   const token = await fetchCookieToken();

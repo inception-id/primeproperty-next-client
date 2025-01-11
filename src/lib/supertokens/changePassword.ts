@@ -3,7 +3,7 @@
 import { decode, JwtPayload } from "jsonwebtoken";
 import { TApiResponse } from "@/lib/api/ApiResponse";
 import { env } from "@/lib/env";
-import {fetchCookieToken} from "@/lib/fetchCookieToken";
+import { fetchCookieToken } from "@/lib/fetchCookieToken";
 
 export const changePassword = async (
   oldPassword: string,

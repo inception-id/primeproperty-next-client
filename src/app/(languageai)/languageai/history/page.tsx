@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { LuAudioLines, LuLanguages, LuSquareTerminal } from "react-icons/lu";
 import { CgTranscript } from "react-icons/cg";
-import {fetchCookieToken} from "@/lib/fetchCookieToken";
+import { fetchCookieToken } from "@/lib/fetchCookieToken";
 
 const LanguageaiHistory = async () => {
   const accessToken = await fetchCookieToken();

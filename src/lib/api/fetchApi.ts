@@ -1,6 +1,6 @@
 "use server";
 import { env } from "@/lib/env";
-import {fetchCookieToken} from "@/lib/fetchCookieToken";
+import { fetchCookieToken } from "@/lib/fetchCookieToken";
 
 export const fetchApi = async (path: string, init?: RequestInit) => {
   try {
