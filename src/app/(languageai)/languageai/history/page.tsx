@@ -1,16 +1,16 @@
 import { cookies } from "next/headers";
-import LanguageaiHistoryLoginCard from "@/app/(languageai)/languageai/history/_components/history-login-card";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { LuAudioLines, LuLanguages, LuSquareTerminal } from "react-icons/lu";
 import { CgTranscript } from "react-icons/cg";
+import LanguageaiLoginCard from "@/app/(languageai)/_components/languageai-login-card";
 
 const LanguageaiHistory = () => {
   const accessToken = cookies().get("accessToken")?.value;
 
   if (!accessToken) {
-    return <LanguageaiHistoryLoginCard />;
+    return <LanguageaiLoginCard />;
   }
 
   return (

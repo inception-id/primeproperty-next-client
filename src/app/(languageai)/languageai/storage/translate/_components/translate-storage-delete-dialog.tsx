@@ -8,7 +8,7 @@ import {
     DialogTrigger
 } from "@/components/ui/dialog";
 import {LuCircle, LuTrash, LuX} from "react-icons/lu";
-import {Button, buttonVariants} from "@/components/ui/button";
+import {buttonVariants} from "@/components/ui/button";
 import {toast} from "react-toastify";
 import {deleteTranslationStorage} from "@/lib/api/translation/delete-translation-storage";
 import {useRouter} from "next/navigation";
