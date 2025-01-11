@@ -10,7 +10,7 @@ const LanguageaiHistory = async () => {
   const accessToken = await fetchCookieToken();
 
   if (!accessToken) {
-    return <LanguageaiLoginCard/>;
+    return <LanguageaiLoginCard />;
   }
 
   return (
