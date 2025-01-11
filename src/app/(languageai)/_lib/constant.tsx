@@ -42,13 +42,13 @@ export const LANGUAGEAI_MENUS = [
     title: "Storage",
     href: "/languageai/storage",
     icon: <LuDatabase />,
-    refresh: true
+    refresh: true,
   },
   {
     title: "History",
     href: "/languageai/history",
     icon: <LuClock />,
-    refresh: true
+    refresh: true,
   },
   {
     title: "Support",
