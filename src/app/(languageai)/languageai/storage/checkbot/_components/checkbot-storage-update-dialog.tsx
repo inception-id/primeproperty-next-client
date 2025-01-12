@@ -13,8 +13,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import {TCheckbotStorage} from "@/lib/api/checkbot/create-checkbot-storage";
-import {updateCheckbotStorage} from "@/lib/api/checkbot/update-checkbot-storage";
+import { TCheckbotStorage } from "@/lib/api/checkbot/create-checkbot-storage";
+import { updateCheckbotStorage } from "@/lib/api/checkbot/update-checkbot-storage";
 
 type TCheckbotStorageUpdateDialogProps = {
   row: Row<TCheckbotStorage>;
@@ -26,7 +26,10 @@ const CheckbotStorageUpdateDialog = ({
   const [value, setValue] = useState(row.original.updated_completion);
   const onSaveClick = async () => {
     try {
-      const checkbotStorage = await updateCheckbotStorage(row.original.id, value);
+      const checkbotStorage = await updateCheckbotStorage(
+        row.original.id,
+        value,
+      );
       if (checkbotStorage.data.id) {
         toast.success("Checkbot updated");
         router.refresh();
@@ -47,9 +50,7 @@ const CheckbotStorageUpdateDialog = ({
       </DialogTrigger>
       <DialogContent className="lg:max-w-5xl">
         <div className="flex items-center justify-between mb-4">
-          <DialogTitle className="font-semibold">
-            Update Checkbot
-          </DialogTitle>
+          <DialogTitle className="font-semibold">Update Checkbot</DialogTitle>
           <DialogClose
             className={buttonVariants({ variant: "outline", size: "icon" })}
           >
@@ -58,17 +59,13 @@ const CheckbotStorageUpdateDialog = ({
         </div>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 mb-4">
           <div>
-            <div className="text-sm mb-2">
-              {row.original.instruction}
-            </div>
+            <div className="text-sm mb-2">{row.original.instruction}</div>
             <div className="h-[30vh] lg:h-[40vh] text-sm">
               {row.original.content}
             </div>
           </div>
           <div>
-            <div className="text-sm mb-2 capitalize">
-              Result
-            </div>
+            <div className="text-sm mb-2 capitalize">Result</div>
             <Textarea
               autoFocus
               className="h-[30vh] lg:h-[40vh] resize-none"

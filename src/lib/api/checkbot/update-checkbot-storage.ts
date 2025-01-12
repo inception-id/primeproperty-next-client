@@ -1,7 +1,7 @@
 "use server";
 import { fetchApi } from "@/lib/api/fetchApi";
 import { TApiResponse } from "@/lib/api/ApiResponse";
-import {TCheckbotStorage} from "@/lib/api/checkbot/create-checkbot-storage";
+import { TCheckbotStorage } from "@/lib/api/checkbot/create-checkbot-storage";
 
 export const updateCheckbotStorage = async (
   checkbotStorageId: number,

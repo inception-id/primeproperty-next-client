@@ -26,10 +26,9 @@ const CheckbotStorageDeleteDialog = ({
     try {
       const storage = await deleteTranslationStorage(checkbotId);
       if (storage.data.id) {
-      toast.success("Translation deleted");
-      router.refresh();
+        toast.success("Translation deleted");
+        router.refresh();
       } else {
-
         toast.error("Delete failed, please try again");
       }
     } catch (e: any) {

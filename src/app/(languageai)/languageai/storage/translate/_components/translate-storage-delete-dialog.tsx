@@ -25,11 +25,9 @@ const TranslateStorageDeleteDialog = ({
     try {
       const translationStorage = await deleteTranslationStorage(translationId);
       if (translationStorage.data.id) {
-
         toast.success("Translation deleted");
         router.refresh();
       } else {
-
         toast.error("Delete failed, please try again");
       }
     } catch (e: any) {

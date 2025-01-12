@@ -26,12 +26,14 @@ const TranslateStorageUpdateDialog = ({
   const [value, setValue] = useState(row.original.updated_completion);
   const onSaveClick = async () => {
     try {
-      const translationStorage =  await updateTranslationStorage(row.original.id, value);
+      const translationStorage = await updateTranslationStorage(
+        row.original.id,
+        value,
+      );
       if (translationStorage.data.id) {
         toast.success("Translation updated");
         router.refresh();
       } else {
-
         toast.error("Fail to save, please try again");
       }
     } catch (error: any) {
