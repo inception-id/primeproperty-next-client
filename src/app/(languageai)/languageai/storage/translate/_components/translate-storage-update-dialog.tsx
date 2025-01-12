@@ -36,7 +36,9 @@ const TranslateStorageUpdateDialog = ({
   };
   return (
     <Dialog>
-      <DialogTrigger className={buttonVariants({ size: "icon", variant:"ghost" })}>
+      <DialogTrigger
+        className={buttonVariants({ size: "icon", variant: "ghost" })}
+      >
         <LuPen />
       </DialogTrigger>
       <DialogContent className="lg:max-w-5xl">

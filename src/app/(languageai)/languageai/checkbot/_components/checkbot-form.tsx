@@ -23,10 +23,10 @@ const CheckbotForm = () => {
     })),
   );
 
-  const { instructions,updateStore } = useCheckbotStore(
+  const { instructions, updateStore } = useCheckbotStore(
     useShallow((state) => ({
       instructions: state.instructions,
-      updateStore:state.updateStore
+      updateStore: state.updateStore,
     })),
   );
 
@@ -48,7 +48,7 @@ const CheckbotForm = () => {
       (instruction) => String(instruction.id) === instructionId,
     )[0];
 
-    updateStore("updatedCompletion", "")
+    updateStore("updatedCompletion", "");
     try {
       const token = await fetchCookieToken();
       if (!token) {
@@ -72,9 +72,9 @@ const CheckbotForm = () => {
         };
 
         const checkbot = await createCheckbot(createCheckbotPayload);
-        updateStore("checkbotId", checkbot.data.id)
+        updateStore("checkbotId", checkbot.data.id);
       } else {
-        toast.error("Checkbot failed, please try again")
+        toast.error("Checkbot failed, please try again");
       }
       return;
     } catch (e) {

@@ -11,14 +11,17 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Table as TanstackTable } from "@tanstack/react-table";
-import {cn} from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 type TDataTableProps<T> = {
   table: TanstackTable<T>;
   tableCellClassName?: string;
 };
 
-export function DataTable<T>({ table, tableCellClassName }: TDataTableProps<T>) {
+export function DataTable<T>({
+  table,
+  tableCellClassName,
+}: TDataTableProps<T>) {
   return (
     <Table>
       <TableHeader>

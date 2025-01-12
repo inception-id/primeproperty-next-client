@@ -18,7 +18,7 @@ const TextToSpeechHistoryDataTable = ({
   });
   return (
     <div className="h-[80vh] lg:h-[90vh] overflow-y-auto">
-      <DataTable table={table} tableCellClassName="align-top"/>
+      <DataTable table={table} tableCellClassName="align-top" />
     </div>
   );
 };
