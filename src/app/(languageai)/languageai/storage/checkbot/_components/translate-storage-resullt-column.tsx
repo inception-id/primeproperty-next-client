@@ -2,7 +2,6 @@ import { Row } from "@tanstack/table-core";
 import { Button } from "@/components/ui/button";
 import { LuCopy } from "react-icons/lu";
 import { copyToClipboard } from "@/lib/copyToClipboard";
-import { TTranslationStorage } from "@/lib/api/translation/createTranslationStorage";
 import { TCheckbotStorage } from "@/lib/api/checkbot/create-checkbot-storage";
 
 type TCheckbotStorageResultColumnProps = {
