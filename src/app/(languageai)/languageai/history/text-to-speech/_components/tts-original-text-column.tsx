@@ -16,7 +16,9 @@ const TtsOriginalTextColumn = ({ row }: TTtsOriginalTextColumnProps) => {
         {formatDateToIndonesian(row.original.created_at, true)}
       </div>
       <div className="flex gap-1">
-        <div className="flex-1 whitespace-pre-line">{row.original.input_content}</div>
+        <div className="flex-1 whitespace-pre-line">
+          {row.original.input_content}
+        </div>
         <Button
           type="button"
           size="icon"

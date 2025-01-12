@@ -11,12 +11,14 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Table as TanstackTable } from "@tanstack/react-table";
+import {cn} from "@/lib/utils";
 
 type TDataTableProps<T> = {
   table: TanstackTable<T>;
+  tableCellClassName?: string;
 };
 
-export function DataTable<T>({ table }: TDataTableProps<T>) {
+export function DataTable<T>({ table, tableCellClassName }: TDataTableProps<T>) {
   return (
     <Table>
       <TableHeader>
@@ -41,7 +43,7 @@ export function DataTable<T>({ table }: TDataTableProps<T>) {
         {table.getRowModel().rows.map((row) => (
           <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
             {row.getVisibleCells().map((cell) => (
-              <TableCell key={cell.id}>
+              <TableCell key={cell.id} className={cn(tableCellClassName)}>
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </TableCell>
             ))}

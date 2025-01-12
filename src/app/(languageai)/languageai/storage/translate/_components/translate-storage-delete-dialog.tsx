@@ -34,7 +34,7 @@ const TranslateStorageDeleteDialog = ({
   return (
     <Dialog>
       <DialogTrigger
-        className={buttonVariants({ variant: "destructive", size: "icon" })}
+        className={buttonVariants({ variant: "ghost", size: "icon" })}
       >
         <LuTrash />
       </DialogTrigger>

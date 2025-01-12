@@ -17,7 +17,9 @@ const TranslateTranslatedTextColumn = ({
         {row.original.target_language}:
       </div>
       <div className="flex gap-1">
-        <div className="flex-1 whitespace-pre-line">{row.original.completion}</div>
+        <div className="flex-1 whitespace-pre-line">
+          {row.original.completion}
+        </div>
         <Button
           type="button"
           variant="secondary"

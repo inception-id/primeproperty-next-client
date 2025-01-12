@@ -18,7 +18,7 @@ const TranslateStorageDataTable = ({
   });
   return (
     <div className="h-[80vh] lg:h-[90vh] overflow-y-auto">
-      <DataTable table={table} />
+      <DataTable table={table} tableCellClassName="align-top" />
     </div>
   );
 };

@@ -17,7 +17,9 @@ const TranslateStorageTranslationColumn = ({
         {row.original.target_language}:
       </div>
       <div className="flex gap-1">
-        <div className="flex-1 whitespace-pre-line">{row.original.updated_completion}</div>
+        <div className="flex-1 whitespace-pre-line">
+          {row.original.updated_completion}
+        </div>
         <Button
           type="button"
           variant="secondary"

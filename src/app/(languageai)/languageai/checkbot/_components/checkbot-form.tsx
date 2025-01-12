@@ -17,15 +17,16 @@ const CheckbotForm = () => {
   const { complete, isLoading } =
     useContext<UseCompletionHelpers>(CheckbotContext);
 
-  const { updateStore } = useLoginStore(
+  const { updateLoginStore } = useLoginStore(
     useShallow((state) => ({
-      updateStore: state.updateStore,
+      updateLoginStore: state.updateStore,
     })),
   );
 
-  const { instructions } = useCheckbotStore(
+  const { instructions,updateStore } = useCheckbotStore(
     useShallow((state) => ({
       instructions: state.instructions,
+      updateStore:state.updateStore
     })),
   );
 
@@ -46,10 +47,12 @@ const CheckbotForm = () => {
     const selectedInstruction = instructions.filter(
       (instruction) => String(instruction.id) === instructionId,
     )[0];
+
+    updateStore("updatedCompletion", "")
     try {
       const token = await fetchCookieToken();
       if (!token) {
-        updateStore("openLoginDialog", true);
+        updateLoginStore("openLoginDialog", true);
         return;
       }
 
@@ -58,7 +61,9 @@ const CheckbotForm = () => {
           system: selectedInstruction.prompt,
         },
       });
+
       if (completion) {
+        updateStore("updatedCompletion", completion);
         const createCheckbotPayload = {
           instruction: selectedInstruction.name,
           ai_system_prompt: selectedInstruction.prompt,
@@ -66,7 +71,10 @@ const CheckbotForm = () => {
           completion,
         };
 
-        await createCheckbot(createCheckbotPayload);
+        const checkbot = await createCheckbot(createCheckbotPayload);
+        updateStore("checkbotId", checkbot.data.id)
+      } else {
+        toast.error("Checkbot failed, please try again")
       }
       return;
     } catch (e) {

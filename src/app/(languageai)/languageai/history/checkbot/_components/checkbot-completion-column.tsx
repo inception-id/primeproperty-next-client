@@ -11,7 +11,9 @@ type TCheckbotCompletionColumnProps = {
 const CheckbotCompletionColumn = ({ row }: TCheckbotCompletionColumnProps) => {
   return (
     <div className="flex gap-1">
-      <div className="flex-1 whitespace-pre-line">{row.original.completion}</div>
+      <div className="flex-1 whitespace-pre-line">
+        {row.original.completion}
+      </div>
       <Button
         type="button"
         variant="secondary"
