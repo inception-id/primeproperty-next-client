@@ -10,7 +10,7 @@ type TUseTextToSpeechStore = {
 export const useTextToSpeechStore = create<TUseTextToSpeechStore>((set) => ({
   isLoading: false,
   audioUrl: "",
-    ttsId: 0,
+  ttsId: 0,
   updateStore: (key, value) =>
     set((state) => ({
       ...state,

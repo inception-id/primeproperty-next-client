@@ -41,8 +41,8 @@ const TtsForm = () => {
       return;
     }
 
-    updateStore("audioUrl", "")
-    updateStore("ttsId", "")
+    updateStore("audioUrl", "");
+    updateStore("ttsId", "");
     try {
       updateStore("isLoading", true);
       const token = await fetchCookieToken();
