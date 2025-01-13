@@ -1,5 +1,5 @@
 import { Row } from "@tanstack/table-core";
-import {TTextToSpeechStorage} from "@/lib/api/text-to-speech/create-tts-storage";
+import { TTextToSpeechStorage } from "@/lib/api/text-to-speech/create-tts-storage";
 
 type TTtsStorageAudioColumn = {
   row: Row<TTextToSpeechStorage>;
