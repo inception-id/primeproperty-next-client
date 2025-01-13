@@ -41,6 +41,8 @@ const TtsForm = () => {
       return;
     }
 
+    updateStore("audioUrl", "")
+    updateStore("ttsId", "")
     try {
       updateStore("isLoading", true);
       const token = await fetchCookieToken();
@@ -51,6 +53,7 @@ const TtsForm = () => {
       const audioUrl = await createSpeech(voice, responseFormat, input);
       const tts = await createTextToSpeech(input, audioUrl, voice);
       updateStore("audioUrl", tts.data.audio_url);
+      updateStore("ttsId", tts.data.id);
       toast.success("Success");
       return;
     } catch (e: any) {

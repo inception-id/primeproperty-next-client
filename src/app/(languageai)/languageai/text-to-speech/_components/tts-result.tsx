@@ -1,16 +1,30 @@
 "use client";
 import { useTextToSpeechStore } from "@/app/(languageai)/languageai/text-to-speech/_lib/useTextToSpeechStore";
 import { useShallow } from "zustand/react/shallow";
-import { buttonVariants } from "@/components/ui/button";
-import { LuLoader } from "react-icons/lu";
+import {Button, buttonVariants} from "@/components/ui/button";
+import {LuLoader, LuSave} from "react-icons/lu";
+import {toast} from "react-toastify";
+import {createTextToSpeechStorage} from "@/lib/api/text-to-speech/create-tts-storage";
 
 const TtsResult = () => {
-  const { audioUrl, isLoading } = useTextToSpeechStore(
+  const { audioUrl, isLoading, ttsId } = useTextToSpeechStore(
     useShallow((state) => ({
       audioUrl: state.audioUrl,
       isLoading: state.isLoading,
+        ttsId: state.ttsId
     })),
   );
+
+  const onSaveClick = async () => {
+      try {
+         const ttsStorage = await createTextToSpeechStorage(ttsId);
+         if (ttsStorage.data.id) toast.success("Saved to storage");
+         else toast.error("Fail to save, please try again")
+      } catch (e:any) {
+         console.error(e.message);
+        toast.error("Fail to save, please try again")
+      }
+  }
 
   if (isLoading) {
     return (
@@ -33,12 +47,16 @@ const TtsResult = () => {
         </audio>
       </div>
 
+        <div className="flex items-center justify-between">
+
       <div className="flex items-center gap-2">
         <span>Link: </span>
         <a href={audioUrl} download className={buttonVariants()}>
           Download
         </a>
       </div>
+            <Button size="icon" variant="ghost" onClick={onSaveClick}><LuSave /></Button>
+        </div>
     </div>
   );
 };

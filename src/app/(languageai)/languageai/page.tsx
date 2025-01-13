@@ -32,14 +32,14 @@ const Languageai = () => {
           Checkbot
         </Link>
         <Link
-          href="/languageai/speech-to-text"
+          href="/languageai/text-to-speech"
           className={cn(buttonVariants({}), "w-full")}
         >
           <LuAudioLines />
           Text to Speech
         </Link>
         <Link
-          href="/languageai/text-to-speech"
+          href="/languageai/speech-to-text"
           className={cn(buttonVariants({}), "w-full")}
         >
           <CgTranscript />
