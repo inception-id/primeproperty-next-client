@@ -10,7 +10,6 @@ import {
 import { LuCircle, LuTrash, LuX } from "react-icons/lu";
 import { buttonVariants } from "@/components/ui/button";
 import { toast } from "react-toastify";
-import { deleteTranslationStorage } from "@/lib/api/translation/delete-translation-storage";
 import { useRouter } from "next/navigation";
 import { deleteTranscriptionStorage } from "@/lib/api/speech-to-text/delete-transcription-storage";
 
