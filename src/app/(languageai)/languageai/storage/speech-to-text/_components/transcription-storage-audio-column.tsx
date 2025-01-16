@@ -1,6 +1,6 @@
 import { Row } from "@tanstack/table-core";
 import { formatDateToIndonesian } from "@/lib/utils";
-import {TSpeechToTextStorage} from "@/lib/api/speech-to-text/createTranscriptionStorage";
+import { TSpeechToTextStorage } from "@/lib/api/speech-to-text/createTranscriptionStorage";
 
 type TTranscriptionStorageAudioColumn = {
   row: Row<TSpeechToTextStorage>;

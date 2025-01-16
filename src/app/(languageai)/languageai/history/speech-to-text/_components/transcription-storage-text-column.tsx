@@ -3,13 +3,15 @@ import { Button } from "@/components/ui/button";
 import { LuCopy } from "react-icons/lu";
 import { copyToClipboard } from "@/lib/copyToClipboard";
 import { TSpeechToText } from "@/lib/api/speech-to-text/createTranscription";
-import {TSpeechToTextStorage} from "@/lib/api/speech-to-text/createTranscriptionStorage";
+import { TSpeechToTextStorage } from "@/lib/api/speech-to-text/createTranscriptionStorage";
 
 type TTranscriptionStorageTextColumnProps = {
   row: Row<TSpeechToTextStorage>;
 };
 
-const TranscriptionStoragTextColumn = ({ row }: TTranscriptionStorageTextColumnProps) => {
+const TranscriptionStoragTextColumn = ({
+  row,
+}: TTranscriptionStorageTextColumnProps) => {
   return (
     <div className="flex gap-1">
       <div className="flex-1 whitespace-pre-line">
