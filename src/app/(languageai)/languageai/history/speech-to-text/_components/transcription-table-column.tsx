@@ -2,6 +2,8 @@ import { ColumnDef } from "@tanstack/table-core";
 import { TSpeechToText } from "@/lib/api/speech-to-text/createTranscription";
 import TranscriptionAudioFileColumn from "@/app/(languageai)/languageai/history/speech-to-text/_components/transcription-audio-file-column";
 import TranscriptionTextColumn from "@/app/(languageai)/languageai/history/speech-to-text/_components/transcription-text-column";
+import TranscriptionHistorySaveBtn
+  from "@/app/(languageai)/languageai/history/speech-to-text/_components/transcription-history-save-btn";
 
 export const TranscriptionHistoryColumn: ColumnDef<TSpeechToText>[] = [
   {
@@ -14,4 +16,9 @@ export const TranscriptionHistoryColumn: ColumnDef<TSpeechToText>[] = [
     header: "Transcription",
     cell: ({ row }) => <TranscriptionTextColumn row={row} />,
   },
+  {
+    accessorKey: "id",
+    header: "Action",
+    cell: ({row}) => <TranscriptionHistorySaveBtn row={row} />
+  }
 ];
