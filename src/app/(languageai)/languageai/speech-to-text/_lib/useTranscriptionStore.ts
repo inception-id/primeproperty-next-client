@@ -10,7 +10,7 @@ type TUseTranscriptionStore = {
 export const useTranscriptionStore = create<TUseTranscriptionStore>((set) => ({
   isLoading: false,
   text: "",
-    speechToTextId: 0,
+  speechToTextId: 0,
   updateStore: (key, value) =>
     set((state) => ({
       ...state,

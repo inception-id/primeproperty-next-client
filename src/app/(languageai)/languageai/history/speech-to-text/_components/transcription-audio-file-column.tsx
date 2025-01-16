@@ -1,5 +1,5 @@
 import { Row } from "@tanstack/table-core";
-import { TSpeechToText } from "@/lib/api/speech-to-text/createTextToSpeech";
+import { TSpeechToText } from "@/lib/api/speech-to-text/createTranscription";
 import { formatDateToIndonesian } from "@/lib/utils";
 
 type TTranscriptionAudioFileColumn = {

@@ -2,7 +2,7 @@ import { Row } from "@tanstack/table-core";
 import { Button } from "@/components/ui/button";
 import { LuCopy } from "react-icons/lu";
 import { copyToClipboard } from "@/lib/copyToClipboard";
-import { TSpeechToText } from "@/lib/api/speech-to-text/createTextToSpeech";
+import { TSpeechToText } from "@/lib/api/speech-to-text/createTranscription";
 
 type TTranscriptionTextColumnProps = {
   row: Row<TSpeechToText>;
