@@ -44,6 +44,7 @@ const TranscriptionForm = () => {
       return;
     }
 
+    updateStore("speechToTextId", 0);
     updateStore("isLoading", true);
     try {
       const token = await fetchCookieToken();
@@ -57,6 +58,7 @@ const TranscriptionForm = () => {
         transcription.transcription.text,
         language,
       );
+      updateStore("speechToTextId", speechToText.data.id)
       updateStore("text", speechToText.data.transcription_text);
       toast.success("Transcription success");
       return;
