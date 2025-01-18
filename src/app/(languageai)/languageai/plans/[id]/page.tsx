@@ -3,6 +3,9 @@ import LanguageaiLoginCard from "@/app/(languageai)/_components/languageai-login
 import { Suspense } from "react";
 import LanguageaiSubscriptionPlansCheckout from "@/app/(languageai)/languageai/plans/[id]/_components/languageai-subscription-plans-checkout";
 import LanguageaiSubscriptionPlansCheckoutFallback from "@/app/(languageai)/languageai/plans/[id]/_components/languageai-subscription-plans-checkout-fallback";
+import Link from "next/link";
+import {buttonVariants} from "@/components/ui/button";
+import {LuChevronLeft} from "react-icons/lu";
 
 type TLanguageaiPlansCheckoutPageProps = {
   params: {
@@ -21,7 +24,7 @@ const LanguageaiPlansCheckoutPage = ({
 
   return (
     <section className="p-4">
-      <h1 className="font-bold text-2xl mb-4 lg:text-center lg:my-8">
+      <h1 className="font-bold text-2xl mb-4 lg:my-8 lg:text-center">
         CHECKOUT
       </h1>
 
