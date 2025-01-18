@@ -1,7 +1,10 @@
 import LanguageaiPlanList from "@/app/(languageai)/languageai/plans/_components/languageai-plan-list";
 import { Suspense } from "react";
 
+export const revalidate = 0;
+
 const LanguageaiPlans = () => {
+
   return (
     <section className="p-4 overflow-y-auto border h-screen pb-16 lg:pb-4">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-4 text-center lg:mt-8">
