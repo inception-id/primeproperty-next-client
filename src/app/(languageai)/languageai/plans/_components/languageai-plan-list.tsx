@@ -1,5 +1,4 @@
 import { findAllLanguageaiSubscriptionPlans } from "@/lib/api/languageai-subscriptions/find-all-languageai-subscription-plans";
-import { TbPigMoney } from "react-icons/tb";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
