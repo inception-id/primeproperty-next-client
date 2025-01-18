@@ -11,7 +11,7 @@ import {
 } from "react-icons/lu";
 import { GiSpinningTop } from "react-icons/gi";
 import { CgTranscript } from "react-icons/cg";
-import {TbPigMoney} from "react-icons/tb";
+import { TbPigMoney } from "react-icons/tb";
 
 export const LANGUAGEAI_MENUS = [
   {
