@@ -11,6 +11,7 @@ import {
 } from "react-icons/lu";
 import { GiSpinningTop } from "react-icons/gi";
 import { CgTranscript } from "react-icons/cg";
+import {TbPigMoney} from "react-icons/tb";
 
 export const LANGUAGEAI_MENUS = [
   {
@@ -49,6 +50,11 @@ export const LANGUAGEAI_MENUS = [
     href: "/languageai/history",
     icon: <LuClock />,
     refresh: true,
+  },
+  {
+    title: "Pricing",
+    href: "/languageai/plans",
+    icon: <TbPigMoney />,
   },
   {
     title: "Support",
