@@ -1,13 +1,12 @@
 "use client";
-import {TLanguageaiSubscriptionPlan} from "@/lib/api/languageai-subscriptions/find-all-languageai-subscription-plans";
-import {getDatePlusThreeMonths} from "@/app/(languageai)/languageai/plans/[id]/_lib/getDatePlusThreeMonths";
-import {getDatePlusOneMonth} from "@/app/(languageai)/languageai/plans/[id]/_lib/getDatePlusOneMonth";
-import {Button} from "@/components/ui/button";
-import {useState} from "react";
-import {ESubscriptionPeriod} from "@/lib/enums/ESubscriptionPeriod";
-import {cn} from "@/lib/utils";
-import LanguageaiSubscriptionPlansPeriodButton
-  from "@/app/(languageai)/languageai/plans/[id]/_components/languageai-subscription-plans-period-button";
+import { TLanguageaiSubscriptionPlan } from "@/lib/api/languageai-subscriptions/find-all-languageai-subscription-plans";
+import { getDatePlusThreeMonths } from "@/app/(languageai)/languageai/plans/[id]/_lib/getDatePlusThreeMonths";
+import { getDatePlusOneMonth } from "@/app/(languageai)/languageai/plans/[id]/_lib/getDatePlusOneMonth";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { ESubscriptionPeriod } from "@/lib/enums/ESubscriptionPeriod";
+import { cn } from "@/lib/utils";
+import LanguageaiSubscriptionPlansPeriodButton from "@/app/(languageai)/languageai/plans/[id]/_components/languageai-subscription-plans-period-button";
 
 type LanguageaiSubscriptionPlansCycleSelectionProps = {
   subscriptionPlan: TLanguageaiSubscriptionPlan;
@@ -28,9 +27,24 @@ const LanguageaiSubscriptionPlansCycleSelection = ({
       <div className="mb-4 opacity-50 text-sm">*VAT Free</div>
 
       <div className="mb-4">
-        <LanguageaiSubscriptionPlansPeriodButton isActive={selectedPeriod === ESubscriptionPeriod.OneYear} onClick={()=> setSelectedPeriod(ESubscriptionPeriod.OneYear)} subscriptionPlan={subscriptionPlan} period={ESubscriptionPeriod.OneYear} />
-        <LanguageaiSubscriptionPlansPeriodButton isActive={selectedPeriod === ESubscriptionPeriod.ThreeMonths} onClick={()=> setSelectedPeriod(ESubscriptionPeriod.ThreeMonths)} subscriptionPlan={subscriptionPlan} period={ESubscriptionPeriod.ThreeMonths} />
-        <LanguageaiSubscriptionPlansPeriodButton isActive={selectedPeriod === ESubscriptionPeriod.OneMonth} onClick={()=> setSelectedPeriod(ESubscriptionPeriod.OneMonth)} subscriptionPlan={subscriptionPlan} period={ESubscriptionPeriod.OneMonth} />
+        <LanguageaiSubscriptionPlansPeriodButton
+          isActive={selectedPeriod === ESubscriptionPeriod.OneYear}
+          onClick={() => setSelectedPeriod(ESubscriptionPeriod.OneYear)}
+          subscriptionPlan={subscriptionPlan}
+          period={ESubscriptionPeriod.OneYear}
+        />
+        <LanguageaiSubscriptionPlansPeriodButton
+          isActive={selectedPeriod === ESubscriptionPeriod.ThreeMonths}
+          onClick={() => setSelectedPeriod(ESubscriptionPeriod.ThreeMonths)}
+          subscriptionPlan={subscriptionPlan}
+          period={ESubscriptionPeriod.ThreeMonths}
+        />
+        <LanguageaiSubscriptionPlansPeriodButton
+          isActive={selectedPeriod === ESubscriptionPeriod.OneMonth}
+          onClick={() => setSelectedPeriod(ESubscriptionPeriod.OneMonth)}
+          subscriptionPlan={subscriptionPlan}
+          period={ESubscriptionPeriod.OneMonth}
+        />
       </div>
 
       <Button>Checkout</Button>

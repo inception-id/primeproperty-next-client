@@ -4,8 +4,8 @@ import { Suspense } from "react";
 import LanguageaiSubscriptionPlansCheckout from "@/app/(languageai)/languageai/plans/[id]/_components/languageai-subscription-plans-checkout";
 import LanguageaiSubscriptionPlansCheckoutFallback from "@/app/(languageai)/languageai/plans/[id]/_components/languageai-subscription-plans-checkout-fallback";
 import Link from "next/link";
-import {buttonVariants} from "@/components/ui/button";
-import {LuChevronLeft} from "react-icons/lu";
+import { buttonVariants } from "@/components/ui/button";
+import { LuChevronLeft } from "react-icons/lu";
 
 type TLanguageaiPlansCheckoutPageProps = {
   params: {
