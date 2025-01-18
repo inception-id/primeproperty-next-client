@@ -1,33 +1,35 @@
-import {cookies} from "next/headers";
+import { cookies } from "next/headers";
 import LanguageaiLoginCard from "@/app/(languageai)/_components/languageai-login-card";
-import {Suspense} from "react";
-import LanguageaiSubscriptionPlansCheckout
-    from "@/app/(languageai)/languageai/plans/[id]/_components/languageai-subscription-plans-checkout";
-import LanguageaiSubscriptionPlansCheckoutFallback
-    from "@/app/(languageai)/languageai/plans/[id]/_components/languageai-subscription-plans-checkout-fallback";
+import { Suspense } from "react";
+import LanguageaiSubscriptionPlansCheckout from "@/app/(languageai)/languageai/plans/[id]/_components/languageai-subscription-plans-checkout";
+import LanguageaiSubscriptionPlansCheckoutFallback from "@/app/(languageai)/languageai/plans/[id]/_components/languageai-subscription-plans-checkout-fallback";
 
 type TLanguageaiPlansCheckoutPageProps = {
-    params: {
-        id: string | undefined;
-    }
-}
+  params: {
+    id: string | undefined;
+  };
+};
 
-const LanguageaiPlansCheckoutPage = ({params}: TLanguageaiPlansCheckoutPageProps) => {
-    const accessToken = cookies().get("accessToken")?.value;
+const LanguageaiPlansCheckoutPage = ({
+  params,
+}: TLanguageaiPlansCheckoutPageProps) => {
+  const accessToken = cookies().get("accessToken")?.value;
 
-    if (!accessToken) {
-        return <LanguageaiLoginCard />;
-    }
+  if (!accessToken) {
+    return <LanguageaiLoginCard />;
+  }
 
-    return (
-        <section className="p-4">
-           <h1 className="font-bold text-2xl mb-4 lg:text-center lg:my-8">CHECKOUT</h1>
+  return (
+    <section className="p-4">
+      <h1 className="font-bold text-2xl mb-4 lg:text-center lg:my-8">
+        CHECKOUT
+      </h1>
 
-            <Suspense fallback={<LanguageaiSubscriptionPlansCheckoutFallback /> }>
-                <LanguageaiSubscriptionPlansCheckout id={params.id}/>
-            </Suspense>
-        </section>
-    )
+      <Suspense fallback={<LanguageaiSubscriptionPlansCheckoutFallback />}>
+        <LanguageaiSubscriptionPlansCheckout id={params.id} />
+      </Suspense>
+    </section>
+  );
 };
 
 export default LanguageaiPlansCheckoutPage;

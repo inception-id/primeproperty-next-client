@@ -2,7 +2,7 @@ import { findAllLanguageaiSubscriptionPlans } from "@/lib/api/languageai-subscri
 import { TbPigMoney } from "react-icons/tb";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import {Button, buttonVariants} from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { LuCircleCheck } from "react-icons/lu";
 import LanguageaiPlanError from "@/app/(languageai)/languageai/plans/_components/languageai-plan-error";
 
@@ -10,7 +10,7 @@ const LanguageaiPlanList = async () => {
   const plans = await findAllLanguageaiSubscriptionPlans();
 
   if (!plans || plans.data.length === 0) {
-      return  <LanguageaiPlanError />
+    return <LanguageaiPlanError />;
   }
 
   return (
@@ -44,18 +44,18 @@ const LanguageaiPlanList = async () => {
             <span className="text-lg">/month</span>
           </div>
 
-
-            {Number(plan.initial_price) === 0  ?
-           <Button variant="outline" className="w-full text-lg mb-8" disabled>
+          {Number(plan.initial_price) === 0 ? (
+            <Button variant="outline" className="w-full text-lg mb-8" disabled>
               Free
-           </Button>:
-                <Link
-                    href={`/languageai/plans/${plan.id}`}
-                    className={cn(buttonVariants(), "w-full text-lg mb-8")}
-                >
-                    Get started
-                </Link>
-            }
+            </Button>
+          ) : (
+            <Link
+              href={`/languageai/plans/${plan.id}`}
+              className={cn(buttonVariants(), "w-full text-lg mb-8")}
+            >
+              Get started
+            </Link>
+          )}
 
           <div className="mb-4 font-semibold">
             Highest Qualities, with everything:{" "}
