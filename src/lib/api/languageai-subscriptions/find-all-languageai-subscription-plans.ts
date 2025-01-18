@@ -3,7 +3,7 @@
 import { fetchApi } from "@/lib/api/fetchApi";
 import { TApiResponse } from "@/lib/api/ApiResponse";
 
-export type TLanguageaiSubscriptionPlans = {
+export type TLanguageaiSubscriptionPlan = {
   id: number;
   created_at: string;
   updated_at: string;
@@ -19,7 +19,7 @@ export type TLanguageaiSubscriptionPlans = {
 };
 
 export const findAllLanguageaiSubscriptionPlans = async (): Promise<
-  TApiResponse<TLanguageaiSubscriptionPlans[]>
+  TApiResponse<TLanguageaiSubscriptionPlan[]>
 > => {
   try {
     return await fetchApi(`/languageai/subscriptions/plans`);

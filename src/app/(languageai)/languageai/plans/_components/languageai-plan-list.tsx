@@ -2,20 +2,15 @@ import { findAllLanguageaiSubscriptionPlans } from "@/lib/api/languageai-subscri
 import { TbPigMoney } from "react-icons/tb";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
+import {Button, buttonVariants} from "@/components/ui/button";
 import { LuCircleCheck } from "react-icons/lu";
+import LanguageaiPlanError from "@/app/(languageai)/languageai/plans/_components/languageai-plan-error";
 
 const LanguageaiPlanList = async () => {
   const plans = await findAllLanguageaiSubscriptionPlans();
 
   if (!plans || plans.data.length === 0) {
-    return (
-      <div className="w-full flex flex-col items-center justify-center h-96">
-        <TbPigMoney className="text-5xl" />
-        <div>Something went wrong</div>
-        <div>Please refresh the page and try again</div>
-      </div>
-    );
+      return  <LanguageaiPlanError />
   }
 
   return (
@@ -49,12 +44,18 @@ const LanguageaiPlanList = async () => {
             <span className="text-lg">/month</span>
           </div>
 
-          <Link
-            href={`/languageai/plans/${plan.id}`}
-            className={cn(buttonVariants(), "w-full text-lg mb-8")}
-          >
-            Get started
-          </Link>
+
+            {Number(plan.initial_price) === 0  ?
+           <Button variant="outline" className="w-full text-lg mb-8" disabled>
+              Free
+           </Button>:
+                <Link
+                    href={`/languageai/plans/${plan.id}`}
+                    className={cn(buttonVariants(), "w-full text-lg mb-8")}
+                >
+                    Get started
+                </Link>
+            }
 
           <div className="mb-4 font-semibold">
             Highest Qualities, with everything:{" "}
@@ -87,7 +88,7 @@ const LanguageaiPlanList = async () => {
             </li>
             <li className="flex items-center gap-1">
               <LuCircleCheck />
-              Text to speeech: {plan.text_to_speech_limit}x / month
+              Text to speech: {plan.text_to_speech_limit}x / month
             </li>
             <li className="flex items-center gap-1">
               <LuCircleCheck />
