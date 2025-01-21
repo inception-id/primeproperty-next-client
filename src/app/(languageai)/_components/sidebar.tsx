@@ -15,9 +15,9 @@ const LanguageaiSidebar = () => {
   const pathname = usePathname();
 
   const detectButtonVariant = (href: string) => {
-      if (pathname.includes("plans") && href.includes("plans")) {
-          return "default";
-      }
+    if (pathname.includes("plans") && href.includes("plans")) {
+      return "default";
+    }
     if (pathname.includes("history") && href.includes("history")) {
       return "default";
     }

@@ -15,6 +15,7 @@ export type TLanguageaiSubscriptionPayment = {
   amount: string;
   period: ESubscriptionPeriod;
   status: ELanguageaiSubscriptionPaymentStatus;
+  invoice_id: string;
   doku_request: null | Record<string, any>;
   doku_response: null | Record<string, any>;
   doku_notification: null | Record<string, any>;
@@ -23,6 +24,7 @@ export type TLanguageaiSubscriptionPayment = {
 type TRequest = {
   languageai_subscription_plan_id: number;
   period: ESubscriptionPeriod;
+  invoice_id: string;
   doku_request: Record<string, any>;
   doku_response: Record<string, any>;
 };

@@ -46,6 +46,7 @@ export const createDokuPaymentLink = async (amount: number) => {
     });
     const responseBody = await response.json();
     return {
+      requestId,
       requestBody,
       responseBody,
     };

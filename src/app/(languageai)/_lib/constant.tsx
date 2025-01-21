@@ -1,5 +1,6 @@
 import {
-  LuAudioLines, LuBadgeCheck,
+  LuAudioLines,
+  LuBadgeCheck,
   LuClock,
   LuDatabase,
   LuFileQuestion,
