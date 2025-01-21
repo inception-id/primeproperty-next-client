@@ -1,5 +1,5 @@
 import {
-  LuAudioLines,
+  LuAudioLines, LuBadgeCheck,
   LuClock,
   LuDatabase,
   LuFileQuestion,
@@ -49,6 +49,12 @@ export const LANGUAGEAI_MENUS = [
     title: "History",
     href: "/languageai/history",
     icon: <LuClock />,
+    refresh: true,
+  },
+  {
+    title: "Subscription",
+    href: "/languageai/subscription",
+    icon: <LuBadgeCheck />,
     refresh: true,
   },
   {

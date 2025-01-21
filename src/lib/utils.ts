@@ -9,11 +9,10 @@ export const formatDateToIndonesian = (
   dateString: string,
   showTime?: boolean,
 ) => {
-  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const date = new Date(dateString);
+  const localDate = new Date(date.getTime() - date.getTimezoneOffset()*60*1000);
   return Intl.DateTimeFormat("id-ID", {
     dateStyle: "medium",
     ...(showTime && { timeStyle: "short" }),
-    timeZone,
-  }).format(date);
+  }).format(localDate);
 };
