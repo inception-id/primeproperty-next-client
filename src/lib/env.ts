@@ -16,6 +16,9 @@ export const env = createEnv({
     S3_ENDPOINT: z.string().min(1),
     S3_ACCESS_KEY: z.string().min(1),
     S3_SECRET_KEY: z.string().min(1),
+    DOKU_API_URL: z.string().min(1),
+    DOKU_CLIENT_ID: z.string().min(1),
+    DOKU_SECRET_KEY: z.string().min(1),
   },
   /*
    * Environment variables available on the client (and server).
@@ -44,5 +47,8 @@ export const env = createEnv({
     S3_ENDPOINT: process.env.S3_ENDPOINT,
     S3_ACCESS_KEY: process.env.S3_ACCESS_KEY,
     S3_SECRET_KEY: process.env.S3_SECRET_KEY,
+    DOKU_API_URL: process.env.DOKU_API_URL,
+    DOKU_CLIENT_ID: process.env.DOKU_CLIENT_ID,
+    DOKU_SECRET_KEY: process.env.DOKU_SECRET_KEY,
   },
 });
