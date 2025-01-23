@@ -13,7 +13,7 @@ const LanguageaiPlanList = async () => {
   }
 
   return (
-    <div className="lg:grid grid-cols-3 lg:max-w-5xl mx-auto lg:gap-4">
+    <div className="lg:grid grid-cols-3 lg:max-w-5xl lg:gap-4">
       {plans.data.map((plan) => (
         <div key={plan.id} className="border rounded-lg p-4 mb-4 shadow">
           <h3 className="font-semibold text-2xl capitalize mb-4">
