@@ -1,6 +1,5 @@
 import LanguageaiCurrentFreePlan from "@/app/(languageai)/languageai/subscription/_components/languageai-current-free-plan";
 import { findLanguageaiSubscriptionStatistic } from "@/lib/api/languageai-subscriptions/find-languageai-subscription-statistic";
-import { LuMessageCircleWarning } from "react-icons/lu";
 import { findLanguageaiActiveSubscription } from "@/lib/api/languageai-subscriptions/find-languageai-active-subscription";
 import { findLanguageaiSubscriptionPlansById } from "@/lib/api/languageai-subscriptions/find-languageai-subscription-plan-by-id";
 import LanguageaiCurrentSubscription from "@/app/(languageai)/languageai/subscription/_components/languageai-current-subscription";

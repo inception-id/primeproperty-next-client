@@ -2,9 +2,7 @@ import { fetchCookieToken } from "@/lib/fetchCookieToken";
 import LanguageaiLoginCard from "@/app/(languageai)/_components/languageai-login-card";
 import LanguageaiPendingPayment from "@/app/(languageai)/languageai/subscription/_components/languageai-pending-payment";
 import { Suspense } from "react";
-import LanguageaiPlanList from "@/app/(languageai)/languageai/plans/_components/languageai-plan-list";
 import LanguageaiCurrentPlan from "@/app/(languageai)/languageai/subscription/_components/languageai-current-plan";
-import LanguageaiCurrentFreePlan from "@/app/(languageai)/languageai/subscription/_components/languageai-current-free-plan";
 
 const LanguageaiSubscriptionPage = async () => {
   const accessToken = await fetchCookieToken();
