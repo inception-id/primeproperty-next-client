@@ -14,6 +14,6 @@ export const findLanguageaiSubscriptionPendingPayment = async (): Promise<
       status: 500,
       data: null,
       message: e.message,
-    }
+    };
   }
 };
