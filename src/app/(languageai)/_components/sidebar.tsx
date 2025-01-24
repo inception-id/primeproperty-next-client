@@ -30,7 +30,7 @@ const LanguageaiSidebar = () => {
     return "ghost";
   };
   return (
-    <aside className="p-4 bg-secondary text-secondary-foreground hidden lg:flex flex-col">
+    <aside className="p-4 bg-ghost text-secondary-foreground hidden lg:flex flex-col border-r">
       <div className="mb-4 text-center font-semibold hidden lg:block">
         LANGUAGE AI
       </div>
