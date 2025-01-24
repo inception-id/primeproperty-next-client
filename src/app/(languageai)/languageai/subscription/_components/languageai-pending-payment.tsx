@@ -14,7 +14,9 @@ const LanguageaiPendingPayment = async () => {
           <LuMessageCircleWarning className="text-2xl" />
           <span className="text-xl">Pending Payment</span>
         </div>
-        <div className="mb-2 text-sm">Payment ID: {pendingPayment.data.invoice_id}</div>
+        <div className="mb-2 text-sm">
+          Payment ID: {pendingPayment.data.invoice_id}
+        </div>
         <div className="mb-2 text-sm">
           Pay before:{" "}
           {formatDateToIndonesian(pendingPayment.data.expired_at, true)}

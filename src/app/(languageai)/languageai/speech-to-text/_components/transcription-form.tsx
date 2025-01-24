@@ -11,11 +11,9 @@ import { createTranscription } from "@/lib/openai/createTranscription";
 import { useTranscriptionStore } from "@/app/(languageai)/languageai/speech-to-text/_lib/useTranscriptionStore";
 import { LuLoader } from "react-icons/lu";
 import { createSpeechToText } from "@/lib/api/speech-to-text/createTranscription";
-import {useLanguageaiSubscriptionStore} from "@/app/(languageai)/_lib/use-languageai-subscription-store";
-import {
-  checkLanguageaiSubscriptionExceedLimit
-} from "@/lib/api/languageai-subscriptions/find-languageai-subscription-exceed-limit";
-import {ELanguageaSubscriptionLimit} from "@/lib/enums/languageai-subscription-limit";
+import { useLanguageaiSubscriptionStore } from "@/app/(languageai)/_lib/use-languageai-subscription-store";
+import { checkLanguageaiSubscriptionExceedLimit } from "@/lib/api/languageai-subscriptions/find-languageai-subscription-exceed-limit";
+import { ELanguageaSubscriptionLimit } from "@/lib/enums/languageai-subscription-limit";
 
 const TranscriptionForm = () => {
   const { updateLoginStore } = useLoginStore(
@@ -25,9 +23,9 @@ const TranscriptionForm = () => {
   );
 
   const { updateSubscriptionStore } = useLanguageaiSubscriptionStore(
-      useShallow((state) => ({
-        updateSubscriptionStore: state.updateStore,
-      })),
+    useShallow((state) => ({
+      updateSubscriptionStore: state.updateStore,
+    })),
   );
 
   const { updateStore, isLoading } = useTranscriptionStore(
@@ -65,13 +63,13 @@ const TranscriptionForm = () => {
       }
 
       const passLimit = await checkLanguageaiSubscriptionExceedLimit(
-          ELanguageaSubscriptionLimit.SpeechToText,
+        ELanguageaSubscriptionLimit.SpeechToText,
       );
 
       if (passLimit.data) {
         updateSubscriptionStore(
-            "limitDialog",
-            ELanguageaSubscriptionLimit.SpeechToText,
+          "limitDialog",
+          ELanguageaSubscriptionLimit.SpeechToText,
         );
         return;
       }

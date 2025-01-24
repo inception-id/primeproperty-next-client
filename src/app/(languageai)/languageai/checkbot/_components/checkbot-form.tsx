@@ -12,11 +12,9 @@ import CheckbotInstructionSelection from "@/app/(languageai)/languageai/checkbot
 import { useCheckbotStore } from "@/app/(languageai)/languageai/checkbot/_lib/useCheckbotStore";
 import { createCheckbot } from "@/lib/api/checkbot/createCheckbot";
 import CheckbotTextarea from "@/app/(languageai)/languageai/checkbot/_components/checkbot-textarea";
-import {useLanguageaiSubscriptionStore} from "@/app/(languageai)/_lib/use-languageai-subscription-store";
-import {
-  checkLanguageaiSubscriptionExceedLimit
-} from "@/lib/api/languageai-subscriptions/find-languageai-subscription-exceed-limit";
-import {ELanguageaSubscriptionLimit} from "@/lib/enums/languageai-subscription-limit";
+import { useLanguageaiSubscriptionStore } from "@/app/(languageai)/_lib/use-languageai-subscription-store";
+import { checkLanguageaiSubscriptionExceedLimit } from "@/lib/api/languageai-subscriptions/find-languageai-subscription-exceed-limit";
+import { ELanguageaSubscriptionLimit } from "@/lib/enums/languageai-subscription-limit";
 
 const CheckbotForm = () => {
   const { complete, isLoading } =
@@ -29,9 +27,9 @@ const CheckbotForm = () => {
   );
 
   const { updateSubscriptionStore } = useLanguageaiSubscriptionStore(
-      useShallow((state) => ({
-        updateSubscriptionStore: state.updateStore,
-      })),
+    useShallow((state) => ({
+      updateSubscriptionStore: state.updateStore,
+    })),
   );
 
   const { instructions, updateStore } = useCheckbotStore(
@@ -68,13 +66,13 @@ const CheckbotForm = () => {
       }
 
       const passLimit = await checkLanguageaiSubscriptionExceedLimit(
-          ELanguageaSubscriptionLimit.Checkbot,
+        ELanguageaSubscriptionLimit.Checkbot,
       );
 
       if (passLimit.data) {
         updateSubscriptionStore(
-            "limitDialog",
-            ELanguageaSubscriptionLimit.Checkbot,
+          "limitDialog",
+          ELanguageaSubscriptionLimit.Checkbot,
         );
         return;
       }
