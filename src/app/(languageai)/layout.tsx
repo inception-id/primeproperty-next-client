@@ -14,7 +14,7 @@ const LanguageaiLayout = ({ children }: TLanguageaiLayout) => {
       <LanguageaiSidebar />
       <main className="mt-10 lg:mt-0 w-full">{children}</main>
       <LoginDialog />
-        <LanguageaiSubscriptionLimitDialog />
+      <LanguageaiSubscriptionLimitDialog />
     </div>
   );
 };

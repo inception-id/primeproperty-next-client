@@ -1,23 +1,21 @@
 "use client";
-import {Button} from "@/components/ui/button";
-import TranslateLanguageSelection
-  from "@/app/(languageai)/languageai/translate/_components/translate-language-selection";
-import {useContext} from "react";
-import {TranslateContext} from "@/app/(languageai)/languageai/translate/_components/translate-provider";
-import {UseCompletionHelpers} from "@ai-sdk/react";
-import {LuLoader} from "react-icons/lu";
-import {toast} from "react-toastify";
-import {createTranslateSystemPrompt} from "@/app/(languageai)/languageai/translate/_lib/createTranslateSystemPrompt";
-import {createTranslation} from "@/lib/api/translation/createTranslation";
-import {useLoginStore} from "@/app/(auth)/auth/login/_lib/useLoginStore";
-import {useShallow} from "zustand/react/shallow";
-import {fetchCookieToken} from "@/lib/fetchCookieToken";
+import { Button } from "@/components/ui/button";
+import TranslateLanguageSelection from "@/app/(languageai)/languageai/translate/_components/translate-language-selection";
+import { useContext } from "react";
+import { TranslateContext } from "@/app/(languageai)/languageai/translate/_components/translate-provider";
+import { UseCompletionHelpers } from "@ai-sdk/react";
+import { LuLoader } from "react-icons/lu";
+import { toast } from "react-toastify";
+import { createTranslateSystemPrompt } from "@/app/(languageai)/languageai/translate/_lib/createTranslateSystemPrompt";
+import { createTranslation } from "@/lib/api/translation/createTranslation";
+import { useLoginStore } from "@/app/(auth)/auth/login/_lib/useLoginStore";
+import { useShallow } from "zustand/react/shallow";
+import { fetchCookieToken } from "@/lib/fetchCookieToken";
 import TranslateTextarea from "@/app/(languageai)/languageai/translate/_components/translate-textarea";
-import {useTranslationStore} from "@/app/(languageai)/languageai/translate/_lib/useTranslateStore";
-import {
-  checkLanguageaiSubscriptionExceedLimit } from "@/lib/api/languageai-subscriptions/find-languageai-subscription-exceed-limit";
-import {ELanguageaSubscriptionLimit} from "@/lib/enums/languageai-subscription-limit";
-import {useLanguageaiSubscriptionStore} from "@/app/(languageai)/_lib/use-languageai-subscription-store";
+import { useTranslationStore } from "@/app/(languageai)/languageai/translate/_lib/useTranslateStore";
+import { checkLanguageaiSubscriptionExceedLimit } from "@/lib/api/languageai-subscriptions/find-languageai-subscription-exceed-limit";
+import { ELanguageaSubscriptionLimit } from "@/lib/enums/languageai-subscription-limit";
+import { useLanguageaiSubscriptionStore } from "@/app/(languageai)/_lib/use-languageai-subscription-store";
 
 const TranslateForm = () => {
   const { complete, isLoading } =
@@ -29,11 +27,11 @@ const TranslateForm = () => {
     })),
   );
 
-  const {updateSubscriptionStore} = useLanguageaiSubscriptionStore(
-      useShallow((state) => ({
-        updateSubscriptionStore: state.updateStore,
-      }))
-  )
+  const { updateSubscriptionStore } = useLanguageaiSubscriptionStore(
+    useShallow((state) => ({
+      updateSubscriptionStore: state.updateStore,
+    })),
+  );
 
   const { updateStore } = useTranslationStore(
     useShallow((state) => ({
@@ -68,10 +66,15 @@ const TranslateForm = () => {
         return;
       }
 
-      const passLimit = await checkLanguageaiSubscriptionExceedLimit(ELanguageaSubscriptionLimit.Translation);
+      const passLimit = await checkLanguageaiSubscriptionExceedLimit(
+        ELanguageaSubscriptionLimit.Translation,
+      );
 
       if (passLimit.data) {
-        updateSubscriptionStore("limitDialog", ELanguageaSubscriptionLimit.Translation);
+        updateSubscriptionStore(
+          "limitDialog",
+          ELanguageaSubscriptionLimit.Translation,
+        );
         return;
       }
 
