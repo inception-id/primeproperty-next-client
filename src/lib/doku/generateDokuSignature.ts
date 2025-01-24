@@ -12,8 +12,6 @@ export const generateDokuSignature = async (
     .update(Buffer.from(jsonBody, "utf8"))
     .digest("base64");
 
-  console.log("Digest Component: " + jsonBody);
-  console.log("Digest : " + digest);
   const signatureComponents =
     "Client-Id:" +
     env.DOKU_CLIENT_ID +
@@ -32,7 +30,5 @@ export const generateDokuSignature = async (
     .createHmac("sha256", env.DOKU_SECRET_KEY)
     .update(signatureComponents)
     .digest("base64");
-  console.log("Signature Components: " + signatureComponents);
-  console.log("Signature: " + signature);
   return "HMACSHA256=" + signature;
 };

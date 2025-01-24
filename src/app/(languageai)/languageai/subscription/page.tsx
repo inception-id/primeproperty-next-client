@@ -13,7 +13,7 @@ const LanguageaiSubscriptionPage = async () => {
   return (
     <section className="p-4 h-screen overflow-y-auto pb-16">
       <h1 className="font-bold text-2xl">SUBSCRIPTION</h1>
-      <p className="opacity-50 mb-8">See your current plan details</p>
+      <p className="opacity-50 mb-4">See your current plan details</p>
 
       <LanguageaiPendingPayment />
 

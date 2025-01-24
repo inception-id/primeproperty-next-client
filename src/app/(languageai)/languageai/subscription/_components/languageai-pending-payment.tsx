@@ -9,13 +9,13 @@ const LanguageaiPendingPayment = async () => {
 
   if (pendingPayment.data?.invoice_id) {
     return (
-      <div className="border p-4 bg-destructive/25 shadow rounded-lg max-w-xs mb-4">
+      <div className="border p-4 bg-destructive/25 dark:bg-destructive/75 shadow rounded-lg max-w-xs mb-4">
         <div className="flex gap-2 items-center font-bold mb-2">
           <LuMessageCircleWarning className="text-2xl" />
           <span className="text-xl">Pending Payment</span>
         </div>
-        <div className="mb-2">Payment ID: {pendingPayment.data.invoice_id}</div>
-        <div className="mb-2">
+        <div className="mb-2 text-sm">Payment ID: {pendingPayment.data.invoice_id}</div>
+        <div className="mb-2 text-sm">
           Pay before:{" "}
           {formatDateToIndonesian(pendingPayment.data.expired_at, true)}
         </div>

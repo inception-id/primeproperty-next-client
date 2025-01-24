@@ -11,12 +11,23 @@ import { useTextToSpeechStore } from "@/app/(languageai)/languageai/text-to-spee
 import { LuLoader } from "react-icons/lu";
 import { createTextToSpeech } from "@/lib/api/text-to-speech/createTextToSpeech";
 import TtsTextarea from "@/app/(languageai)/languageai/text-to-speech/_components/tts-textarea";
+import {useLanguageaiSubscriptionStore} from "@/app/(languageai)/_lib/use-languageai-subscription-store";
+import {
+  checkLanguageaiSubscriptionExceedLimit
+} from "@/lib/api/languageai-subscriptions/find-languageai-subscription-exceed-limit";
+import {ELanguageaSubscriptionLimit} from "@/lib/enums/languageai-subscription-limit";
 
 const TtsForm = () => {
   const { updateLoginStore } = useLoginStore(
     useShallow((state) => ({
       updateLoginStore: state.updateStore,
     })),
+  );
+
+  const { updateSubscriptionStore } = useLanguageaiSubscriptionStore(
+      useShallow((state) => ({
+        updateSubscriptionStore: state.updateStore,
+      })),
   );
 
   const { updateStore, isLoading } = useTextToSpeechStore(
@@ -50,6 +61,19 @@ const TtsForm = () => {
         updateLoginStore("openLoginDialog", true);
         return;
       }
+
+      const passLimit = await checkLanguageaiSubscriptionExceedLimit(
+          ELanguageaSubscriptionLimit.TextToSpeech,
+      );
+
+      if (passLimit.data) {
+        updateSubscriptionStore(
+            "limitDialog",
+            ELanguageaSubscriptionLimit.TextToSpeech,
+        );
+        return;
+      }
+
       const audioUrl = await createSpeech(voice, responseFormat, input);
       const tts = await createTextToSpeech(input, audioUrl, voice);
       updateStore("audioUrl", tts.data.audio_url);

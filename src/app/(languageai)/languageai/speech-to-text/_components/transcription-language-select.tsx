@@ -25,7 +25,7 @@ const TranscriptionLanguageSelection = () => {
   });
   return (
     <div className="mb-4">
-      <Label>Select language (required)</Label>
+      <Label>Audio language (required)</Label>
       <Select name="language">
         <SelectTrigger className="capitalize">
           <SelectValue placeholder="Audio language" />

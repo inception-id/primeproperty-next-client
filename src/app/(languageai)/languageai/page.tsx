@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
-import { LuAudioLines, LuLanguages, LuSquareTerminal } from "react-icons/lu";
+import {LuAudioLines, LuClock, LuDatabase, LuLanguages, LuSquareTerminal} from "react-icons/lu";
 import { cn } from "@/lib/utils";
 import { CgTranscript } from "react-icons/cg";
 
@@ -45,6 +45,20 @@ const Languageai = () => {
           <CgTranscript />
           Speech to Text
         </Link>
+          <Link
+              href="/languageai/storage"
+              className={cn(buttonVariants({}), "w-full")}
+          >
+              <LuDatabase />
+              Storaage
+          </Link>
+          <Link
+              href="/languageai/history"
+              className={cn(buttonVariants({}), "w-full")}
+          >
+              <LuClock />
+              History
+          </Link>
       </div>
     </section>
   );
