@@ -13,7 +13,7 @@ const CheckbotHistory = () => {
       <div className="flex justify-between mb-4">
         <div>
           <h1 className="text-xl lg:text-2xl font-bold">Checkbot History</h1>
-          <p className="text-sm">Showing 10 latest history</p>
+          <p className="text-sm">Showing latest history</p>
         </div>
         <Link
           href="/languageai/history"
