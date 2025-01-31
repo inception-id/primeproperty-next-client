@@ -1,24 +1,31 @@
 "use client";
-import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
-import { DataTable } from "@/components/ui/data-table";
-import { TCheckbotStorage } from "@/lib/api/checkbot/create-checkbot-storage";
-import { CheckbotStorageColumn } from "@/app/(languageai)/languageai/storage/checkbot/_components/checkbot-storage-column";
+import {getCoreRowModel, getPaginationRowModel, useReactTable} from "@tanstack/react-table";
+import {DataTable} from "@/components/ui/data-table";
+import {TCheckbotStorage} from "@/lib/api/checkbot/create-checkbot-storage";
+import {
+    CheckbotStorageColumn
+} from "@/app/(languageai)/languageai/storage/checkbot/_components/checkbot-storage-column";
+import {DataTablePagination} from "@/components/ui/data-table-pagination";
 
 type TCheckbotStorageDataTableProps = {
-  data: TCheckbotStorage[];
+    data: TCheckbotStorage[];
 };
 
-const CheckbotStorageDataTable = ({ data }: TCheckbotStorageDataTableProps) => {
-  const table = useReactTable({
-    data,
-    columns: CheckbotStorageColumn,
-    getCoreRowModel: getCoreRowModel(),
-  });
-  return (
-    <div className="h-[80vh] lg:h-[90vh] overflow-y-auto">
-      <DataTable table={table} tableCellClassName="align-top" />
-    </div>
-  );
+const CheckbotStorageDataTable = ({data}: TCheckbotStorageDataTableProps) => {
+    const table = useReactTable({
+        data,
+        columns: CheckbotStorageColumn,
+        getCoreRowModel: getCoreRowModel(),
+        getPaginationRowModel: getPaginationRowModel(),
+    });
+    return (
+        <>
+            <div className="h-[75vh] lg:h-[85vh] overflow-y-auto">
+                <DataTable table={table} tableCellClassName="align-top"/>
+            </div>
+            <DataTablePagination table={table}/>
+        </>
+    );
 };
 
 export default CheckbotStorageDataTable;
