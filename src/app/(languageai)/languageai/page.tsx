@@ -56,7 +56,7 @@ const Languageai = () => {
           className={cn(buttonVariants({}), "w-full")}
         >
           <LuDatabase />
-          Storaage
+          Storage
         </Link>
         <Link
           href="/languageai/history"

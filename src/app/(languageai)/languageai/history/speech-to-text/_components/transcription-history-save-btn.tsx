@@ -4,6 +4,9 @@ import { Row } from "@tanstack/table-core";
 import { TSpeechToText } from "@/lib/api/speech-to-text/createTranscription";
 import { toast } from "react-toastify";
 import { createSpeechToTextStorage } from "@/lib/api/speech-to-text/createTranscriptionStorage";
+import {useLanguageaiSubscriptionStore} from "@/app/(languageai)/_lib/use-languageai-subscription-store";
+import {useShallow} from "zustand/react/shallow";
+import {ELanguageaSubscriptionLimit} from "@/lib/enums/languageai-subscription-limit";
 
 type TTranscriptionHistorySaveBtnProps = {
   row: Row<TSpeechToText>;
@@ -12,12 +15,21 @@ type TTranscriptionHistorySaveBtnProps = {
 const TranscriptionHistorySaveBtn = ({
   row,
 }: TTranscriptionHistorySaveBtnProps) => {
+  const { updateSubscriptionStore } = useLanguageaiSubscriptionStore(
+      useShallow((state) => ({
+        updateSubscriptionStore: state.updateStore,
+      })),
+  );
   const onClick = async () => {
     try {
       const transcriptStorage = await createSpeechToTextStorage(
         row.original.id,
         row.original.transcription_text,
       );
+      if (transcriptStorage.status === 402) {
+        updateSubscriptionStore("limitDialog", ELanguageaSubscriptionLimit.Storage);
+        return;
+      }
       if (transcriptStorage.data.id) {
         toast.success("Saved to storage");
       } else {

@@ -8,8 +8,15 @@ import { useShallow } from "zustand/react/shallow";
 import TranslateCompletion from "@/app/(languageai)/languageai/translate/_components/translate-completion";
 import { createTranslationStorage } from "@/lib/api/translation/createTranslationStorage";
 import { toast } from "react-toastify";
+import {useLanguageaiSubscriptionStore} from "@/app/(languageai)/_lib/use-languageai-subscription-store";
+import {ELanguageaSubscriptionLimit} from "@/lib/enums/languageai-subscription-limit";
 
 const TranslateResult = () => {
+    const { updateSubscriptionStore } = useLanguageaiSubscriptionStore(
+        useShallow((state) => ({
+            updateSubscriptionStore: state.updateStore,
+        })),
+    );
   const { updatedCompletion, updateStore, translationId } = useTranslationStore(
     useShallow((state) => ({
       translationId: state.translationId,
@@ -53,8 +60,11 @@ const TranslateResult = () => {
                     translationId,
                     updatedCompletion,
                   );
-                  if (translationStorage.data.id)
-                    toast.success("Saved to storage");
+                  if (translationStorage.status === 402) {
+                      updateSubscriptionStore("limitDialog", ELanguageaSubscriptionLimit.Storage);
+                      return;
+                  }
+                  if (translationStorage.data.id) toast.success("Saved to storage");
                 } catch (e) {
                   console.error(e);
                   toast.error("Fail to save, please try again");

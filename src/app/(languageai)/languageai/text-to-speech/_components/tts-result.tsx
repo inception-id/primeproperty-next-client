@@ -5,8 +5,15 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { LuLoader, LuSave } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { createTextToSpeechStorage } from "@/lib/api/text-to-speech/create-tts-storage";
+import {useLanguageaiSubscriptionStore} from "@/app/(languageai)/_lib/use-languageai-subscription-store";
+import {ELanguageaSubscriptionLimit} from "@/lib/enums/languageai-subscription-limit";
 
 const TtsResult = () => {
+  const { updateSubscriptionStore } = useLanguageaiSubscriptionStore(
+      useShallow((state) => ({
+        updateSubscriptionStore: state.updateStore,
+      })),
+  );
   const { audioUrl, isLoading, ttsId } = useTextToSpeechStore(
     useShallow((state) => ({
       audioUrl: state.audioUrl,
@@ -18,6 +25,10 @@ const TtsResult = () => {
   const onSaveClick = async () => {
     try {
       const ttsStorage = await createTextToSpeechStorage(ttsId);
+      if (ttsStorage.status === 402) {
+        updateSubscriptionStore("limitDialog", ELanguageaSubscriptionLimit.Storage);
+        return;
+      }
       if (ttsStorage.data.id) toast.success("Saved to storage");
       else toast.error("Fail to save, please try again");
     } catch (e: any) {

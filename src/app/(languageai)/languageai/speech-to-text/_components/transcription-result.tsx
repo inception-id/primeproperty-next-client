@@ -7,8 +7,15 @@ import { useTranscriptionStore } from "@/app/(languageai)/languageai/speech-to-t
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "react-toastify";
 import { createSpeechToTextStorage } from "@/lib/api/speech-to-text/createTranscriptionStorage";
+import {useLanguageaiSubscriptionStore} from "@/app/(languageai)/_lib/use-languageai-subscription-store";
+import {ELanguageaSubscriptionLimit} from "@/lib/enums/languageai-subscription-limit";
 
 const TranscriptionResult = () => {
+    const { updateSubscriptionStore } = useLanguageaiSubscriptionStore(
+        useShallow((state) => ({
+            updateSubscriptionStore: state.updateStore,
+        })),
+    );
   const { text, updateStore, speechToTextId, isLoading } =
     useTranscriptionStore(
       useShallow((state) => ({
@@ -25,6 +32,10 @@ const TranscriptionResult = () => {
         speechToTextId,
         text,
       );
+      if (savedTranscript.status === 402) {
+          updateSubscriptionStore("limitDialog", ELanguageaSubscriptionLimit.Storage);
+          return;
+      }
       if (savedTranscript.data.id) {
         toast.success("Saved to storage");
       } else {

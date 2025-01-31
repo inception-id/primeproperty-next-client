@@ -9,8 +9,15 @@ import { useCheckbotStore } from "@/app/(languageai)/languageai/checkbot/_lib/us
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "react-toastify";
 import { createCheckbotStorage } from "@/lib/api/checkbot/create-checkbot-storage";
+import {useLanguageaiSubscriptionStore} from "@/app/(languageai)/_lib/use-languageai-subscription-store";
+import {ELanguageaSubscriptionLimit} from "@/lib/enums/languageai-subscription-limit";
 
 const CheckbotResult = () => {
+    const { updateSubscriptionStore } = useLanguageaiSubscriptionStore(
+        useShallow((state) => ({
+            updateSubscriptionStore: state.updateStore,
+        })),
+    );
   const { updatedCompletion, updateStore, checkbotId } = useCheckbotStore(
     useShallow((state) => ({
       checkbotId: state.checkbotId,
@@ -25,6 +32,10 @@ const CheckbotResult = () => {
         checkbotId,
         updatedCompletion,
       );
+      if (storage.status === 402) {
+          updateSubscriptionStore("limitDialog", ELanguageaSubscriptionLimit.Storage);
+          return;
+      }
       if (storage.data.id) toast.success("Saved to storage");
     } catch (e: any) {
       console.error(e.message);
