@@ -3,6 +3,11 @@ import LanguageaiLoginCard from "@/app/(languageai)/_components/languageai-login
 import LanguageaiPendingPayment from "@/app/(languageai)/languageai/subscription/_components/languageai-pending-payment";
 import { Suspense } from "react";
 import LanguageaiCurrentPlan from "@/app/(languageai)/languageai/subscription/_components/languageai-current-plan";
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Language AI Subscriptions | Premium quality",
+};
 
 const LanguageaiSubscriptionPage = async () => {
   const accessToken = await fetchCookieToken();

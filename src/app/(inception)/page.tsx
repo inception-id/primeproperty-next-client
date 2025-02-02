@@ -5,6 +5,7 @@ import Link from "next/link";
 import { GithubGlobe } from "@/components/custom-ui/github-globe";
 import HomeTellYourIdeasSection from "@/app/(inception)/_components/HomeTellYourIdeasSection";
 
+
 const Home = async () => {
   const splashCookie = cookies().get("show-splash")?.value;
   return (

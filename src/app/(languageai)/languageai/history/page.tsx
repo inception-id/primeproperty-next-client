@@ -5,6 +5,13 @@ import { buttonVariants } from "@/components/ui/button";
 import { LuAudioLines, LuLanguages, LuSquareTerminal } from "react-icons/lu";
 import { CgTranscript } from "react-icons/cg";
 import LanguageaiLoginCard from "@/app/(languageai)/_components/languageai-login-card";
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+    title: "Language History | Browse your language history",
+    description: "Browse your translation, transcription, and text to speech history in one place.",
+    keywords: "translation history, transcription history, text to speech history",
+};
 
 const LanguageaiHistory = () => {
   const accessToken = cookies().get("accessToken")?.value;
