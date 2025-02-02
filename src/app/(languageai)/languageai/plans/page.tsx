@@ -1,11 +1,12 @@
 import LanguageaiPlanList from "@/app/(languageai)/languageai/plans/_components/languageai-plan-list";
 import { Suspense } from "react";
-import type {Metadata} from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Language AI plans | Free | Premium quality",
-    description: "Select your plans starting with Rp 0, all comes with a quality.",
-    keywords: "Language AI, Plans, Subscriptions",
+  title: "Language AI plans | Free | Premium quality",
+  description:
+    "Select your plans starting with Rp 0, all comes with a quality.",
+  keywords: "Language AI, Plans, Subscriptions",
 };
 
 const LanguageaiPlans = () => {

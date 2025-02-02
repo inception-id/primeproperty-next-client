@@ -5,12 +5,14 @@ import { LuAudioLines, LuLanguages, LuSquareTerminal } from "react-icons/lu";
 import { CgTranscript } from "react-icons/cg";
 import { fetchCookieToken } from "@/lib/fetchCookieToken";
 import LanguageaiLoginCard from "@/app/(languageai)/_components/languageai-login-card";
-import type {Metadata} from "next";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Language Storage | Keep your language data safe",
-    description: "Keep your language data in one place, never lost your translation, transcription, or text to speech audio again.",
-    keywords: "storage, audio storage, translation, transcription, text to speech",
+  title: "Language Storage | Keep your language data safe",
+  description:
+    "Keep your language data in one place, never lost your translation, transcription, or text to speech audio again.",
+  keywords:
+    "storage, audio storage, translation, transcription, text to speech",
 };
 
 const LanguageaiStorage = async () => {
