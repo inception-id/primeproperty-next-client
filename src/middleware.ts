@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { decode, JwtPayload } from "jsonwebtoken";
 import { refreshSupertokensSession } from "@/lib/supertokens/refreshSupertokensSession";
+import {decodeJwt} from "jose";
 
 export async function middleware(request: NextRequest) {
   const accessToken = request.cookies.get("accessToken")?.value as string;
@@ -21,7 +21,7 @@ export async function middleware(request: NextRequest) {
   // }
 
   const response = NextResponse.next();
-  const jwtPayload = decode(accessToken) as JwtPayload;
+  const jwtPayload = decodeJwt(accessToken);
   if (new Date().getTime() > Number(jwtPayload.exp) * 1000) {
     const newSession = await refreshSupertokensSession();
     if (newSession?.accessToken?.token && newSession?.refreshToken?.token) {
