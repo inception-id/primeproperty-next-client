@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { refreshSupertokensSession } from "@/lib/supertokens/refreshSupertokensSession";
-import {decodeJwt} from "jose";
+import { decodeJwt } from "jose";
 
 export async function middleware(request: NextRequest) {
   const accessToken = request.cookies.get("accessToken")?.value as string;
