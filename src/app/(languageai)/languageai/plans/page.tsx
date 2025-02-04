@@ -2,6 +2,8 @@ import LanguageaiPlanList from "@/app/(languageai)/languageai/plans/_components/
 import { Suspense } from "react";
 import type { Metadata } from "next";
 
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Language AI plans | Free | Premium quality",
   description:
