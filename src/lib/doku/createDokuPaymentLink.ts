@@ -24,6 +24,19 @@ export const createDokuPaymentLink = async (amount: number) => {
       },
       payment: {
         payment_due_date: 60, // 60 minutes
+        payment_method_types: [
+          "VIRTUAL_ACCOUNT_BCA",
+          "VIRTUAL_ACCOUNT_BANK_MANDIRI",
+          "VIRTUAL_ACCOUNT_BANK_SYARIAH_MANDIRI",
+          "VIRTUAL_ACCOUNT_DOKU",
+          "VIRTUAL_ACCOUNT_BRI",
+          "VIRTUAL_ACCOUNT_BNI",
+          "VIRTUAL_ACCOUNT_BANK_PERMATA",
+          "VIRTUAL_ACCOUNT_BANK_CIMB",
+          "VIRTUAL_ACCOUNT_BANK_DANAMON",
+          "EMONEY_SHOPEEPAY",
+          "EMONEY_OVO",
+        ],
       },
     };
     const url = `${env.DOKU_API_URL}/checkout/v1/payment`;
