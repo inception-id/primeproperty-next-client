@@ -66,7 +66,7 @@ const TranscriptionStorageUpdateDialog = ({
         <div className="text-sm mb-2 capitalize">Transcription</div>
         <Textarea
           autoFocus
-          className="h-[30vh] lg:h-[40vh] resize-none mb-4"
+          className="h-[30vh] lg:h-[35vh] resize-none mb-4"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />

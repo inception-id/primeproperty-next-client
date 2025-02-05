@@ -22,7 +22,7 @@ const CheckbotStorageDataTable = ({ data }: TCheckbotStorageDataTableProps) => {
   });
   return (
     <>
-      <div className="h-[75vh] lg:h-[85vh] overflow-y-auto">
+      <div className="h-[75vh] lg:h-[80vh] overflow-y-auto">
         <DataTable table={table} tableCellClassName="align-top" />
       </div>
       <DataTablePagination table={table} />

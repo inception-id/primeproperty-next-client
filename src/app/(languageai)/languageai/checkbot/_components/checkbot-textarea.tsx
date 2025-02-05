@@ -7,7 +7,7 @@ const CheckbotTextarea = () => {
   const [value, setValue] = useState("");
 
   return (
-    <div className="flex h-96 lg:h-[85vh] border rounded-md">
+    <div className="flex h-96 lg:h-[80vh] border rounded-md">
       <Textarea
         autoFocus
         name="checkbot_content"

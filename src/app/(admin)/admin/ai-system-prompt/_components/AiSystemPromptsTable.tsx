@@ -22,7 +22,7 @@ const AiSystemPromptsTable = ({ data }: TAiSystemPromptsTableProps) => {
   });
 
   return (
-    <div className="mt-4 max-h-[90vh]">
+    <div className="mt-4 max-h-[85vh]">
       <DataTable table={table} />
     </div>
   );

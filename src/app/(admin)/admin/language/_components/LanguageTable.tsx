@@ -31,7 +31,7 @@ const LanguagesTable = ({ data }: TLanguagesTableProps) => {
 
   return (
     <div className="mt-4">
-      <div className="max-h-[85vh]">
+      <div className="max-h-[80vh]">
         <DataTable table={table} />
       </div>
       <div className="flex items-center justify-between">

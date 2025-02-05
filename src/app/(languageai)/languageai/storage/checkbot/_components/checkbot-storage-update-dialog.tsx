@@ -60,7 +60,7 @@ const CheckbotStorageUpdateDialog = ({
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 mb-4">
           <div>
             <div className="text-sm mb-2">{row.original.instruction}</div>
-            <div className="h-[30vh] lg:h-[40vh] text-sm">
+            <div className="h-[30vh] lg:h-[35vh] text-sm">
               {row.original.content}
             </div>
           </div>
@@ -68,7 +68,7 @@ const CheckbotStorageUpdateDialog = ({
             <div className="text-sm mb-2 capitalize">Result</div>
             <Textarea
               autoFocus
-              className="h-[30vh] lg:h-[40vh] resize-none"
+              className="h-[30vh] lg:h-[35vh] resize-none"
               value={value}
               onChange={(e) => setValue(e.target.value)}
             />

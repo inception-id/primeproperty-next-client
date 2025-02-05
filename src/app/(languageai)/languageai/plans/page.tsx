@@ -26,7 +26,7 @@ const LanguageaiPlans = () => {
 
       <Suspense
         fallback={
-          <div className="bg-popover/50 animate-pulse w-full h-[50vh] max-w-5xl mx-auto rounded-lg" />
+          <div className="bg-popover/50 animate-pulse w-full h-[45vh] max-w-5xl mx-auto rounded-lg" />
         }
       >
         <div className="flex items-center justify-center">

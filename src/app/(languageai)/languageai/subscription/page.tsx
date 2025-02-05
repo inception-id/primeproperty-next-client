@@ -24,7 +24,7 @@ const LanguageaiSubscriptionPage = async () => {
 
       <Suspense
         fallback={
-          <div className="bg-popover/50 animate-pulse w-full max-w-5xl h-[50vh] rounded-lg" />
+          <div className="bg-popover/50 animate-pulse w-full max-w-5xl h-[45vh] rounded-lg" />
         }
       >
         <LanguageaiCurrentPlan />

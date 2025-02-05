@@ -64,7 +64,7 @@ const TranslateStorageUpdateDialog = ({
             <div className="text-sm mb-2">
               {row.original.content_language || "Detect Language"}
             </div>
-            <div className="h-[30vh] lg:h-[40vh] text-sm">
+            <div className="h-[30vh] lg:h-[35vh] text-sm">
               {row.original.content}
             </div>
           </div>
@@ -74,7 +74,7 @@ const TranslateStorageUpdateDialog = ({
             </div>
             <Textarea
               autoFocus
-              className="h-[30vh] lg:h-[40vh] resize-none"
+              className="h-[30vh] lg:h-[35vh] resize-none"
               value={value}
               onChange={(e) => setValue(e.target.value)}
             />
