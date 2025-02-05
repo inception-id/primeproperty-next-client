@@ -4,17 +4,19 @@ import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { GithubGlobe } from "@/components/custom-ui/github-globe";
 import HomeTellYourIdeasSection from "@/app/(inception)/_components/HomeTellYourIdeasSection";
+import Image from "next/image";
 
 const Home = async () => {
   const splashCookie = cookies().get("show-splash")?.value;
   return (
     <section>
       {!splashCookie && <SplashScreen />}
-      <div className="h-screen flex flex-col items-center justify-center px-4 lg:px-0">
-        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-4 text-center">
+      <div className="h-screen flex flex-col items-center justify-center px-4 lg:px-0 gap-4">
+        <Image src="/images/inception.png" alt="Inception" width={100} height={100} />
+        <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-center">
           &quot;We bring your ideas to life&quot;
         </h1>
-        <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight text-center mb-4">
+        <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight text-center">
           INCEPTION.ID
         </h2>
         <Link
