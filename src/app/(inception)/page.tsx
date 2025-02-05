@@ -12,7 +12,12 @@ const Home = async () => {
     <section>
       {!splashCookie && <SplashScreen />}
       <div className="h-screen flex flex-col items-center justify-center px-4 lg:px-0 gap-4">
-        <Image src="/images/inception.png" alt="Inception" width={100} height={100} />
+        <Image
+          src="/images/inception.png"
+          alt="Inception"
+          width={100}
+          height={100}
+        />
         <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-center">
           &quot;We bring your ideas to life&quot;
         </h1>
