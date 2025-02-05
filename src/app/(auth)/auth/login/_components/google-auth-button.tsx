@@ -10,7 +10,6 @@ import { decode, JwtPayload } from "jsonwebtoken";
 import { signupSupertokens } from "@/lib/supertokens/signupSupertokens";
 import { SUPERTOKENS_EMAIL_ALREADY_EXIST } from "@/lib/supertokens/constant";
 import { createUser, TUser } from "@/lib/api/createUser";
-import { useId } from "react";
 import { createSupertokensSession } from "@/lib/supertokens/createSupertokensSession";
 import { embedCookieToken } from "@/lib/supertokens/embedCookieToken";
 import { findUser } from "@/lib/api/findUser";
@@ -19,13 +18,11 @@ type TGoogleAuthButtonProps = {
   onSuccess: () => void;
 };
 const GoogleAuthButton = ({ onSuccess }: TGoogleAuthButtonProps) => {
-  const id = useId();
-
   const handleGoogleLogin = async (credential: CredentialResponse) => {
     try {
       const credentialToken = String(credential.credential);
       const jwtPayload = decode(credentialToken) as JwtPayload;
-      const supertokens = await signupSupertokens(jwtPayload.email, id);
+      const supertokens = await signupSupertokens(jwtPayload.email, new Date().getTime().toString());
       let user: null | TApiResponse<TUser> = null;
       if (supertokens.status === SUPERTOKENS_EMAIL_ALREADY_EXIST) {
         user = await findUser(jwtPayload.email);
