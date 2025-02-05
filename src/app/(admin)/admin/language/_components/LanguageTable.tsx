@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  getCoreRowModel,
+  getCoreRowModel, getPaginationRowModel,
   getSortedRowModel,
   SortingState,
   useReactTable,
@@ -22,6 +22,7 @@ const LanguagesTable = ({ data }: TLanguagesTableProps) => {
     data,
     columns: LanguageTableColumns,
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     state: { sorting },

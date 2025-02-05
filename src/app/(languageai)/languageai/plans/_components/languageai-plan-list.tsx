@@ -79,19 +79,19 @@ const LanguageaiPlanList = async () => {
             </li>
             <li className="flex items-center gap-1">
               <LuCircleCheck />
-              Translation: {plan.translation_limit}x / month
+              Translation: {plan.translation_limit ? `${plan.translation_limit}x / month`: "Unlimited"}
             </li>
             <li className="flex items-center gap-1">
               <LuCircleCheck />
-              Checkbot: {plan.checkbot_limit}x / month
+              Checkbot: {plan.checkbot_limit ? `${plan.checkbot_limit}x / month`: "Unlimited"}
             </li>
             <li className="flex items-center gap-1">
               <LuCircleCheck />
-              Text to speech: {plan.text_to_speech_limit}x / month
+              Text to Speech : {plan.text_to_speech_limit ? `${plan.text_to_speech_limit}x / month`: "Unlimited"}
             </li>
             <li className="flex items-center gap-1">
               <LuCircleCheck />
-              Speech to text: {plan.speech_to_text_limit}x / month
+              Speech to Text : {plan.speech_to_text_limit ? `${plan.speech_to_text_limit}x / month`: "Unlimited"}
             </li>
           </ul>
         </div>

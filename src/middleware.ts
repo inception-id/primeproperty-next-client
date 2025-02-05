@@ -42,6 +42,10 @@ export const config = {
   matcher: [
     "/account",
     "/account/change-password",
+    "/admin",
+    "/admin/ai-system-prompt",
+    "/admin/language",
+    "/supertokens/dashboard",
     /*
      * Match all request paths except for the ones starting with:
      * - api (API routes)
