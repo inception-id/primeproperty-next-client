@@ -1,6 +1,10 @@
 "use client";
 
-import {getCoreRowModel, getPaginationRowModel, useReactTable} from "@tanstack/react-table";
+import {
+  getCoreRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
 import { TAiSystemPrompt } from "@/lib/api/ai-system-prompt/createAiSystemPrompt";
 import { DataTable } from "@/components/ui/data-table";
 import { AiSystemPromptTableColumns } from "@/app/(admin)/admin/ai-system-prompt/_components/AiSystemPromptTableColumns";

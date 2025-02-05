@@ -1,7 +1,8 @@
 "use client";
 
 import {
-  getCoreRowModel, getPaginationRowModel,
+  getCoreRowModel,
+  getPaginationRowModel,
   getSortedRowModel,
   SortingState,
   useReactTable,
