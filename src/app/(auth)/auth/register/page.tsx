@@ -17,7 +17,9 @@ const Register = () => {
           </Link>
         </div>
         <div className="flex items-center justify-center">
-          <GoogleAuthButton onSuccess={() => window.location.href = "/account"} />
+          <GoogleAuthButton
+            onSuccess={() => (window.location.href = "/account")}
+          />
         </div>
       </div>
     </main>

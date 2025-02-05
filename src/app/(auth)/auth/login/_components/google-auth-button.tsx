@@ -22,7 +22,10 @@ const GoogleAuthButton = ({ onSuccess }: TGoogleAuthButtonProps) => {
     try {
       const credentialToken = String(credential.credential);
       const jwtPayload = decode(credentialToken) as JwtPayload;
-      const supertokens = await signupSupertokens(jwtPayload.email, new Date().getTime().toString());
+      const supertokens = await signupSupertokens(
+        jwtPayload.email,
+        new Date().getTime().toString(),
+      );
       let user: null | TApiResponse<TUser> = null;
       if (supertokens.status === SUPERTOKENS_EMAIL_ALREADY_EXIST) {
         user = await findUser(jwtPayload.email);
