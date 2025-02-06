@@ -11,13 +11,12 @@ import { toast } from "react-toastify";
 import { createCheckbotStorage } from "@/lib/api/checkbot/create-checkbot-storage";
 import { useLanguageaiSubscriptionStore } from "@/app/(languageai)/_lib/use-languageai-subscription-store";
 import { ELanguageaSubscriptionLimit } from "@/lib/enums/languageai-subscription-limit";
-import {useContext} from "react";
-import {UseCompletionHelpers} from "@ai-sdk/react";
-import {CheckbotContext} from "@/app/(languageai)/languageai/checkbot/_components/checkbot-provider";
+import { useContext } from "react";
+import { UseCompletionHelpers } from "@ai-sdk/react";
+import { CheckbotContext } from "@/app/(languageai)/languageai/checkbot/_components/checkbot-provider";
 
 const CheckbotResult = () => {
-  const { isLoading } =
-      useContext<UseCompletionHelpers>(CheckbotContext);
+  const { isLoading } = useContext<UseCompletionHelpers>(CheckbotContext);
   const { updateSubscriptionStore } = useLanguageaiSubscriptionStore(
     useShallow((state) => ({
       updateSubscriptionStore: state.updateStore,
@@ -70,18 +69,24 @@ const CheckbotResult = () => {
             type="button"
             size="icon"
             variant="ghost"
-            onClick={async () => isLoading ? toast.warning("Text is still loading") : await copyToClipboard(updatedCompletion)}
+            onClick={async () =>
+              isLoading
+                ? toast.warning("Text is still loading")
+                : await copyToClipboard(updatedCompletion)
+            }
           >
             <LuCopy />
           </Button>
-          {!isLoading && checkbotId && <Button
-            type="button"
-            size="icon"
-            variant="ghost"
-            onClick={onSaveClick}
-          >
-            <LuSave />
-          </Button>}
+          {!isLoading && checkbotId && (
+            <Button
+              type="button"
+              size="icon"
+              variant="ghost"
+              onClick={onSaveClick}
+            >
+              <LuSave />
+            </Button>
+          )}
         </div>
       </div>
     </div>

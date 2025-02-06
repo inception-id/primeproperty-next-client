@@ -1,15 +1,15 @@
-import {useContext, memo, useRef, useEffect} from "react";
+import { useContext, memo, useRef, useEffect } from "react";
 import { UseCompletionHelpers } from "@ai-sdk/react";
 import { TranslateContext } from "@/app/(languageai)/languageai/translate/_components/translate-provider";
 
 const TranslateCompletion = () => {
   const { completion, isLoading } =
     useContext<UseCompletionHelpers>(TranslateContext);
-  const completionEndRef= useRef<any>(null);
+  const completionEndRef = useRef<any>(null);
 
   useEffect(() => {
     if (completionEndRef.current) {
-      completionEndRef.current.scrollIntoView({behavior: "smooth"});
+      completionEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [completion]);
   return (
