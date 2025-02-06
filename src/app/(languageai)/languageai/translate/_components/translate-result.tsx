@@ -10,8 +10,12 @@ import { createTranslationStorage } from "@/lib/api/translation/createTranslatio
 import { toast } from "react-toastify";
 import { useLanguageaiSubscriptionStore } from "@/app/(languageai)/_lib/use-languageai-subscription-store";
 import { ELanguageaSubscriptionLimit } from "@/lib/enums/languageai-subscription-limit";
+import {useContext} from "react";
+import {UseCompletionHelpers} from "@ai-sdk/react";
+import {TranslateContext} from "@/app/(languageai)/languageai/translate/_components/translate-provider";
 
 const TranslateResult = () => {
+    const { isLoading } = useContext<UseCompletionHelpers>(TranslateContext);
   const { updateSubscriptionStore } = useLanguageaiSubscriptionStore(
     useShallow((state) => ({
       updateSubscriptionStore: state.updateStore,
@@ -45,11 +49,11 @@ const TranslateResult = () => {
             type="button"
             size="icon"
             variant="ghost"
-            onClick={async () => await copyToClipboard(updatedCompletion)}
+            onClick={async () => isLoading ? toast.warning("Text is still loading") : await copyToClipboard(updatedCompletion)}
           >
             <LuCopy />
           </Button>
-          {translationId !== 0 && (
+          {!isLoading && translationId !== 0 && (
             <Button
               type="button"
               size="icon"
