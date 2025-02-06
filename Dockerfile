@@ -1,4 +1,4 @@
-FROM node:20-alpine as builder
+FROM node:22-alpine as builder
 
 ARG NEXT_PUBLIC_HOST_URL=$NEXT_PUBLIC_HOST_URL
 ARG NEXT_PUBLIC_GOOGLE_CLIENT_ID=$NEXT_PUBLIC_GOOGLE_CLIENT_ID
@@ -22,7 +22,7 @@ COPY . /app
 RUN yarn
 RUN yarn build
 
-FROM node:20-alpine as runner
+FROM node:22-alpine as runner
 
 WORKDIR /app
 
