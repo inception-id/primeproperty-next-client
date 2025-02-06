@@ -15,8 +15,8 @@ export async function POST(req: Request) {
 
   return result.toDataStreamResponse({
     headers: {
-      'Transfer-Encoding': 'chunked',
-      Connection: 'keep-alive',
+      "Transfer-Encoding": "chunked",
+      Connection: "keep-alive",
     },
   });
 }

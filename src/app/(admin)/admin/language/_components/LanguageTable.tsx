@@ -34,7 +34,7 @@ const LanguagesTable = ({ data }: TLanguagesTableProps) => {
       <div className="max-h-[80vh] mb-4">
         <DataTable table={table} />
       </div>
-        <DataTablePagination table={table} />
+      <DataTablePagination table={table} />
     </div>
   );
 };

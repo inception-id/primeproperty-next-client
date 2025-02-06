@@ -36,7 +36,7 @@ const ResizableHandle = ({
   >
     {withHandle && (
       <div className="z-10 flex  items-center justify-center rounded-md border bg-border bg-black">
-        <LuGripVertical  className="text-xl"/>
+        <LuGripVertical className="text-xl" />
       </div>
     )}
   </ResizablePrimitive.PanelResizeHandle>
