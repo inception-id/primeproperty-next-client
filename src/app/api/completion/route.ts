@@ -13,5 +13,10 @@ export async function POST(req: Request) {
     prompt,
   });
 
-  return result.toDataStreamResponse();
+  return result.toDataStreamResponse({
+    headers: {
+      'Transfer-Encoding': 'chunked',
+      Connection: 'keep-alive',
+    },
+  });
 }

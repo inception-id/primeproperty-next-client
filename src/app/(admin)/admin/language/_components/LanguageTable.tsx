@@ -31,13 +31,10 @@ const LanguagesTable = ({ data }: TLanguagesTableProps) => {
 
   return (
     <div className="mt-4">
-      <div className="max-h-[80vh]">
+      <div className="max-h-[80vh] mb-4">
         <DataTable table={table} />
       </div>
-      <div className="flex items-center justify-between">
-        <span className="opacity-50">10 per page</span>
         <DataTablePagination table={table} />
-      </div>
     </div>
   );
 };
