@@ -7,9 +7,13 @@ export const refreshSupertokensSession =
   async (): Promise<TSupertokensSessionResponse> => {
     const refreshToken = cookies().get("refreshToken")?.value as string;
     try {
-       return  await fetchSupertokens("/recipe/session/refresh", {
+      return await fetchSupertokens("/recipe/session/refresh", {
         method: "POST",
-        body: JSON.stringify({ refreshToken, enableAntiCsrf: false, useDynamicSigningKey: true }),
+        body: JSON.stringify({
+          refreshToken,
+          enableAntiCsrf: false,
+          useDynamicSigningKey: true,
+        }),
       });
     } catch (error) {
       throw error;
