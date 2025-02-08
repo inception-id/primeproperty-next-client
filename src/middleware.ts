@@ -39,7 +39,7 @@ export async function middleware(request: NextRequest) {
 
     return response;
   } catch (e) {
-    console.error("Middleware: ", e);
+    console.error("MIDDLWARE ERRROR:\n", e);
     return loginRedirect;
   }
 }
@@ -51,7 +51,6 @@ export const config = {
     "/admin",
     "/admin/ai-system-prompt",
     "/admin/language",
-    "/supertokens/dashboard",
     /*
      * Match all request paths except for the ones starting with:
      * - api (API routes)
