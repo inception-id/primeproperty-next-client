@@ -8,7 +8,7 @@ import { signupSupertokens } from "@/lib/supertokens/signupSupertokens";
 import { createUser } from "@/lib/api/createUser";
 import { SUPERTOKENS_EMAIL_ALREADY_EXIST } from "@/lib/supertokens/constant";
 import { useRouter } from "next/navigation";
-import {sendVerificationEmail} from "@/lib/mail/send-verification-email";
+import { sendVerificationEmail } from "@/lib/mail/send-verification-email";
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -33,7 +33,9 @@ const RegisterForm = () => {
       if (supertokens.status === "OK") {
         const user = await createUser(supertokens.recipeUserId, email);
         await sendVerificationEmail(user.data.email);
-        toast.success("Sign up successful, please check your email for verification");
+        toast.success(
+          "Sign up successful, please check your email for verification",
+        );
       }
 
       return;

@@ -1,6 +1,5 @@
-
 export const createVerificationEmailTemplate = (verificationLink: string) => {
-    return `
+  return `
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,5 +44,5 @@ export const createVerificationEmailTemplate = (verificationLink: string) => {
 
 </body>
 </html>
-    `
+    `;
 };
