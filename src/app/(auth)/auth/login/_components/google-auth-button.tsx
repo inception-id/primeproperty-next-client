@@ -30,7 +30,7 @@ const GoogleAuthButton = ({ onSuccess }: TGoogleAuthButtonProps) => {
       if (supertokens.status === SUPERTOKENS_EMAIL_ALREADY_EXIST) {
         user = await findUser(jwtPayload.email);
         if (!user.data) {
-          toast.error("User does not exist, please register");
+          toast.error("User is not registered, please register to continue");
           return;
         }
       }
@@ -54,11 +54,8 @@ const GoogleAuthButton = ({ onSuccess }: TGoogleAuthButtonProps) => {
           return;
         }
       }
-
-      toast.error("Something went wrong, please try again.");
-      return;
     } catch (error: any) {
-      toast.error("Something went wrong, please try again.");
+      toast.error("Fail to login via google, please try again.");
       console.error(error.message);
       return;
     }

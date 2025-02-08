@@ -42,8 +42,7 @@ const RegisterForm = () => {
     try {
       const supertokens = await signupSupertokens(email, password);
       if (supertokens.status === SUPERTOKENS_EMAIL_ALREADY_EXIST) {
-        toast.error("Email already exist");
-        updateStore("isLoading", false);
+        toast.error("Email already exist, please login to continue");
         return;
       }
 
@@ -58,10 +57,10 @@ const RegisterForm = () => {
       router.push("/auth/login");
       return;
     } catch (e: any) {
-      updateStore("isLoading", false);
       toast.error("Registration fail, please try again.");
       console.error(e.message);
-      return;
+    } finally {
+        updateStore("isLoading", false)
     }
   };
 

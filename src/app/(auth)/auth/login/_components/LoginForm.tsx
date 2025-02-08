@@ -11,12 +11,22 @@ import { findUser } from "@/lib/api/findUser";
 import { createSupertokensSession } from "@/lib/supertokens/createSupertokensSession";
 import { embedCookieToken } from "@/lib/supertokens/embedCookieToken";
 import { sendVerificationEmail } from "@/lib/mail/send-verification-email";
+import {useLoginStore} from "@/app/(auth)/auth/login/_lib/useLoginStore";
+import {useShallow} from "zustand/react/shallow";
+import {LuLoader} from "react-icons/lu";
 
 type TLoginFormProps = {
   onSuccess: () => void;
 };
 
 const LoginForm = ({ onSuccess }: TLoginFormProps) => {
+  const { isLoading, updateStore } = useLoginStore(
+      useShallow((state) => ({
+        isLoading: state.isLoading,
+        updateStore: state.updateStore,
+      })),
+  );
+
   const handleAction = async (formData: FormData) => {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
@@ -27,6 +37,7 @@ const LoginForm = ({ onSuccess }: TLoginFormProps) => {
       return;
     }
 
+    updateStore("isLoading", true);
     try {
       const supertokens = await signinSupertokens(email, password);
       if (supertokens.status === SUPERTOKENS_WRONG_CREDENTIALS) {
@@ -59,12 +70,11 @@ const LoginForm = ({ onSuccess }: TLoginFormProps) => {
         onSuccess();
         return;
       }
-
-      return;
     } catch (e: any) {
       toast.error("Fail to login, please try again.");
       console.error(e.message);
-      return;
+    } finally {
+      updateStore("isLoading", false);
     }
   };
 
@@ -95,8 +105,10 @@ const LoginForm = ({ onSuccess }: TLoginFormProps) => {
         className="mb-4"
       />
 
-      <Button type="submit" className="w-full ">
-        Sign in
+      <Button type="submit" className="w-full" disabled={isLoading}>
+        {isLoading ?
+       <LuLoader className="animate-spin" />: "Sign in"
+        }
       </Button>
     </form>
   );
