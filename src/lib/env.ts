@@ -19,6 +19,8 @@ export const env = createEnv({
     DOKU_API_URL: z.string().min(1),
     DOKU_CLIENT_ID: z.string().min(1),
     DOKU_SECRET_KEY: z.string().min(1),
+    SENTRY_DSN: z.string(),
+    SENTRY_AUTH_TOKEN: z.string(),
   },
   /*
    * Environment variables available on the client (and server).
@@ -50,5 +52,7 @@ export const env = createEnv({
     DOKU_API_URL: process.env.DOKU_API_URL,
     DOKU_CLIENT_ID: process.env.DOKU_CLIENT_ID,
     DOKU_SECRET_KEY: process.env.DOKU_SECRET_KEY,
+    SENTRY_DSN: process.env.SENTRY_DSN,
+    SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
   },
 });
