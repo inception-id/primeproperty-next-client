@@ -60,7 +60,7 @@ const RegisterForm = () => {
       toast.error("Registration fail, please try again.");
       console.error(e.message);
     } finally {
-        updateStore("isLoading", false)
+      updateStore("isLoading", false);
     }
   };
 

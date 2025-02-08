@@ -11,9 +11,9 @@ import { findUser } from "@/lib/api/findUser";
 import { createSupertokensSession } from "@/lib/supertokens/createSupertokensSession";
 import { embedCookieToken } from "@/lib/supertokens/embedCookieToken";
 import { sendVerificationEmail } from "@/lib/mail/send-verification-email";
-import {useLoginStore} from "@/app/(auth)/auth/login/_lib/useLoginStore";
-import {useShallow} from "zustand/react/shallow";
-import {LuLoader} from "react-icons/lu";
+import { useLoginStore } from "@/app/(auth)/auth/login/_lib/useLoginStore";
+import { useShallow } from "zustand/react/shallow";
+import { LuLoader } from "react-icons/lu";
 
 type TLoginFormProps = {
   onSuccess: () => void;
@@ -21,10 +21,10 @@ type TLoginFormProps = {
 
 const LoginForm = ({ onSuccess }: TLoginFormProps) => {
   const { isLoading, updateStore } = useLoginStore(
-      useShallow((state) => ({
-        isLoading: state.isLoading,
-        updateStore: state.updateStore,
-      })),
+    useShallow((state) => ({
+      isLoading: state.isLoading,
+      updateStore: state.updateStore,
+    })),
   );
 
   const handleAction = async (formData: FormData) => {
@@ -106,9 +106,7 @@ const LoginForm = ({ onSuccess }: TLoginFormProps) => {
       />
 
       <Button type="submit" className="w-full" disabled={isLoading}>
-        {isLoading ?
-       <LuLoader className="animate-spin" />: "Sign in"
-        }
+        {isLoading ? <LuLoader className="animate-spin" /> : "Sign in"}
       </Button>
     </form>
   );
