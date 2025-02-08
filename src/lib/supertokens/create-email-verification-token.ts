@@ -4,8 +4,8 @@ import { fetchSupertokens } from "@/lib/supertokens/fetchSupertokens";
 type TResponse = {
   status: string;
   token: string;
-}
-export const createEmailVerificationToken= async (
+};
+export const createEmailVerificationToken = async (
   userId: string, //supertokens user id
   email: string,
 ): Promise<TResponse> => {
