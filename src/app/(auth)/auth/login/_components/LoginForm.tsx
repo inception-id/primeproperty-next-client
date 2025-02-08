@@ -10,6 +10,7 @@ import { signinSupertokens } from "@/lib/supertokens/signinSupertokens";
 import { findUser } from "@/lib/api/findUser";
 import { createSupertokensSession } from "@/lib/supertokens/createSupertokensSession";
 import { embedCookieToken } from "@/lib/supertokens/embedCookieToken";
+import {sendVerificationEmail} from "@/lib/mail/send-verification-email";
 
 type TLoginFormProps = {
   onSuccess: () => void;
@@ -33,8 +34,13 @@ const LoginForm = ({ onSuccess }: TLoginFormProps) => {
         return;
       }
 
-      if (supertokens.status === "OK") {
-        const user = await findUser(email);
+      if (!supertokens.user.loginMethods[0].verified) {
+        const info = await sendVerificationEmail(supertokens.user.id, supertokens.user.emails[0]);
+        toast.warning(`Email is not verified, please check your email at ${info.accepted[0]} for verification`);
+        return;
+      }
+
+        const user = await findUser(supertokens.user.emails[0]);
         const token = await createSupertokensSession(
           supertokens.recipeUserId,
           user.data,
@@ -49,14 +55,9 @@ const LoginForm = ({ onSuccess }: TLoginFormProps) => {
           return;
         }
 
-        toast.error(user.message);
         return;
-      }
-
-      toast.error("Something went wrong, please try again.");
-      return;
     } catch (e: any) {
-      toast.error("Something went wrong, please try again.");
+      toast.error("Fail to login, please try again.");
       console.error(e.message);
       return;
     }
