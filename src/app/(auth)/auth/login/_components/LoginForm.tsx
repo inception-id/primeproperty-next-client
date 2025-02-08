@@ -10,7 +10,7 @@ import { signinSupertokens } from "@/lib/supertokens/signinSupertokens";
 import { findUser } from "@/lib/api/findUser";
 import { createSupertokensSession } from "@/lib/supertokens/createSupertokensSession";
 import { embedCookieToken } from "@/lib/supertokens/embedCookieToken";
-import {sendVerificationEmail} from "@/lib/mail/send-verification-email";
+import { sendVerificationEmail } from "@/lib/mail/send-verification-email";
 
 type TLoginFormProps = {
   onSuccess: () => void;
@@ -35,27 +35,32 @@ const LoginForm = ({ onSuccess }: TLoginFormProps) => {
       }
 
       if (!supertokens.user.loginMethods[0].verified) {
-        const info = await sendVerificationEmail(supertokens.user.id, supertokens.user.emails[0]);
-        toast.warning(`Email is not verified, please check your email at ${info.accepted[0]} for verification`);
+        const info = await sendVerificationEmail(
+          supertokens.user.id,
+          supertokens.user.emails[0],
+        );
+        toast.warning(
+          `Email is not verified, please check your email at ${info.accepted[0]} for verification`,
+        );
         return;
       }
 
-        const user = await findUser(supertokens.user.emails[0]);
-        const token = await createSupertokensSession(
-          supertokens.recipeUserId,
-          user.data,
-        );
-        const cookieToken = await embedCookieToken(
-          token.accessToken.token,
-          token.refreshToken.token,
-        );
-        if (cookieToken.accessToken && cookieToken.refreshToken) {
-          toast.success("Sign in successful");
-          onSuccess();
-          return;
-        }
-
+      const user = await findUser(supertokens.user.emails[0]);
+      const token = await createSupertokensSession(
+        supertokens.recipeUserId,
+        user.data,
+      );
+      const cookieToken = await embedCookieToken(
+        token.accessToken.token,
+        token.refreshToken.token,
+      );
+      if (cookieToken.accessToken && cookieToken.refreshToken) {
+        toast.success("Sign in successful");
+        onSuccess();
         return;
+      }
+
+      return;
     } catch (e: any) {
       toast.error("Fail to login, please try again.");
       console.error(e.message);

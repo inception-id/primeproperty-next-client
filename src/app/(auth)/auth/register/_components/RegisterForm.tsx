@@ -9,18 +9,18 @@ import { createUser } from "@/lib/api/createUser";
 import { SUPERTOKENS_EMAIL_ALREADY_EXIST } from "@/lib/supertokens/constant";
 import { useRouter } from "next/navigation";
 import { sendVerificationEmail } from "@/lib/mail/send-verification-email";
-import {useLoginStore} from "@/app/(auth)/auth/login/_lib/useLoginStore";
-import {useShallow} from "zustand/react/shallow";
-import {LuLoader} from "react-icons/lu";
+import { useLoginStore } from "@/app/(auth)/auth/login/_lib/useLoginStore";
+import { useShallow } from "zustand/react/shallow";
+import { LuLoader } from "react-icons/lu";
 
 const RegisterForm = () => {
   const router = useRouter();
-    const { isLoading, updateStore } = useLoginStore(
-        useShallow((state) => ({
-            isLoading: state.isLoading,
-            updateStore: state.updateStore,
-        })),
-    );
+  const { isLoading, updateStore } = useLoginStore(
+    useShallow((state) => ({
+      isLoading: state.isLoading,
+      updateStore: state.updateStore,
+    })),
+  );
 
   const handleAction = async (formData: FormData) => {
     const email = formData.get("email") as string;
@@ -38,12 +38,12 @@ const RegisterForm = () => {
       return;
     }
 
-    updateStore("isLoading", true)
+    updateStore("isLoading", true);
     try {
       const supertokens = await signupSupertokens(email, password);
       if (supertokens.status === SUPERTOKENS_EMAIL_ALREADY_EXIST) {
         toast.error("Email already exist");
-          updateStore("isLoading", false)
+        updateStore("isLoading", false);
         return;
       }
 
@@ -52,13 +52,13 @@ const RegisterForm = () => {
         supertokens.user.id,
         user.data.email,
       );
-        toast.success(
-          `Sign up successful, please check your email at ${smtp.accepted[0]} for verification`,
-        );
-        router.push("/auth/login");
+      toast.success(
+        `Sign up successful, please check your email at ${smtp.accepted[0]} for verification`,
+      );
+      router.push("/auth/login");
       return;
     } catch (e: any) {
-        updateStore("isLoading", false)
+      updateStore("isLoading", false);
       toast.error("Registration fail, please try again.");
       console.error(e.message);
       return;
@@ -89,19 +89,16 @@ const RegisterForm = () => {
 
       <Label htmlFor="repassword">Re-type Password</Label>
       <Input
-          type="password"
-          id="repassword"
-          name="repassword"
-          placeholder="Re-type Password"
-          required
-          className="mb-4"
+        type="password"
+        id="repassword"
+        name="repassword"
+        placeholder="Re-type Password"
+        required
+        className="mb-4"
       />
 
       <Button type="submit" className="w-full" disabled={isLoading}>
-          {isLoading ?
-          <LuLoader className="animate-spin" /> :
-              "Sign up"
-          }
+        {isLoading ? <LuLoader className="animate-spin" /> : "Sign up"}
       </Button>
     </form>
   );
