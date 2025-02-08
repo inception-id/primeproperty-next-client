@@ -14,6 +14,8 @@ import { sendVerificationEmail } from "@/lib/mail/send-verification-email";
 import { useLoginStore } from "@/app/(auth)/auth/login/_lib/useLoginStore";
 import { useShallow } from "zustand/react/shallow";
 import { LuLoader } from "react-icons/lu";
+import LoginEmailInput from "@/app/(auth)/auth/login/_components/login-email-input";
+import {Suspense} from "react";
 
 type TLoginFormProps = {
   onSuccess: () => void;
@@ -80,15 +82,9 @@ const LoginForm = ({ onSuccess }: TLoginFormProps) => {
 
   return (
     <form action={handleAction} className="mb-2">
-      <Label htmlFor="email">Email</Label>
-      <Input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="Email"
-        required
-        className="mb-4"
-      />
+      <Suspense>
+        <LoginEmailInput />
+      </Suspense>
 
       <div className="flex items-center justify-between">
         <Label htmlFor="password">Password</Label>
