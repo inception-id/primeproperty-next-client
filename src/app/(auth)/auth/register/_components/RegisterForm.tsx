@@ -30,14 +30,14 @@ const RegisterForm = () => {
         return;
       }
 
-      if (supertokens.status === "OK") {
         const user = await createUser(supertokens.recipeUserId, email);
-        await sendVerificationEmail(user.data.email);
-        toast.success(
-          "Sign up successful, please check your email for verification",
-        );
-      }
-
+        const smtp =  await sendVerificationEmail(supertokens.user.id, user.data.email);
+        if (smtp.accepted.length > 0) {
+            toast.success(
+                "Sign up successful, please check your email for verification",
+            );
+            router.push("/auth/login")
+        }
       return;
     } catch (e: any) {
       toast.error("Registration fail, please try again.");
