@@ -6,9 +6,7 @@ type TResponse = {
   userId: string;
   email: string;
 };
-export const verifyEmailToken = async (
-  token: string,
-): Promise<TResponse> => {
+export const verifyEmailToken = async (token: string): Promise<TResponse> => {
   try {
     return await fetchSupertokens("/recipe/user/email/verify", {
       method: "POST",

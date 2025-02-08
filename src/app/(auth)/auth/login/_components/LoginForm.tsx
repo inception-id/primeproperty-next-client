@@ -15,7 +15,7 @@ import { useLoginStore } from "@/app/(auth)/auth/login/_lib/useLoginStore";
 import { useShallow } from "zustand/react/shallow";
 import { LuLoader } from "react-icons/lu";
 import LoginEmailInput from "@/app/(auth)/auth/login/_components/login-email-input";
-import {Suspense} from "react";
+import { Suspense } from "react";
 
 type TLoginFormProps = {
   onSuccess: () => void;
