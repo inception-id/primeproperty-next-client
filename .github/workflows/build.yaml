@@ -41,3 +41,5 @@ jobs:
             DOKU_API_URL=${{ secrets.DOKU_API_URL }}
             DOKU_CLIENT_ID=${{ secrets.DOKU_CLIENT_ID }}
             DOKU_SECRET_KEY=${{ secrets.DOKU_SECRET_KEY }}
+            SENTRY_DSN=${{ secrets.SENTRY_DSN }}
+            SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}
