@@ -20,6 +20,11 @@ export const env = createEnv({
     DOKU_CLIENT_ID: z.string().min(1),
     DOKU_SECRET_KEY: z.string().min(1),
     SENTRY_AUTH_TOKEN: z.string(),
+    SMTP_HOST: z.string().min(1),
+    SMTP_PORT: z.string().min(1),
+    SMTP_USER: z.string().min(1),
+    SMTP_PASS: z.string().min(1),
+    SMTP_FROM: z.string().min(1),
   },
   /*
    * Environment variables available on the client (and server).
@@ -54,5 +59,10 @@ export const env = createEnv({
     DOKU_SECRET_KEY: process.env.DOKU_SECRET_KEY,
     NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
     SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
+    SMTP_HOST: process.env.SMTP_HOST,
+    SMTP_PORT: process.env.SMTP_PORT,
+    SMTP_USER: process.env.SMTP_USER,
+    SMTP_PASS: process.env.SMTP_PASS,
+    SMTP_FROM: process.env.SMTP_FROM
   },
 });
