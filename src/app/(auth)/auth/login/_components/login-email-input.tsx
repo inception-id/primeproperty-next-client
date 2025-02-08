@@ -1,7 +1,7 @@
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useQuery } from "@tanstack/react-query";
-import { useParams, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { verifyEmailToken } from "@/lib/supertokens/verify-email-token";
 import { toast } from "react-toastify";
 
