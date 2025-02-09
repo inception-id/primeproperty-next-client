@@ -1,5 +1,3 @@
-import { cookies } from "next/headers";
-import { decode, JwtPayload } from "jsonwebtoken";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import AccountLogoutButton from "@/app/(inception)/account/_components/AccountLogoutButton";
