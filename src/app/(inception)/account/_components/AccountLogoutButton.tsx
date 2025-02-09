@@ -10,9 +10,14 @@ const AccountLogoutButton = () => {
 
   const handleClick = async () => {
     setIsLoading(true);
-    await removeSupertokensSession();
-    await removeCookieToken();
+    const [session, token] = await Promise.allSettled([
+      await removeSupertokensSession(),
+    await removeCookieToken()
+    ]);
+    if (session.status === "fulfilled" && token.status === "fulfilled") {
     window.location.href = "/auth/login";
+    }
+    setIsLoading(false);
   };
 
   return (
