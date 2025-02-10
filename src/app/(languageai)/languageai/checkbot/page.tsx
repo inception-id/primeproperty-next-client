@@ -1,5 +1,4 @@
 import CheckbotProvider from "@/app/(languageai)/languageai/checkbot/_components/checkbot-provider";
-import CheckbotMobile from "@/app/(languageai)/languageai/checkbot/_components/checkbot-mobile";
 import CheckbotDesktop from "@/app/(languageai)/languageai/checkbot/_components/checkbot-desktop";
 import type { Metadata } from "next";
 
@@ -12,8 +11,7 @@ export const metadata: Metadata = {
 const LanguageaiCheckbot = () => {
   return (
     <CheckbotProvider>
-      <section className="w-full h-screen overflow-hidden">
-        <CheckbotMobile />
+      <section className="w-full h-[95vh] lg:h-screen overflow-hidden ">
         <CheckbotDesktop />
       </section>
     </CheckbotProvider>

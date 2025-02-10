@@ -13,8 +13,7 @@ export const metadata: Metadata = {
 const LanguageaiTranslate = async () => {
   return (
     <TranslateProvider>
-      <section className="w-full h-screen overflow-hidden">
-        <TranslateMobile />
+      <section className="w-full h-[95vh] lg:h-screen overflow-hidden">
         <TranslateDesktop />
       </section>
     </TranslateProvider>

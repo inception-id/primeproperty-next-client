@@ -31,14 +31,11 @@ const TranslateResult = () => {
 
   return (
     <div className="border rounded-md overflow-hidden h-fit">
-      <div className="text-xs flex items-center gap-1 p-2 lg:hidden opacity-50">
-        * Drag <LuGripHorizontal /> icon to resize
-      </div>
       <div className="flex gap-2">
         {updatedCompletion ? (
           <Textarea
             value={updatedCompletion}
-            className="placeholder:opacity-50 flex-1 text-sm h-[90vh] overflow-y-auto focus-visible:ring-transparent border-none resize-none"
+            className="placeholder:opacity-50 flex-1 text-sm h-60 lg:h-[90vh] overflow-y-auto focus-visible:ring-transparent border-none resize-none"
             onChange={(e) => updateStore("updatedCompletion", e.target.value)}
           />
         ) : (

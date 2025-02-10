@@ -3,7 +3,7 @@ import TranslateResult from "@/app/(languageai)/languageai/translate/_components
 
 const TranslateDesktop = () => {
   return (
-    <div className="hidden lg:grid grid-cols-2 p-4 gap-4 h-full">
+    <div className="grid grid-rows-[55%_45%] lg:grid-rows-1 lg:grid-cols-2 p-4 gap-4 h-full">
       <TranslateForm />
       <TranslateResult />
     </div>
