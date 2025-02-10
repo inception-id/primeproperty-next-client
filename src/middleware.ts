@@ -1,16 +1,16 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { refreshSupertokensSession } from "@/lib/supertokens/refreshSupertokensSession";
-import {verifySupertokensSession} from "@/lib/supertokens/verifySupertokensSession";
+import { verifySupertokensSession } from "@/lib/supertokens/verifySupertokensSession";
 
 export async function middleware(request: NextRequest) {
-  const accessToken = request.cookies.get("accessToken")?.value ;
+  const accessToken = request.cookies.get("accessToken")?.value;
   const loginRedirect = NextResponse.redirect(
-      new URL("/auth/login", request.url),
+    new URL("/auth/login", request.url),
   );
-    const response = NextResponse.next();
+  const response = NextResponse.next();
   if (request.nextUrl.pathname.includes("/account") && !accessToken) {
-      return loginRedirect;
+    return loginRedirect;
   }
 
   try {
@@ -44,6 +44,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico, sitemap.xml, robots.txt (metadata files)
      */
-    "/((?!api|_next/static|_next/image|favicon.ico|icon.png|apple-icon.png|sitemap.xml|robots.txt|home|auth|supertokens).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|icon.png|apple-icon.png|sitemap.xml|robots.txt|home|auth|supertokens|admin).*)",
   ],
 };
