@@ -14,7 +14,7 @@ const TranslateMobile = () => {
           <CheckbotForm />
         </ResizablePanel>
         <ResizableHandle withHandle />
-        <ResizablePanel minSize={15} defaultSize={25}>
+        <ResizablePanel minSize={15} defaultSize={25} maxSize={90}>
           <CheckbotResult />
         </ResizablePanel>
       </ResizablePanelGroup>
