@@ -69,6 +69,10 @@ const TranslateForm = () => {
       const passLimit = await checkLanguageaiSubscriptionExceedLimit(
         ELanguageaSubscriptionLimit.Translation,
       );
+      if (passLimit.status === 401) {
+        updateLoginStore("openLoginDialog", true);
+        return;
+      }
 
       if (passLimit.data) {
         updateSubscriptionStore(

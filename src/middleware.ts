@@ -39,7 +39,7 @@ export async function middleware(request: NextRequest) {
 
     return response;
   } catch (e) {
-    console.error("MIDDLWARE ERRROR:\n", e);
+    console.error("MIDDLEWARE ERRROR:\n", e);
     return loginRedirect;
   }
 }
@@ -51,6 +51,9 @@ export const config = {
     "/admin",
     "/admin/ai-system-prompt",
     "/admin/language",
+    "/languageai/subscription",
+    "/languageai/storage",
+    "/languageai/history"
     /*
      * Match all request paths except for the ones starting with:
      * - api (API routes)

@@ -63,6 +63,10 @@ const TtsForm = () => {
       const passLimit = await checkLanguageaiSubscriptionExceedLimit(
         ELanguageaSubscriptionLimit.TextToSpeech,
       );
+      if (passLimit.status === 401) {
+        updateLoginStore("openLoginDialog", true);
+        return;
+      }
 
       if (passLimit.data) {
         updateSubscriptionStore(

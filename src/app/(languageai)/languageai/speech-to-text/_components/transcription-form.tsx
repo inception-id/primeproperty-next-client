@@ -65,6 +65,10 @@ const TranscriptionForm = () => {
       const passLimit = await checkLanguageaiSubscriptionExceedLimit(
         ELanguageaSubscriptionLimit.SpeechToText,
       );
+      if (passLimit.status === 401) {
+        updateLoginStore("openLoginDialog", true);
+        return;
+      }
 
       if (passLimit.data) {
         updateSubscriptionStore(

@@ -69,6 +69,11 @@ const CheckbotForm = () => {
         ELanguageaSubscriptionLimit.Checkbot,
       );
 
+      if (passLimit.status === 401) {
+        updateLoginStore("openLoginDialog", true);
+        return;
+      }
+
       if (passLimit.data) {
         updateSubscriptionStore(
           "limitDialog",
@@ -98,7 +103,7 @@ const CheckbotForm = () => {
         toast.error("Checkbot failed, please try again");
       }
       return;
-    } catch (e) {
+    } catch (e:any) {
       console.error(e);
     }
   };
