@@ -103,7 +103,7 @@ const CheckbotForm = () => {
     }
   };
   return (
-    <form action={handleAction} className="flex flex-col">
+    <form action={handleAction} className="flex flex-col gap-2 lg:gap-0">
       <CheckbotTextarea />
       <CheckbotInstructionSelection />
       <div className="flex items-start justify-end  pr-2">

@@ -105,7 +105,7 @@ const TranslateForm = () => {
     }
   };
   return (
-    <form action={handleAction} className="flex flex-col">
+    <form action={handleAction} className="flex flex-col gap-2 lg:gap-0">
       <TranslateTextarea />
       <TranslateLanguageSelection />
       <div className="flex justify-end pr-2">
