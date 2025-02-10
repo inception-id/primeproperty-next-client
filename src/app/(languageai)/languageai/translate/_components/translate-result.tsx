@@ -1,5 +1,5 @@
 "use client";
-import { LuCopy, LuGripHorizontal, LuSave } from "react-icons/lu";
+import { LuCopy, LuSave } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 import { copyToClipboard } from "@/lib/copyToClipboard";
 import { Textarea } from "@/components/ui/textarea";

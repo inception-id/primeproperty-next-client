@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { useContext } from "react";
 import { UseCompletionHelpers } from "@ai-sdk/react";
-import { LuGripHorizontal, LuLoader } from "react-icons/lu";
+import { LuLoader } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { useLoginStore } from "@/app/(auth)/auth/login/_lib/useLoginStore";
 import { useShallow } from "zustand/react/shallow";

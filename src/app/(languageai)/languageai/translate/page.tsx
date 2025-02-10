@@ -1,5 +1,4 @@
 import TranslateProvider from "@/app/(languageai)/languageai/translate/_components/translate-provider";
-import TranslateMobile from "@/app/(languageai)/languageai/translate/_components/translate-mobile";
 import TranslateDesktop from "@/app/(languageai)/languageai/translate/_components/translate-desktop";
 import type { Metadata } from "next";
 
