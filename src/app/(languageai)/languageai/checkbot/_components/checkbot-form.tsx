@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { useContext } from "react";
 import { UseCompletionHelpers } from "@ai-sdk/react";
-import {LuGripHorizontal, LuLoader} from "react-icons/lu";
+import { LuGripHorizontal, LuLoader } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { useLoginStore } from "@/app/(auth)/auth/login/_lib/useLoginStore";
 import { useShallow } from "zustand/react/shallow";
@@ -108,7 +108,7 @@ const CheckbotForm = () => {
       <CheckbotInstructionSelection />
       <div className="flex items-start justify-end  pr-2">
         <Button type="submit" disabled={isLoading}>
-          {isLoading ? <LuLoader className="animate-spin"/> : "Check"}
+          {isLoading ? <LuLoader className="animate-spin" /> : "Check"}
         </Button>
       </div>
     </form>
