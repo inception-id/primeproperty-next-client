@@ -103,7 +103,7 @@ const CheckbotForm = () => {
         toast.error("Checkbot failed, please try again");
       }
       return;
-    } catch (e:any) {
+    } catch (e: any) {
       console.error(e);
     }
   };
