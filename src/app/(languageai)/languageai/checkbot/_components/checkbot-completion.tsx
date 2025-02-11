@@ -7,7 +7,7 @@ const CheckbotCompletion = () => {
     useContext<UseCompletionHelpers>(CheckbotContext);
   const completionEndRef = useRef<any>(null);
   useEffect(() => {
-    if (completionEndRef.current) {
+    if (completion && completionEndRef.current) {
       completionEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [completion]);
