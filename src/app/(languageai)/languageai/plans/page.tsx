@@ -34,7 +34,10 @@ const LanguageaiPlans = () => {
           <LanguageaiPlanList />
         </div>
       </Suspense>
-        <div className="opacity-50 lg:text-center px-8 text-sm">*Please contact <Link href="/languageai/support">support</Link> for payment outside Indonesia </div>
+      <div className="opacity-50 lg:text-center px-8 text-sm">
+        *Please contact <Link href="/languageai/support">support</Link> for
+        payment outside Indonesia{" "}
+      </div>
     </section>
   );
 };

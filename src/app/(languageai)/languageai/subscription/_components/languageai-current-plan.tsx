@@ -14,14 +14,21 @@ const LanguageaiCurrentPlan = async () => {
         const userSubscription = await findLanguageaiSubscriptionPlansById(
           activeSubscription.data.languageai_subscription_plan_id,
         );
-        return <LanguageaiCurrentSubscription
+        return (
+          <LanguageaiCurrentSubscription
             planName={userSubscription.data.name}
             subscription={activeSubscription.data}
             stats={stats.data[0]}
           />
+        );
       }
-      const freeSubscription= await findLanguageaiSubscriptionPlansById(1);
-      return <LanguageaiCurrentFreePlan stats={stats.data[0]} freePlan={freeSubscription.data} />
+      const freeSubscription = await findLanguageaiSubscriptionPlansById(1);
+      return (
+        <LanguageaiCurrentFreePlan
+          stats={stats.data[0]}
+          freePlan={freeSubscription.data}
+        />
+      );
     }
   } catch (e: any) {
     console.error(e.message);
