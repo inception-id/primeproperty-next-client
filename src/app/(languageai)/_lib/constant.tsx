@@ -69,11 +69,6 @@ export const LANGUAGEAI_MENUS = [
     icon: <LuFileQuestion />,
   },
   {
-    title: "Request",
-    href: "/languageai/request",
-    icon: <LuMail />,
-  },
-  {
     title: "Inception",
     href: "/",
     icon: <GiSpinningTop className="-rotate-45" />,
