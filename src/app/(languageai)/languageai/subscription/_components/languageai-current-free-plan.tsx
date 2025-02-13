@@ -58,7 +58,7 @@ const LanguageaiCurrentFreePlan = async ({
           <TableRow>
             <TableCell>Checkbot Storage</TableCell>
             <TableCell>{stats.checkbot_storage_count || 0}</TableCell>
-            <TableCell>{freePlan.storage_limit || "Unlimited"}row</TableCell>
+            <TableCell>{freePlan.storage_limit || "Unlimited"} row</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Speech to Text</TableCell>
@@ -82,7 +82,7 @@ const LanguageaiCurrentFreePlan = async ({
           <TableRow>
             <TableCell>Text to Speech Storage</TableCell>
             <TableCell>{stats.tts_storage_count || 0}</TableCell>
-            <TableCell>{freePlan.storage_limit || "Unlimited"}row</TableCell>
+            <TableCell>{freePlan.storage_limit || "Unlimited"} row</TableCell>
           </TableRow>
         </TableBody>
       </Table>
