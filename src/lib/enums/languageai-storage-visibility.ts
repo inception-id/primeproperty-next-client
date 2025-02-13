@@ -1,5 +1,4 @@
-
 export enum ELanguageAiStorageVisibility {
-    Public = 'Public',
-    Private = 'Private',
+  Public = "Public",
+  Private = "Private",
 }

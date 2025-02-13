@@ -31,25 +31,24 @@ const TranslateResult = () => {
   );
 
   const onSaveClick = async (title: string) => {
-          try {
-            const translationStorage = await createTranslationStorage(
-              translationId,
-                {title, updated_completion: updatedCompletion},
-            );
-            if (translationStorage.status === 402) {
-              updateSubscriptionStore(
-                "limitDialog",
-                ELanguageaSubscriptionLimit.Storage,
-              );
-              return;
-            }
-            if (translationStorage.data.id)
-              toast.success("Saved to storage");
-          } catch (e) {
-            console.error(e);
-            toast.error("Fail to save, please try again");
-          }
-  }
+    try {
+      const translationStorage = await createTranslationStorage(translationId, {
+        title,
+        updated_completion: updatedCompletion,
+      });
+      if (translationStorage.status === 402) {
+        updateSubscriptionStore(
+          "limitDialog",
+          ELanguageaSubscriptionLimit.Storage,
+        );
+        return;
+      }
+      if (translationStorage.data.id) toast.success("Saved to storage");
+    } catch (e) {
+      console.error(e);
+      toast.error("Fail to save, please try again");
+    }
+  };
 
   return (
     <div className="border rounded-md overflow-hidden h-fit">
@@ -77,7 +76,10 @@ const TranslateResult = () => {
             <LuCopy />
           </Button>
           {!isLoading && translationId !== 0 && (
-              <LanguageAiSaveToStorageDialog label="Enter translation title" onSaveClick={onSaveClick} />
+            <LanguageAiSaveToStorageDialog
+              label="Enter translation title"
+              onSaveClick={onSaveClick}
+            />
           )}
         </div>
       </div>
