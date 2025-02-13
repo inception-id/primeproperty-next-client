@@ -12,13 +12,13 @@ export type TTranslationStorage = {
   target_language: string;
   content: string;
   updated_completion: string;
-  title: string;
+  title: string | null;
   visibility: ELanguageAiStorageVisibility;
 };
 
 export const createTranslationStorage = async (
   translation_id: number,
-  payload: Pick<TTranslationStorage, "title" | "updated_completion">,
+  payload: Partial<Pick<TTranslationStorage, "title" | "updated_completion">>,
 ): Promise<TApiResponse<TTranslationStorage>> => {
   try {
     return await fetchApi("/translation/create-storage", {

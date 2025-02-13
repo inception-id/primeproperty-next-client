@@ -27,7 +27,7 @@ const TranslateHistorySaveBtn = ({ row }: TTranslateHistorySaveBtnProps) => {
         try {
           const translationStorage = await createTranslationStorage(
             row.original.id,
-            row.original.completion,
+              {updated_completion: row.original.completion}
           );
           if (translationStorage.status === 402) {
             updateSubscriptionStore(
