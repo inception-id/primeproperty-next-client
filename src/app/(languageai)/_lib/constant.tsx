@@ -6,7 +6,6 @@ import {
   LuFileQuestion,
   LuHouse,
   LuLanguages,
-  LuMail,
   LuSquareTerminal,
   LuUser,
 } from "react-icons/lu";
