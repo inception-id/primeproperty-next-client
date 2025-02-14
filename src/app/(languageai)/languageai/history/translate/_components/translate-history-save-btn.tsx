@@ -18,29 +18,29 @@ const TranslateHistorySaveBtn = ({ row }: TTranslateHistorySaveBtnProps) => {
     })),
   );
   const onSaveClick = async (title: string) => {
-          try {
-            const translationStorage = await createTranslationStorage(
-              row.original.id,
-              { title, updated_completion: row.original.completion },
-            );
-            if (translationStorage.status === 402) {
-              updateSubscriptionStore(
-                "limitDialog",
-                ELanguageaSubscriptionLimit.Storage,
-              );
-              return;
-            }
-            if (translationStorage.data.id) toast.success("Saved to storage");
-          } catch (e) {
-            console.error(e);
-            toast.error("Fail to save, please try again");
-          }
-  }
+    try {
+      const translationStorage = await createTranslationStorage(
+        row.original.id,
+        { title, updated_completion: row.original.completion },
+      );
+      if (translationStorage.status === 402) {
+        updateSubscriptionStore(
+          "limitDialog",
+          ELanguageaSubscriptionLimit.Storage,
+        );
+        return;
+      }
+      if (translationStorage.data.id) toast.success("Saved to storage");
+    } catch (e) {
+      console.error(e);
+      toast.error("Fail to save, please try again");
+    }
+  };
   return (
-      <LanguageAiSaveToStorageDialog
-          label="Enter translation title"
-          onSaveClick={onSaveClick}
-      />
+    <LanguageAiSaveToStorageDialog
+      label="Enter translation title"
+      onSaveClick={onSaveClick}
+    />
   );
 };
 
