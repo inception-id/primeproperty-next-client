@@ -70,7 +70,14 @@ export const LANGUAGEAI_MENUS = [
   {
     title: "Inception",
     href: "/",
-    icon: <Image src="/images/inception.png" alt="Inception" width={15} height={15} />
+    icon: (
+      <Image
+        src="/images/inception.png"
+        alt="Inception"
+        width={15}
+        height={15}
+      />
+    ),
   },
   {
     title: "Account",
