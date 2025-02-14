@@ -1,6 +1,6 @@
 import { TApiResponse } from "@/lib/api/ApiResponse";
 import { fetchApi } from "@/lib/api/fetchApi";
-import {ELanguageAiStorageVisibility} from "@/lib/enums/languageai-storage-visibility";
+import { ELanguageAiStorageVisibility } from "@/lib/enums/languageai-storage-visibility";
 
 export type TSpeechToTextStorage = {
   id: number;
@@ -12,18 +12,17 @@ export type TSpeechToTextStorage = {
   updated_transcription_text: string;
   language: string | null;
   title: string | null;
-  visibility: ELanguageAiStorageVisibility
+  visibility: ELanguageAiStorageVisibility;
 };
-
 
 export const createSpeechToTextStorage = async (
   speech_to_text_id: number,
-  payload: Pick<TSpeechToTextStorage, 'title' | 'updated_transcription_text'>
+  payload: Pick<TSpeechToTextStorage, "title" | "updated_transcription_text">,
 ): Promise<TApiResponse<TSpeechToTextStorage>> => {
   try {
     return await fetchApi("/transcription/create-storage", {
       method: "POST",
-      body: JSON.stringify({ speech_to_text_id, ...payload}),
+      body: JSON.stringify({ speech_to_text_id, ...payload }),
     });
   } catch (e) {
     throw e;

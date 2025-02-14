@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { copyToClipboard } from "@/lib/copyToClipboard";
-import { LuCopy, LuLoader, LuSave } from "react-icons/lu";
+import { LuCopy, LuLoader } from "react-icons/lu";
 import { useShallow } from "zustand/react/shallow";
 import { useTranscriptionStore } from "@/app/(languageai)/languageai/speech-to-text/_lib/useTranscriptionStore";
 import { Textarea } from "@/components/ui/textarea";
@@ -29,10 +29,10 @@ const TranscriptionResult = () => {
 
   const onSaveClick = async (title: string) => {
     try {
-      const savedTranscript = await createSpeechToTextStorage(
-        speechToTextId,
-          {title, updated_transcription_text: text},
-      );
+      const savedTranscript = await createSpeechToTextStorage(speechToTextId, {
+        title,
+        updated_transcription_text: text,
+      });
       if (savedTranscript.status === 402) {
         updateSubscriptionStore(
           "limitDialog",
@@ -79,10 +79,10 @@ const TranscriptionResult = () => {
         >
           <LuCopy />
         </Button>
-          <LanguageAiSaveToStorageDialog
-              label="Enter transcription title"
-              onSaveClick={onSaveClick}
-          />
+        <LanguageAiSaveToStorageDialog
+          label="Enter transcription title"
+          onSaveClick={onSaveClick}
+        />
       </div>
     </div>
   );
