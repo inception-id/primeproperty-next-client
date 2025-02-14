@@ -9,9 +9,9 @@ import {
   LuSquareTerminal,
   LuUser,
 } from "react-icons/lu";
-import { GiSpinningTop } from "react-icons/gi";
 import { CgTranscript } from "react-icons/cg";
 import { TbPigMoney } from "react-icons/tb";
+import Image from "next/image";
 
 export const LANGUAGEAI_MENUS = [
   {
@@ -70,7 +70,7 @@ export const LANGUAGEAI_MENUS = [
   {
     title: "Inception",
     href: "/",
-    icon: <GiSpinningTop className="-rotate-45" />,
+    icon: <Image src="/images/inception.png" alt="Inception" width={15} height={15} />
   },
   {
     title: "Account",
