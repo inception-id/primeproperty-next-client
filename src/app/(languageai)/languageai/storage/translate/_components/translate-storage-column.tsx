@@ -8,7 +8,8 @@ export const TranslateStorageColumn: ColumnDef<TTranslationStorage>[] = [
   {
     accessorKey: "title",
     header: "Title",
-    cell: ({ row }) => row.original.title || <span className="opacity-50">No title</span>,
+    cell: ({ row }) =>
+      row.original.title || <span className="opacity-50">No title</span>,
   },
   {
     accessorKey: "content",

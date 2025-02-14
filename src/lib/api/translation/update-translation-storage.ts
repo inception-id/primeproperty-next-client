@@ -5,7 +5,7 @@ import { TTranslationStorage } from "@/lib/api/translation/createTranslationStor
 
 export const updateTranslationStorage = async (
   translationId: number,
-  payload: Pick<TTranslationStorage, "title" | "updated_completion">
+  payload: Pick<TTranslationStorage, "title" | "updated_completion">,
 ): Promise<TApiResponse<TTranslationStorage>> => {
   try {
     return await fetchApi(`/translation/update-storage/${translationId}`, {
