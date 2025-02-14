@@ -18,7 +18,7 @@ export type TTranslationStorage = {
 
 export const createTranslationStorage = async (
   translation_id: number,
-  payload: Partial<Pick<TTranslationStorage, "title" | "updated_completion">>,
+  payload: Pick<TTranslationStorage, "title" | "updated_completion">,
 ): Promise<TApiResponse<TTranslationStorage>> => {
   try {
     return await fetchApi("/translation/create-storage", {
