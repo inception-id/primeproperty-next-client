@@ -1,7 +1,7 @@
 "use server";
 import { fetchApi } from "@/lib/api/fetchApi";
 import { TApiResponse } from "@/lib/api/ApiResponse";
-import {ELanguageAiStorageVisibility} from "@/lib/enums/languageai-storage-visibility";
+import { ELanguageAiStorageVisibility } from "@/lib/enums/languageai-storage-visibility";
 
 export type TCheckbotStorage = {
   id: number;
@@ -23,7 +23,7 @@ export const createCheckbotStorage = async (
   try {
     return await fetchApi("/checkbot/create-storage", {
       method: "POST",
-      body: JSON.stringify({ checkbot_id, ...payload}),
+      body: JSON.stringify({ checkbot_id, ...payload }),
     });
   } catch (e) {
     throw e;

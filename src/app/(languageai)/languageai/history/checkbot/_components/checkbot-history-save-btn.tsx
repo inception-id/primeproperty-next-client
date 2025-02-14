@@ -18,29 +18,29 @@ const CheckbotHistorySaveBtn = ({ row }: TCheckbotHistorySaveBtnProps) => {
     })),
   );
   const onSaveClick = async (title: string) => {
-      try {
-          const checkbotStorage = await createCheckbotStorage(
-              row.original.id,
-              { title, updated_completion: row.original.completion}
-          );
-          if (checkbotStorage.status === 402) {
-              updateSubscriptionStore(
-                  "limitDialog",
-                  ELanguageaSubscriptionLimit.Storage,
-              );
-              return;
-          }
-          if (checkbotStorage.data.id) toast.success("Saved to storage");
-      } catch (e) {
-          console.error(e);
-          toast.error("Fail to save, please try again");
+    try {
+      const checkbotStorage = await createCheckbotStorage(row.original.id, {
+        title,
+        updated_completion: row.original.completion,
+      });
+      if (checkbotStorage.status === 402) {
+        updateSubscriptionStore(
+          "limitDialog",
+          ELanguageaSubscriptionLimit.Storage,
+        );
+        return;
       }
-  }
+      if (checkbotStorage.data.id) toast.success("Saved to storage");
+    } catch (e) {
+      console.error(e);
+      toast.error("Fail to save, please try again");
+    }
+  };
   return (
-      <LanguageAiSaveToStorageDialog
-          label="Enter checkbot title"
-          onSaveClick={onSaveClick}
-      />
+    <LanguageAiSaveToStorageDialog
+      label="Enter checkbot title"
+      onSaveClick={onSaveClick}
+    />
   );
 };
 

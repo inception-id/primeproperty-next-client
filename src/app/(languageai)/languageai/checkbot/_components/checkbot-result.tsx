@@ -33,10 +33,10 @@ const CheckbotResult = () => {
 
   const onSaveClick = async (title: string) => {
     try {
-      const storage = await createCheckbotStorage(
-        checkbotId,
-          {title, updated_completion: updatedCompletion},
-      );
+      const storage = await createCheckbotStorage(checkbotId, {
+        title,
+        updated_completion: updatedCompletion,
+      });
       if (storage.status === 402) {
         updateSubscriptionStore(
           "limitDialog",
@@ -77,9 +77,9 @@ const CheckbotResult = () => {
           </Button>
           {!isLoading && checkbotId > 0 && (
             <LanguageAiSaveToStorageDialog
-            label="Enter checkbot title"
-            onSaveClick={onSaveClick}
-        />
+              label="Enter checkbot title"
+              onSaveClick={onSaveClick}
+            />
           )}
         </div>
       </div>
