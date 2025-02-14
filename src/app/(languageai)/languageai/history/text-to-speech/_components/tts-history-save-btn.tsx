@@ -1,7 +1,5 @@
 import { Row } from "@tanstack/table-core";
 import { TTextToSpeech } from "@/lib/api/text-to-speech/createTextToSpeech";
-import { Button } from "@/components/ui/button";
-import { LuSave } from "react-icons/lu";
 import { createTextToSpeechStorage } from "@/lib/api/text-to-speech/create-tts-storage";
 import { toast } from "react-toastify";
 import { useLanguageaiSubscriptionStore } from "@/app/(languageai)/_lib/use-languageai-subscription-store";
@@ -21,7 +19,10 @@ const TtsHistorySaveBtn = ({ row }: TtsHistorySaveBtnProps) => {
   );
   const onSaveClick = async (title: string) => {
     try {
-      const ttsStorage = await createTextToSpeechStorage(row.original.id, title);
+      const ttsStorage = await createTextToSpeechStorage(
+        row.original.id,
+        title,
+      );
       if (ttsStorage.status === 402) {
         updateSubscriptionStore(
           "limitDialog",
@@ -37,10 +38,10 @@ const TtsHistorySaveBtn = ({ row }: TtsHistorySaveBtnProps) => {
     }
   };
   return (
-  <LanguageAiSaveToStorageDialog
+    <LanguageAiSaveToStorageDialog
       label="Enter audio title"
       onSaveClick={onSaveClick}
-  />
+    />
   );
 };
 

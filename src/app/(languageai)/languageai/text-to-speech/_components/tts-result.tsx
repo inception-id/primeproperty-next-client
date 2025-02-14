@@ -1,8 +1,8 @@
 "use client";
 import { useTextToSpeechStore } from "@/app/(languageai)/languageai/text-to-speech/_lib/useTextToSpeechStore";
 import { useShallow } from "zustand/react/shallow";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { LuLoader, LuSave } from "react-icons/lu";
+import { buttonVariants } from "@/components/ui/button";
+import { LuLoader } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { createTextToSpeechStorage } from "@/lib/api/text-to-speech/create-tts-storage";
 import { useLanguageaiSubscriptionStore } from "@/app/(languageai)/_lib/use-languageai-subscription-store";
@@ -70,8 +70,8 @@ const TtsResult = () => {
           </a>
         </div>
         <LanguageAiSaveToStorageDialog
-            label="Enter audio title"
-            onSaveClick={onSaveClick}
+          label="Enter audio title"
+          onSaveClick={onSaveClick}
         />
       </div>
     </div>
