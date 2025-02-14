@@ -1,6 +1,6 @@
 "use client";
 
-import { LuCopy, LuSave } from "react-icons/lu";
+import { LuCopy } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 import { copyToClipboard } from "@/lib/copyToClipboard";
 import CheckbotCompletion from "@/app/(languageai)/languageai/checkbot/_components/checkbot-completion";
