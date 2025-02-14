@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { createTextToSpeechStorage } from "@/lib/api/text-to-speech/create-tts-storage";
 import { useLanguageaiSubscriptionStore } from "@/app/(languageai)/_lib/use-languageai-subscription-store";
 import { ELanguageaSubscriptionLimit } from "@/lib/enums/languageai-subscription-limit";
+import LanguageAiSaveToStorageDialog from "@/app/(languageai)/_components/dialogs/save-to-storage";
 
 const TtsResult = () => {
   const { updateSubscriptionStore } = useLanguageaiSubscriptionStore(
@@ -22,9 +23,9 @@ const TtsResult = () => {
     })),
   );
 
-  const onSaveClick = async () => {
+  const onSaveClick = async (title: string) => {
     try {
-      const ttsStorage = await createTextToSpeechStorage(ttsId);
+      const ttsStorage = await createTextToSpeechStorage(ttsId, title);
       if (ttsStorage.status === 402) {
         updateSubscriptionStore(
           "limitDialog",
@@ -68,9 +69,10 @@ const TtsResult = () => {
             Download
           </a>
         </div>
-        <Button size="icon" variant="ghost" onClick={onSaveClick}>
-          <LuSave />
-        </Button>
+        <LanguageAiSaveToStorageDialog
+            label="Enter audio title"
+            onSaveClick={onSaveClick}
+        />
       </div>
     </div>
   );

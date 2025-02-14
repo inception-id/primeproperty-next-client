@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useLanguageaiSubscriptionStore } from "@/app/(languageai)/_lib/use-languageai-subscription-store";
 import { useShallow } from "zustand/react/shallow";
 import { ELanguageaSubscriptionLimit } from "@/lib/enums/languageai-subscription-limit";
+import LanguageAiSaveToStorageDialog from "@/app/(languageai)/_components/dialogs/save-to-storage";
 
 type TtsHistorySaveBtnProps = {
   row: Row<TTextToSpeech>;
@@ -18,9 +19,9 @@ const TtsHistorySaveBtn = ({ row }: TtsHistorySaveBtnProps) => {
       updateSubscriptionStore: state.updateStore,
     })),
   );
-  const onSaveClick = async () => {
+  const onSaveClick = async (title: string) => {
     try {
-      const ttsStorage = await createTextToSpeechStorage(row.original.id);
+      const ttsStorage = await createTextToSpeechStorage(row.original.id, title);
       if (ttsStorage.status === 402) {
         updateSubscriptionStore(
           "limitDialog",
@@ -36,9 +37,10 @@ const TtsHistorySaveBtn = ({ row }: TtsHistorySaveBtnProps) => {
     }
   };
   return (
-    <Button size="icon" variant="ghost" onClick={onSaveClick}>
-      <LuSave />
-    </Button>
+  <LanguageAiSaveToStorageDialog
+      label="Enter audio title"
+      onSaveClick={onSaveClick}
+  />
   );
 };
 
