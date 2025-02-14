@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { createSpeechToTextStorage } from "@/lib/api/speech-to-text/createTranscriptionStorage";
 import { useLanguageaiSubscriptionStore } from "@/app/(languageai)/_lib/use-languageai-subscription-store";
 import { ELanguageaSubscriptionLimit } from "@/lib/enums/languageai-subscription-limit";
+import LanguageAiSaveToStorageDialog from "@/app/(languageai)/_components/dialogs/save-to-storage";
 
 const TranscriptionResult = () => {
   const { updateSubscriptionStore } = useLanguageaiSubscriptionStore(
@@ -26,11 +27,11 @@ const TranscriptionResult = () => {
       })),
     );
 
-  const onSaveClick = async () => {
+  const onSaveClick = async (title: string) => {
     try {
       const savedTranscript = await createSpeechToTextStorage(
         speechToTextId,
-        text,
+          {title, updated_transcription_text: text},
       );
       if (savedTranscript.status === 402) {
         updateSubscriptionStore(
@@ -78,9 +79,10 @@ const TranscriptionResult = () => {
         >
           <LuCopy />
         </Button>
-        <Button type="button" size="icon" variant="ghost" onClick={onSaveClick}>
-          <LuSave />
-        </Button>
+          <LanguageAiSaveToStorageDialog
+              label="Enter transcription title"
+              onSaveClick={onSaveClick}
+          />
       </div>
     </div>
   );
