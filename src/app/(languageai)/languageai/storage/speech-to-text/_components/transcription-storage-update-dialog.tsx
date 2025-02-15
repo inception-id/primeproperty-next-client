@@ -15,6 +15,8 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { TSpeechToTextStorage } from "@/lib/api/speech-to-text/createTranscriptionStorage";
 import { updateTranscriptionStorage } from "@/lib/api/speech-to-text/update-transcription-storage";
+import TranscriptionStorageUpdateForm
+  from "@/app/(languageai)/languageai/storage/speech-to-text/_components/transcription-storage-update-form";
 
 type TTranscriptionStorageUpdateDialogProps = {
   row: Row<TSpeechToTextStorage>;
@@ -22,59 +24,34 @@ type TTranscriptionStorageUpdateDialogProps = {
 const TranscriptionStorageUpdateDialog = ({
   row,
 }: TTranscriptionStorageUpdateDialogProps) => {
-  const router = useRouter();
-  const [value, setValue] = useState(row.original.updated_transcription_text);
-  const onSaveClick = async () => {
-    try {
-      const transcriptionStorage = await updateTranscriptionStorage(
-        row.original.id,
-        value,
-      );
-      if (transcriptionStorage.data.id) {
-        toast.success("Transcription  updated");
-        router.refresh();
-      } else {
-        toast.error("Fail to save, please try again");
-      }
-    } catch (error: any) {
-      console.error(error.message);
-      toast.error("Fail to save, please try again");
-    }
-  };
+  const [openDialog, setOpenDialog] = useState(false)
+  // const onSaveClick = async () => {
+  //   try {
+  //     const transcriptionStorage = await updateTranscriptionStorage(
+  //       row.original.id,
+  //       value,
+  //     );
+  //     if (transcriptionStorage.data.id) {
+  //       toast.success("Transcription  updated");
+  //       router.refresh();
+  //     } else {
+  //       toast.error("Fail to save, please try again");
+  //     }
+  //   } catch (error: any) {
+  //     console.error(error.message);
+  //     toast.error("Fail to save, please try again");
+  //   }
+  // };
   return (
-    <Dialog>
+    <Dialog open={openDialog}>
       <DialogTrigger
+          onClick={() => setOpenDialog(true)}
         className={buttonVariants({ size: "icon", variant: "ghost" })}
       >
         <LuPen />
       </DialogTrigger>
-      <DialogContent className="lg:max-w-5xl">
-        <div className="flex items-center justify-between mb-4">
-          <DialogTitle className="font-semibold">
-            Update Transcription
-          </DialogTitle>
-          <DialogClose
-            className={buttonVariants({ variant: "outline", size: "icon" })}
-          >
-            <LuX />{" "}
-          </DialogClose>
-        </div>
-        <div>Audio: </div>
-        <audio controls className="w-full mb-4">
-          <source src={row.getValue("audio_url")} type="audio/mpeg" />
-        </audio>
-        <div className="text-sm mb-2 capitalize">Transcription</div>
-        <Textarea
-          autoFocus
-          className="h-[30vh] lg:h-[35vh] resize-none mb-4"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-        />
-        <div className="flex items-center justify-end">
-          <DialogClose className={buttonVariants()} onClick={onSaveClick}>
-            <LuSave /> Save{" "}
-          </DialogClose>
-        </div>
+      <DialogContent onOverlayClick={()=> setOpenDialog(false)} onEscapeKeyDown={()=> setOpenDialog(false)}>
+        <TranscriptionStorageUpdateForm row={row} onCloseClick={()=> setOpenDialog(false)} />
       </DialogContent>
     </Dialog>
   );

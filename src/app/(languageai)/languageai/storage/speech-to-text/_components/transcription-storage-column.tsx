@@ -6,6 +6,12 @@ import TranscriptionStorageActionColumn from "@/app/(languageai)/languageai/stor
 
 export const TranscriptionStorageColumn: ColumnDef<TSpeechToTextStorage>[] = [
   {
+    accessorKey: "title",
+    header: "Title",
+    cell: ({ row }) =>
+        row.original.title || <span className="opacity-50">No title</span>,
+  },
+  {
     accessorKey: "audio_url",
     header: "Audio File",
     cell: ({ row }) => <TranscriptionStorageAudioColumn row={row} />,
