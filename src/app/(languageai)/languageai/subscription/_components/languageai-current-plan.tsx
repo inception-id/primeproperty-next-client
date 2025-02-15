@@ -6,32 +6,32 @@ import LanguageaiCurrentSubscription from "@/app/(languageai)/languageai/subscri
 import LanguageaiSubscriptionError from "@/app/(languageai)/languageai/subscription/_components/languageai-subscription-error";
 
 const LanguageaiCurrentPlan = async () => {
-    const stats = await findLanguageaiSubscriptionStatistic();
-    if (stats.data.length > 0) {
-      const activeSubscription = await findLanguageaiActiveSubscription();
-      if (activeSubscription.data) {
-        const userSubscription = await findLanguageaiSubscriptionPlansById(
-          activeSubscription.data.languageai_subscription_plan_id,
-        );
-        return (
-          <LanguageaiCurrentSubscription
-            planName={userSubscription.data.name}
-            subscription={activeSubscription.data}
-            stats={stats.data[0]}
-          />
-        );
-      } else {
-        const freeSubscription = await findLanguageaiSubscriptionPlansById(1);
-        return (
-            <LanguageaiCurrentFreePlan
-                stats={stats.data[0]}
-                freePlan={freeSubscription.data}
-            />
-        );
-      }
+  const stats = await findLanguageaiSubscriptionStatistic();
+  if (stats.data.length > 0) {
+    const activeSubscription = await findLanguageaiActiveSubscription();
+    if (activeSubscription.data) {
+      const userSubscription = await findLanguageaiSubscriptionPlansById(
+        activeSubscription.data.languageai_subscription_plan_id,
+      );
+      return (
+        <LanguageaiCurrentSubscription
+          planName={userSubscription.data.name}
+          subscription={activeSubscription.data}
+          stats={stats.data[0]}
+        />
+      );
     } else {
-      return <LanguageaiSubscriptionError />;
+      const freeSubscription = await findLanguageaiSubscriptionPlansById(1);
+      return (
+        <LanguageaiCurrentFreePlan
+          stats={stats.data[0]}
+          freePlan={freeSubscription.data}
+        />
+      );
     }
+  } else {
+    return <LanguageaiSubscriptionError />;
+  }
 };
 
 export default LanguageaiCurrentPlan;
