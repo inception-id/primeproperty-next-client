@@ -10,7 +10,7 @@ export const updateTextToSpeechStorage = async (
   try {
     return await fetchApi(`/tts/storage/${ttsStorageId}`, {
       method: "PUT",
-      body: JSON.stringify({ title})
+      body: JSON.stringify({ title }),
     });
   } catch (e: any) {
     throw e;

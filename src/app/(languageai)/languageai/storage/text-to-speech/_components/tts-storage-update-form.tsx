@@ -6,11 +6,11 @@ import { Row } from "@tanstack/table-core";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { toast } from "react-toastify";
-import {TTextToSpeechStorage} from "@/lib/api/text-to-speech/create-tts-storage";
-import {updateTextToSpeechStorage} from "@/lib/api/text-to-speech/updat-tts-storage";
+import { TTextToSpeechStorage } from "@/lib/api/text-to-speech/create-tts-storage";
+import { updateTextToSpeechStorage } from "@/lib/api/text-to-speech/updat-tts-storage";
 
 type TtsStorageUpdateFormProps = {
-    row: Row<TTextToSpeechStorage>;
+  row: Row<TTextToSpeechStorage>;
   onCloseClick: () => void;
 };
 
@@ -39,9 +39,7 @@ const TtsStorageUpdateForm = ({
   return (
     <form action={handleAction}>
       <div className="flex items-center justify-between mb-4">
-        <DialogTitle className="font-semibold">
-        Update Title
-        </DialogTitle>
+        <DialogTitle className="font-semibold">Update Title</DialogTitle>
         <DialogClose
           onClick={onCloseClick}
           className={buttonVariants({ variant: "ghost", size: "icon" })}

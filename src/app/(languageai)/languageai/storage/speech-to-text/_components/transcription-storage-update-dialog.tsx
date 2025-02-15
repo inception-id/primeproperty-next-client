@@ -1,9 +1,5 @@
 "use client";
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { LuPen } from "react-icons/lu";
 import { Row } from "@tanstack/table-core";
 import { buttonVariants } from "@/components/ui/button";
