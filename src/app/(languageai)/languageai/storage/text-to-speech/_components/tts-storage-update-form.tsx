@@ -1,7 +1,6 @@
 import { DialogClose, DialogTitle } from "@/components/ui/dialog";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { LuSave, LuX } from "react-icons/lu";
-import { Textarea } from "@/components/ui/textarea";
 import { Row } from "@tanstack/table-core";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";

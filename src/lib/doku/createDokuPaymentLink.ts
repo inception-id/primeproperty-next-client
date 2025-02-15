@@ -12,7 +12,7 @@ export const createDokuPaymentLink = async (amount: number) => {
     const requestId = new Date().getTime().toString();
     const requestBody = {
       order: {
-        amount: 75000,
+        amount: amount,
         invoice_number: requestId,
         currency: "IDR",
         callback_url: `${env.NEXT_PUBLIC_HOST_URL}/account`,
