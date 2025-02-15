@@ -9,7 +9,7 @@ export const TranscriptionStorageColumn: ColumnDef<TSpeechToTextStorage>[] = [
     accessorKey: "title",
     header: "Title",
     cell: ({ row }) =>
-        row.original.title || <span className="opacity-50">No title</span>,
+      row.original.title || <span className="opacity-50">No title</span>,
   },
   {
     accessorKey: "audio_url",

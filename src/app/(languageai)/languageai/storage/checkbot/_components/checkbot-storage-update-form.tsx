@@ -42,7 +42,9 @@ const CheckbotStorageUpdateForm = ({
   return (
     <form action={handleAction}>
       <div className="flex items-center justify-between mb-4">
-        <DialogTitle className="font-semibold">Update Checkbot Result</DialogTitle>
+        <DialogTitle className="font-semibold">
+          Update Checkbot Result
+        </DialogTitle>
         <DialogClose
           onClick={onCloseClick}
           className={buttonVariants({ variant: "ghost", size: "icon" })}

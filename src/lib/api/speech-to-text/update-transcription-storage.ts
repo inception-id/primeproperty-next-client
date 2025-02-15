@@ -4,7 +4,7 @@ import { TSpeechToTextStorage } from "@/lib/api/speech-to-text/createTranscripti
 
 export const updateTranscriptionStorage = async (
   speech_to_text_id: number,
-  payload: Pick<TSpeechToTextStorage, "title" | "updated_transcription_text">
+  payload: Pick<TSpeechToTextStorage, "title" | "updated_transcription_text">,
 ): Promise<TApiResponse<TSpeechToTextStorage>> => {
   try {
     return await fetchApi(
