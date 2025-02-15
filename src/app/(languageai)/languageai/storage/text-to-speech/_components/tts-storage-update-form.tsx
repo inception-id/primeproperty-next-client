@@ -4,34 +4,30 @@ import { LuSave, LuX } from "react-icons/lu";
 import { Textarea } from "@/components/ui/textarea";
 import { Row } from "@tanstack/table-core";
 import { useRouter } from "next/navigation";
-import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { toast } from "react-toastify";
-import { TSpeechToTextStorage } from "@/lib/api/speech-to-text/createTranscriptionStorage";
-import { updateTranscriptionStorage } from "@/lib/api/speech-to-text/update-transcription-storage";
+import {TTextToSpeechStorage} from "@/lib/api/text-to-speech/create-tts-storage";
+import {updateTextToSpeechStorage} from "@/lib/api/text-to-speech/updat-tts-storage";
 
-type TranscriptionStorageUpdateFormProps = {
-  row: Row<TSpeechToTextStorage>;
+type TtsStorageUpdateFormProps = {
+    row: Row<TTextToSpeechStorage>;
   onCloseClick: () => void;
 };
 
-const TranscriptionStorageUpdateForm = ({
+const TtsStorageUpdateForm = ({
   onCloseClick,
   row,
-}: TranscriptionStorageUpdateFormProps) => {
+}: TtsStorageUpdateFormProps) => {
   const router = useRouter();
   const handleAction = async (formData: FormData) => {
     const title = formData.get("title") as string;
-    const updated_transcription_text = formData.get(
-      "updated_completion",
-    ) as string;
     try {
-      const transcriptionStorage = await updateTranscriptionStorage(
+      const ttsStorage = await updateTextToSpeechStorage(
         row.original.id,
-        { title, updated_transcription_text },
+        title,
       );
-      if (transcriptionStorage.data.id) {
-        toast.success("Transcription  updated");
+      if (ttsStorage.data.id) {
+        toast.success("Tts  updated");
         router.refresh();
         onCloseClick();
       }
@@ -44,7 +40,7 @@ const TranscriptionStorageUpdateForm = ({
     <form action={handleAction}>
       <div className="flex items-center justify-between mb-4">
         <DialogTitle className="font-semibold">
-          Update Transcription
+        Update Title
         </DialogTitle>
         <DialogClose
           onClick={onCloseClick}
@@ -53,9 +49,6 @@ const TranscriptionStorageUpdateForm = ({
           <LuX />{" "}
         </DialogClose>
       </div>
-      <Label htmlFor="title" className="opacity-75">
-        Title
-      </Label>
       <Input
         id="title"
         name="title"
@@ -67,13 +60,6 @@ const TranscriptionStorageUpdateForm = ({
       <audio controls className="w-full mb-4">
         <source src={row.getValue("audio_url")} type="audio/mpeg" />
       </audio>
-      <div className="text-sm mb-2 capitalize">Transcription</div>
-      <Textarea
-        autoFocus
-        name="updated_completion"
-        className="h-[30vh] lg:h-[35vh] resize-none mb-4"
-        defaultValue={row.original.updated_transcription_text}
-      />
       <div className="flex items-center justify-end">
         <Button type="submit">
           <LuSave /> Save{" "}
@@ -83,4 +69,4 @@ const TranscriptionStorageUpdateForm = ({
   );
 };
 
-export default TranscriptionStorageUpdateForm;
+export default TtsStorageUpdateForm;
