@@ -6,7 +6,6 @@ import LanguageaiCurrentSubscription from "@/app/(languageai)/languageai/subscri
 import LanguageaiSubscriptionError from "@/app/(languageai)/languageai/subscription/_components/languageai-subscription-error";
 
 const LanguageaiCurrentPlan = async () => {
-  try {
     const stats = await findLanguageaiSubscriptionStatistic();
     if (stats.data.length > 0) {
       const activeSubscription = await findLanguageaiActiveSubscription();
@@ -21,19 +20,18 @@ const LanguageaiCurrentPlan = async () => {
             stats={stats.data[0]}
           />
         );
+      } else {
+        const freeSubscription = await findLanguageaiSubscriptionPlansById(1);
+        return (
+            <LanguageaiCurrentFreePlan
+                stats={stats.data[0]}
+                freePlan={freeSubscription.data}
+            />
+        );
       }
-      const freeSubscription = await findLanguageaiSubscriptionPlansById(1);
-      return (
-        <LanguageaiCurrentFreePlan
-          stats={stats.data[0]}
-          freePlan={freeSubscription.data}
-        />
-      );
+    } else {
+      return <LanguageaiSubscriptionError />;
     }
-  } catch (e: any) {
-    console.error(e.message);
-    return <LanguageaiSubscriptionError />;
-  }
 };
 
 export default LanguageaiCurrentPlan;

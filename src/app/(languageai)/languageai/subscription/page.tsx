@@ -20,13 +20,13 @@ const LanguageaiSubscriptionPage = async () => {
       <h1 className="font-bold text-2xl">SUBSCRIPTION</h1>
       <p className="opacity-50 mb-4">See your current plan details</p>
 
-      <LanguageaiPendingPayment />
 
       <Suspense
         fallback={
           <div className="bg-popover/50 animate-pulse w-full max-w-5xl h-[45vh] rounded-lg" />
         }
       >
+        <LanguageaiPendingPayment />
         <LanguageaiCurrentPlan />
       </Suspense>
     </section>
