@@ -21,15 +21,15 @@ const LanguageaiCurrentPlan = async () => {
         />
       );
     }
-      const freeSubscription = await findLanguageaiSubscriptionPlansById(1);
-      return (
-        <LanguageaiCurrentFreePlan
-          stats={stats.data[0]}
-          freePlan={freeSubscription.data}
-        />
-      );
+    const freeSubscription = await findLanguageaiSubscriptionPlansById(1);
+    return (
+      <LanguageaiCurrentFreePlan
+        stats={stats.data[0]}
+        freePlan={freeSubscription.data}
+      />
+    );
   }
-    return <LanguageaiSubscriptionError />;
+  return <LanguageaiSubscriptionError />;
 };
 
 export default LanguageaiCurrentPlan;
