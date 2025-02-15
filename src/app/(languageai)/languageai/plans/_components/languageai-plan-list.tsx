@@ -25,9 +25,9 @@ const LanguageaiPlanList = async () => {
                 Rp {Number(plan.initial_price).toLocaleString("id-ID")}
               </s>
               <span className="bg-primary text-primary-foreground rounded-lg py-1 px-2 font-semibold">
-                {((Number(plan.initial_price) - Number(plan.discounted_price)) /
+                {(((Number(plan.initial_price) - Number(plan.discounted_price)) /
                   Number(plan.initial_price)) *
-                  100}
+                  100).toFixed()}
                 % Discount
               </span>
             </div>

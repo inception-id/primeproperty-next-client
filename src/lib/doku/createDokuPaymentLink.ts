@@ -12,7 +12,7 @@ export const createDokuPaymentLink = async (amount: number) => {
     const requestId = new Date().getTime().toString();
     const requestBody = {
       order: {
-        amount: amount,
+        amount: 75000,
         invoice_number: requestId,
         currency: "IDR",
         callback_url: `${env.NEXT_PUBLIC_HOST_URL}/account`,
@@ -23,7 +23,7 @@ export const createDokuPaymentLink = async (amount: number) => {
         email: user.email,
       },
       payment: {
-        payment_due_date: 60, // 60 minutes
+        payment_due_date: 1440, // 60 minutes
         payment_method_types: [
           "VIRTUAL_ACCOUNT_BCA",
           "VIRTUAL_ACCOUNT_BANK_MANDIRI",
