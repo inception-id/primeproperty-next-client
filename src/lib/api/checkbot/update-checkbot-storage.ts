@@ -5,7 +5,7 @@ import { TCheckbotStorage } from "@/lib/api/checkbot/create-checkbot-storage";
 
 export const updateCheckbotStorage = async (
   checkbotStorageId: number,
-  payload: Pick<TCheckbotStorage, "title" | "updated_completion">
+  payload: Pick<TCheckbotStorage, "title" | "updated_completion">,
 ): Promise<TApiResponse<TCheckbotStorage>> => {
   try {
     return await fetchApi(`/checkbot/update-storage/${checkbotStorageId}`, {

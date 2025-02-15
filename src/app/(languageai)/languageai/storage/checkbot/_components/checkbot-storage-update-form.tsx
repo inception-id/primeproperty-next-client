@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { toast } from "react-toastify";
-import {TCheckbotStorage} from "@/lib/api/checkbot/create-checkbot-storage";
-import {updateCheckbotStorage} from "@/lib/api/checkbot/update-checkbot-storage";
+import { TCheckbotStorage } from "@/lib/api/checkbot/create-checkbot-storage";
+import { updateCheckbotStorage } from "@/lib/api/checkbot/update-checkbot-storage";
 
 type CheckbotStorageUpdateFormProps = {
   row: Row<TCheckbotStorage>;
@@ -21,23 +21,23 @@ const CheckbotStorageUpdateForm = ({
 }: CheckbotStorageUpdateFormProps) => {
   const router = useRouter();
   const handleAction = async (formData: FormData) => {
-      const title = formData.get("title") as string;
-      const updated_completion = formData.get("updated_completion") as string;
-      try {
-          const checkbotStorage = await updateCheckbotStorage(
-              row.original.id,
-              {title, updated_completion},
-          );
-          if (checkbotStorage.data.id) {
-              toast.success("Checkbot updated");
-              router.refresh();
-              onCloseClick();
-          }
-          return;
-      } catch (error: any) {
-          console.error(error.message);
-          toast.error("Fail to save, please try again");
+    const title = formData.get("title") as string;
+    const updated_completion = formData.get("updated_completion") as string;
+    try {
+      const checkbotStorage = await updateCheckbotStorage(row.original.id, {
+        title,
+        updated_completion,
+      });
+      if (checkbotStorage.data.id) {
+        toast.success("Checkbot updated");
+        router.refresh();
+        onCloseClick();
       }
+      return;
+    } catch (error: any) {
+      console.error(error.message);
+      toast.error("Fail to save, please try again");
+    }
   };
   return (
     <form action={handleAction}>
@@ -66,9 +66,7 @@ const CheckbotStorageUpdateForm = ({
       <div className="text-sm mb-4 max-h-[25vh] lg:max-h-[30vh]">
         {row.original.content}
       </div>
-      <div className="text-sm mb-2 capitalize opacity-75">
-          Checkbot result
-      </div>
+      <div className="text-sm mb-2 capitalize opacity-75">Checkbot result</div>
       <Textarea
         autoFocus
         name="updated_completion"
