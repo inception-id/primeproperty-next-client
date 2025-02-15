@@ -23,7 +23,7 @@ export const createDokuPaymentLink = async (amount: number) => {
         email: user.email,
       },
       payment: {
-        payment_due_date: 60, // 60 minutes
+        payment_due_date: 1440, // 60 minutes
         payment_method_types: [
           "VIRTUAL_ACCOUNT_BCA",
           "VIRTUAL_ACCOUNT_BANK_MANDIRI",

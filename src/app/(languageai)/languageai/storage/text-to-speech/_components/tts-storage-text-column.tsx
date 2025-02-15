@@ -12,12 +12,9 @@ type TTtsStorageTextColumnProps = {
 const TtsStorageTextColumn = ({ row }: TTtsStorageTextColumnProps) => {
   return (
     <div>
-      <div className="text-xs mb-2">
-        {formatDateToIndonesian(row.original.created_at, true)}
-      </div>
-      <div className="flex gap-1">
-        <div className="flex-1 whitespace-pre-line">
-          {row.original.input_content}
+      <div className="flex items-center justify-between">
+        <div className="text-xs">
+          {formatDateToIndonesian(row.original.created_at, true)}
         </div>
         <Button
           type="button"
@@ -29,6 +26,9 @@ const TtsStorageTextColumn = ({ row }: TTtsStorageTextColumnProps) => {
         >
           <LuCopy />
         </Button>
+      </div>
+      <div className="flex-1 whitespace-pre-line">
+        {row.original.input_content}
       </div>
     </div>
   );

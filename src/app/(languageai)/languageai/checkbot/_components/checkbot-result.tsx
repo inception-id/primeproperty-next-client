@@ -1,6 +1,6 @@
 "use client";
 
-import { LuCopy, LuSave } from "react-icons/lu";
+import { LuCopy } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 import { copyToClipboard } from "@/lib/copyToClipboard";
 import CheckbotCompletion from "@/app/(languageai)/languageai/checkbot/_components/checkbot-completion";
@@ -14,6 +14,7 @@ import { ELanguageaSubscriptionLimit } from "@/lib/enums/languageai-subscription
 import { useContext } from "react";
 import { UseCompletionHelpers } from "@ai-sdk/react";
 import { CheckbotContext } from "@/app/(languageai)/languageai/checkbot/_components/checkbot-provider";
+import LanguageAiSaveToStorageDialog from "@/app/(languageai)/_components/dialogs/save-to-storage";
 
 const CheckbotResult = () => {
   const { isLoading } = useContext<UseCompletionHelpers>(CheckbotContext);
@@ -30,12 +31,12 @@ const CheckbotResult = () => {
     })),
   );
 
-  const onSaveClick = async () => {
+  const onSaveClick = async (title: string) => {
     try {
-      const storage = await createCheckbotStorage(
-        checkbotId,
-        updatedCompletion,
-      );
+      const storage = await createCheckbotStorage(checkbotId, {
+        title,
+        updated_completion: updatedCompletion,
+      });
       if (storage.status === 402) {
         updateSubscriptionStore(
           "limitDialog",
@@ -75,14 +76,10 @@ const CheckbotResult = () => {
             <LuCopy />
           </Button>
           {!isLoading && checkbotId > 0 && (
-            <Button
-              type="button"
-              size="icon"
-              variant="ghost"
-              onClick={onSaveClick}
-            >
-              <LuSave />
-            </Button>
+            <LanguageAiSaveToStorageDialog
+              label="Enter checkbot title"
+              onSaveClick={onSaveClick}
+            />
           )}
         </div>
       </div>

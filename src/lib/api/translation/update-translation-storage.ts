@@ -5,12 +5,12 @@ import { TTranslationStorage } from "@/lib/api/translation/createTranslationStor
 
 export const updateTranslationStorage = async (
   translationId: number,
-  updated_completion: string,
+  payload: Pick<TTranslationStorage, "title" | "updated_completion">,
 ): Promise<TApiResponse<TTranslationStorage>> => {
   try {
     return await fetchApi(`/translation/update-storage/${translationId}`, {
       method: "PUT",
-      body: JSON.stringify({ updated_completion }),
+      body: JSON.stringify(payload),
     });
   } catch (e: any) {
     throw e;

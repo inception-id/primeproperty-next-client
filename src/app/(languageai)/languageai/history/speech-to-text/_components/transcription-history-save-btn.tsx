@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { LuSave } from "react-icons/lu";
 import { Row } from "@tanstack/table-core";
 import { TSpeechToText } from "@/lib/api/speech-to-text/createTranscription";
 import { toast } from "react-toastify";
@@ -7,6 +5,7 @@ import { createSpeechToTextStorage } from "@/lib/api/speech-to-text/createTransc
 import { useLanguageaiSubscriptionStore } from "@/app/(languageai)/_lib/use-languageai-subscription-store";
 import { useShallow } from "zustand/react/shallow";
 import { ELanguageaSubscriptionLimit } from "@/lib/enums/languageai-subscription-limit";
+import LanguageAiSaveToStorageDialog from "@/app/(languageai)/_components/dialogs/save-to-storage";
 
 type TTranscriptionHistorySaveBtnProps = {
   row: Row<TSpeechToText>;
@@ -20,11 +19,11 @@ const TranscriptionHistorySaveBtn = ({
       updateSubscriptionStore: state.updateStore,
     })),
   );
-  const onClick = async () => {
+  const onClick = async (title: string) => {
     try {
       const transcriptStorage = await createSpeechToTextStorage(
         row.original.id,
-        row.original.transcription_text,
+        { title, updated_transcription_text: row.original.transcription_text },
       );
       if (transcriptStorage.status === 402) {
         updateSubscriptionStore(
@@ -35,8 +34,6 @@ const TranscriptionHistorySaveBtn = ({
       }
       if (transcriptStorage.data.id) {
         toast.success("Saved to storage");
-      } else {
-        toast.error("Fail to save, please try again");
       }
     } catch (e: any) {
       console.error(e.message);
@@ -44,9 +41,10 @@ const TranscriptionHistorySaveBtn = ({
     }
   };
   return (
-    <Button variant="ghost" size="icon" onClick={onClick}>
-      <LuSave />
-    </Button>
+    <LanguageAiSaveToStorageDialog
+      label="Enter transcription title"
+      onSaveClick={onClick}
+    />
   );
 };
 

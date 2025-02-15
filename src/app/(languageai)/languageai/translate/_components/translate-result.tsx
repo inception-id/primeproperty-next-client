@@ -1,5 +1,5 @@
 "use client";
-import { LuCopy, LuSave } from "react-icons/lu";
+import { LuCopy } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 import { copyToClipboard } from "@/lib/copyToClipboard";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,6 +13,7 @@ import { ELanguageaSubscriptionLimit } from "@/lib/enums/languageai-subscription
 import { useContext } from "react";
 import { UseCompletionHelpers } from "@ai-sdk/react";
 import { TranslateContext } from "@/app/(languageai)/languageai/translate/_components/translate-provider";
+import LanguageAiSaveToStorageDialog from "@/app/(languageai)/_components/dialogs/save-to-storage";
 
 const TranslateResult = () => {
   const { isLoading } = useContext<UseCompletionHelpers>(TranslateContext);
@@ -28,6 +29,26 @@ const TranslateResult = () => {
       updateStore: state.updateStore,
     })),
   );
+
+  const onSaveClick = async (title: string) => {
+    try {
+      const translationStorage = await createTranslationStorage(translationId, {
+        title,
+        updated_completion: updatedCompletion,
+      });
+      if (translationStorage.status === 402) {
+        updateSubscriptionStore(
+          "limitDialog",
+          ELanguageaSubscriptionLimit.Storage,
+        );
+        return;
+      }
+      if (translationStorage.data.id) toast.success("Saved to storage");
+    } catch (e) {
+      console.error(e);
+      toast.error("Fail to save, please try again");
+    }
+  };
 
   return (
     <div className="border rounded-md overflow-hidden h-fit">
@@ -55,33 +76,10 @@ const TranslateResult = () => {
             <LuCopy />
           </Button>
           {!isLoading && translationId !== 0 && (
-            <Button
-              type="button"
-              size="icon"
-              variant="ghost"
-              onClick={async () => {
-                try {
-                  const translationStorage = await createTranslationStorage(
-                    translationId,
-                    updatedCompletion,
-                  );
-                  if (translationStorage.status === 402) {
-                    updateSubscriptionStore(
-                      "limitDialog",
-                      ELanguageaSubscriptionLimit.Storage,
-                    );
-                    return;
-                  }
-                  if (translationStorage.data.id)
-                    toast.success("Saved to storage");
-                } catch (e) {
-                  console.error(e);
-                  toast.error("Fail to save, please try again");
-                }
-              }}
-            >
-              <LuSave />
-            </Button>
+            <LanguageAiSaveToStorageDialog
+              label="Enter translation title"
+              onSaveClick={onSaveClick}
+            />
           )}
         </div>
       </div>

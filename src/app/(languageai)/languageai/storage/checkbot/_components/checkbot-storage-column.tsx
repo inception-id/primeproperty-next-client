@@ -6,6 +6,12 @@ import CheckbotStorageActionColumn from "@/app/(languageai)/languageai/storage/c
 
 export const CheckbotStorageColumn: ColumnDef<TCheckbotStorage>[] = [
   {
+    accessorKey: "title",
+    header: "Title",
+    cell: ({ row }) =>
+      row.original.title || <span className="opacity-50">No title</span>,
+  },
+  {
     accessorKey: "content",
     header: "Original Text",
     cell: ({ row }) => <CheckbotStorageOriginalTextColumn row={row} />,

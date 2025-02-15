@@ -6,6 +6,12 @@ import TranslateStorageActionColumn from "@/app/(languageai)/languageai/storage/
 
 export const TranslateStorageColumn: ColumnDef<TTranslationStorage>[] = [
   {
+    accessorKey: "title",
+    header: "Title",
+    cell: ({ row }) =>
+      row.original.title || <span className="opacity-50">No title</span>,
+  },
+  {
     accessorKey: "content",
     header: "Original Text",
     cell: ({ row }) => <TranslateStorageOriginalTextColumn row={row} />,

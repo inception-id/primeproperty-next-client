@@ -1,6 +1,7 @@
 import LanguageaiPlanList from "@/app/(languageai)/languageai/plans/_components/languageai-plan-list";
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const revalidate = 0;
 
@@ -33,6 +34,10 @@ const LanguageaiPlans = () => {
           <LanguageaiPlanList />
         </div>
       </Suspense>
+      <div className="opacity-50 lg:text-center px-8 text-sm">
+        *Please contact <Link href="/languageai/support">support</Link> for
+        payment outside Indonesia{" "}
+      </div>
     </section>
   );
 };
