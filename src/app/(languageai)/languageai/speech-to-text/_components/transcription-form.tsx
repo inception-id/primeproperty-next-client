@@ -78,16 +78,20 @@ const TranscriptionForm = () => {
         return;
       }
 
+      // 25mb .mp3 file is 25 min | 25mb .wav file is 2,5 min
+      const audioMinutes = audioFile.name.includes("mp3") ? Math.round(audioFile.size / 1024 /1024) : Math.round(audioFile.size / 1024 / 1024 / 10);
+
       const transcription = await createTranscription(formData);
-      const speechToText = await createSpeechToText(
-        transcription.audio_url,
-        transcription.transcription.text,
+      const createSpeechToTextPayload = {
+        audio_url: transcription.audio_url,
+        transcription_text: transcription.transcription.text,
         language,
-      );
+        audio_minutes: audioMinutes > 0 ? audioMinutes : 1,
+      }
+      const speechToText = await createSpeechToText(createSpeechToTextPayload);
       updateStore("speechToTextId", speechToText.data.id);
       updateStore("text", speechToText.data.transcription_text);
       toast.success("Transcription success");
-      return;
     } catch (e: any) {
       console.error(e.message);
       toast.error("Something went wrong, please try again");
