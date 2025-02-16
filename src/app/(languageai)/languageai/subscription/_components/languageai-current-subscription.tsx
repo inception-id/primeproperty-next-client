@@ -43,7 +43,9 @@ const LanguageaiCurrentSubscription = async ({
             <TableCell>Translation</TableCell>
             <TableCell>{`${stats.translation_count}x` || 0}</TableCell>
             <TableCell>
-              {subscription.translation_limit ? `${subscription.translation_limit}x/month`: "Unlimited"}
+              {subscription.translation_limit
+                ? `${subscription.translation_limit}x/month`
+                : "Unlimited"}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -57,7 +59,9 @@ const LanguageaiCurrentSubscription = async ({
             <TableCell>Checkbot</TableCell>
             <TableCell>{`${stats.checkbot_count}x` || 0}</TableCell>
             <TableCell>
-              {subscription.checkbot_limit ? `${subscription.checkbot_limit}x/month`: "Unlimited"}
+              {subscription.checkbot_limit
+                ? `${subscription.checkbot_limit}x/month`
+                : "Unlimited"}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -71,7 +75,9 @@ const LanguageaiCurrentSubscription = async ({
             <TableCell>Text to Speech</TableCell>
             <TableCell>{`${stats.tts_count}x` || 0}</TableCell>
             <TableCell>
-              {subscription.text_to_speech_limit ? `${subscription.text_to_speech_limit}x/month`: "Unlimited"}
+              {subscription.text_to_speech_limit
+                ? `${subscription.text_to_speech_limit}x/month`
+                : "Unlimited"}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -85,12 +91,16 @@ const LanguageaiCurrentSubscription = async ({
             <TableCell>Speech to Text</TableCell>
             <TableCell>{`${stats.transcription_count}x` || 0}</TableCell>
             <TableCell>
-              {subscription.text_to_speech_limit ? `${subscription.text_to_speech_limit} minutes/month`: "Unlimited"}
+              {subscription.text_to_speech_limit
+                ? `${subscription.text_to_speech_limit} minutes/month`
+                : "Unlimited"}
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Speech to Text Storage</TableCell>
-            <TableCell>{stats.transcription_storage_count || 0} record</TableCell>
+            <TableCell>
+              {stats.transcription_storage_count || 0} record
+            </TableCell>
             <TableCell>
               {subscription.storage_limit || "Unlimited"} record
             </TableCell>
