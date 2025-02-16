@@ -79,7 +79,9 @@ const TranscriptionForm = () => {
       }
 
       // 25mb .mp3 file is 25 min | 25mb .wav file is 2,5 min
-      const audioMinutes = audioFile.name.includes("mp3") ? Math.round(audioFile.size / 1024 /1024) : Math.round(audioFile.size / 1024 / 1024 / 10);
+      const audioMinutes = audioFile.name.includes("mp3")
+        ? Math.round(audioFile.size / 1024 / 1024)
+        : Math.round(audioFile.size / 1024 / 1024 / 10);
 
       const transcription = await createTranscription(formData);
       const createSpeechToTextPayload = {
@@ -87,7 +89,7 @@ const TranscriptionForm = () => {
         transcription_text: transcription.transcription.text,
         language,
         audio_minutes: audioMinutes > 0 ? audioMinutes : 1,
-      }
+      };
       const speechToText = await createSpeechToText(createSpeechToTextPayload);
       updateStore("speechToTextId", speechToText.data.id);
       updateStore("text", speechToText.data.transcription_text);
