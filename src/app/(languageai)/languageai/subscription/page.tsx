@@ -1,6 +1,5 @@
 import { fetchCookieToken } from "@/lib/fetchCookieToken";
 import LanguageaiLoginCard from "@/app/(languageai)/_components/languageai-login-card";
-import LanguageaiPendingPayment from "@/app/(languageai)/languageai/subscription/_components/languageai-pending-payment";
 import { Suspense } from "react";
 import LanguageaiCurrentPlan from "@/app/(languageai)/languageai/subscription/_components/languageai-current-plan";
 import type { Metadata } from "next";
@@ -25,7 +24,6 @@ const LanguageaiSubscriptionPage = async () => {
           <div className="bg-popover/50 animate-pulse w-full max-w-5xl h-[45vh] rounded-lg" />
         }
       >
-        <LanguageaiPendingPayment />
         <LanguageaiCurrentPlan />
       </Suspense>
     </section>
