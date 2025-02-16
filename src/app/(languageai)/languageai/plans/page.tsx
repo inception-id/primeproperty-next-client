@@ -30,11 +30,9 @@ const LanguageaiPlans = () => {
           <div className="bg-popover/50 animate-pulse w-full h-[45vh] max-w-5xl mx-auto rounded-lg" />
         }
       >
-        <div className="flex items-center justify-center">
-          <LanguageaiPlanList />
-        </div>
+        <LanguageaiPlanList />
       </Suspense>
-      <div className="opacity-50 lg:text-center px-8 text-sm">
+      <div className="opacity-50 lg:text-center px-4 text-sm">
         *Please contact <Link href="/languageai/support">support</Link> for
         payment outside Indonesia{" "}
       </div>

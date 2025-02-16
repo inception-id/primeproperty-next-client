@@ -64,7 +64,7 @@ const TranscriptionResult = () => {
   }
 
   return (
-    <div className="flex w-full border rounded-lg h-fit ">
+    <div className="flex w-full border rounded-lg h-fit">
       <Textarea
         className="flex-1 h-[50vh] lg:h-[85vh] overflow-y-auto resize-none border-none focus-visible:ring-transparent ring-offset-transparent"
         value={text}

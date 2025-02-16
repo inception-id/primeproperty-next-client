@@ -9,17 +9,19 @@ export type TSpeechToText = {
   audio_url: string;
   transcription_text: string;
   language: string | null;
+  audio_minutes: number | null;
 };
 
 export const createSpeechToText = async (
-  audio_url: string,
-  transcription_text: string,
-  language: string,
+  payload: Pick<
+    TSpeechToText,
+    "audio_url" | "transcription_text" | "language" | "audio_minutes"
+  >,
 ): Promise<TApiResponse<TSpeechToText>> => {
   try {
     return await fetchApi("/transcription/create", {
       method: "POST",
-      body: JSON.stringify({ audio_url, transcription_text, language }),
+      body: JSON.stringify(payload),
     });
   } catch (e) {
     throw e;
