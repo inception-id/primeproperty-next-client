@@ -5,10 +5,10 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { LuChevronLeft } from "react-icons/lu";
 import LanguageaiLoginCard from "@/app/(languageai)/_components/languageai-login-card";
-import {fetchCookieToken} from "@/lib/fetchCookieToken";
+import { fetchCookieToken } from "@/lib/fetchCookieToken";
 
 const TranslateHistory = async () => {
-    const accessToken = await fetchCookieToken();
+  const accessToken = await fetchCookieToken();
 
   return (
     <section className="w-full h-screen overflow-hidden p-4">
@@ -26,13 +26,13 @@ const TranslateHistory = async () => {
         </Link>
       </div>
 
-        {accessToken ?
-            <Suspense fallback={<LanguageaiHistoryFallback />}>
-                <TranslateHistoryTable />
-            </Suspense>
-            :
-            <LanguageaiLoginCard />
-        }
+      {accessToken ? (
+        <Suspense fallback={<LanguageaiHistoryFallback />}>
+          <TranslateHistoryTable />
+        </Suspense>
+      ) : (
+        <LanguageaiLoginCard />
+      )}
     </section>
   );
 };

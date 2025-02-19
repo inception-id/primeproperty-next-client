@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 };
 
 const LanguageaiHistory = () => {
-
   return (
     <section className="w-full h-screen overflow-hidden p-4 flex flex-col items-center justify-center lg:max-w-lg mx-auto">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-4 text-center">

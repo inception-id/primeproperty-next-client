@@ -4,11 +4,11 @@ import { buttonVariants } from "@/components/ui/button";
 import { LuChevronLeft } from "react-icons/lu";
 import LanguageaiHistoryFallback from "@/app/(languageai)/languageai/history/_components/history-fallback";
 import TranscriptionHistoryTable from "@/app/(languageai)/languageai/history/speech-to-text/_components/transcription-history-table";
-import {fetchCookieToken} from "@/lib/fetchCookieToken";
+import { fetchCookieToken } from "@/lib/fetchCookieToken";
 import LanguageaiLoginCard from "@/app/(languageai)/_components/languageai-login-card";
 
 const SpeechToTextHistory = async () => {
-    const accessToken = await fetchCookieToken();
+  const accessToken = await fetchCookieToken();
   return (
     <section className="w-full h-screen overflow-hidden p-4">
       <div className="flex justify-between mb-4">
@@ -26,12 +26,13 @@ const SpeechToTextHistory = async () => {
           Back
         </Link>
       </div>
-        {accessToken ?
-            <Suspense fallback={<LanguageaiHistoryFallback />}>
-                <TranscriptionHistoryTable />
-            </Suspense>:
-            <LanguageaiLoginCard />
-        }
+      {accessToken ? (
+        <Suspense fallback={<LanguageaiHistoryFallback />}>
+          <TranscriptionHistoryTable />
+        </Suspense>
+      ) : (
+        <LanguageaiLoginCard />
+      )}
     </section>
   );
 };
