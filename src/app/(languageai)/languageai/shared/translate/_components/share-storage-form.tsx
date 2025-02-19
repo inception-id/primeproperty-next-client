@@ -1,10 +1,6 @@
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { LuCopy } from "react-icons/lu";
-import { DialogClose } from "@/components/ui/dialog";
 import { copyToClipboard } from "@/lib/copyToClipboard";
 import { env } from "@/lib/env";
 import { useQuery } from "@tanstack/react-query";
