@@ -4,8 +4,12 @@ import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import { LuChevronLeft } from "react-icons/lu";
 import CheckbotStorageTable from "@/app/(languageai)/languageai/storage/checkbot/_components/checkbot-storage-table";
+import {fetchCookieToken} from "@/lib/fetchCookieToken";
+import LanguageaiLoginCard from "@/app/(languageai)/_components/languageai-login-card";
 
-const CheckbotStorage = () => {
+const CheckbotStorage = async () => {
+    const accessToken = await fetchCookieToken();
+
   return (
     <section className="w-full h-screen overflow-hidden p-4">
       <div className="flex justify-between mb-4">
@@ -22,9 +26,12 @@ const CheckbotStorage = () => {
         </Link>
       </div>
 
-      <Suspense fallback={<LanguageaiTableFallback />}>
-        <CheckbotStorageTable />
-      </Suspense>
+        {accessToken ?
+            <Suspense fallback={<LanguageaiTableFallback />}>
+                <CheckbotStorageTable />
+            </Suspense>:
+            <LanguageaiLoginCard />
+        }
     </section>
   );
 };

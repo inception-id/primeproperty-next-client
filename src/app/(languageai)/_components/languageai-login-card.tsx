@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 const LanguageaiLoginCard = () => {
   const router = useRouter();
   return (
-    <div className="p-4 flex items-center justify-center w-full h-screen">
+    <div className="p-4 flex items-center justify-center mx-auto">
       <LoginCard
         onSuccess={() => router.refresh()}
         title="Sign in to continue"
