@@ -16,9 +16,9 @@ const TranslateStorageActionColumn = ({
     <div className="flex flex-col gap-1">
       <TranslateStorageUpdateDialog row={row} />
       <TranslateStorageDeleteDialog translationId={row.original.id} />
-        <ShareStorageDialog>
-            <ShareTranslateStorageForm storageId={row.original.id} />
-        </ShareStorageDialog>
+      <ShareStorageDialog>
+        <ShareTranslateStorageForm storageId={row.original.id} />
+      </ShareStorageDialog>
     </div>
   );
 };
