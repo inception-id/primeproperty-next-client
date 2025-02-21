@@ -1,4 +1,8 @@
-export const createShareStorageEmailTemplate = (sender: string, storageTitle: string, redirectLink: string) => {
+export const createShareStorageEmailTemplate = (
+  sender: string,
+  storageTitle: string,
+  redirectLink: string,
+) => {
   return `
 <!DOCTYPE html>
 <html>

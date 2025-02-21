@@ -2,7 +2,7 @@ import { TSharedTranslationStorage } from "@/lib/api/translation/find-translatio
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { LuPlus } from "react-icons/lu";
-import {useLanguageaiStorageSharingStore} from "@/app/(languageai)/_lib/use-languageai-storage-sharing-store";
+import { useLanguageaiStorageSharingStore } from "@/app/(languageai)/_lib/use-languageai-storage-sharing-store";
 
 type SharedTranslateStorageUsersProps = {
   isFetching: boolean;
@@ -14,14 +14,18 @@ const SharedTranslateStorageUsers = ({
   searchedEmail,
   sharedUsers,
 }: SharedTranslateStorageUsersProps) => {
-  const {isLoading} = useLanguageaiStorageSharingStore();
+  const { isLoading } = useLanguageaiStorageSharingStore();
   if (isFetching) {
     return <div className={cn(buttonVariants(), "w-full animate-pulse")} />;
   }
 
   if (sharedUsers.length === 0 && searchedEmail) {
     return (
-      <Button className="w-full shadow text-pretty" variant="secondary" disabled={isLoading}>
+      <Button
+        className="w-full shadow text-pretty"
+        variant="secondary"
+        disabled={isLoading}
+      >
         <LuPlus />
         Add &quot;{searchedEmail}&quot; as collaborator
       </Button>
