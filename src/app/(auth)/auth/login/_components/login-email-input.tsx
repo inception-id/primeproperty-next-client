@@ -24,7 +24,7 @@ const LoginEmailInput = () => {
 
   if (isLoading) {
     return (
-      <div className="w-full h-10 rounded-lg bg-popover/50 animate-pulse" />
+      <div className="w-full h-10 rounded-lg bg-popover/50 animate-pulse mb-4" />
     );
   }
 
