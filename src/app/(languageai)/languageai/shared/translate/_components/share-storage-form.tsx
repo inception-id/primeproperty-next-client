@@ -13,8 +13,6 @@ import SharedTranslateStorageUsers from "@/app/(languageai)/languageai/shared/tr
 import { z } from "zod";
 import { toast } from "react-toastify";
 import { createSharedTranslationStorage } from "@/lib/api/translation/create-shared-translation-storage";
-import { Row } from "@tanstack/table-core";
-import { TTranslationStorage } from "@/lib/api/translation/createTranslationStorage";
 import { sendShareStorageEmail } from "@/lib/mail/send-share-storage-email";
 import { useLanguageaiStorageSharingStore } from "@/app/(languageai)/_lib/use-languageai-storage-sharing-store";
 import { cn } from "@/lib/utils";
@@ -23,10 +21,11 @@ import { decode, JwtPayload } from "jsonwebtoken";
 import { useShallow } from "zustand/react/shallow";
 
 type ShareTranslateStorageFormProps = {
-  row: Row<TTranslationStorage>;
+  storageId: number,
+  storageTitle: string | null
 };
 
-const ShareTranslateStorageForm = ({ row }: ShareTranslateStorageFormProps) => {
+const ShareTranslateStorageForm = ({ storageId, storageTitle}: ShareTranslateStorageFormProps) => {
   const { loadingText, updateStore } = useLanguageaiStorageSharingStore(
     useShallow((state) => ({
       loadingText: state.loadingText,
@@ -40,11 +39,9 @@ const ShareTranslateStorageForm = ({ row }: ShareTranslateStorageFormProps) => {
 
   const { isFetching, data, refetch } = useQuery({
     gcTime: 0,
-    queryKey: ["shareTranslateStorageUsers", row.original.id],
+    queryKey: ["shareTranslateStorageUsers", storageId],
     queryFn: async () => {
-      const sharedUsersApiResponse = await findTranslationStorageSharedUsers(
-        row.original.id,
-      );
+      const sharedUsersApiResponse = await findTranslationStorageSharedUsers(storageId);
       setSharedTranslationStorage(sharedUsersApiResponse.data);
       return sharedUsersApiResponse.data;
     },
@@ -90,14 +87,14 @@ const ShareTranslateStorageForm = ({ row }: ShareTranslateStorageFormProps) => {
       updateStore("loadingText", "Creating shared storage...");
       const sharedTranslationStorage = await createSharedTranslationStorage(
         parsedEmail.data,
-        row.original.id,
+         storageId
       );
       updateStore(
         "loadingText",
         `Sending invitation to ${sharedTranslationStorage?.data.shared_user_email}`,
       );
       const sendEmail = await sendShareStorageEmail(
-        String(row.original.title),
+        String(storageTitle),
         `/languageai/shared/translate`,
         sharedTranslationStorage.data.shared_user_email,
       );

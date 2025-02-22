@@ -18,7 +18,7 @@ const TranslateSharedStorageDataTable = ({
 }: TranslateSharedStorageDataTableProps) => {
   const table = useReactTable({
     data,
-    columns: TranslateSharedStorageColumn,
+    columns: TranslateSharedStorageColumn(),
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
   });

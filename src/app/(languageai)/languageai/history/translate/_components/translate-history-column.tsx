@@ -9,7 +9,9 @@ export const TranslateHistoryColumn: ColumnDef<TTranslation>[] = [
   {
     accessorKey: "created_at",
     header: "Timestamp",
-    cell: ({ row }) => <LanguageAiTableDateColumn showUpdatedAt={false} row={row.original} />,
+    cell: ({ row }) => (
+      <LanguageAiTableDateColumn showUpdatedAt={false} row={row.original} />
+    ),
   },
   {
     accessorKey: "content",

@@ -25,7 +25,9 @@ export const TranslateStorageColumn: ColumnDef<TTranslationStorage>[] = [
   {
     accessorKey: "created_at",
     header: "Timestamp",
-    cell: ({ row }) => <LanguageAiTableDateColumn showUpdatedAt={true} row={row.original} />,
+    cell: ({ row }) => (
+      <LanguageAiTableDateColumn showUpdatedAt={true} row={row.original} />
+    ),
   },
   {
     accessorKey: "id",
