@@ -55,7 +55,7 @@ const SharedTranslateStorageUsers = ({
   }
 
   return (
-    <div className="max-h-96 overflow-y-auto flex flex-col gap-2">
+    <div className="max-h-96 overflow-y-auto flex flex-col gap-4">
       {sharedTranslationStorage.map((sharedStorage) => (
         <div
           className={cn(
@@ -66,7 +66,7 @@ const SharedTranslateStorageUsers = ({
         >
           <span className="text-sm">{sharedStorage.shared_user_email}</span>
 
-          <span className="flex items-center gap-2">
+          {isEditor && <span className="flex items-center gap-2">
             <TranslateSharedStoragePermissionSwitch
               sharedStorageId={sharedStorage.id}
               defaultPermission={sharedStorage.permission}
@@ -75,7 +75,7 @@ const SharedTranslateStorageUsers = ({
               sharedStorageId={sharedStorage.id}
               refetchList={refetchList}
             />
-          </span>
+          </span>}
         </div>
       ))}
     </div>

@@ -132,7 +132,7 @@ const ShareTranslateStorageForm = ({
       />
 
       <div className="mb-4">
-        <div className="text-sm mb-2">People with access</div>
+        <div className="text-sm mb-4">People with access</div>
         <SharedTranslateStorageUsers
           isEditor={isEditor}
           isFetching={isFetching}
