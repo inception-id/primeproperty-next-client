@@ -23,11 +23,11 @@ const TranslateSharedStoragePermissionSwitch = ({
         newPermission,
       );
       setPermission(updatedPermission.data.permission);
-      toast.success("Permission updated");
+      toast.success("Access updated");
       return;
     } catch (e: any) {
       console.error(e.message);
-      toast.error("Fail to update permission, please try again");
+      toast.error("Fail to update access, please try again");
       return;
     }
   };
