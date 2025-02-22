@@ -23,13 +23,13 @@ import { useShallow } from "zustand/react/shallow";
 type ShareTranslateStorageFormProps = {
   storageId: number;
   storageTitle: string | null;
-  isEditor: boolean
+  isEditor: boolean;
 };
 
 const ShareTranslateStorageForm = ({
   storageId,
   storageTitle,
-    isEditor
+  isEditor,
 }: ShareTranslateStorageFormProps) => {
   const { loadingText, updateStore } = useLanguageaiStorageSharingStore(
     useShallow((state) => ({
@@ -134,7 +134,7 @@ const ShareTranslateStorageForm = ({
       <div className="mb-4">
         <div className="text-sm mb-2">People with access</div>
         <SharedTranslateStorageUsers
-            isEditor={isEditor}
+          isEditor={isEditor}
           isFetching={isFetching}
           searchedEmail={searchedEmail}
           sharedTranslationStorage={sharedTranslationStorage}
