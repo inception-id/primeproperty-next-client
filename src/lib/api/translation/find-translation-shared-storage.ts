@@ -10,6 +10,7 @@ export type TTranslationSharedStorage = {
   owner_email: string;
   permission: LanguageeAiStoragePermission;
   created_at: string;
+  updated_at: string;
   content_language: string;
   target_language: string;
   title: string | null;
