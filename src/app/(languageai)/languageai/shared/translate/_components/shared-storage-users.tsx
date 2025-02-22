@@ -66,16 +66,18 @@ const SharedTranslateStorageUsers = ({
         >
           <span className="text-sm">{sharedStorage.shared_user_email}</span>
 
-          {isEditor && <span className="flex items-center gap-2">
-            <TranslateSharedStoragePermissionSwitch
-              sharedStorageId={sharedStorage.id}
-              defaultPermission={sharedStorage.permission}
-            />
-            <RemoveTranslateSharedStorageBtn
-              sharedStorageId={sharedStorage.id}
-              refetchList={refetchList}
-            />
-          </span>}
+          {isEditor && (
+            <span className="flex items-center gap-2">
+              <TranslateSharedStoragePermissionSwitch
+                sharedStorageId={sharedStorage.id}
+                defaultPermission={sharedStorage.permission}
+              />
+              <RemoveTranslateSharedStorageBtn
+                sharedStorageId={sharedStorage.id}
+                refetchList={refetchList}
+              />
+            </span>
+          )}
         </div>
       ))}
     </div>
