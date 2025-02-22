@@ -82,7 +82,7 @@ body {
 
   /* Track */
   ::-webkit-scrollbar-track {
-    background:  hsl(var(--background));
+    background: hsl(var(--background));
     border-radius: 1rem;
   }
 

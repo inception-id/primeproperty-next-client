@@ -3,8 +3,7 @@ import { TTranslationStorage } from "@/lib/api/translation/createTranslationStor
 import TranslateStorageActionColumn from "@/app/(languageai)/languageai/storage/translate/_components/translate-storage-action-column";
 import TranslateContentColumn from "@/app/(languageai)/languageai/translate/_components/columns/translate-content-column";
 import TranslateTitleColumn from "@/app/(languageai)/languageai/translate/_components/columns/translate-title-column";
-import TranslateCompletionColumn
-  from "@/app/(languageai)/languageai/translate/_components/columns/translate-completion-column";
+import TranslateCompletionColumn from "@/app/(languageai)/languageai/translate/_components/columns/translate-completion-column";
 
 export const TranslateStorageColumn: ColumnDef<TTranslationStorage>[] = [
   {

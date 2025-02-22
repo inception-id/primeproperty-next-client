@@ -14,17 +14,21 @@ const TranslateCompletionColumn = ({ row }: TranslateCompletionColumnProps) => {
   return (
     <div className="flex gap-2 justify-between">
       <div className="flex flex-col gap-2">
-        <div className="text-xs capitalize">
-          {row.target_language}:
+        <div className="text-xs capitalize">{row.target_language}:</div>
+        <div className="whitespace-pre-line">
+          {row.completion || row.updated_completion}
         </div>
-        <div className="whitespace-pre-line">{row.completion || row.updated_completion}</div>
       </div>
       <Button
         type="button"
         size="icon"
         variant="secondary"
         className="min-w-10"
-        onClick={async () => await copyToClipboard(String(row?.completion) || String(row?.updated_completion))}
+        onClick={async () =>
+          await copyToClipboard(
+            String(row?.completion) || String(row?.updated_completion),
+          )
+        }
       >
         <LuCopy />
       </Button>

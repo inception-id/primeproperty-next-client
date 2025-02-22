@@ -2,8 +2,7 @@ import { ColumnDef } from "@tanstack/table-core";
 import { TTranslation } from "@/lib/api/translation/createTranslation";
 import TranslateHistorySaveBtn from "@/app/(languageai)/languageai/history/translate/_components/translate-history-save-btn";
 import TranslateContentColumn from "@/app/(languageai)/languageai/translate/_components/columns/translate-content-column";
-import TranslateCompletionColumn
-  from "@/app/(languageai)/languageai/translate/_components/columns/translate-completion-column";
+import TranslateCompletionColumn from "@/app/(languageai)/languageai/translate/_components/columns/translate-completion-column";
 
 export const TranslateHistoryColumn: ColumnDef<TTranslation>[] = [
   {
