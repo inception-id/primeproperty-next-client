@@ -1,14 +1,14 @@
 import { ColumnDef } from "@tanstack/table-core";
 import { TTranslationSharedStorage } from "@/lib/api/translation/find-translation-shared-storage";
 import TranslateContentColumn from "@/app/(languageai)/languageai/translate/_components/columns/translate-content-column";
+import TranslateTitleColumn from "@/app/(languageai)/languageai/translate/_components/columns/translate-title-column";
 
 export const TranslateSharedStorageColumn: ColumnDef<TTranslationSharedStorage>[] =
   [
     {
       accessorKey: "title",
       header: "Title",
-      cell: ({ row }) =>
-        row.original.title || <div className="opacity-50">No title</div>,
+      cell: ({ row }) => <TranslateTitleColumn row={row.original} />
     },
     {
       accessorKey: "content",
@@ -28,7 +28,7 @@ export const TranslateSharedStorageColumn: ColumnDef<TTranslationSharedStorage>[
       header: "Owner",
     },
     {
-      accessorKey: "owner_id",
+      accessorKey: "owner_email",
       header: "Action",
     },
   ];

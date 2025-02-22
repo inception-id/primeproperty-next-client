@@ -3,13 +3,13 @@ import { TTranslationStorage } from "@/lib/api/translation/createTranslationStor
 import TranslateStorageTranslationColumn from "@/app/(languageai)/languageai/storage/translate/_components/translate-storage-translation-column";
 import TranslateStorageActionColumn from "@/app/(languageai)/languageai/storage/translate/_components/translate-storage-action-column";
 import TranslateContentColumn from "@/app/(languageai)/languageai/translate/_components/columns/translate-content-column";
+import TranslateTitleColumn from "@/app/(languageai)/languageai/translate/_components/columns/translate-title-column";
 
 export const TranslateStorageColumn: ColumnDef<TTranslationStorage>[] = [
   {
     accessorKey: "title",
     header: "Title",
-    cell: ({ row }) =>
-      row.original.title || <span className="opacity-50">No title</span>,
+    cell: ({ row }) => <TranslateTitleColumn row={row.original} />
   },
   {
     accessorKey: "content",

@@ -12,7 +12,7 @@ type TranslateContentColumnProps = {
 
 const TranslateContentColumn = ({ row }: TranslateContentColumnProps) => {
   return (
-    <div className="flex gap-4 justify-between">
+    <div className="flex gap-4 justify-between w-96">
       <div className="flex flex-col gap-2">
         <div className="text-xs capitalize">
           {row.content_language || "Auto detect language:"}

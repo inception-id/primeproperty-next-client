@@ -23,12 +23,12 @@ const TranslateStorageDataTable = ({
     getPaginationRowModel: getPaginationRowModel(),
   });
   return (
-    <>
-      <div className="h-[75vh] lg:h-[80vh] overflow-y-auto">
-        <DataTable table={table} tableCellClassName="align-top" />
-      </div>
-      <DataTablePagination table={table} />
-    </>
+      <>
+        <div className="max-h-[75vh] md:max-h-[80vh] border rounded-lg overflow-y-auto">
+          <DataTable table={table} tableCellClassName="align-top"/>
+        </div>
+        <DataTablePagination table={table}/>
+      </>
   );
 };
 
