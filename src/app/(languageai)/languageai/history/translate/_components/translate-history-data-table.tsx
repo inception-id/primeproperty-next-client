@@ -23,14 +23,13 @@ const TranslateHistoryDataTable = ({
     getPaginationRowModel: getPaginationRowModel(),
   });
   return (
-  <>
-    <div className="h-[75vh] lg:h-[80vh] overflow-y-auto">
-      <DataTable table={table} tableCellClassName="align-top"/>
-    </div>
-    <DataTablePagination table={table}/>
-  </>
-)
-  ;
+    <>
+      <div className="h-[75vh] lg:h-[80vh] overflow-y-auto">
+        <DataTable table={table} tableCellClassName="align-top" />
+      </div>
+      <DataTablePagination table={table} />
+    </>
+  );
 };
 
 export default TranslateHistoryDataTable;

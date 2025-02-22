@@ -8,7 +8,7 @@ export const TranslateSharedStorageColumn: ColumnDef<TTranslationSharedStorage>[
     {
       accessorKey: "title",
       header: "Title",
-      cell: ({ row }) => <TranslateTitleColumn row={row.original} />
+      cell: ({ row }) => <TranslateTitleColumn row={row.original} />,
     },
     {
       accessorKey: "content",
