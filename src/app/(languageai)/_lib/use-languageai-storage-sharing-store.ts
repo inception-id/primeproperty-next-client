@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 type TUseLanguageaiStorageSharingStore = {
-  isLoading: boolean;
+  loadingText: string;
   updateStore: (
     key: keyof TUseLanguageaiStorageSharingStore,
     value: any,
@@ -10,7 +10,7 @@ type TUseLanguageaiStorageSharingStore = {
 
 export const useLanguageaiStorageSharingStore =
   create<TUseLanguageaiStorageSharingStore>((set) => ({
-    isLoading: false,
+    loadingText: "",
     updateStore: (key, value) =>
       set((state) => ({
         ...state,

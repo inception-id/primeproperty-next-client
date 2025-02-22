@@ -20,15 +20,21 @@ import { useLanguageaiStorageSharingStore } from "@/app/(languageai)/_lib/use-la
 import { cn } from "@/lib/utils";
 import { fetchCookieToken } from "@/lib/fetchCookieToken";
 import { decode, JwtPayload } from "jsonwebtoken";
+import {useShallow} from "zustand/react/shallow";
 
 type ShareTranslateStorageFormProps = {
   row: Row<TTranslationStorage>;
 };
 
 const ShareTranslateStorageForm = ({ row }: ShareTranslateStorageFormProps) => {
-  const { isLoading, updateStore } = useLanguageaiStorageSharingStore();
+  const { loadingText, updateStore } = useLanguageaiStorageSharingStore(
+      useShallow((state)=> ({
+        loadingText: state.loadingText,
+        updateStore: state.updateStore,
+      }))
+  );
   const [searchedEmail, setSearchedEmail] = useState("");
-  const [sharedUsers, setSharedUsers] = useState<TSharedTranslationStorage[]>(
+  const [sharedTranslationStorage, setSharedTranslationStorage] = useState<TSharedTranslationStorage[]>(
     [],
   );
 
@@ -38,7 +44,7 @@ const ShareTranslateStorageForm = ({ row }: ShareTranslateStorageFormProps) => {
       const sharedUsersApiResponse = await findTranslationStorageSharedUsers(
         row.original.id,
       );
-      setSharedUsers(sharedUsersApiResponse.data);
+      setSharedTranslationStorage(sharedUsersApiResponse.data);
       return sharedUsersApiResponse.data;
     },
   });
@@ -50,7 +56,7 @@ const ShareTranslateStorageForm = ({ row }: ShareTranslateStorageFormProps) => {
       const newSharedUsers = data?.filter((user) =>
         user.shared_user_email.includes(email),
       );
-      setSharedUsers(newSharedUsers);
+      setSharedTranslationStorage(newSharedUsers);
     }
     return email;
   };
@@ -58,7 +64,6 @@ const ShareTranslateStorageForm = ({ row }: ShareTranslateStorageFormProps) => {
   const handleAction = async (formData: FormData) => {
     const email = formData.get("email") as string;
 
-    updateStore("isLoading", true);
     try {
       const parsedEmail = z.string().email().safeParse(email);
       if (!parsedEmail.success) {
@@ -77,31 +82,30 @@ const ShareTranslateStorageForm = ({ row }: ShareTranslateStorageFormProps) => {
         data?.length > 0 &&
         data?.map((d) => d.shared_user_email).includes(parsedEmail.data)
       ) {
-        toast.success("Shared successfully");
+        toast.warn("Can not share to the same people twice");
         return;
       }
 
+    updateStore("loadingText", "Creating shared storage...");
       const sharedTranslationStorage = await createSharedTranslationStorage(
         parsedEmail.data,
         row.original.id,
       );
-      const sendEmail = await sendShareStorageEmail(
-        String(row.original.title),
-        `/translation/shared`,
-        sharedTranslationStorage.data.shared_user_email,
-      );
-      if (sendEmail.accepted.length > 0) {
-        toast.success("Invitation sent");
-        await refetch();
-      } else {
-        toast.error("Fail to send invitation, please try again");
-      }
+        updateStore("loadingText", `Sending invitation to ${sharedTranslationStorage?.data.shared_user_email}`);
+        const sendEmail = await sendShareStorageEmail(
+            String(row.original.title),
+            `/languageai/shared/translate`,
+            sharedTranslationStorage.data.shared_user_email,
+        );
+          toast.success(`Invitation sent to ${sendEmail.accepted[0]}`);
+          await refetch();
+          return;
     } catch (e: any) {
       console.error(e.message);
       toast.error("Fail to share, please try again");
     } finally {
       setSearchedEmail("");
-      updateStore("isLoading", false);
+      updateStore("loadingText", "")
     }
   };
 
@@ -111,10 +115,10 @@ const ShareTranslateStorageForm = ({ row }: ShareTranslateStorageFormProps) => {
         placeholder="Search or add email"
         name="email"
         type="email"
-        className={cn("mb-4", isLoading && "animate-bounce bg-secondary")}
-        value={isLoading ? `Sending to ${searchedEmail}` : searchedEmail}
+        className={cn("mb-4", loadingText !== "" && "animate-bounce bg-secondary")}
+        value={loadingText || searchedEmail}
         onChange={onSearch}
-        disabled={isLoading}
+        disabled={loadingText !== ""}
       />
 
       <div className="mb-4">
@@ -122,7 +126,8 @@ const ShareTranslateStorageForm = ({ row }: ShareTranslateStorageFormProps) => {
         <SharedTranslateStorageUsers
           isFetching={isFetching}
           searchedEmail={searchedEmail}
-          sharedUsers={sharedUsers}
+          sharedTranslationStorage={sharedTranslationStorage}
+          refetchList={refetch}
         />
       </div>
 
