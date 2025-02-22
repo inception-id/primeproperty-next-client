@@ -30,7 +30,7 @@ export const TranslateStorageColumn: ColumnDef<TTranslationStorage>[] = [
     ),
   },
   {
-    accessorKey: "id",
+    accessorKey: "action",
     header: "Action",
     cell: ({ row }) => (
       <TranslateStorageActionColumn
@@ -40,6 +40,8 @@ export const TranslateStorageColumn: ColumnDef<TTranslationStorage>[] = [
         content={row.original.content}
         target_language={row.original.target_language}
         updated_completion={row.original.updated_completion}
+        isOwner={true}
+        isEditor={true}
       />
     ),
   },

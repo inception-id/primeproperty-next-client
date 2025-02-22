@@ -1,16 +1,21 @@
-import { ColumnDef } from "@tanstack/table-core";
-import { TTranslationSharedStorage } from "@/lib/api/translation/find-translation-shared-storage";
-import TranslateContentColumn from "@/app/(languageai)/languageai/translate/_components/columns/translate-content-column";
-import TranslateCompletionColumn from "@/app/(languageai)/languageai/translate/_components/columns/translate-completion-column";
+import {ColumnDef} from "@tanstack/table-core";
+import {TTranslationSharedStorage} from "@/lib/api/translation/find-translation-shared-storage";
+import TranslateContentColumn
+  from "@/app/(languageai)/languageai/translate/_components/columns/translate-content-column";
+import TranslateCompletionColumn
+  from "@/app/(languageai)/languageai/translate/_components/columns/translate-completion-column";
 import LanguageAiTableTitleColumn from "@/app/(languageai)/_components/table-columns/language-ai-table-title-column";
 import LanguageAiTableDateColumn from "@/app/(languageai)/_components/table-columns/language-ai-table-date-column";
-import { useQuery } from "@tanstack/react-query";
-import { fetchCookieToken } from "@/lib/fetchCookieToken";
-import { decode, JwtPayload } from "jsonwebtoken";
+import {useQuery} from "@tanstack/react-query";
+import {fetchCookieToken} from "@/lib/fetchCookieToken";
+import {decode, JwtPayload} from "jsonwebtoken";
+import TranslateStorageActionColumn
+  from "@/app/(languageai)/languageai/storage/translate/_components/translate-storage-action-column";
+import {LanguageeAiStoragePermission} from "@/lib/enums/languageeai-storage-permission";
 
 export const TranslateSharedStorageColumn =
   (): ColumnDef<TTranslationSharedStorage>[] => {
-    const { data } = useQuery({
+    const { data, isLoading } = useQuery({
       queryKey: ["translateSharedStorageToken"],
       queryFn: async () => {
         const token = (await fetchCookieToken()) as string;
@@ -45,7 +50,7 @@ export const TranslateSharedStorageColumn =
         accessorKey: "owner_email",
         header: "Owner",
         cell: ({ row }) =>
-          data && data?.id === row.original.owner_id
+          data?.id === row.original.owner_id
             ? "Me"
             : row.original.owner_email,
       },
@@ -53,14 +58,29 @@ export const TranslateSharedStorageColumn =
         accessorKey: "permission",
         header: "Access",
         cell: ({ row }) =>
-          data && data?.id === row.original.owner_id
+          data?.id === row.original.owner_id
             ? "Owner"
             : row.original.permission,
       },
       {
         accessorKey: "action",
         header: "Action",
-        // cell: ({ row }) => <></>,
+        cell: ({ row }) => {
+          if (isLoading) return <></>
+          return (
+              <TranslateStorageActionColumn
+                  id={row.original.storage_id}
+                  title={row.original.title}
+                  content_language={row.original.content_language}
+                  content={row.original.content}
+                  target_language={row.original.target_language}
+                  updated_completion={row.original.updated_completion}
+                  isOwner={data?.id === row.original.owner_id}
+                  isEditor={data?.id === row.original.owner_id || row.original.permission === LanguageeAiStoragePermission.Edit}
+              />
+          )
+        }
+
       },
     ];
   };

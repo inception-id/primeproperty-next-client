@@ -13,12 +13,14 @@ type SharedTranslateStorageUsersProps = {
   searchedEmail: string;
   sharedTranslationStorage: TSharedTranslationStorage[];
   refetchList: () => Promise<QueryObserverBaseResult>;
+  isEditor: boolean
 };
 const SharedTranslateStorageUsers = ({
   isFetching,
   searchedEmail,
   sharedTranslationStorage,
   refetchList,
+    isEditor,
 }: SharedTranslateStorageUsersProps) => {
   const { loadingText } = useLanguageaiStorageSharingStore(
     useShallow((state) => ({
@@ -56,7 +58,7 @@ const SharedTranslateStorageUsers = ({
     <div className="max-h-96 overflow-y-auto flex flex-col gap-2">
       {sharedTranslationStorage.map((sharedStorage) => (
         <div
-          className="w-full justify-between flex items-center"
+          className={cn("w-full flex items-center", isEditor ? "justify-between" : "justify-start")}
           key={sharedStorage.id}
         >
           <span className="text-sm">{sharedStorage.shared_user_email}</span>
