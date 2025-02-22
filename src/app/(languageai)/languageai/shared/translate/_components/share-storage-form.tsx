@@ -95,6 +95,11 @@ const ShareTranslateStorageForm = ({
         parsedEmail.data,
         storageId,
       );
+      if (sharedTranslationStorage.status === 400) {
+        toast.error(sharedTranslationStorage.message);
+        return;
+      }
+
       updateStore(
         "loadingText",
         `Sending invitation to ${sharedTranslationStorage?.data.shared_user_email}`,
