@@ -45,7 +45,7 @@ export const TranslateSharedStorageColumn =
         accessorKey: "owner_email",
         header: "Owner",
         cell: ({ row }) =>
-          data && data?.id=== row.original.owner_id
+          data && data?.id === row.original.owner_id
             ? "Me"
             : row.original.owner_email,
       },

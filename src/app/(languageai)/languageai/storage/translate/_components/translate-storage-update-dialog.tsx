@@ -6,14 +6,17 @@ import { buttonVariants } from "@/components/ui/button";
 import { useState } from "react";
 import TranslateStorageUpdateForm from "@/app/(languageai)/languageai/storage/translate/_components/translate-storage-update-form";
 
-export type TTranslateStorageUpdateDialogProps = Omit<TTranslationStorage, "user_id" | "translation_id" |"created_at" | "updated_at"> ;
+export type TTranslateStorageUpdateDialogProps = Omit<
+  TTranslationStorage,
+  "user_id" | "translation_id" | "created_at" | "updated_at"
+>;
 const TranslateStorageUpdateDialog = ({
-                                          id,
-                                          title,
-                                          content_language,
-                                          content,
-                                          target_language,
-                                          updated_completion,
+  id,
+  title,
+  content_language,
+  content,
+  target_language,
+  updated_completion,
 }: TTranslateStorageUpdateDialogProps) => {
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   return (

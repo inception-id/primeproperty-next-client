@@ -9,18 +9,20 @@ import { Input } from "@/components/ui/input";
 import { updateTranslationStorage } from "@/lib/api/translation/update-translation-storage";
 import { toast } from "react-toastify";
 
-
-type TranslateStorageUpdateFormProps = Omit<TTranslationStorage, "user_id" | "translation_id" |"created_at" | "updated_at"> &{
+type TranslateStorageUpdateFormProps = Omit<
+  TTranslationStorage,
+  "user_id" | "translation_id" | "created_at" | "updated_at"
+> & {
   onCloseClick: () => void;
 };
 
 const TranslateStorageUpdateForm = ({
-    id,
-    title,
-    content_language,
-    content,
-    target_language,
-    updated_completion,
+  id,
+  title,
+  content_language,
+  content,
+  target_language,
+  updated_completion,
   onCloseClick,
 }: TranslateStorageUpdateFormProps) => {
   const router = useRouter();
@@ -28,10 +30,10 @@ const TranslateStorageUpdateForm = ({
     try {
       const title = formData.get("title") as string;
       const updated_completion = formData.get("updated_completion") as string;
-      const translationStorage = await updateTranslationStorage(
-        id,
-        { title, updated_completion },
-      );
+      const translationStorage = await updateTranslationStorage(id, {
+        title,
+        updated_completion,
+      });
       if (translationStorage.data.id) {
         toast.success("Translation updated");
         onCloseClick();
