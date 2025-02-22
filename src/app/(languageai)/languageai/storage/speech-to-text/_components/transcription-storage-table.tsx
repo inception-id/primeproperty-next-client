@@ -4,9 +4,9 @@ import TranscriptionStorageDataTable from "@/app/(languageai)/languageai/storage
 
 const TranscriptionStorageTable = async () => {
   const transcriptionStorage = await findSpeechToTextStorage();
-  if (!transcriptionStorage || transcriptionStorage.data.length === 0) {
-    return <TableDataNotFound text="No saved transcription " />;
-  }
+  // if (!transcriptionStorage || transcriptionStorage.data.length === 0) {
+  //   return <TableDataNotFound text="No saved transcription " />;
+  // }
   return <TranscriptionStorageDataTable data={transcriptionStorage.data} />;
 };
 

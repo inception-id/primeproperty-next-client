@@ -43,7 +43,9 @@ export function DataTable<T>({
         ))}
       </TableHeader>
       <TableBody>
-        {table.getRowModel().rows.map((row) => (
+        {
+           table.getRowModel().rows.length > 0 ?
+            table.getRowModel().rows.map((row) => (
           <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
             {row.getVisibleCells().map((cell) => (
               <TableCell key={cell.id} className={cn(tableCellClassName)}>
@@ -51,7 +53,11 @@ export function DataTable<T>({
               </TableCell>
             ))}
           </TableRow>
-        ))}
+        )) :
+               <TableRow >
+                       <TableCell className={cn(tableCellClassName)} />
+               </TableRow>
+        }
       </TableBody>
     </Table>
   );
