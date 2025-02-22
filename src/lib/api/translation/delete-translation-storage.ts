@@ -1,13 +1,13 @@
 "use server";
 import { fetchApi } from "@/lib/api/fetchApi";
 import { TApiResponse } from "@/lib/api/ApiResponse";
-import { TCheckbotStorage } from "@/lib/api/checkbot/create-checkbot-storage";
+import {TTranslationStorage} from "@/lib/api/translation/createTranslationStorage";
 
 export const deleteTranslationStorage = async (
-  checkbotId: number,
-): Promise<TApiResponse<TCheckbotStorage>> => {
+  translationStorageId: number,
+): Promise<TApiResponse<TTranslationStorage>> => {
   try {
-    return await fetchApi(`/checkbot/delete-storage/${checkbotId}`, {
+    return await fetchApi(`/translation/delete-storage/${translationStorageId}`, {
       method: "DELETE",
     });
   } catch (e: any) {

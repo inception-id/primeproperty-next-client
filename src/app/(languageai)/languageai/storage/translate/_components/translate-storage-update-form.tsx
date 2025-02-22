@@ -2,7 +2,6 @@ import { DialogClose, DialogTitle } from "@/components/ui/dialog";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { LuSave, LuX } from "react-icons/lu";
 import { Textarea } from "@/components/ui/textarea";
-import { Row } from "@tanstack/table-core";
 import { TTranslationStorage } from "@/lib/api/translation/createTranslationStorage";
 import { useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
@@ -10,14 +9,19 @@ import { Input } from "@/components/ui/input";
 import { updateTranslationStorage } from "@/lib/api/translation/update-translation-storage";
 import { toast } from "react-toastify";
 
-type TranslateStorageUpdateFormProps = {
-  row: Row<TTranslationStorage>;
+
+type TranslateStorageUpdateFormProps = Omit<TTranslationStorage, "user_id" | "translation_id" |"created_at" | "updated_at"> &{
   onCloseClick: () => void;
 };
 
 const TranslateStorageUpdateForm = ({
+    id,
+    title,
+    content_language,
+    content,
+    target_language,
+    updated_completion,
   onCloseClick,
-  row,
 }: TranslateStorageUpdateFormProps) => {
   const router = useRouter();
   const handleAction = async (formData: FormData) => {
@@ -25,7 +29,7 @@ const TranslateStorageUpdateForm = ({
       const title = formData.get("title") as string;
       const updated_completion = formData.get("updated_completion") as string;
       const translationStorage = await updateTranslationStorage(
-        row.original.id,
+        id,
         { title, updated_completion },
       );
       if (translationStorage.data.id) {
@@ -55,24 +59,24 @@ const TranslateStorageUpdateForm = ({
       <Input
         id="title"
         name="title"
-        defaultValue={row.original.title || ""}
+        defaultValue={title || ""}
         placeholder="No title"
         className="mb-4"
       />
       <div className="text-sm mb-2 capitalize opacity-75">
-        {row.original.content_language || "Original text"}
+        {content_language || "Original text"}
       </div>
       <div className="text-sm mb-4 h-48 overflow-y-auto whitespace-pre-line">
-        {row.original.content}
+        {content}
       </div>
       <div className="text-sm mb-2 capitalize opacity-75">
-        {row.original.target_language}
+        {target_language}
       </div>
       <Textarea
         autoFocus
         name="updated_completion"
         className="h-48 resize-none mb-4"
-        defaultValue={row.original.updated_completion}
+        defaultValue={updated_completion}
       />
       <div className="flex items-center justify-end">
         <Button type="submit">

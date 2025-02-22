@@ -10,7 +10,7 @@ import { decode, JwtPayload } from "jsonwebtoken";
 
 export const TranslateSharedStorageColumn =
   (): ColumnDef<TTranslationSharedStorage>[] => {
-    const { data, isLoading } = useQuery({
+    const { data } = useQuery({
       queryKey: ["translateSharedStorageToken"],
       queryFn: async () => {
         const token = (await fetchCookieToken()) as string;
@@ -45,7 +45,7 @@ export const TranslateSharedStorageColumn =
         accessorKey: "owner_email",
         header: "Owner",
         cell: ({ row }) =>
-          data && data?.email === row.original.owner_email
+          data && data?.id=== row.original.owner_id
             ? "Me"
             : row.original.owner_email,
       },
@@ -53,7 +53,7 @@ export const TranslateSharedStorageColumn =
         accessorKey: "permission",
         header: "Access",
         cell: ({ row }) =>
-          data && data?.email === row.original.owner_email
+          data && data?.id === row.original.owner_id
             ? "Owner"
             : row.original.permission,
       },
