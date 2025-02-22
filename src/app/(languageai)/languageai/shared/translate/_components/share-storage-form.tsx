@@ -21,11 +21,14 @@ import { decode, JwtPayload } from "jsonwebtoken";
 import { useShallow } from "zustand/react/shallow";
 
 type ShareTranslateStorageFormProps = {
-  storageId: number,
-  storageTitle: string | null
+  storageId: number;
+  storageTitle: string | null;
 };
 
-const ShareTranslateStorageForm = ({ storageId, storageTitle}: ShareTranslateStorageFormProps) => {
+const ShareTranslateStorageForm = ({
+  storageId,
+  storageTitle,
+}: ShareTranslateStorageFormProps) => {
   const { loadingText, updateStore } = useLanguageaiStorageSharingStore(
     useShallow((state) => ({
       loadingText: state.loadingText,
@@ -41,7 +44,8 @@ const ShareTranslateStorageForm = ({ storageId, storageTitle}: ShareTranslateSto
     gcTime: 0,
     queryKey: ["shareTranslateStorageUsers", storageId],
     queryFn: async () => {
-      const sharedUsersApiResponse = await findTranslationStorageSharedUsers(storageId);
+      const sharedUsersApiResponse =
+        await findTranslationStorageSharedUsers(storageId);
       setSharedTranslationStorage(sharedUsersApiResponse.data);
       return sharedUsersApiResponse.data;
     },
@@ -87,7 +91,7 @@ const ShareTranslateStorageForm = ({ storageId, storageTitle}: ShareTranslateSto
       updateStore("loadingText", "Creating shared storage...");
       const sharedTranslationStorage = await createSharedTranslationStorage(
         parsedEmail.data,
-         storageId
+        storageId,
       );
       updateStore(
         "loadingText",

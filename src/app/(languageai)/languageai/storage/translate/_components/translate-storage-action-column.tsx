@@ -17,7 +17,10 @@ const TranslateStorageActionColumn = ({
       <TranslateStorageUpdateDialog row={row} />
       <TranslateStorageDeleteDialog translationId={row.original.id} />
       <ShareStorageDialog>
-        <ShareTranslateStorageForm storageId={row.original.id} storageTitle={row.original.title} />
+        <ShareTranslateStorageForm
+          storageId={row.original.id}
+          storageTitle={row.original.title}
+        />
       </ShareStorageDialog>
     </div>
   );
