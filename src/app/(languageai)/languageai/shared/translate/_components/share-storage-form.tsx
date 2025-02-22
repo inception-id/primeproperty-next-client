@@ -20,7 +20,7 @@ import { useLanguageaiStorageSharingStore } from "@/app/(languageai)/_lib/use-la
 import { cn } from "@/lib/utils";
 import { fetchCookieToken } from "@/lib/fetchCookieToken";
 import { decode, JwtPayload } from "jsonwebtoken";
-import {useShallow} from "zustand/react/shallow";
+import { useShallow } from "zustand/react/shallow";
 
 type ShareTranslateStorageFormProps = {
   row: Row<TTranslationStorage>;
@@ -28,15 +28,15 @@ type ShareTranslateStorageFormProps = {
 
 const ShareTranslateStorageForm = ({ row }: ShareTranslateStorageFormProps) => {
   const { loadingText, updateStore } = useLanguageaiStorageSharingStore(
-      useShallow((state)=> ({
-        loadingText: state.loadingText,
-        updateStore: state.updateStore,
-      }))
+    useShallow((state) => ({
+      loadingText: state.loadingText,
+      updateStore: state.updateStore,
+    })),
   );
   const [searchedEmail, setSearchedEmail] = useState("");
-  const [sharedTranslationStorage, setSharedTranslationStorage] = useState<TSharedTranslationStorage[]>(
-    [],
-  );
+  const [sharedTranslationStorage, setSharedTranslationStorage] = useState<
+    TSharedTranslationStorage[]
+  >([]);
 
   const { isFetching, data, refetch } = useQuery({
     queryKey: ["shareTranslateStorageUsers", row.original.id],
@@ -86,26 +86,29 @@ const ShareTranslateStorageForm = ({ row }: ShareTranslateStorageFormProps) => {
         return;
       }
 
-    updateStore("loadingText", "Creating shared storage...");
+      updateStore("loadingText", "Creating shared storage...");
       const sharedTranslationStorage = await createSharedTranslationStorage(
         parsedEmail.data,
         row.original.id,
       );
-        updateStore("loadingText", `Sending invitation to ${sharedTranslationStorage?.data.shared_user_email}`);
-        const sendEmail = await sendShareStorageEmail(
-            String(row.original.title),
-            `/languageai/shared/translate`,
-            sharedTranslationStorage.data.shared_user_email,
-        );
-          toast.success(`Invitation sent to ${sendEmail.accepted[0]}`);
-          await refetch();
-          return;
+      updateStore(
+        "loadingText",
+        `Sending invitation to ${sharedTranslationStorage?.data.shared_user_email}`,
+      );
+      const sendEmail = await sendShareStorageEmail(
+        String(row.original.title),
+        `/languageai/shared/translate`,
+        sharedTranslationStorage.data.shared_user_email,
+      );
+      toast.success(`Invitation sent to ${sendEmail.accepted[0]}`);
+      await refetch();
+      return;
     } catch (e: any) {
       console.error(e.message);
       toast.error("Fail to share, please try again");
     } finally {
       setSearchedEmail("");
-      updateStore("loadingText", "")
+      updateStore("loadingText", "");
     }
   };
 
@@ -115,7 +118,10 @@ const ShareTranslateStorageForm = ({ row }: ShareTranslateStorageFormProps) => {
         placeholder="Search or add email"
         name="email"
         type="email"
-        className={cn("mb-4", loadingText !== "" && "animate-bounce bg-secondary")}
+        className={cn(
+          "mb-4",
+          loadingText !== "" && "animate-bounce bg-secondary",
+        )}
         value={loadingText || searchedEmail}
         onChange={onSearch}
         disabled={loadingText !== ""}
