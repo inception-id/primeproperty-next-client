@@ -39,6 +39,7 @@ const ShareTranslateStorageForm = ({ row }: ShareTranslateStorageFormProps) => {
   >([]);
 
   const { isFetching, data, refetch } = useQuery({
+    gcTime: 0,
     queryKey: ["shareTranslateStorageUsers", row.original.id],
     queryFn: async () => {
       const sharedUsersApiResponse = await findTranslationStorageSharedUsers(

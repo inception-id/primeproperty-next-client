@@ -6,6 +6,8 @@ import { useLanguageaiStorageSharingStore } from "@/app/(languageai)/_lib/use-la
 import { useShallow } from "zustand/react/shallow";
 import { QueryObserverBaseResult } from "@tanstack/react-query";
 import RemoveTranslateSharedStorageBtn from "@/app/(languageai)/languageai/shared/translate/_components/remove-shared-storage-btn";
+import TranslateSharedStoragePermissionSwitch
+  from "@/app/(languageai)/languageai/shared/translate/_components/shared-storage-permission-switch";
 
 type SharedTranslateStorageUsersProps = {
   isFetching: boolean;
@@ -52,17 +54,20 @@ const SharedTranslateStorageUsers = ({
   }
 
   return (
-    <div className="max-h-96 overflow-y-auto flex flex-col gap-1">
+    <div className="max-h-96 overflow-y-auto flex flex-col gap-2">
       {sharedTranslationStorage.map((sharedStorage) => (
         <div
           className="w-full justify-between flex items-center"
           key={sharedStorage.id}
         >
-          <span>
-            {sharedStorage.shared_user_email} ({sharedStorage.permission})
+          <span className="text-sm">
+            {sharedStorage.shared_user_email}
           </span>
 
-          <span>
+          <span className="flex items-center gap-2">
+            <TranslateSharedStoragePermissionSwitch
+               sharedStorageId={sharedStorage.id}
+                defaultPermission={sharedStorage.permission} />
             <RemoveTranslateSharedStorageBtn
               sharedStorageId={sharedStorage.id}
               refetchList={refetchList}
