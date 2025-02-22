@@ -2,29 +2,29 @@ import { Button } from "@/components/ui/button";
 import { copyToClipboard } from "@/lib/copyToClipboard";
 import { LuCopy } from "react-icons/lu";
 
-type TranslateContentColumnProps = {
+type TranslateCompletionColumnProps = {
   row: {
-    created_at: string;
-    content_language: string;
-    content: string;
+    completion?: string;
+    updated_completion?: string;
+    target_language: string;
   };
 };
 
-const TranslateContentColumn = ({ row }: TranslateContentColumnProps) => {
+const TranslateCompletionColumn = ({ row }: TranslateCompletionColumnProps) => {
   return (
     <div className="flex gap-2 justify-between">
       <div className="flex flex-col gap-2">
         <div className="text-xs capitalize">
-          {row.content_language || "Auto detect language:"}
+          {row.target_language}:
         </div>
-        <div className="whitespace-pre-line">{row.content}</div>
+        <div className="whitespace-pre-line">{row.completion || row.updated_completion}</div>
       </div>
       <Button
         type="button"
         size="icon"
         variant="secondary"
         className="min-w-10"
-        onClick={async () => await copyToClipboard(row.content)}
+        onClick={async () => await copyToClipboard(String(row?.completion) || String(row?.updated_completion))}
       >
         <LuCopy />
       </Button>
@@ -32,4 +32,4 @@ const TranslateContentColumn = ({ row }: TranslateContentColumnProps) => {
   );
 };
 
-export default TranslateContentColumn;
+export default TranslateCompletionColumn;

@@ -62,7 +62,7 @@ const TranslateStorageUpdateForm = ({
       <div className="text-sm mb-2 capitalize opacity-75">
         {row.original.content_language || "Original text"}
       </div>
-      <div className="text-sm mb-4 max-h-[25vh] lg:max-h-[30vh]">
+      <div className="text-sm mb-4 h-48 overflow-y-auto whitespace-pre-line">
         {row.original.content}
       </div>
       <div className="text-sm mb-2 capitalize opacity-75">
@@ -71,7 +71,7 @@ const TranslateStorageUpdateForm = ({
       <Textarea
         autoFocus
         name="updated_completion"
-        className="max-h-[25vh] lg:max-h-[30vh] resize-none mb-4"
+        className="h-48 resize-none mb-4"
         defaultValue={row.original.updated_completion}
       />
       <div className="flex items-center justify-end">

@@ -1,8 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { copyToClipboard } from "@/lib/copyToClipboard";
-import { LuCopy } from "react-icons/lu";
-import { formatDateToIndonesian } from "@/lib/utils";
-
 type TranslateTitleColumnProps = {
   row: {
     title: string | null;
@@ -12,10 +7,7 @@ type TranslateTitleColumnProps = {
 
 const TranslateTitleColumn = ({ row }: TranslateTitleColumnProps) => {
   return (
-    <div className="flex flex-col gap-2 w-28">
-      <div className="text-xs capitalize">
-        {formatDateToIndonesian(row.created_at, true)}
-      </div>
+    <div>
       {row.title ? (
         <div className="whitespace-pre-line">{row.title}</div>
       ) : (

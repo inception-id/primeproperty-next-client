@@ -75,4 +75,20 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  /* width */
+  ::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background:  hsl(var(--background));
+    border-radius: 1rem;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 1rem;
+  }
 }
