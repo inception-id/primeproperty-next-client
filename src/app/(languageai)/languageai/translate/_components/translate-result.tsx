@@ -14,6 +14,8 @@ import { useContext } from "react";
 import { UseCompletionHelpers } from "@ai-sdk/react";
 import { TranslateContext } from "@/app/(languageai)/languageai/translate/_components/translate-provider";
 import LanguageAiSaveToStorageDialog from "@/app/(languageai)/_components/dialogs/save-to-storage";
+import CreateTranslateStorageAndShareDialog from "./create-storage-and-share/create-translate-storage-and-share-dialog";
+import { Tooltip } from "react-tooltip";
 
 const TranslateResult = () => {
   const { isLoading } = useContext<UseCompletionHelpers>(TranslateContext);
@@ -64,6 +66,9 @@ const TranslateResult = () => {
         )}
         <div className="flex flex-col gap-1">
           <Button
+            data-tooltip-id="copy-tooltip"
+            data-tooltip-content="Copy"
+            data-tooltip-place="left"
             type="button"
             size="icon"
             variant="ghost"
@@ -73,12 +78,19 @@ const TranslateResult = () => {
                 : await copyToClipboard(updatedCompletion)
             }
           >
+            <Tooltip id="copy-tooltip" />
             <LuCopy />
           </Button>
           {!isLoading && translationId !== 0 && (
             <LanguageAiSaveToStorageDialog
               label="Enter translation title"
               onSaveClick={onSaveClick}
+            />
+          )}
+          {!isLoading && translationId !== 0 && (
+            <CreateTranslateStorageAndShareDialog
+              translationId={translationId}
+              updatedCompletion={updatedCompletion}
             />
           )}
         </div>
