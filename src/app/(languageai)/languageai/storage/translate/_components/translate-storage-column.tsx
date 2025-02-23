@@ -1,29 +1,48 @@
 import { ColumnDef } from "@tanstack/table-core";
 import { TTranslationStorage } from "@/lib/api/translation/createTranslationStorage";
-import TranslateStorageOriginalTextColumn from "@/app/(languageai)/languageai/storage/translate/_components/translate-storage-original-text-column";
-import TranslateStorageTranslationColumn from "@/app/(languageai)/languageai/storage/translate/_components/translate-storage-translation-column";
 import TranslateStorageActionColumn from "@/app/(languageai)/languageai/storage/translate/_components/translate-storage-action-column";
+import TranslateContentColumn from "@/app/(languageai)/languageai/translate/_components/columns/translate-content-column";
+import TranslateCompletionColumn from "@/app/(languageai)/languageai/translate/_components/columns/translate-completion-column";
+import LanguageAiTableTitleColumn from "@/app/(languageai)/_components/table-columns/language-ai-table-title-column";
+import LanguageAiTableDateColumn from "@/app/(languageai)/_components/table-columns/language-ai-table-date-column";
 
 export const TranslateStorageColumn: ColumnDef<TTranslationStorage>[] = [
   {
     accessorKey: "title",
     header: "Title",
-    cell: ({ row }) =>
-      row.original.title || <span className="opacity-50">No title</span>,
+    cell: ({ row }) => <LanguageAiTableTitleColumn row={row.original} />,
   },
   {
     accessorKey: "content",
     header: "Original Text",
-    cell: ({ row }) => <TranslateStorageOriginalTextColumn row={row} />,
+    cell: ({ row }) => <TranslateContentColumn row={row.original} />,
   },
   {
     accessorKey: "updated_completion",
     header: "Translation",
-    cell: ({ row }) => <TranslateStorageTranslationColumn row={row} />,
+    cell: ({ row }) => <TranslateCompletionColumn row={row.original} />,
   },
   {
-    accessorKey: "id",
+    accessorKey: "created_at",
+    header: "Timestamp",
+    cell: ({ row }) => (
+      <LanguageAiTableDateColumn showUpdatedAt={true} row={row.original} />
+    ),
+  },
+  {
+    accessorKey: "action",
     header: "Action",
-    cell: ({ row }) => <TranslateStorageActionColumn row={row} />,
+    cell: ({ row }) => (
+      <TranslateStorageActionColumn
+        id={row.original.id}
+        title={row.original.title}
+        content_language={row.original.content_language}
+        content={row.original.content}
+        target_language={row.original.target_language}
+        updated_completion={row.original.updated_completion}
+        isOwner={true}
+        isEditor={true}
+      />
+    ),
   },
 ];

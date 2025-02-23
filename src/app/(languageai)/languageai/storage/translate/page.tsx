@@ -4,8 +4,12 @@ import { LuChevronLeft } from "react-icons/lu";
 import { Suspense } from "react";
 import LanguageaiTableFallback from "@/app/(languageai)/_components/table-fallback";
 import TranslateStorageTable from "@/app/(languageai)/languageai/storage/translate/_components/translate-storage-table";
+import { fetchCookieToken } from "@/lib/fetchCookieToken";
+import LanguageaiLoginCard from "@/app/(languageai)/_components/languageai-login-card";
 
-const TranslateStorage = () => {
+const TranslateStorage = async () => {
+  const accessToken = await fetchCookieToken();
+
   return (
     <section className="w-full h-screen overflow-hidden p-4">
       <div className="flex justify-between mb-4">
@@ -22,9 +26,13 @@ const TranslateStorage = () => {
         </Link>
       </div>
 
-      <Suspense fallback={<LanguageaiTableFallback />}>
-        <TranslateStorageTable />
-      </Suspense>
+      {accessToken ? (
+        <Suspense fallback={<LanguageaiTableFallback />}>
+          <TranslateStorageTable />
+        </Suspense>
+      ) : (
+        <LanguageaiLoginCard />
+      )}
     </section>
   );
 };

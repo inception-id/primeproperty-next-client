@@ -1,6 +1,5 @@
 import { TApiResponse } from "@/lib/api/ApiResponse";
 import { fetchApi } from "@/lib/api/fetchApi";
-import { ELanguageAiStorageVisibility } from "@/lib/enums/languageai-storage-visibility";
 
 export type TTextToSpeechStorage = {
   id: number;
@@ -12,7 +11,6 @@ export type TTextToSpeechStorage = {
   audio_url: string;
   voice: string;
   title: string | null;
-  visibility: ELanguageAiStorageVisibility;
 };
 
 export const createTextToSpeechStorage = async (

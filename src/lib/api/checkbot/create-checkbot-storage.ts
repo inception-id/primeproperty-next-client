@@ -1,7 +1,6 @@
 "use server";
 import { fetchApi } from "@/lib/api/fetchApi";
 import { TApiResponse } from "@/lib/api/ApiResponse";
-import { ELanguageAiStorageVisibility } from "@/lib/enums/languageai-storage-visibility";
 
 export type TCheckbotStorage = {
   id: number;
@@ -13,7 +12,6 @@ export type TCheckbotStorage = {
   content: string;
   updated_completion: string;
   title: string | null;
-  visibility: ELanguageAiStorageVisibility;
 };
 
 export const createCheckbotStorage = async (

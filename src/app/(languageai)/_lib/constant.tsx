@@ -10,7 +10,7 @@ import {
   LuUser,
 } from "react-icons/lu";
 import { CgTranscript } from "react-icons/cg";
-import { TbPigMoney } from "react-icons/tb";
+import { TbPigMoney, TbUserShare } from "react-icons/tb";
 import Image from "next/image";
 
 export const LANGUAGEAI_MENUS = [
@@ -40,15 +40,21 @@ export const LANGUAGEAI_MENUS = [
     icon: <CgTranscript />,
   },
   {
+    title: "History",
+    href: "/languageai/history",
+    icon: <LuClock />,
+    refresh: true,
+  },
+  {
     title: "Storage",
     href: "/languageai/storage",
     icon: <LuDatabase />,
     refresh: true,
   },
   {
-    title: "History",
-    href: "/languageai/history",
-    icon: <LuClock />,
+    title: "Shared",
+    href: "/languageai/shared",
+    icon: <TbUserShare />,
     refresh: true,
   },
   {

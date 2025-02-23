@@ -3,8 +3,6 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { LuAudioLines, LuLanguages, LuSquareTerminal } from "react-icons/lu";
 import { CgTranscript } from "react-icons/cg";
-import { fetchCookieToken } from "@/lib/fetchCookieToken";
-import LanguageaiLoginCard from "@/app/(languageai)/_components/languageai-login-card";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -15,13 +13,7 @@ export const metadata: Metadata = {
     "storage, audio storage, translation, transcription, text to speech",
 };
 
-const LanguageaiStorage = async () => {
-  const accessToken = await fetchCookieToken();
-
-  if (!accessToken) {
-    return <LanguageaiLoginCard />;
-  }
-
+const LanguageaiStorage = () => {
   return (
     <section className="w-full h-screen overflow-hidden p-4 flex flex-col items-center justify-center lg:max-w-lg mx-auto">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-4 text-center">

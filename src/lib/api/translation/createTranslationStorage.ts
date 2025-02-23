@@ -1,6 +1,5 @@
 import { TApiResponse } from "@/lib/api/ApiResponse";
 import { fetchApi } from "@/lib/api/fetchApi";
-import { ELanguageAiStorageVisibility } from "@/lib/enums/languageai-storage-visibility";
 
 export type TTranslationStorage = {
   id: number;
@@ -13,7 +12,6 @@ export type TTranslationStorage = {
   content: string;
   updated_completion: string;
   title: string | null;
-  visibility: ELanguageAiStorageVisibility;
 };
 
 export const createTranslationStorage = async (

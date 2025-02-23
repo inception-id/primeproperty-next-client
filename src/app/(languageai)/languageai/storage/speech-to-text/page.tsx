@@ -4,8 +4,11 @@ import { LuChevronLeft } from "react-icons/lu";
 import { Suspense } from "react";
 import LanguageaiHistoryFallback from "@/app/(languageai)/languageai/history/_components/history-fallback";
 import TranscriptionStorageTable from "@/app/(languageai)/languageai/storage/speech-to-text/_components/transcription-storage-table";
+import LanguageaiLoginCard from "@/app/(languageai)/_components/languageai-login-card";
+import { fetchCookieToken } from "@/lib/fetchCookieToken";
 
-const SpeechToTextStorage = () => {
+const SpeechToTextStorage = async () => {
+  const accessToken = await fetchCookieToken();
   return (
     <section className="w-full h-screen overflow-hidden p-4">
       <div className="flex justify-between mb-4">
@@ -23,9 +26,13 @@ const SpeechToTextStorage = () => {
           Back
         </Link>
       </div>
-      <Suspense fallback={<LanguageaiHistoryFallback />}>
-        <TranscriptionStorageTable />
-      </Suspense>
+      {accessToken ? (
+        <Suspense fallback={<LanguageaiHistoryFallback />}>
+          <TranscriptionStorageTable />
+        </Suspense>
+      ) : (
+        <LanguageaiLoginCard />
+      )}
     </section>
   );
 };

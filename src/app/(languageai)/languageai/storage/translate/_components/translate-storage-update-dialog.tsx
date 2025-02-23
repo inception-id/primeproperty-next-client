@@ -1,17 +1,22 @@
 "use client";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { LuPen } from "react-icons/lu";
-import { Row } from "@tanstack/table-core";
 import { TTranslationStorage } from "@/lib/api/translation/createTranslationStorage";
 import { buttonVariants } from "@/components/ui/button";
 import { useState } from "react";
 import TranslateStorageUpdateForm from "@/app/(languageai)/languageai/storage/translate/_components/translate-storage-update-form";
 
-type TTranslateStorageUpdateDialogProps = {
-  row: Row<TTranslationStorage>;
-};
+export type TTranslateStorageUpdateDialogProps = Omit<
+  TTranslationStorage,
+  "user_id" | "translation_id" | "created_at" | "updated_at"
+>;
 const TranslateStorageUpdateDialog = ({
-  row,
+  id,
+  title,
+  content_language,
+  content,
+  target_language,
+  updated_completion,
 }: TTranslateStorageUpdateDialogProps) => {
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   return (
@@ -27,8 +32,13 @@ const TranslateStorageUpdateDialog = ({
         onEscapeKeyDown={() => setOpenDialog(false)}
       >
         <TranslateStorageUpdateForm
+          id={id}
+          title={title}
+          content_language={content_language}
+          content={content}
+          target_language={target_language}
+          updated_completion={updated_completion}
           onCloseClick={() => setOpenDialog(false)}
-          row={row}
         />
       </DialogContent>
     </Dialog>
