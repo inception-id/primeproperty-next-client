@@ -11,6 +11,8 @@ import { useLanguageaiStorageSharingStore } from "@/app/(languageai)/_lib/use-la
 import { LuLoader } from "react-icons/lu";
 import { createSharedTranslationStorage } from "@/lib/api/translation/create-shared-translation-storage";
 import { sendShareStorageEmail } from "@/lib/mail/send-share-storage-email";
+import {ELanguageaSubscriptionLimit} from "@/lib/enums/languageai-subscription-limit";
+import {useLanguageaiSubscriptionStore} from "@/app/(languageai)/_lib/use-languageai-subscription-store";
 
 type CreateTranslateStorageAndShareFormProps = {
   translationId: number;
@@ -21,6 +23,12 @@ const CreateTranslateStorageAndShareForm = ({
   translationId,
   updatedCompletion,
 }: CreateTranslateStorageAndShareFormProps) => {
+  const { updateSubscriptionStore } = useLanguageaiSubscriptionStore(
+      useShallow((state) => ({
+        updateSubscriptionStore: state.updateStore,
+      })),
+  );
+
   const { loadingText, updateStore } = useLanguageaiStorageSharingStore(
     useShallow((state) => ({
       loadingText: state.loadingText,
@@ -59,6 +67,13 @@ const CreateTranslateStorageAndShareForm = ({
         title,
         updated_completion: updatedCompletion,
       });
+      if (translationStorage.status === 402) {
+        updateSubscriptionStore(
+            "limitDialog",
+            ELanguageaSubscriptionLimit.Storage,
+        );
+        return;
+      }
       updateStore("loadingText", "Creating shared storage...");
       const sharedTranslationStorage = await createSharedTranslationStorage(
         parsedEmail.data,
