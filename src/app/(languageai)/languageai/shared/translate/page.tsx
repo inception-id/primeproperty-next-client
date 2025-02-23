@@ -3,12 +3,9 @@ import { buttonVariants } from "@/components/ui/button";
 import { LuChevronLeft } from "react-icons/lu";
 import { fetchCookieToken } from "@/lib/fetchCookieToken";
 import { Suspense } from "react";
-import LanguageaiHistoryFallback from "@/app/(languageai)/languageai/history/_components/history-fallback";
-import TranslateHistoryTable from "@/app/(languageai)/languageai/history/translate/_components/translate-history-table";
 import LanguageaiLoginCard from "@/app/(languageai)/_components/languageai-login-card";
 import LanguageaiTableFallback from "@/app/(languageai)/_components/table-fallback";
 import TranslateSharedStorageTable from "@/app/(languageai)/languageai/shared/translate/_components/shared-storage-table";
-import TranslateSharedStorageDataTable from "@/app/(languageai)/languageai/shared/translate/_components/shared-storage-data-table";
 
 const LanguageaiSharedTranslatePage = async () => {
   const accessToken = await fetchCookieToken();

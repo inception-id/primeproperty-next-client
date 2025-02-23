@@ -75,6 +75,7 @@ export const TranslateSharedStorageColumn =
                 data?.id === row.original.owner_id ||
                 row.original.permission === LanguageeAiStoragePermission.Edit
               }
+              sharedTranslationStorageId={row.original.shared_storage_id}
             />
           );
         },
