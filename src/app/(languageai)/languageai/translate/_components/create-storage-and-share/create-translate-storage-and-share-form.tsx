@@ -11,8 +11,8 @@ import { useLanguageaiStorageSharingStore } from "@/app/(languageai)/_lib/use-la
 import { LuLoader } from "react-icons/lu";
 import { createSharedTranslationStorage } from "@/lib/api/translation/create-shared-translation-storage";
 import { sendShareStorageEmail } from "@/lib/mail/send-share-storage-email";
-import {ELanguageaSubscriptionLimit} from "@/lib/enums/languageai-subscription-limit";
-import {useLanguageaiSubscriptionStore} from "@/app/(languageai)/_lib/use-languageai-subscription-store";
+import { ELanguageaSubscriptionLimit } from "@/lib/enums/languageai-subscription-limit";
+import { useLanguageaiSubscriptionStore } from "@/app/(languageai)/_lib/use-languageai-subscription-store";
 
 type CreateTranslateStorageAndShareFormProps = {
   translationId: number;
@@ -24,9 +24,9 @@ const CreateTranslateStorageAndShareForm = ({
   updatedCompletion,
 }: CreateTranslateStorageAndShareFormProps) => {
   const { updateSubscriptionStore } = useLanguageaiSubscriptionStore(
-      useShallow((state) => ({
-        updateSubscriptionStore: state.updateStore,
-      })),
+    useShallow((state) => ({
+      updateSubscriptionStore: state.updateStore,
+    })),
   );
 
   const { loadingText, updateStore } = useLanguageaiStorageSharingStore(
@@ -69,8 +69,8 @@ const CreateTranslateStorageAndShareForm = ({
       });
       if (translationStorage.status === 402) {
         updateSubscriptionStore(
-            "limitDialog",
-            ELanguageaSubscriptionLimit.Storage,
+          "limitDialog",
+          ELanguageaSubscriptionLimit.Storage,
         );
         return;
       }
