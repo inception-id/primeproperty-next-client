@@ -24,6 +24,9 @@ const LanguageaiSidebar = () => {
     if (pathname.includes("storage") && href.includes("storage")) {
       return "default";
     }
+      if (pathname.includes("shared") && href.includes("shared")) {
+          return "default";
+      }
     if (pathname === href) {
       return "default";
     }
