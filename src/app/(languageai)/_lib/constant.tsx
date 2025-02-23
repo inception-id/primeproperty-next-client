@@ -10,7 +10,7 @@ import {
   LuUser,
 } from "react-icons/lu";
 import { CgTranscript } from "react-icons/cg";
-import {TbPigMoney, TbUserShare} from "react-icons/tb";
+import { TbPigMoney, TbUserShare } from "react-icons/tb";
 import Image from "next/image";
 
 export const LANGUAGEAI_MENUS = [
