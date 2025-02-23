@@ -8,9 +8,9 @@ import { useShallow } from "zustand/react/shallow";
 import { fetchCookieToken } from "@/lib/fetchCookieToken";
 import { decode, JwtPayload } from "jsonwebtoken";
 import { useLanguageaiStorageSharingStore } from "@/app/(languageai)/_lib/use-languageai-storage-sharing-store";
-import {LuLoader} from "react-icons/lu";
-import {createSharedTranslationStorage} from "@/lib/api/translation/create-shared-translation-storage";
-import {sendShareStorageEmail} from "@/lib/mail/send-share-storage-email";
+import { LuLoader } from "react-icons/lu";
+import { createSharedTranslationStorage } from "@/lib/api/translation/create-shared-translation-storage";
+import { sendShareStorageEmail } from "@/lib/mail/send-share-storage-email";
 
 type CreateTranslateStorageAndShareFormProps = {
   translationId: number;
@@ -61,21 +61,21 @@ const CreateTranslateStorageAndShareForm = ({
       });
       updateStore("loadingText", "Creating shared storage...");
       const sharedTranslationStorage = await createSharedTranslationStorage(
-          parsedEmail.data,
-          translationStorage.data.id,
+        parsedEmail.data,
+        translationStorage.data.id,
       );
       if (sharedTranslationStorage.status === 400) {
         toast.error(sharedTranslationStorage.message);
         return;
       }
       updateStore(
-          "loadingText",
-          `Sending invitation to ${sharedTranslationStorage?.data.shared_user_email}`,
+        "loadingText",
+        `Sending invitation to ${sharedTranslationStorage?.data.shared_user_email}`,
       );
       const sendEmail = await sendShareStorageEmail(
-          title,
-          `/languageai/shared/translate`,
-          sharedTranslationStorage.data.shared_user_email,
+        title,
+        `/languageai/shared/translate`,
+        sharedTranslationStorage.data.shared_user_email,
       );
       toast.success(`Invitation sent to ${sendEmail.accepted[0]}`);
       return;
@@ -105,11 +105,14 @@ const CreateTranslateStorageAndShareForm = ({
       />
       <div className="flex justify-end">
         <Button disabled={loadingText !== ""}>
-          {loadingText === "" ? "Save and share" :
-              <div className="flex items-center gap-2">
-                <LuLoader className="animate-spin" />
-                {loadingText}
-              </div>}
+          {loadingText === "" ? (
+            "Save and share"
+          ) : (
+            <div className="flex items-center gap-2">
+              <LuLoader className="animate-spin" />
+              {loadingText}
+            </div>
+          )}
         </Button>
       </div>
     </form>

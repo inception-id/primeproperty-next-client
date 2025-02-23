@@ -26,6 +26,7 @@ const CreateTranslateStorageAndShareDialog = ({
       <DialogTrigger
         data-tooltip-id="share-tooltip"
         data-tooltip-content="Share"
+        data-tooltip-place="left"
         className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
       >
         <>
