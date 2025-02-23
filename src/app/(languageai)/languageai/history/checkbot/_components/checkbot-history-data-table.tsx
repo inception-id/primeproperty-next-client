@@ -21,12 +21,12 @@ const CheckbotHistoryDataTable = ({ data }: TCheckbotHistoryDataTableProps) => {
     getPaginationRowModel: getPaginationRowModel(),
   });
   return (
-  <>
-    <div className="max-h-[75vh] md:max-h-[80vh] border rounded-lg overflow-y-auto">
-      <DataTable table={table} tableCellClassName="align-top" />
-    </div>
-    <DataTablePagination table={table} />
-  </>
+    <>
+      <div className="max-h-[75vh] md:max-h-[80vh] border rounded-lg overflow-y-auto">
+        <DataTable table={table} tableCellClassName="align-top" />
+      </div>
+      <DataTablePagination table={table} />
+    </>
   );
 };
 

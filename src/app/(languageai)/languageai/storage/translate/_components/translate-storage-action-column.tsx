@@ -4,8 +4,7 @@ import TranslateStorageUpdateDialog, {
 } from "@/app/(languageai)/languageai/storage/translate/_components/translate-storage-update-dialog";
 import ShareStorageDialog from "@/app/(languageai)/languageai/shared/_components/share-storage-dialog";
 import ShareTranslateStorageForm from "@/app/(languageai)/languageai/shared/translate/_components/share-storage-form";
-import RemoveSharedTranslateStorageAccessDialog
-  from "@/app/(languageai)/languageai/shared/translate/_components/remove-shared-translate-access-dialog";
+import RemoveSharedTranslateStorageAccessDialog from "@/app/(languageai)/languageai/shared/translate/_components/remove-shared-translate-access-dialog";
 
 type TranslateStorageActionColumnProps = TTranslateStorageUpdateDialogProps & {
   isOwner: boolean;
@@ -22,7 +21,7 @@ const TranslateStorageActionColumn = ({
   updated_completion,
   isOwner,
   isEditor,
-    sharedTranslationStorageId
+  sharedTranslationStorageId,
 }: TranslateStorageActionColumnProps) => {
   return (
     <div className="flex flex-col gap-1">
@@ -37,9 +36,14 @@ const TranslateStorageActionColumn = ({
         />
       )}
       {/* TODO: Add editor to remove their own access to this translation */}
-      {isOwner ? <TranslateStorageDeleteDialog translationId={id} />:
-     <RemoveSharedTranslateStorageAccessDialog sharedTranslationStorageTitle={title} sharedTranslationStorageId={Number(sharedTranslationStorageId)}  />
-      }
+      {isOwner ? (
+        <TranslateStorageDeleteDialog translationId={id} />
+      ) : (
+        <RemoveSharedTranslateStorageAccessDialog
+          sharedTranslationStorageTitle={title}
+          sharedTranslationStorageId={Number(sharedTranslationStorageId)}
+        />
+      )}
       <ShareStorageDialog>
         <ShareTranslateStorageForm
           isEditor={isEditor}
