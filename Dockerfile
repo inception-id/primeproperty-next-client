@@ -25,16 +25,26 @@ ARG SMTP_FROM=$SMTP_FROM
 # Set the working directory inside the container
 WORKDIR /app
 
-COPY . /app
-RUN yarn
+COPY yarn.lock .
+COPY package.json .
+RUN yarn --frozen-lockfile
+COPY . .
 RUN yarn build
 
 FROM node:22-alpine as runner
 
 WORKDIR /app
 
-COPY --from=builder /app .
+COPY --from=builder /app/package.json .
+COPY --from=builder /app/yarn.lock .
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone .
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/next.config.mjs .
+COPY --from=builder /app/sentry.client.config.ts .
+COPY --from=builder /app/sentry.edge.config.ts .
+COPY --from=builder /app/sentry.server.config.ts .
 
 EXPOSE 3000
 
-CMD ["yarn", "start"]
+ENTRYPOINT [ "node" , "server.js" ]

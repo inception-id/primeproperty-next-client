@@ -19,7 +19,6 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Build develop Docker image
-        if: github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v4
         with:
           context: .
