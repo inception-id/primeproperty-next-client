@@ -47,4 +47,4 @@ COPY --from=builder /app/sentry.server.config.ts .
 
 EXPOSE 3000
 
-CMD ["yarn", "start"]
+ENTRYPOINT [ "node" , "server.js" ]
