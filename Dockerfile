@@ -1,5 +1,3 @@
-FROM node:22-alpine as builder
-
 ARG NEXT_PUBLIC_HOST_URL=$NEXT_PUBLIC_HOST_URL
 ARG NEXT_PUBLIC_GOOGLE_CLIENT_ID=$NEXT_PUBLIC_GOOGLE_CLIENT_ID
 ARG SUPERTOKENS_CONNECTION_URI=$SUPERTOKENS_CONNECTION_URI
@@ -22,18 +20,28 @@ ARG SMTP_USER=$SMTP_USER
 ARG SMTP_PASS=$SMTP_PASS
 ARG SMTP_FROM=$SMTP_FROM
 
+FROM node:22-alpine as builder
+
 # Set the working directory inside the container
 WORKDIR /app
 
-COPY . /app
-RUN yarn
+COPY yarn.lock .
+COPY package.json .
+RUN yarn --frozen-lockfile
+COPY . .
 RUN yarn build
 
 FROM node:22-alpine as runner
 
 WORKDIR /app
 
-COPY --from=builder /app .
+COPY --from=builder /app/package.json .
+COPY --from=builder /app/yarn.lock .
+COPY --from=builder /app/node_modules .
+COPY --from=builder /app/next.config.mjs ./
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next ./.next
+
 
 EXPOSE 3000
 
