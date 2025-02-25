@@ -1,0 +1,8 @@
+services:
+  inception-next:
+    image: 355355355/inception-next
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 3000:3000
