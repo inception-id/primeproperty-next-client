@@ -1,7 +1,7 @@
 services:
   inception-next:
     image: 355355355/inception-next
-    restart: always
+    restart: on-failure
     env_file:
       - .env
     ports:
