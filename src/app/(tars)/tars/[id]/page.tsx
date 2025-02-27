@@ -6,9 +6,9 @@ import TarsHeader from "./_header/tars-header";
 const DynamicTarsPage = () => {
   return (
     <TarsProvider>
-      <div className="flex flex-col h-screen">
+      <div className="h-screen">
         <TarsHeader />
-        <div className="flex-1 flex flex-col p-2 md:w-[50%] md:mx-auto">
+        <div className="flex flex-col p-2 md:w-[50%] md:mx-auto h-full">
           <TarsMessages />
           <TarsForm />
         </div>
