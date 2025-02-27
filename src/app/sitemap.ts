@@ -16,6 +16,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     },
     {
+      url: `${env.NEXT_PUBLIC_HOST_URL}/tars`,
+      lastModified: new Date(),
+    },
+    {
       url: `${env.NEXT_PUBLIC_HOST_URL}/languageai`,
       lastModified: new Date(),
     },

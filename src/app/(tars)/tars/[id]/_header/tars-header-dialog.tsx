@@ -1,3 +1,4 @@
+"use client";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Dialog,
@@ -9,6 +10,13 @@ import {
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { TbMenu, TbX } from "react-icons/tb";
+
+import dynamic from "next/dynamic";
+
+const ThemeButton = dynamic(
+  () => import("@/app/(inception)/_components/ThemeButton"),
+  { ssr: false },
+);
 
 const TarsHeaderDialog = () => {
   return (
@@ -22,11 +30,14 @@ const TarsHeaderDialog = () => {
       <DialogContent>
         <div className="flex items-center justify-between mb-2">
           <DialogTitle>Menu</DialogTitle>
-          <DialogClose
-            className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
-          >
-            <TbX />
-          </DialogClose>
+          <div className="flex items-center gap-2">
+            <ThemeButton />
+            <DialogClose
+              className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
+            >
+              <TbX />
+            </DialogClose>
+          </div>
         </div>
         <div className="flex flex-col gap-2">
           <Link
