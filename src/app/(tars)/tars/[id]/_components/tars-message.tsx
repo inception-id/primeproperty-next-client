@@ -12,12 +12,17 @@ const TarsMessages = () => {
   const messagesEndRef = useRef<any>(null);
 
   useEffect(() => {
-    if (messages && messagesEndRef.current) {
+    if (messages.length > 0 && messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
   return (
-    <div className="flex-1 max-h-[82.5vh] md:max-h-[85vh] overflow-y-auto text-base flex flex-col gap-2 px-2 leading-8 md:mb-4">
+    <div className="flex-1 max-h-[72.5vh] md:max-h-[85vh] overflow-y-auto text-base flex flex-col gap-2 px-2 leading-8 md:mb-4">
+      {messages.length === 0 && (
+        <h1 className="text-5xl font-semibold hidden md:flex items-center justify-center h-full">
+          TARS{" "}
+        </h1>
+      )}
       {messages.map((message) => (
         <div
           key={message.id}
