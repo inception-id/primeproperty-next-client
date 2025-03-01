@@ -1,8 +1,6 @@
 import TranslateProvider from "@/app/(languageai)/languageai/translate/_components/translate-provider";
 import TranslateDesktop from "@/app/(languageai)/languageai/translate/_components/translate-desktop";
 import type { Metadata } from "next";
-import TranslateSharingInfoDialog from "@/app/(languageai)/languageai/translate/_components/translate-sharing-info-dialog";
-import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "AI Translate | Understandable",
@@ -12,10 +10,8 @@ export const metadata: Metadata = {
 };
 
 const LanguageaiTranslate = async () => {
-  const translateSharingInfo = cookies().get("translate-sharing-info");
   return (
     <TranslateProvider>
-      <TranslateSharingInfoDialog showDialog={!translateSharingInfo} />
       <TranslateDesktop />
     </TranslateProvider>
   );

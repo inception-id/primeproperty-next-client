@@ -9,7 +9,7 @@ type TarsProviderProps = {
 export const TarsContext = createContext<any>(null);
 
 const TarsProvider = ({ children }: TarsProviderProps) => {
-  const context = useChat();
+  const context = useChat({});
   return (
     <TarsContext.Provider value={context}>{children}</TarsContext.Provider>
   );
