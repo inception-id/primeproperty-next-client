@@ -9,7 +9,7 @@ const ThemeButton = dynamic(
 
 const TarsSidebarHead = () => {
   return (
-    <div className="hidden md:flex items-center justify-between flex-1">
+    <div className="hidden md:flex items-center justify-between">
       <ThemeButton />
       <TarsCreateDialog />
     </div>

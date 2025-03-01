@@ -31,7 +31,7 @@ const TarsHeaderSheet = () => {
         <TbMenu />
       </SheetTrigger>
       <SheetContent side="left" className="p-1 pr-4 flex flex-col h-screen">
-        <SheetHeader className="flex-row items-center justify-between space-y-0 flex-1">
+        <SheetHeader className="flex-row items-center justify-between space-y-0">
           <SheetClose
             className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
           >
@@ -40,7 +40,7 @@ const TarsHeaderSheet = () => {
           <SheetTitle>TARS</SheetTitle>
         </SheetHeader>
         <TarsSidebar />
-        <SheetFooter className="flex-1">
+        <SheetFooter>
           <ThemeButton />
         </SheetFooter>
       </SheetContent>
