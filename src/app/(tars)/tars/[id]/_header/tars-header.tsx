@@ -1,13 +1,16 @@
-import TarsHeaderDialog from "./tars-header-dialog";
+import TarsCreateDialog from "../_components/tars-create-dialog";
 import TarsHeaderModelSelect from "./tars-header-model-select";
-import TarsHeaderRefresh from "./tars-header-refresh";
+import TarsHeaderSheet from "./tars-header-sheet";
 
 const TarsHeader = () => {
   return (
     <div className="flex items-center justify-between">
-      <TarsHeaderDialog />
+      <TarsHeaderSheet />
       <TarsHeaderModelSelect />
-      <TarsHeaderRefresh />
+      <h1 className="hidden md:block px-2 font-semibold">TARS</h1>
+      <span className="md:hidden">
+        <TarsCreateDialog />
+      </span>
     </div>
   );
 };

@@ -11,7 +11,7 @@ const TarsHeaderModelSelect = async () => {
   const aiModels = await findAllAiModels();
   return (
     <Select>
-      <SelectTrigger className="max-w-48 border-none ring-offset-transparent focus:ring-transparent">
+      <SelectTrigger className="max-w-36 border-none ring-offset-transparent focus:ring-transparent">
         <SelectValue placeholder="gpt-4o-mini" />
       </SelectTrigger>
       <SelectContent>
