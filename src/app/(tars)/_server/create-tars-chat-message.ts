@@ -5,7 +5,11 @@ import { fetchApi } from "@/lib/api/fetchApi";
 import { TTarsChatMessage } from "./create-tars-chat-room";
 
 export const createTarsChatMessage = async (
-  payload: Pick<TTarsChatMessage, "content" | "role" | "tars_chat_room_id">,
+  payload: Pick<TTarsChatMessage, "content" | "role" | "tars_chat_room_id"> & {
+    input_tokens?: number;
+    output_tokens?: number;
+    total_tokens?: number;
+  },
 ): Promise<TApiResponse<TTarsChatMessage>> => {
   try {
     return await fetchApi(`/tars-chat-messages/create`, {

@@ -46,7 +46,7 @@ const TarsModelSelect = ({
         },
         messages: [
           {
-            role: "System",
+            role: "system",
             content: "You are a helpful assistant.",
           },
         ],

@@ -5,6 +5,7 @@ import { findTarsChatRoom } from "../../_server/find-tars-chat-room";
 import TarsHero from "./_components/tars-hero";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import TarsMessages from "./_components/tars-messages";
 
 type DynamicTarsPageProps = {
   params?: {
@@ -20,7 +21,7 @@ const DynamicTarsPage = async ({ params }: DynamicTarsPageProps) => {
     redirect("/tars");
   }
   return (
-    <div className="h-screen flex flex-col ">
+    <div className="h-screen flex flex-col overflow-hidden">
       <LoginDialog />
       <TarsHeader
         defaultModelId={
@@ -29,12 +30,20 @@ const DynamicTarsPage = async ({ params }: DynamicTarsPageProps) => {
             : null
         }
       />
-      <div className="flex-1 h-full flex flex-col w-full max-w-5xl mx-auto">
-        <TarsHero />
-        <div className="p-2">
+      <div className="flex flex-col w-full max-w-5xl mx-auto gap-2 flex-1 h-full">
+        {params?.id ? (
+          <TarsMessages
+            defaultMessages={
+              tarsChatRoom?.data?.messages ? tarsChatRoom.data.messages : null
+            }
+          />
+        ) : (
+          <TarsHero />
+        )}
+        <div className="px-2">
           <TarsForm />
-          <div className="text-xs py-2 text-center">
-            For issues/questions please contact{" "}
+          <div className="text-xs text-center">
+            For issues/questions, contact{" "}
             <Link className="underline font-semibold" href="/support">
               support
             </Link>{" "}
