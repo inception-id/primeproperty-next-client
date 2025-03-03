@@ -28,19 +28,16 @@ export const createTranscription = async (
       ACL: "public-read",
     });
     const upload = await s3client.send(command);
-    console.log(111, upload)
     const audio_url = upload.ETag
       ? `${env.S3_ENDPOINT}/${bucket}/${audioFile.name}`
       : "";
 
-    console.log(222, audio_url)
     const transcription = await openai.audio.transcriptions.create({
       file: audioFile,
       model: "whisper-1",
       language,
     });
 
-    console.log(333, transcription)
     // can't pass return {audio_url, transcription} directly
     // Warning: Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
     return { audio_url, transcription: { text: transcription.text } };

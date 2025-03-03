@@ -24,7 +24,6 @@ type TCreateTarsChatRoomPayload = {
 export const createTarsChatRoom = async (
   payload: TCreateTarsChatRoomPayload,
 ): Promise<TApiResponse<TTarsChatRoom>> => {
-  console.log("createTarsChatRoom", payload);
   try {
     return await fetchApi(`/tars-chat-rooms/create`, {
       method: "POST",
