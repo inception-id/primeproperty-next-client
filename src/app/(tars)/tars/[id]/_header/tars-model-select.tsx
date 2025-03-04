@@ -63,16 +63,6 @@ const TarsModelSelect = ({ className }: TarsModelSelectProps) => {
     }
   };
 
-  // const placeholder = useMemo(() => {
-  //   if (defaultModelId && data && data?.data?.length > 0) {
-  //     return (
-  //       data.data.find((model) => model.id === defaultModelId)?.label ||
-  //       "Select AI model"
-  //     );
-  //   }
-  //   return "Select AI model";
-  // }, [defaultModelId, data]);
-
   return (
     <Select onValueChange={handleValueChange}>
       <SelectTrigger className={cn(className)}>

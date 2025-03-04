@@ -4,6 +4,7 @@ import { TAiModel } from "@/lib/api/ai-models/find-all-ai-models";
 
 type TUseTarsChatStore = {
   aiModel: TAiModel | null;
+  prompt: string;
   messages: Pick<TTarsChatMessage, "role" | "content">[];
   updateStore: (key: keyof TUseTarsChatStore, value: any) => void;
   addUserAndAssistantMessages: (
@@ -14,6 +15,7 @@ type TUseTarsChatStore = {
 
 export const useTarsChatStore = create<TUseTarsChatStore>((set) => ({
   aiModel: null,
+  prompt: "",
   messages: [],
   updateStore: (key, value) =>
     set((state) => ({

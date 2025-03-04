@@ -17,21 +17,28 @@ const TarsForm = () => {
       updateLoginStore: state.updateStore,
     })),
   );
-  const { aiModel, messages, updateStore, updateAssistantMessageContent } =
-    useTarsChatStore(
-      useShallow((state) => ({
-        aiModel: state.aiModel,
-        updateStore: state.updateStore,
-        messages: state.messages,
-        updateAssistantMessageContent: state.updateAssistantMessageContent,
-      })),
-    );
+  const {
+    aiModel,
+    messages,
+    updateStore,
+    updateAssistantMessageContent,
+    prompt,
+  } = useTarsChatStore(
+    useShallow((state) => ({
+      aiModel: state.aiModel,
+      updateStore: state.updateStore,
+      messages: state.messages,
+      updateAssistantMessageContent: state.updateAssistantMessageContent,
+      prompt: state.prompt,
+    })),
+  );
   const handleAction = async (formData: FormData) => {
-    const prompt = formData.get("prompt") as string;
+    const formPrompt = formData.get("prompt") as string;
+    updateStore("prompt", "");
     try {
       const newChatPayload = {
         role: "user",
-        content: prompt,
+        content: formPrompt,
         tars_chat_room_id: Number(params.id),
       };
       const newChat = await createTarsChatMessage(newChatPayload);
@@ -49,13 +56,27 @@ const TarsForm = () => {
         body: JSON.stringify({ messages: newMessages }),
       });
       let content = "";
+      let input_tokens = 0;
+      let output_tokens = 0;
+      let total_tokens = 0;
       if (response.body) {
         const reader = response.body.getReader();
         const decoder = new TextDecoder();
 
         while (true) {
           const { done, value } = await reader.read();
-          if (done) break;
+          if (done) {
+            const newAssistantChatPayload = {
+              role: "assistant",
+              content,
+              tars_chat_room_id: Number(params.id),
+              input_tokens,
+              output_tokens,
+              total_tokens,
+            };
+            await createTarsChatMessage(newAssistantChatPayload);
+            break;
+          }
 
           const lines = decoder.decode(value).trim().split("\n");
           lines.forEach((line) => {
@@ -67,6 +88,11 @@ const TarsForm = () => {
               ) {
                 content += chunk.choices[0].delta.content;
                 updateAssistantMessageContent(content);
+              }
+              if (chunk.usage) {
+                input_tokens = chunk.usage.prompt_tokens;
+                output_tokens = chunk.usage.completion_tokens;
+                total_tokens = chunk.usage.total_tokens;
               }
             }
           });
@@ -90,6 +116,8 @@ const TarsForm = () => {
         placeholder={
           aiModel ? `Ask ${aiModel.label} anything` : "Ask TARS anything"
         }
+        value={prompt}
+        onChange={(e) => updateStore("prompt", e.target.value)}
       />
       <Button type="submit" size="icon" className="rounded-full">
         <TbArrowUp />

@@ -4,6 +4,10 @@ import TarsHero from "../../_components/tars-hero";
 import { useTarsChatStore } from "@/app/(tars)/_lib/useTarsChatStore";
 import { useShallow } from "zustand/react/shallow";
 import { useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { TbCopy } from "react-icons/tb";
+import { copyToClipboard } from "@/lib/copyToClipboard";
+import { cn } from "@/lib/utils";
 
 const TarsMessages = () => {
   const messagesRef = useRef<HTMLDivElement>(null);
@@ -43,10 +47,24 @@ const TarsMessages = () => {
         if (message.role === "assistant") {
           return (
             <div
-              className="px-2 py-1 whitespace-pre-line"
               key={`${index}-${message.role}`}
+              className="flex flex-col gap-1 px-2 py-1"
             >
-              {message.content}
+              <div
+                className={cn(
+                  "whitespace-pre-line",
+                  message.content === "Thinking..." && "animate-pulse",
+                )}
+              >
+                {message.content}
+              </div>
+              <Button
+                size="icon"
+                variant="outline"
+                onClick={async () => await copyToClipboard(message.content)}
+              >
+                <TbCopy />
+              </Button>
             </div>
           );
         }
