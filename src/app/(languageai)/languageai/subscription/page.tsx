@@ -1,11 +1,11 @@
 import { fetchCookieToken } from "@/lib/fetchCookieToken";
 import LanguageaiLoginCard from "@/app/(languageai)/_components/languageai-login-card";
 import { Suspense } from "react";
-import LanguageaiCurrentPlan from "@/app/(languageai)/languageai/subscription/_components/languageai-current-plan";
 import type { Metadata } from "next";
+import LanguageaiActiveSubscriptionTable from "./_components/languageai-active-subscription-table";
 
 export const metadata: Metadata = {
-  title: "Language AI Subscriptions | Premium quality",
+  title: "Language AI Subscriptions",
 };
 
 const LanguageaiSubscriptionPage = async () => {
@@ -24,7 +24,7 @@ const LanguageaiSubscriptionPage = async () => {
           <div className="bg-popover/50 animate-pulse w-full max-w-5xl h-[45vh] rounded-lg" />
         }
       >
-        <LanguageaiCurrentPlan />
+        <LanguageaiActiveSubscriptionTable />
       </Suspense>
     </section>
   );

@@ -19,16 +19,32 @@ export type TLanguageaiSubscription = {
   speech_to_text_limit: string;
 };
 
+export type TLanguageaiActiveSubscription = {
+  user_id: string;
+  plan_name: string;
+  expired_at: string;
+  history_limit: number;
+  storage_limit: number;
+  translation_limit: number;
+  translation_count: number;
+  translation_storage_count: number;
+  checkbot_limit: number;
+  checkbot_count: number;
+  checkbot_storage_count: number;
+  speech_to_text_limit: number;
+  speech_to_text_count: number;
+  speech_to_text_storage_count: number;
+  text_to_speech_limit: number;
+  text_to_speech_count: number;
+  text_to_speech_storage_count: number;
+};
+
 export const findLanguageaiActiveSubscription = async (): Promise<
-  TApiResponse<TLanguageaiSubscription | null>
+  TApiResponse<TLanguageaiActiveSubscription>
 > => {
   try {
     return await fetchApi(`/languageai/subscriptions/active`);
   } catch (e: any) {
-    return {
-      status: 500,
-      data: null,
-      message: e.message,
-    };
+    throw e;
   }
 };
