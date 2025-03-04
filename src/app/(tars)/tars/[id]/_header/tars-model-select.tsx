@@ -1,5 +1,6 @@
 "use client";
 import { useLoginStore } from "@/app/(auth)/auth/login/_lib/useLoginStore";
+import { useTarsChatStore } from "@/app/(tars)/_lib/useTarsChatStore";
 import { createTarsChatRoom } from "@/app/(tars)/_server/create-tars-chat-room";
 import {
   Select,
@@ -12,19 +13,12 @@ import { findAllAiModels } from "@/lib/api/ai-models/find-all-ai-models";
 import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { useMemo } from "react";
 import { toast } from "react-toastify";
 import { useShallow } from "zustand/react/shallow";
 
-type TarsModelSelectProps = {
-  className?: string;
-  defaultModelId: number | null;
-};
+type TarsModelSelectProps = { className?: string };
 
-const TarsModelSelect = ({
-  className,
-  defaultModelId,
-}: TarsModelSelectProps) => {
+const TarsModelSelect = ({ className }: TarsModelSelectProps) => {
   const router = useRouter();
   const { data } = useQuery({
     queryKey: ["tars-model-select"],
@@ -37,13 +31,16 @@ const TarsModelSelect = ({
     })),
   );
 
+  const { updateStore } = useTarsChatStore(
+    useShallow((state) => ({
+      updateStore: state.updateStore,
+    })),
+  );
+
   const handleValueChange = async (value: string) => {
     try {
       const newChat = await createTarsChatRoom({
-        room: {
-          ai_model_id: Number(value),
-          title: "",
-        },
+        ai_model_id: Number(value),
         messages: [
           {
             role: "system",
@@ -55,6 +52,9 @@ const TarsModelSelect = ({
         updateLoginStore("openLoginDialog", true);
         return;
       }
+      const aiModel = data?.data.find((model) => model.id === Number(value));
+      updateStore("aiModel", aiModel);
+      updateStore("messages", []);
       router.push(`/tars/${newChat.data.id}`);
       return newChat;
     } catch (error) {
@@ -63,20 +63,20 @@ const TarsModelSelect = ({
     }
   };
 
-  const placeholder = useMemo(() => {
-    if (defaultModelId && data && data?.data?.length > 0) {
-      return (
-        data.data.find((model) => model.id === defaultModelId)?.label ||
-        "Select AI model"
-      );
-    }
-    return "Select AI model";
-  }, [defaultModelId, data]);
+  // const placeholder = useMemo(() => {
+  //   if (defaultModelId && data && data?.data?.length > 0) {
+  //     return (
+  //       data.data.find((model) => model.id === defaultModelId)?.label ||
+  //       "Select AI model"
+  //     );
+  //   }
+  //   return "Select AI model";
+  // }, [defaultModelId, data]);
 
   return (
     <Select onValueChange={handleValueChange}>
       <SelectTrigger className={cn(className)}>
-        <SelectValue placeholder={placeholder} />
+        <SelectValue placeholder="Select AI model" />
       </SelectTrigger>
       <SelectContent>
         {data && data.data.length > 0 ? (

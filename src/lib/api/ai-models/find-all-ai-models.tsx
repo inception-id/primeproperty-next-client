@@ -2,7 +2,7 @@
 import { TApiResponse } from "../ApiResponse";
 import { fetchApi } from "../fetchApi";
 
-type TAiModel = {
+export type TAiModel = {
   id: number;
   created_at: string;
   updated_at: string;

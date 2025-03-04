@@ -1,23 +1,26 @@
 import { create } from "zustand";
 import { TTarsChatMessage } from "../_server/create-tars-chat-room";
+import { TAiModel } from "@/lib/api/ai-models/find-all-ai-models";
 
 type TUseTarsChatStore = {
+  aiModel: TAiModel | null;
   messages: Pick<TTarsChatMessage, "role" | "content">[];
   updateStore: (key: keyof TUseTarsChatStore, value: any) => void;
-  createUserAndAssistantMessages: (
+  addUserAndAssistantMessages: (
     messages: Pick<TTarsChatMessage, "role" | "content">[],
   ) => void;
   updateAssistantMessageContent: (content: string) => void;
 };
 
 export const useTarsChatStore = create<TUseTarsChatStore>((set) => ({
+  aiModel: null,
   messages: [],
   updateStore: (key, value) =>
     set((state) => ({
       ...state,
       [key]: value,
     })),
-  createUserAndAssistantMessages: (messages) =>
+  addUserAndAssistantMessages: (messages) =>
     set((state) => ({
       ...state,
       messages: [...state.messages, ...messages],

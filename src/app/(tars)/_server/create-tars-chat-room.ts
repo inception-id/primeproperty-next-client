@@ -17,7 +17,7 @@ export type TTarsChatMessage = {
 };
 
 type TCreateTarsChatRoomPayload = {
-  room: Pick<TTarsChatRoom, "ai_model_id" | "title">;
+  ai_model_id: number;
   messages: Pick<TTarsChatMessage, "role" | "content">[];
 };
 
