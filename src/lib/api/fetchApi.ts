@@ -1,8 +1,12 @@
 "use server";
 import { env } from "@/lib/env";
 import { cookies } from "next/headers";
+import { TApiResponse } from "./ApiResponse";
 
-export const fetchApi = async (path: string, init?: RequestInit) => {
+export const fetchApi = async (
+  path: string,
+  init?: RequestInit,
+): Promise<TApiResponse<any>> => {
   try {
     const url = env.API_URL + path;
     const accessToken = cookies().get("accessToken")?.value as string;

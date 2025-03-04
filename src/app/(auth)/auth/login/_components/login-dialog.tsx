@@ -15,11 +15,18 @@ const LoginDialog = () => {
   );
   return (
     <Dialog open={openLoginDialog}>
-      <DialogContent>
+      <DialogContent
+        onOverlayClick={() => updateStore("openLoginDialog", false)}
+        onEscapeKeyDown={() => updateStore("openLoginDialog", false)}
+      >
         <DialogTitle className="mb-4 font-bold">
           Sign in to continue
         </DialogTitle>
-        <LoginForm onSuccess={() => updateStore("openLoginDialog", false)} />
+        <LoginForm
+          onSuccess={() => {
+            updateStore("openLoginDialog", false);
+          }}
+        />
         <div className="mb-4">
           <span>Don&apos;t have an account?</span>
           <Link href="/auth/register" className="underline ml-1">

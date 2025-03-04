@@ -28,7 +28,6 @@ const RemoveSharedTranslateStorageAccessDialog = ({
       const translationStorage = await deleteTranslationSharedStorage(
         sharedTranslationStorageId,
       );
-      console.log(translationStorage);
       if (translationStorage.data.id) {
         toast.success(`Removed successfully`);
         router.refresh();

@@ -70,7 +70,7 @@ export const LANGUAGEAI_MENUS = [
   },
   {
     title: "Support",
-    href: "/languageai/support",
+    href: "/support",
     icon: <LuFileQuestion />,
   },
   {
