@@ -27,7 +27,7 @@ WORKDIR /app
 
 COPY yarn.lock .
 COPY package.json .
-RUN yarn --frozen-lockfile
+RUN yarn
 COPY . .
 RUN yarn build
 
