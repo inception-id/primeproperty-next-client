@@ -1,25 +1,28 @@
-import { useContext, memo, useRef, useEffect } from "react";
-import { UseCompletionHelpers } from "@ai-sdk/react";
-import { TranslateContext } from "@/app/(languageai)/languageai/translate/_components/translate-provider";
+import { memo, useRef, useEffect } from "react";
+import { useTranslationStore } from "../_lib/useTranslateStore";
+import { useShallow } from "zustand/react/shallow";
 
 const TranslateCompletion = () => {
-  const { completion, isLoading } =
-    useContext<UseCompletionHelpers>(TranslateContext);
-  const completionEndRef = useRef<any>(null);
-
+  const completionRef = useRef<HTMLDivElement>(null);
+  const { updatedCompletion } = useTranslationStore(
+    useShallow((state) => ({
+      updatedCompletion: state.updatedCompletion,
+    })),
+  );
   useEffect(() => {
-    if (completion && completionEndRef.current) {
-      completionEndRef.current.scrollIntoView({ behavior: "smooth" });
+    if (updatedCompletion && completionRef.current) {
+      completionRef.current.scrollTop = completionRef.current.scrollHeight;
     }
-  }, [completion]);
+  }, [updatedCompletion]);
+
   return (
-    <div className="flex-1 text-sm h-60 lg:h-[90vh] overflow-y-auto p-2 whitespace-pre-line">
-      {completion || (
-        <span className="opacity-50">
-          {isLoading ? "Translating ..." : " Translation will show here"}
-        </span>
+    <div
+      className="text-sm overflow-y-auto p-2 whitespace-pre-line flex-1"
+      ref={completionRef}
+    >
+      {updatedCompletion || (
+        <span className="opacity-50">Translation will show here</span>
       )}
-      <div ref={completionEndRef} />
     </div>
   );
 };

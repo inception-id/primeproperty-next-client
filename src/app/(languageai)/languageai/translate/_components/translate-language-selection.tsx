@@ -23,7 +23,7 @@ const TranslateLanguageSelection = () => {
     },
   });
   return (
-    <div className="flex items-center p-2 gap-2">
+    <div className="flex items-center gap-2">
       <Select name="content_language">
         <SelectTrigger className="capitalize">
           <SelectValue placeholder="Detect language" />
