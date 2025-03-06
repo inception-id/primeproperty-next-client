@@ -14,7 +14,6 @@ import { useContext } from "react";
 import { UseCompletionHelpers } from "@ai-sdk/react";
 import { TranslateContext } from "@/app/(languageai)/languageai/translate/_components/translate-provider";
 import LanguageAiSaveToStorageDialog from "@/app/(languageai)/_components/dialogs/save-to-storage";
-import CreateTranslateStorageAndShareDialog from "./create-storage-and-share/create-translate-storage-and-share-dialog";
 import { Tooltip } from "react-tooltip";
 
 const TranslateResult = () => {
@@ -85,12 +84,6 @@ const TranslateResult = () => {
             <LanguageAiSaveToStorageDialog
               label="Enter translation title"
               onSaveClick={onSaveClick}
-            />
-          )}
-          {!isLoading && translationId !== 0 && (
-            <CreateTranslateStorageAndShareDialog
-              translationId={translationId}
-              updatedCompletion={updatedCompletion}
             />
           )}
         </div>

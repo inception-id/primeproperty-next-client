@@ -10,7 +10,7 @@ import {
   LuUser,
 } from "react-icons/lu";
 import { CgTranscript } from "react-icons/cg";
-import { TbPigMoney, TbUserShare } from "react-icons/tb";
+import { TbPigMoney } from "react-icons/tb";
 
 export const LANGUAGEAI_MENUS = [
   {
@@ -48,12 +48,6 @@ export const LANGUAGEAI_MENUS = [
     title: "Storage",
     href: "/languageai/storage",
     icon: <LuDatabase />,
-    refresh: true,
-  },
-  {
-    title: "Shared",
-    href: "/languageai/shared",
-    icon: <TbUserShare />,
     refresh: true,
   },
   {

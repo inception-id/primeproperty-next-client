@@ -28,10 +28,6 @@ const HeaderMenuDialog = () => {
       title: "Language AI",
       href: "/languageai",
     },
-    {
-      title: "TARS (Free AI)",
-      href: "/tars",
-    },
   ];
   return (
     <Dialog>
