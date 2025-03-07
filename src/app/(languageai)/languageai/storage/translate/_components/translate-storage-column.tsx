@@ -40,8 +40,6 @@ export const TranslateStorageColumn: ColumnDef<TTranslationStorage>[] = [
         content={row.original.content}
         target_language={row.original.target_language}
         updated_completion={row.original.updated_completion}
-        isOwner={true}
-        isEditor={true}
       />
     ),
   },

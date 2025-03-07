@@ -1,13 +1,11 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import TranslateLanguageSelection from "@/app/(languageai)/languageai/translate/_components/translate-language-selection";
-import { useContext } from "react";
-import { TranslateContext } from "@/app/(languageai)/languageai/translate/_components/translate-provider";
-import { UseCompletionHelpers } from "@ai-sdk/react";
-import { LuLoader } from "react-icons/lu";
 import { toast } from "react-toastify";
 import { createTranslateSystemPrompt } from "@/app/(languageai)/languageai/translate/_lib/createTranslateSystemPrompt";
-import { createTranslation } from "@/lib/api/translation/createTranslation";
+import {
+  createTranslation,
+  TCreateTranslationPayload,
+} from "@/lib/api/translation/createTranslation";
 import { useLoginStore } from "@/app/(auth)/auth/login/_lib/useLoginStore";
 import { useShallow } from "zustand/react/shallow";
 import { fetchCookieToken } from "@/lib/fetchCookieToken";
@@ -16,11 +14,11 @@ import { useTranslationStore } from "@/app/(languageai)/languageai/translate/_li
 import { checkLanguageaiSubscriptionExceedLimit } from "@/lib/api/languageai-subscriptions/find-languageai-subscription-exceed-limit";
 import { ELanguageaSubscriptionLimit } from "@/lib/enums/languageai-subscription-limit";
 import { useLanguageaiSubscriptionStore } from "@/app/(languageai)/_lib/use-languageai-subscription-store";
+import TranslateSubmitBtn from "./translate-submit-btn";
+import { TOpenAiCompletionChunk } from "@/app/api/openai/route";
+import TranslateTemperatureSelect from "./translate-temperature-select";
 
 const TranslateForm = () => {
-  const { complete, isLoading } =
-    useContext<UseCompletionHelpers>(TranslateContext);
-
   const { updateLoginStore } = useLoginStore(
     useShallow((state) => ({
       updateLoginStore: state.updateStore,
@@ -43,6 +41,7 @@ const TranslateForm = () => {
     const content = formData.get("translate_content") as string;
     const content_language = formData.get("content_language") as string;
     const target_language = formData.get("target_language") as string;
+    const temperature = formData.get("temperature") as string;
 
     if (!content) {
       toast.error("Please enter your text");
@@ -54,11 +53,7 @@ const TranslateForm = () => {
       return;
     }
 
-    const ai_system_prompt = createTranslateSystemPrompt(
-      content_language,
-      target_language,
-    );
-
+    updateStore("loadingText", "Checking your session...");
     try {
       const token = await fetchCookieToken();
       if (!token) {
@@ -82,40 +77,89 @@ const TranslateForm = () => {
         return;
       }
 
-      updateStore("updatedCompletion", "");
-      const completion = await complete(content, {
-        body: {
-          system: ai_system_prompt,
-        },
+      updateStore("loadingText", "Translating...");
+      const aiSystemPrompt = createTranslateSystemPrompt(
+        content_language,
+        target_language,
+      );
+      const response = await fetch("/api/openai", {
+        method: "POST",
+        body: JSON.stringify({
+          temperature: Number(temperature),
+          messages: [
+            { role: "system", content: aiSystemPrompt },
+            { role: "user", content },
+          ],
+        }),
       });
-      if (completion) {
-        const createTranslationPayload = {
-          ai_system_prompt,
-          content_language,
-          target_language,
-          content,
-          completion,
-        };
+      const reader = response?.body?.getReader();
+      const decoder = new TextDecoder();
 
-        const translation = await createTranslation(createTranslationPayload);
-        updateStore("translationId", translation.data.id);
-        updateStore("updatedCompletion", translation.data.completion);
-      } else {
-        toast.error("Something went wrong, please try again");
+      let updatedCompletion = "";
+      let input_tokens = 0;
+      let output_tokens = 0;
+      let total_tokens = 0;
+      if (reader) {
+        while (true) {
+          const { done, value } = await reader?.read();
+          if (done) {
+            const payload: TCreateTranslationPayload = {
+              ai_system_prompt: aiSystemPrompt,
+              content_language,
+              target_language,
+              content,
+              completion: updatedCompletion,
+              input_tokens,
+              output_tokens,
+              total_tokens,
+              temperature: Number(temperature),
+            };
+            const translation = await createTranslation(payload);
+            if (translation.data.id) {
+              updateStore("translationId", translation.data.id);
+            }
+            break;
+          }
+
+          const lines = decoder.decode(value).trim().split("\n");
+          lines.forEach((line) => {
+            if (line) {
+              const chunk: TOpenAiCompletionChunk = JSON.parse(line);
+              if (
+                chunk.choices.length > 0 &&
+                chunk.choices[0]?.delta?.content
+              ) {
+                updatedCompletion += chunk.choices[0].delta.content;
+                updateStore("updatedCompletion", updatedCompletion);
+              }
+              if (chunk.usage) {
+                input_tokens = chunk.usage.prompt_tokens;
+                output_tokens = chunk.usage.completion_tokens;
+                total_tokens = chunk.usage.total_tokens;
+              }
+            }
+          });
+        }
       }
       return;
     } catch (e: any) {
       console.error(e.message);
+      toast.error("Something went wrong, please try again");
+    } finally {
+      updateStore("loadingText", "");
     }
   };
   return (
-    <form action={handleAction} className="flex flex-col gap-2 lg:gap-0">
+    <form
+      action={handleAction}
+      className="flex flex-col gap-2 flex-auto md:flex-1"
+    >
       <TranslateTextarea />
       <TranslateLanguageSelection />
-      <div className="flex justify-end pr-2">
-        <Button type="submit" disabled={isLoading}>
-          {isLoading ? <LuLoader className="animate-spin" /> : "Translate"}
-        </Button>
+      <div className="flex items-center justify-between">
+        <TranslateTemperatureSelect />
+
+        <TranslateSubmitBtn />
       </div>
     </form>
   );

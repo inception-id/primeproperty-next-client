@@ -10,8 +10,7 @@ import {
   LuUser,
 } from "react-icons/lu";
 import { CgTranscript } from "react-icons/cg";
-import { TbPigMoney, TbUserShare } from "react-icons/tb";
-import Image from "next/image";
+import { TbPigMoney } from "react-icons/tb";
 
 export const LANGUAGEAI_MENUS = [
   {
@@ -52,12 +51,6 @@ export const LANGUAGEAI_MENUS = [
     refresh: true,
   },
   {
-    title: "Shared",
-    href: "/languageai/shared",
-    icon: <TbUserShare />,
-    refresh: true,
-  },
-  {
     title: "Subscription",
     href: "/languageai/subscription",
     icon: <LuBadgeCheck />,
@@ -72,18 +65,6 @@ export const LANGUAGEAI_MENUS = [
     title: "Support",
     href: "/support",
     icon: <LuFileQuestion />,
-  },
-  {
-    title: "Inception",
-    href: "/",
-    icon: (
-      <Image
-        src="/images/inception.png"
-        alt="Inception"
-        width={15}
-        height={15}
-      />
-    ),
   },
   {
     title: "Account",

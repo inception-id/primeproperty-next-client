@@ -26,10 +26,11 @@ export interface Delta {
   content: string;
 }
 export async function POST(req: Request) {
-  const { messages } = await req.json();
+  const { messages, temperature } = await req.json();
   const aiStream = await openai.chat.completions.create({
     model: "gpt-4o-mini",
     messages,
+    temperature,
     stream: true,
     stream_options: {
       include_usage: true,

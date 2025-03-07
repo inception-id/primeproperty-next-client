@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 const LanguageaiPlans = () => {
   return (
-    <section className="p-4 overflow-y-auto h-screen pb-16 lg:pb-4">
+    <section className="p-4 overflow-y-auto h-screen pb-16 lg:pb-4 flex-1">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-4 text-center lg:mt-8">
         LANGUAGE AI PLANS & PRICING
       </h1>

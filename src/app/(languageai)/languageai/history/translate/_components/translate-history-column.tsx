@@ -4,7 +4,6 @@ import TranslateHistorySaveBtn from "@/app/(languageai)/languageai/history/trans
 import TranslateContentColumn from "@/app/(languageai)/languageai/translate/_components/columns/translate-content-column";
 import TranslateCompletionColumn from "@/app/(languageai)/languageai/translate/_components/columns/translate-completion-column";
 import LanguageAiTableDateColumn from "@/app/(languageai)/_components/table-columns/language-ai-table-date-column";
-import CreateTranslateStorageAndShareDialog from "@/app/(languageai)/languageai/translate/_components/create-storage-and-share/create-translate-storage-and-share-dialog";
 
 export const TranslateHistoryColumn: ColumnDef<TTranslation>[] = [
   {
@@ -27,14 +26,6 @@ export const TranslateHistoryColumn: ColumnDef<TTranslation>[] = [
   {
     accessorKey: "id",
     header: "Action",
-    cell: ({ row }) => (
-      <>
-        <TranslateHistorySaveBtn row={row} />
-        <CreateTranslateStorageAndShareDialog
-          translationId={row.original.id}
-          updatedCompletion={row.original.completion}
-        />
-      </>
-    ),
+    cell: ({ row }) => <TranslateHistorySaveBtn row={row} />,
   },
 ];

@@ -2,11 +2,17 @@ export const createTranslateSystemPrompt = (
   contentLanguage: string,
   targetLanguage: string,
 ) => {
-  if (contentLanguage === "" || contentLanguage === "detect") {
-    return `You are a translator. You will be provided with a text, and your task is translate the text to ${targetLanguage}. 
-    If the text is an idiom, explain the meaning of the idiom using the target language. If it's not an idiom, translate the text literally.`;
-  }
+  const systemPrompt = `
+    You are a professional translator. I want you to translate the provided text to ${targetLanguage},
 
-  return `You are a translator. You will be provided with a text, and your task is to translate the text from ${contentLanguage} to ${targetLanguage}. 
-  If the text is idiom, explain the meaning of the idiom in the target language. If it's not an idiom, translate the text literally.`;
+    Do not answer any question!
+    If it's a question, translate the question to ${targetLanguage}.
+
+    If the text is an idiom, provide the translation as well as explanation of the idiom of the text in ${targetLanguage}.
+
+    If the text can't be literally translated to Indonesian, provide the translation as well as explanation of the meaning of the text in ${targetLanguage}.
+
+    ${contentLanguage ? `For context: The provided text is in ${contentLanguage}.` : ""}
+   `;
+  return systemPrompt;
 };

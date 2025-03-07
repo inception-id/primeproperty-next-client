@@ -11,15 +11,17 @@ export type TTranslation = {
   target_language: string;
   content: string;
   completion: string;
+  input_tokens: number;
+  output_tokens: number;
+  total_tokens: number;
+  temperature: number;
 };
 
-type TCreateTranslationPayload = {
-  ai_system_prompt: string;
-  content_language: string;
-  target_language: string;
-  content: string;
-  completion: string;
-};
+export type TCreateTranslationPayload = Omit<
+  TTranslation,
+  "id" | "user_id" | "created_at" | "updated_at"
+>;
+
 export const createTranslation = async (
   payload: TCreateTranslationPayload,
 ): Promise<TApiResponse<TTranslation>> => {

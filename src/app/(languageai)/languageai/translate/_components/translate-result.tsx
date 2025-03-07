@@ -10,27 +10,24 @@ import { createTranslationStorage } from "@/lib/api/translation/createTranslatio
 import { toast } from "react-toastify";
 import { useLanguageaiSubscriptionStore } from "@/app/(languageai)/_lib/use-languageai-subscription-store";
 import { ELanguageaSubscriptionLimit } from "@/lib/enums/languageai-subscription-limit";
-import { useContext } from "react";
-import { UseCompletionHelpers } from "@ai-sdk/react";
-import { TranslateContext } from "@/app/(languageai)/languageai/translate/_components/translate-provider";
 import LanguageAiSaveToStorageDialog from "@/app/(languageai)/_components/dialogs/save-to-storage";
-import CreateTranslateStorageAndShareDialog from "./create-storage-and-share/create-translate-storage-and-share-dialog";
 import { Tooltip } from "react-tooltip";
 
 const TranslateResult = () => {
-  const { isLoading } = useContext<UseCompletionHelpers>(TranslateContext);
   const { updateSubscriptionStore } = useLanguageaiSubscriptionStore(
     useShallow((state) => ({
       updateSubscriptionStore: state.updateStore,
     })),
   );
-  const { updatedCompletion, updateStore, translationId } = useTranslationStore(
-    useShallow((state) => ({
-      translationId: state.translationId,
-      updatedCompletion: state.updatedCompletion,
-      updateStore: state.updateStore,
-    })),
-  );
+  const { updatedCompletion, updateStore, translationId, loadingText } =
+    useTranslationStore(
+      useShallow((state) => ({
+        loadingText: state.loadingText,
+        translationId: state.translationId,
+        updatedCompletion: state.updatedCompletion,
+        updateStore: state.updateStore,
+      })),
+    );
 
   const onSaveClick = async (title: string) => {
     try {
@@ -53,47 +50,35 @@ const TranslateResult = () => {
   };
 
   return (
-    <div className="border rounded-md overflow-hidden h-fit">
-      <div className="flex gap-2">
-        {updatedCompletion ? (
-          <Textarea
-            value={updatedCompletion}
-            className="placeholder:opacity-50 flex-1 text-sm h-60 lg:h-[90vh] overflow-y-auto focus-visible:ring-transparent border-none resize-none"
-            onChange={(e) => updateStore("updatedCompletion", e.target.value)}
+    <div className="border rounded-md flex-1 flex">
+      {loadingText === "" && updatedCompletion ? (
+        <Textarea
+          value={updatedCompletion}
+          className="text-sm overflow-y-auto border-none resize-none focus-visible:ring-transparent flex-1"
+          onChange={(e) => updateStore("updatedCompletion", e.target.value)}
+        />
+      ) : (
+        <TranslateCompletion />
+      )}
+      <div className="flex flex-col gap-1">
+        <Button
+          data-tooltip-id="copy-tooltip"
+          data-tooltip-content="Copy"
+          data-tooltip-place="left"
+          type="button"
+          size="icon"
+          variant="ghost"
+          onClick={async () => await copyToClipboard(updatedCompletion)}
+        >
+          <Tooltip id="copy-tooltip" />
+          <LuCopy />
+        </Button>
+        {translationId > 0 && (
+          <LanguageAiSaveToStorageDialog
+            label="Enter translation title"
+            onSaveClick={onSaveClick}
           />
-        ) : (
-          <TranslateCompletion />
         )}
-        <div className="flex flex-col gap-1">
-          <Button
-            data-tooltip-id="copy-tooltip"
-            data-tooltip-content="Copy"
-            data-tooltip-place="left"
-            type="button"
-            size="icon"
-            variant="ghost"
-            onClick={async () =>
-              isLoading
-                ? toast.warning("Text is still loading")
-                : await copyToClipboard(updatedCompletion)
-            }
-          >
-            <Tooltip id="copy-tooltip" />
-            <LuCopy />
-          </Button>
-          {!isLoading && translationId !== 0 && (
-            <LanguageAiSaveToStorageDialog
-              label="Enter translation title"
-              onSaveClick={onSaveClick}
-            />
-          )}
-          {!isLoading && translationId !== 0 && (
-            <CreateTranslateStorageAndShareDialog
-              translationId={translationId}
-              updatedCompletion={updatedCompletion}
-            />
-          )}
-        </div>
       </div>
     </div>
   );
