@@ -12,7 +12,7 @@ const TranslateTextarea = () => {
         autoFocus
         name="translate_content"
         placeholder="Enter text"
-        className="focus-visible:ring-0 focus-visible:ring-offset-0  resize-none border-transparent placeholder:text-sm"
+        className="focus-visible:ring-0 focus-visible:ring-offset-0  resize-none border-transparent placeholder:text-sm text-sm"
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />

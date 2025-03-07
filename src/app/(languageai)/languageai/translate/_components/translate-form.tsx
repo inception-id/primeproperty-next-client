@@ -16,6 +16,7 @@ import { ELanguageaSubscriptionLimit } from "@/lib/enums/languageai-subscription
 import { useLanguageaiSubscriptionStore } from "@/app/(languageai)/_lib/use-languageai-subscription-store";
 import TranslateSubmitBtn from "./translate-submit-btn";
 import { TOpenAiCompletionChunk } from "@/app/api/openai/route";
+import TranslateTemperatureSelect from "./translate-temperature-select";
 
 const TranslateForm = () => {
   const { updateLoginStore } = useLoginStore(
@@ -40,6 +41,7 @@ const TranslateForm = () => {
     const content = formData.get("translate_content") as string;
     const content_language = formData.get("content_language") as string;
     const target_language = formData.get("target_language") as string;
+    const temperature = formData.get("temperature") as string;
 
     if (!content) {
       toast.error("Please enter your text");
@@ -83,6 +85,7 @@ const TranslateForm = () => {
       const response = await fetch("/api/openai", {
         method: "POST",
         body: JSON.stringify({
+          temperature: Number(temperature),
           messages: [
             { role: "system", content: aiSystemPrompt },
             { role: "user", content },
@@ -109,10 +112,9 @@ const TranslateForm = () => {
               input_tokens,
               output_tokens,
               total_tokens,
-              temperature: 0,
+              temperature: Number(temperature),
             };
             const translation = await createTranslation(payload);
-            console.log(translation);
             if (translation.data.id) {
               updateStore("translationId", translation.data.id);
             }
@@ -154,7 +156,11 @@ const TranslateForm = () => {
     >
       <TranslateTextarea />
       <TranslateLanguageSelection />
-      <TranslateSubmitBtn />
+      <div className="flex items-center justify-between">
+        <TranslateTemperatureSelect />
+
+        <TranslateSubmitBtn />
+      </div>
     </form>
   );
 };

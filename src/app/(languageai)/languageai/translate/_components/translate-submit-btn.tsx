@@ -11,7 +11,6 @@ const TranslateSubmitBtn = () => {
   );
 
   return (
-    // <div className="flex justify-end pr-2">
     <Button type="submit" className="ml-auto" disabled={loadingText !== ""}>
       {loadingText ? (
         <div className="flex gap-2 items-center">
@@ -22,7 +21,6 @@ const TranslateSubmitBtn = () => {
         "Translate"
       )}
     </Button>
-    // </div>
   );
 };
 

@@ -12,7 +12,6 @@ import { useLanguageaiSubscriptionStore } from "@/app/(languageai)/_lib/use-lang
 import { ELanguageaSubscriptionLimit } from "@/lib/enums/languageai-subscription-limit";
 import LanguageAiSaveToStorageDialog from "@/app/(languageai)/_components/dialogs/save-to-storage";
 import { Tooltip } from "react-tooltip";
-import { cn } from "@/lib/utils";
 
 const TranslateResult = () => {
   const { updateSubscriptionStore } = useLanguageaiSubscriptionStore(
@@ -51,7 +50,7 @@ const TranslateResult = () => {
   };
 
   return (
-    <div className="border rounded-md overflow-y-auto flex-1 flex">
+    <div className="border rounded-md flex-1 flex">
       {loadingText === "" && updatedCompletion ? (
         <Textarea
           value={updatedCompletion}
@@ -61,9 +60,7 @@ const TranslateResult = () => {
       ) : (
         <TranslateCompletion />
       )}
-      <div
-        className={cn("flex-col gap-1", loadingText === "" ? "flex" : "hidden")}
-      >
+      <div className="flex flex-col gap-1">
         <Button
           data-tooltip-id="copy-tooltip"
           data-tooltip-content="Copy"
