@@ -54,7 +54,7 @@ const TranslateResult = () => {
       {loadingText === "" && updatedCompletion ? (
         <Textarea
           value={updatedCompletion}
-          className="text-sm overflow-y-auto border-none resize-none focus-visible:ring-transparent flex-1"
+          className="flex-1 text-sm overflow-y-auto border-none resize-none focus-visible:ring-transparent"
           onChange={(e) => updateStore("updatedCompletion", e.target.value)}
         />
       ) : (

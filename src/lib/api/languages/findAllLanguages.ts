@@ -2,8 +2,14 @@
 
 import { fetchApi } from "@/lib/api/fetchApi";
 import { TApiResponse } from "@/lib/api/ApiResponse";
-import { TLanguage } from "@/lib/api/languages/createLanguage";
 
+export type TLanguage = {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  title: string;
+  iso_639_1: string;
+};
 export const findAllLanguages = async (): Promise<
   TApiResponse<TLanguage[]>
 > => {

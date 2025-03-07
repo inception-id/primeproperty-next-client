@@ -10,14 +10,16 @@ export type TCheckbot = {
   ai_system_prompt: string;
   content: string;
   completion: string;
+  input_tokens: number;
+  output_tokens: number;
+  total_tokens: number;
+  temperature: number;
 };
 
-type TCreateCheckbotPayload = {
-  instruction: string;
-  ai_system_prompt: string;
-  content: string;
-  completion: string;
-};
+export type TCreateCheckbotPayload = Omit<
+  TCheckbot,
+  "id" | "user_id" | "created_at" | "updated_at"
+>;
 export const createCheckbot = async (
   payload: TCreateCheckbotPayload,
 ): Promise<TApiResponse<TCheckbot>> => {

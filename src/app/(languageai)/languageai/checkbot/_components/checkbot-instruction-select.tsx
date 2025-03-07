@@ -31,26 +31,24 @@ const CheckbotInstructionSelection = () => {
   });
 
   return (
-    <div className="p-2">
-      <Select name="instruction_id">
-        <SelectTrigger className="capitalize">
-          <SelectValue placeholder="Select instruction" />
-        </SelectTrigger>
-        <SelectContent>
-          {data &&
-            data?.length > 0 &&
-            data?.map((instruction) => (
-              <SelectItem
-                value={String(instruction.id)}
-                key={`detect_${instruction.id}`}
-                className="capitalize"
-              >
-                {instruction.name}
-              </SelectItem>
-            ))}
-        </SelectContent>
-      </Select>
-    </div>
+    <Select name="instruction_id">
+      <SelectTrigger className="capitalize">
+        <SelectValue placeholder="Select instruction" />
+      </SelectTrigger>
+      <SelectContent>
+        {data &&
+          data?.length > 0 &&
+          data?.map((instruction) => (
+            <SelectItem
+              key={`instruction_${instruction.id}`}
+              value={String(instruction.id)}
+              className="capitalize"
+            >
+              {instruction.name}
+            </SelectItem>
+          ))}
+      </SelectContent>
+    </Select>
   );
 };
 

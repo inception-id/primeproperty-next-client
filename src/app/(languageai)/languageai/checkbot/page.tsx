@@ -1,6 +1,6 @@
-import CheckbotProvider from "@/app/(languageai)/languageai/checkbot/_components/checkbot-provider";
-import CheckbotDesktop from "@/app/(languageai)/languageai/checkbot/_components/checkbot-desktop";
 import type { Metadata } from "next";
+import CheckbotForm from "./_components/checkbot-form";
+import CheckbotResult from "./_components/checkbot-result";
 
 export const metadata: Metadata = {
   title: "Checkbot AI | Check Grammar and Spelling | Paraphrase",
@@ -10,11 +10,10 @@ export const metadata: Metadata = {
 
 const LanguageaiCheckbot = () => {
   return (
-    <CheckbotProvider>
-      <section className="w-full h-[95vh] lg:h-screen overflow-hidden ">
-        <CheckbotDesktop />
-      </section>
-    </CheckbotProvider>
+    <div className="flex-1 h-full flex flex-col p-2 md:p-4 gap-2 md:gap-4 md:flex-row">
+      <CheckbotForm />
+      <CheckbotResult />
+    </div>
   );
 };
 
