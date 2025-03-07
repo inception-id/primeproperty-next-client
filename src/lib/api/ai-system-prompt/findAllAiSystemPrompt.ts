@@ -2,7 +2,15 @@
 
 import { fetchApi } from "@/lib/api/fetchApi";
 import { TApiResponse } from "@/lib/api/ApiResponse";
-import { TAiSystemPrompt } from "@/lib/api/ai-system-prompt/createAiSystemPrompt";
+
+export type TAiSystemPrompt = {
+  id: number;
+  created_at: string;
+  updated_at: string;
+  product_name: string;
+  prompt: string;
+  name: string;
+};
 
 export const findAllAiSystemPrompt = async (
   product_name?: string,
