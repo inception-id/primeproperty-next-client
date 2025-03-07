@@ -1,5 +1,5 @@
+import { TAiSystemPrompt } from "@/lib/api/ai-system-prompt/findAllAiSystemPrompt";
 import { create } from "zustand";
-import { TAiSystemPrompt } from "@/lib/api/ai-system-prompt/createAiSystemPrompt";
 
 type TUseCheckbotStore = {
   loadingText: string;
