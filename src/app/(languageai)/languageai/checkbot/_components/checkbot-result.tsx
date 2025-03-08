@@ -6,7 +6,6 @@ import { copyToClipboard } from "@/lib/copyToClipboard";
 import CheckbotCompletion from "@/app/(languageai)/languageai/checkbot/_components/checkbot-completion";
 import { useShallow } from "zustand/react/shallow";
 import { useCheckbotStore } from "@/app/(languageai)/languageai/checkbot/_lib/useCheckbotStore";
-import { Textarea } from "@/components/ui/textarea";
 import { toast } from "react-toastify";
 import { createCheckbotStorage } from "@/lib/api/checkbot/create-checkbot-storage";
 import { useLanguageaiSubscriptionStore } from "@/app/(languageai)/_lib/use-languageai-subscription-store";
@@ -19,15 +18,12 @@ const CheckbotResult = () => {
       updateSubscriptionStore: state.updateStore,
     })),
   );
-  const { updatedCompletion, updateStore, checkbotId, loadingText } =
-    useCheckbotStore(
-      useShallow((state) => ({
-        loadingText: state.loadingText,
-        checkbotId: state.checkbotId,
-        updatedCompletion: state.updatedCompletion,
-        updateStore: state.updateStore,
-      })),
-    );
+  const { updatedCompletion, checkbotId } = useCheckbotStore(
+    useShallow((state) => ({
+      checkbotId: state.checkbotId,
+      updatedCompletion: state.updatedCompletion,
+    })),
+  );
 
   const onSaveClick = async (title: string) => {
     try {
@@ -50,15 +46,7 @@ const CheckbotResult = () => {
   };
   return (
     <div className="border rounded-md flex-1 flex">
-      {loadingText === "" && updatedCompletion ? (
-        <Textarea
-          value={updatedCompletion}
-          className="flex-1 text-sm overflow-y-auto border-none resize-none focus-visible:ring-transparent"
-          onChange={(e) => updateStore("updatedCompletion", e.target.value)}
-        />
-      ) : (
-        <CheckbotCompletion />
-      )}
+      <CheckbotCompletion />
       <div className="flex flex-col gap-1">
         <Button
           type="button"

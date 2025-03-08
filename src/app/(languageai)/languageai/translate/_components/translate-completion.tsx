@@ -1,29 +1,34 @@
 import { memo, useRef, useEffect } from "react";
 import { useTranslationStore } from "../_lib/useTranslateStore";
 import { useShallow } from "zustand/react/shallow";
+import { Textarea } from "@/components/ui/textarea";
 
 const TranslateCompletion = () => {
-  const completionRef = useRef<HTMLDivElement>(null);
-  const { updatedCompletion } = useTranslationStore(
+  const completionRef = useRef<HTMLTextAreaElement>(null);
+  const { updatedCompletion, loadingText, updateStore } = useTranslationStore(
     useShallow((state) => ({
       updatedCompletion: state.updatedCompletion,
+      updateStore: state.updateStore,
+      loadingText: state.loadingText,
     })),
   );
   useEffect(() => {
-    if (updatedCompletion && completionRef.current) {
-      completionRef.current.scrollTop = completionRef.current.scrollHeight;
+    if (completionRef.current && updatedCompletion) {
+      if (loadingText === "") {
+        completionRef.current.scrollTop = 0;
+      } else {
+        completionRef.current.scrollTop = completionRef.current.scrollHeight;
+      }
     }
-  }, [updatedCompletion]);
+  }, [loadingText, updatedCompletion]);
 
   return (
-    <div
-      className="text-sm overflow-y-auto p-2 whitespace-pre-line flex-1"
+    <Textarea
       ref={completionRef}
-    >
-      {updatedCompletion || (
-        <span className="opacity-50">Translation will show here</span>
-      )}
-    </div>
+      value={updatedCompletion}
+      className="flex-1 text-sm overflow-y-auto border-none resize-none focus-visible:ring-transparent"
+      onChange={(e) => updateStore("updatedCompletion", e.target.value)}
+    />
   );
 };
 
