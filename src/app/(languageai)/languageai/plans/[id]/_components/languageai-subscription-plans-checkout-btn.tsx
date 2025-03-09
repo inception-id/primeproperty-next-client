@@ -22,6 +22,7 @@ const LanguageaiSubscriptionPlansCheckoutBtn = ({
   planPrice,
   period,
 }: TLanguageaiSubscriptionPlansChekcoutBtnProps) => {
+  console.log(planPrice);
   const [isLoading, setIsLoading] = useState(false);
   const handleClick = async () => {
     setIsLoading(true);

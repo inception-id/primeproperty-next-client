@@ -1,7 +1,12 @@
-import LanguageaiPlanList from "@/app/(languageai)/languageai/plans/_components/languageai-plan-list";
-import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { TypographyH1 } from "@/components/ui/typography/typography-h1";
+import { TypographyLarge } from "@/components/ui/typography/large";
+import { TypographySmall } from "@/components/ui/typography/small";
+import { typographyMutedClassName } from "@/components/ui/typography/muted";
+import { cn } from "@/lib/utils";
+import { Suspense } from "react";
+import LanguageAiPlanList from "./_components/languageai-plan-list";
 
 export const revalidate = 0;
 
@@ -14,29 +19,27 @@ export const metadata: Metadata = {
 
 const LanguageaiPlans = () => {
   return (
-    <section className="p-4 overflow-y-auto h-screen pb-16 lg:pb-4 flex-1">
-      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mb-4 text-center lg:mt-8">
-        LANGUAGE AI PLANS & PRICING
-      </h1>
-      <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight text-center">
-        &quot;Quality is remembered long after price is forgotten.&quot;
-      </h2>
-      <h3 className="scroll-m-20 text-xl font-semibold tracking-tight text-center italic mb-8">
-        Gucci
-      </h3>
+    <div className="p-4 overflow-y-auto h-screen flex-1 flex flex-col gap-4">
+      <div>
+        <TypographyH1 className="text-center">Plans & Pricing</TypographyH1>
+        <TypographyLarge className="text-center">
+          &quot;Quality is remembered long after price is forgotten.&quot;
+        </TypographyLarge>
 
-      <Suspense
-        fallback={
-          <div className="bg-popover/50 animate-pulse w-full h-[45vh] max-w-5xl mx-auto rounded-lg" />
-        }
-      >
-        <LanguageaiPlanList />
-      </Suspense>
-      <div className="opacity-50 lg:text-center px-4 text-sm">
-        *Please contact <Link href="/languageai/support">support</Link> for
-        payment outside Indonesia{" "}
+        <TypographySmall className="text-center mb-4">Gucci</TypographySmall>
       </div>
-    </section>
+
+      <Suspense>
+        <LanguageAiPlanList />
+      </Suspense>
+      <div className={cn(typographyMutedClassName, "text-center")}>
+        Email{" "}
+        <Link href="/languageai/support" className="underline">
+          support
+        </Link>{" "}
+        for payment outside Indonesia{" "}
+      </div>
+    </div>
   );
 };
 
