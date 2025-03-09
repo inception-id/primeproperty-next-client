@@ -2,7 +2,6 @@
 import { LuCopy } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 import { copyToClipboard } from "@/lib/copyToClipboard";
-import { Textarea } from "@/components/ui/textarea";
 import { useTranslationStore } from "@/app/(languageai)/languageai/translate/_lib/useTranslateStore";
 import { useShallow } from "zustand/react/shallow";
 import TranslateCompletion from "@/app/(languageai)/languageai/translate/_components/translate-completion";
@@ -19,15 +18,12 @@ const TranslateResult = () => {
       updateSubscriptionStore: state.updateStore,
     })),
   );
-  const { updatedCompletion, updateStore, translationId, loadingText } =
-    useTranslationStore(
-      useShallow((state) => ({
-        loadingText: state.loadingText,
-        translationId: state.translationId,
-        updatedCompletion: state.updatedCompletion,
-        updateStore: state.updateStore,
-      })),
-    );
+  const { updatedCompletion, translationId } = useTranslationStore(
+    useShallow((state) => ({
+      translationId: state.translationId,
+      updatedCompletion: state.updatedCompletion,
+    })),
+  );
 
   const onSaveClick = async (title: string) => {
     try {
@@ -51,15 +47,7 @@ const TranslateResult = () => {
 
   return (
     <div className="border rounded-md flex-1 flex">
-      {loadingText === "" && updatedCompletion ? (
-        <Textarea
-          value={updatedCompletion}
-          className="flex-1 text-sm overflow-y-auto border-none resize-none focus-visible:ring-transparent"
-          onChange={(e) => updateStore("updatedCompletion", e.target.value)}
-        />
-      ) : (
-        <TranslateCompletion />
-      )}
+      <TranslateCompletion />
       <div className="flex flex-col gap-1">
         <Button
           data-tooltip-id="copy-tooltip"

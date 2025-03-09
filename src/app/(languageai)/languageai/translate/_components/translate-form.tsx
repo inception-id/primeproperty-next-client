@@ -53,7 +53,7 @@ const TranslateForm = () => {
       return;
     }
 
-    updateStore("loadingText", "Checking your session...");
+    updateStore("loadingText", "Analysing...");
     try {
       const token = await fetchCookieToken();
       if (!token) {

@@ -17,13 +17,8 @@ const LanguageaiSubscriptionPlansCycleSelection = ({
   );
 
   return (
-    <div className="lg:max-w-md mx-auto">
-      <div className="text-lg font-semibold">
-        Select your subscription period
-      </div>
-      <div className="mb-4 opacity-50 text-sm">*VAT Free</div>
-
-      <div className="mb-4">
+    <div className="flex flex-col gap-4 md:max-w-lg mx-auto">
+      <div>
         <LanguageaiSubscriptionPlansPeriodButton
           isActive={selectedPeriod === ESubscriptionPeriod.OneYear}
           onClick={() => setSelectedPeriod(ESubscriptionPeriod.OneYear)}
@@ -46,7 +41,11 @@ const LanguageaiSubscriptionPlansCycleSelection = ({
 
       <LanguageaiSubscriptionPlansCheckoutBtn
         planId={subscriptionPlan.id}
-        planPrice={Number(subscriptionPlan.discounted_price)}
+        planPrice={
+          Number(subscriptionPlan.discounted_price)
+            ? Number(subscriptionPlan.discounted_price)
+            : Number(subscriptionPlan.initial_price)
+        }
         period={selectedPeriod}
       />
     </div>

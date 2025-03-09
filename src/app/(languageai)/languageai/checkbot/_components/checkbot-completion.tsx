@@ -1,33 +1,37 @@
 import { memo, useEffect, useRef } from "react";
 import { useCheckbotStore } from "../_lib/useCheckbotStore";
 import { useShallow } from "zustand/react/shallow";
+import { Textarea } from "@/components/ui/textarea";
 
 const CheckbotCompletion = () => {
-  const completionEndRef = useRef<HTMLDivElement>(null);
+  const completionEndRef = useRef<HTMLTextAreaElement>(null);
 
-  const { updatedCompletion } = useCheckbotStore(
+  const { updatedCompletion, updateStore, loadingText } = useCheckbotStore(
     useShallow((state) => ({
       updatedCompletion: state.updatedCompletion,
+      updateStore: state.updateStore,
+      loadingText: state.loadingText,
     })),
   );
 
   useEffect(() => {
-    if (updatedCompletion && completionEndRef.current) {
-      console.log("here");
-      completionEndRef.current.scrollTop =
-        completionEndRef.current.scrollHeight;
+    if (completionEndRef.current && updatedCompletion) {
+      if (loadingText === "") {
+        completionEndRef.current.scrollTop = 0;
+      } else {
+        completionEndRef.current.scrollTop =
+          completionEndRef.current.scrollHeight;
+      }
     }
-  }, [updatedCompletion]);
+  }, [updatedCompletion, loadingText]);
 
   return (
-    <div
-      className="text-sm overflow-y-auto p-2 whitespace-pre-line flex-1"
+    <Textarea
       ref={completionEndRef}
-    >
-      {updatedCompletion || (
-        <span className="opacity-50">Result will show here</span>
-      )}
-    </div>
+      value={updatedCompletion}
+      className="flex-1 text-sm overflow-y-auto border-none resize-none focus-visible:ring-transparent"
+      onChange={(e) => updateStore("updatedCompletion", e.target.value)}
+    />
   );
 };
 
