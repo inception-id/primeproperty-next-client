@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 type BlockquoteProps = {
   className?: string;
-  children: string | string[];
+  children: React.ReactNode;
 };
 
 export function TypographyBlockquote({ className, children }: BlockquoteProps) {

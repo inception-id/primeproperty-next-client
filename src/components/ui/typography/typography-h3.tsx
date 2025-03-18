@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 type TypographyH3Props = {
   className?: string;
-  children: string | string[];
+  children: React.ReactNode;
 };
 
 export function TypographyH3({ className, children }: TypographyH3Props) {

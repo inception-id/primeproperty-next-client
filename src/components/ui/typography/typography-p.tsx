@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 type TypographyPProps = {
   className?: string;
-  children: string | string[];
+  children: React.ReactNode;
 };
 
 export const typographyPClassName = "leading-7 [&:not(:first-child)]:mt-6";

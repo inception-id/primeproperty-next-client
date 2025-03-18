@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 type LargeProps = {
   className?: string;
-  children: string | string[];
+  children: React.ReactNode;
 };
 
 export function TypographyLarge({ className, children }: LargeProps) {

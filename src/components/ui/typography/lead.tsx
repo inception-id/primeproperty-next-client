@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 type LeadProps = {
   className?: string;
-  children: string | string[];
+  children: React.ReactNode;
 };
 
 export const typographyLeadClassName = "text-xl text-muted-foreground";

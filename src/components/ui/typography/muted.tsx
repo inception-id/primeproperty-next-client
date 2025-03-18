@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 type MutedProps = {
   className?: string;
-  children: string | string[];
+  children: React.ReactNode;
 };
 
 export const typographyMutedClassName = "text-sm text-muted-foreground";
