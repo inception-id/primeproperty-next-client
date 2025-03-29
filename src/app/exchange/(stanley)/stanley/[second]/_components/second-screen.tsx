@@ -8,6 +8,8 @@ import { IncomeStatementTable } from "./income-statement";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
+import { CashFlowTable } from "./cash-flow";
+import { getTicmiAnnualCashflow } from "../../../_server/getTicmiAnnualCashflow";
 
 type TSecondScreen = {
   stockCode: string;
@@ -17,6 +19,7 @@ export const SecondScreen = async ({ stockCode }: TSecondScreen) => {
   const marketInfo = await getTicmiAnnualMarketInfo(stockCode);
   const balanceSheet = await getTicmiAnnualBalanceSheet(stockCode);
   const incomeStatement = await getTicmiIncomeStatement(stockCode);
+  const cashflow = await getTicmiAnnualCashflow(stockCode);
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
@@ -38,6 +41,11 @@ export const SecondScreen = async ({ stockCode }: TSecondScreen) => {
       <IncomeStatementTable
         data={incomeStatement.data.data}
         lastUpdate={incomeStatement.data.lastUpdate}
+        shareOutstanding={marketInfo.data[0].listedShares}
+      />
+      <CashFlowTable
+        data={cashflow.data.data}
+        lastUpdate={cashflow.data.lastUpdate}
         shareOutstanding={marketInfo.data[0].listedShares}
       />
     </div>
