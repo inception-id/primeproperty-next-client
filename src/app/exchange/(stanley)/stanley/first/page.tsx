@@ -4,6 +4,8 @@ import { Suspense } from "react";
 import { FirstScreen } from "./_components";
 import { Skeleton } from "@/components/ui/skeleton";
 
+export const revalidate = 0;
+
 const StanleyFirstScreenerPage = () => {
   return (
     <div className="flex flex-col gap-4">

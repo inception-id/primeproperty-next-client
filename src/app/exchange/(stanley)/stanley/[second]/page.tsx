@@ -3,6 +3,8 @@ import { SecondScreen } from "./_components";
 import { TypographyLarge } from "@/components/ui/typography/large";
 import { Skeleton } from "@/components/ui/skeleton";
 
+export const revalidate = 0;
+
 type StanleySecondScreenPageProps = {
   params: {
     second: string | undefined;
