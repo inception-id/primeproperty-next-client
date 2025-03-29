@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 type SmallProps = {
   className?: string;
-  children: string | string[];
+  children: React.ReactNode;
 };
 
 export function TypographySmall({ className, children }: SmallProps) {
