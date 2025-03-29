@@ -1,6 +1,6 @@
 "use server";
 
-type TIdxScreener = {
+export type TIdxScreen = {
   companyName: string;
   stockCode: string;
   subIndustryCode: string;
@@ -31,12 +31,20 @@ type TIdxScreener = {
 };
 
 type Response = {
-  results: TIdxScreener[];
+  results: TIdxScreen[];
 };
 
-export const fetchIdxScreener = async (): Promise<Response> => {
-  const url =
-    "https://www.idx.co.id/support/stock-screener/api/v1/stock-screener/get?Sector=&SubSector=&npmMin=20&npmMax=1371.65&perMin=0&perMax=148516.82&pbvMin=0&pbvMax=312.9&roeMin=15&roeMax=2212.21";
+export const screenIdx = async (): Promise<Response> => {
+  const url = new URL(
+    "https://www.idx.co.id/support/stock-screener/api/v1/stock-screener/get",
+  );
+  url.searchParams.set("Sector", "");
+  url.searchParams.set("SubSector", "");
+  url.searchParams.set("npmMin", "20");
+  url.searchParams.set("perMin", "0");
+  url.searchParams.set("pbvMin", "0");
+  url.searchParams.set("roeMin", "15");
+  url.searchParams.set("derMax", "1");
 
   try {
     const response = await fetch(url, {
@@ -45,10 +53,8 @@ export const fetchIdxScreener = async (): Promise<Response> => {
         "Access-Control-Allow-Origin": "*",
       },
     });
-    console.log(222, response);
     return await response.json();
   } catch (error) {
-    console.error(error);
     throw error;
   }
 };
