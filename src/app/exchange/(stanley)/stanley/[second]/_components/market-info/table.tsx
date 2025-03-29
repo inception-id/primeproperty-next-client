@@ -17,7 +17,7 @@ export const Table = ({ data }: TableProps) => {
   });
   return (
     <>
-      <div>Market Info</div>
+      <div>Market Info </div>
       <DataTable table={table} />
     </>
   );

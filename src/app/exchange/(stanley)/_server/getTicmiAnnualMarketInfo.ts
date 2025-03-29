@@ -1,4 +1,4 @@
-export type TicmiResponse<T> = { data: T[] };
+export type TicmiResponse<T> = { data: T };
 
 export type TicmiAnnualMarketInfo = {
   period: string;
@@ -11,7 +11,7 @@ export type TicmiAnnualMarketInfo = {
 
 export const getTicmiAnnualMarketInfo = async (
   stockCode: string,
-): Promise<TicmiResponse<TicmiAnnualMarketInfo>> => {
+): Promise<TicmiResponse<TicmiAnnualMarketInfo[]>> => {
   const url = new URL(
     "https://asia-southeast2-ticmidatadev.cloudfunctions.net/cpFSgetInformasiPasarByEmitenCode",
   );

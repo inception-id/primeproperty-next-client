@@ -9,7 +9,7 @@ export const columns: ColumnDef<TicmiAnnualMarketInfo>[] = [
   {
     header: "LISTED SHARES",
     accessorKey: "listedShares",
-    cell: ({ row }) => row.original.listedShares.toLocaleString(),
+    cell: ({ row }) => row?.original?.listedShares?.toLocaleString(),
   },
   {
     header: "CLOSE",
