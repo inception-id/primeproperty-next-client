@@ -17,7 +17,9 @@ const StanleySecondScreenPage = async ({
   }
   return (
     <div className="flex flex-col gap-4">
-      <TypographyLarge>Second Screen</TypographyLarge>
+      <TypographyLarge>
+        Second Screen (Does not work for banking and property yet)
+      </TypographyLarge>
       <Suspense fallback={<Skeleton className="w-full h-96" />}>
         <SecondScreen stockCode={params.second} />
       </Suspense>
