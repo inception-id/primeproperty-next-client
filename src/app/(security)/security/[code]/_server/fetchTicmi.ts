@@ -1,5 +1,7 @@
 "use server";
 
+import { env } from "@/lib/env";
+
 type TicmiError = {
   code: string;
   message: string;
@@ -8,6 +10,11 @@ type TicmiError = {
 type TicmiResponse<T> = {
   data: T;
   error: null | TicmiError;
+};
+
+export type TicmiResponsneData<T> = {
+  data: T;
+  lastUpdate: string;
 };
 
 export const fetchTicmi = async <T>(
@@ -19,7 +26,7 @@ export const fetchTicmi = async <T>(
       ...init,
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.TICMI_TOKEN}`,
+        Authorization: `Bearer ${env.TICMI_TOKEN}`,
         ...init?.headers,
       },
     });
