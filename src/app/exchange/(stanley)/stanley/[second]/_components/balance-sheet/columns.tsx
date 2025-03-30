@@ -26,8 +26,8 @@ export const columns = (
       accessorKey: "Inventories",
       cell: ({ row }) => {
         return (
-          row.original.asetAbstrak.asetLancarAbstrak.persediaanLancarAbstrak
-            .persediaanLancar / shareOutstanding
+          (row.original.asetAbstrak.asetLancarAbstrak?.persediaanLancarAbstrak
+            ?.persediaanLancar ?? 0) / shareOutstanding
         )
           .toFixed()
           .toLocaleString();
@@ -41,7 +41,7 @@ export const columns = (
           row.original.asetAbstrak.asetLancarAbstrak.piutangUsahaAbstrak.Total;
         const b =
           row.original.asetAbstrak.asetLancarAbstrak.piutangLainnyaAbstrak
-            .Total;
+            ?.Total || 0;
         return ((a + b) / shareOutstanding).toFixed().toLocaleString();
       },
     },
@@ -51,13 +51,13 @@ export const columns = (
       cell: ({ row }) => {
         const a = row.original.asetAbstrak.asetLancarAbstrak.kasDanSetaraKas;
         const b =
-          row.original.asetAbstrak.asetLancarAbstrak.persediaanLancarAbstrak
-            .Total;
+          row.original.asetAbstrak.asetLancarAbstrak?.persediaanLancarAbstrak
+            ?.Total ?? 0;
         const c =
           row.original.asetAbstrak.asetLancarAbstrak.piutangUsahaAbstrak.Total;
         const d =
           row.original.asetAbstrak.asetLancarAbstrak.piutangLainnyaAbstrak
-            .Total;
+            ?.Total;
         return ((a + b + c + d) / shareOutstanding).toFixed().toLocaleString();
       },
     },
@@ -79,13 +79,13 @@ export const columns = (
       cell: ({ row }) => {
         const a = row.original.asetAbstrak.asetLancarAbstrak.kasDanSetaraKas;
         const b =
-          row.original.asetAbstrak.asetLancarAbstrak.persediaanLancarAbstrak
-            .Total;
+          row.original.asetAbstrak.asetLancarAbstrak?.persediaanLancarAbstrak
+            ?.Total;
         const c =
           row.original.asetAbstrak.asetLancarAbstrak.piutangUsahaAbstrak.Total;
         const d =
           row.original.asetAbstrak.asetLancarAbstrak.piutangLainnyaAbstrak
-            .Total;
+            ?.Total || 0;
         const e = row.original.asetAbstrak.asetTidakLancarAbstrak.asetTetap;
         return ((a + b + c + d + e) / shareOutstanding)
           .toFixed()
@@ -146,13 +146,13 @@ export const columns = (
       cell: ({ row }) => {
         const a = row.original.asetAbstrak.asetLancarAbstrak.kasDanSetaraKas;
         const b =
-          row.original.asetAbstrak.asetLancarAbstrak.persediaanLancarAbstrak
-            .Total;
+          row.original.asetAbstrak.asetLancarAbstrak?.persediaanLancarAbstrak
+            ?.Total;
         const c =
           row.original.asetAbstrak.asetLancarAbstrak.piutangUsahaAbstrak.Total;
         const d =
           row.original.asetAbstrak.asetLancarAbstrak.piutangLainnyaAbstrak
-            .Total;
+            ?.Total;
         const e = row.original.asetAbstrak.asetTidakLancarAbstrak.asetTetap;
         const f =
           row.original.liabilitasDanEkuitasAbstrak.liabilitasAbstrak.Total;

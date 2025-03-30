@@ -1,5 +1,3 @@
-"use server";
-
 export type TIdxScreen = {
   companyName: string;
   stockCode: string;
@@ -53,8 +51,10 @@ export const screenIdx = async (): Promise<Response> => {
         "Access-Control-Allow-Origin": "*",
       },
     });
+    console.log("Screen IDX response", response);
     return await response.json();
   } catch (error) {
+    console.error("Screen IDX error", error);
     throw error;
   }
 };
