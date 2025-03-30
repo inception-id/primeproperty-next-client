@@ -25,6 +25,7 @@ export const env = createEnv({
     SMTP_USER: z.string().min(1),
     SMTP_PASS: z.string().min(1),
     SMTP_FROM: z.string().min(1),
+    TICMI_TOKEN: z.string().min(1),
   },
   /*
    * Environment variables available on the client (and server).
@@ -64,5 +65,6 @@ export const env = createEnv({
     SMTP_USER: process.env.SMTP_USER,
     SMTP_PASS: process.env.SMTP_PASS,
     SMTP_FROM: process.env.SMTP_FROM,
+    TICMI_TOKEN: process.env.TICMI_TOKEN,
   },
 });
