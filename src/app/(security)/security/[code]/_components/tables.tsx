@@ -3,6 +3,7 @@ import { getMarketInfo } from "../_server";
 import { MarketInfoTable } from "./market-info";
 import { BalanceSheetTable } from "./balance-sheet";
 import { TypographyMuted } from "@/components/ui/typography/muted";
+import { IncomeStatementTable } from "./income-statement";
 
 type TablesProps = {
   code: string;
@@ -18,6 +19,10 @@ export const Tables = async ({ code }: TablesProps) => {
       <TypographyLead>{code}</TypographyLead>
       <MarketInfoTable data={marketInfo.data} />
       <BalanceSheetTable
+        listedShares={marketInfo.data[0].listedShares}
+        code={code}
+      />
+      <IncomeStatementTable
         listedShares={marketInfo.data[0].listedShares}
         code={code}
       />
