@@ -1,4 +1,3 @@
-"use server";
 export type TIdxScreen = {
   companyName: string;
   stockCode: string;

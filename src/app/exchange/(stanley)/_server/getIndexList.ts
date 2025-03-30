@@ -1,4 +1,3 @@
-"use server";
 export const getIndexList = async () => {
   try {
     const response = await fetch(
