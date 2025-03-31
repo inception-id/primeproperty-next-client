@@ -1,5 +1,5 @@
 import { TypographyMuted } from "@/components/ui/typography/muted";
-import { Tables } from "./_components";
+import { FinancialStatement } from "./_components";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -14,7 +14,7 @@ const DynamicSecurityPage = ({ params }: DynamicSecurityPageProps) => {
     return <TypographyMuted>Invalid security code</TypographyMuted>;
   return (
     <Suspense fallback={<Skeleton className="w-full h-96" />}>
-      <Tables code={params.code.toUpperCase()} />
+      <FinancialStatement code={params.code.toUpperCase()} />
     </Suspense>
   );
 };

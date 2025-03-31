@@ -2,12 +2,12 @@
 import { getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import { TypographyLarge } from "@/components/ui/typography/large";
 import { DataTable } from "@/components/ui/data-table";
+import { TFinancialStatement } from "./financial-statement";
 import { getColumns } from "./columns";
-import { TIncomeStatement } from "../../_server/getIncomeStatement";
 
 type TableProps = {
   listedShares: number;
-  data: TIncomeStatement[];
+  data: TFinancialStatement[];
 };
 
 export const Table = ({ data, listedShares }: TableProps) => {
@@ -19,7 +19,7 @@ export const Table = ({ data, listedShares }: TableProps) => {
 
   return (
     <>
-      <TypographyLarge>Income Statement</TypographyLarge>
+      <TypographyLarge>Financial Statement</TypographyLarge>
       <DataTable table={table} />
     </>
   );
