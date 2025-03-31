@@ -409,7 +409,7 @@ export const getColumns = (
           row.original.pendapatanDanBebanOperasionalAbstrak.pendapatanBunga;
         const total = (a / b) * 100;
 
-        if (total < 20) {
+        if (total < 15) {
           return <span className="text-red-500">{total.toFixed(1)}%</span>;
         }
 
