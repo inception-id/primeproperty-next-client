@@ -1,7 +1,7 @@
 services:
-  inception-next:
-    container_name: inception_next
-    image: 355355355/inception-next
+  primeproperty-next-agent:
+    container_name: primeproperty_next_agent
+    image: 355355355/primeproperty-next-agent
     restart: on-failure
     env_file:
       - .env
