@@ -7,15 +7,22 @@ import EmailVerificationNode from "supertokens-node/recipe/emailverification";
 import { TypeInput } from "supertokens-node/lib/build/types";
 
 import { env } from "@/lib/env";
-import { supertokensAppInfo } from "@/lib/supertokens/supertokensAppInfo";
 
-export const supertokensConfig: TypeInput = {
+const APP_INFO = {
+  appName: "Primepro",
+  apiDomain: env.NEXT_PUBLIC_HOST_URL,
+  apiBasePath: "/supertokens",
+  websiteDomain: env.NEXT_PUBLIC_HOST_URL,
+  websiteBasePath: "/",
+};
+
+const CONFIG: TypeInput = {
   supertokens: {
     // this is the location of the SuperTokens core.
     connectionURI: env.SUPERTOKENS_CONNECTION_URI,
     apiKey: env.SUPERTOKENS_API_KEY,
   },
-  appInfo: supertokensAppInfo,
+  appInfo: APP_INFO,
   // recipeList contains all the modules that you want to
   // use from SuperTokens. See the full list here: https://supertokens.com/docs/guides
   recipeList: [
@@ -30,9 +37,9 @@ export const supertokensConfig: TypeInput = {
 };
 
 let initialized = false;
-export const ensureSuperTokensInit = () => {
+export const initializeSupertokens = () => {
   if (!initialized) {
-    SuperTokens.init(supertokensConfig);
+    SuperTokens.init(CONFIG);
     initialized = true;
   }
 };
