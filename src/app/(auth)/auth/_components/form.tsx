@@ -68,7 +68,7 @@ export const LoginForm = () => {
   return (
     <form
       action={handleAction}
-      className="flex flex-col gap-4 w-full max-w-md p-4"
+      className="flex flex-col gap-4 w-full max-w-md p-4 mx:px-0"
     >
       <div className="grid gap-2">
         <Label htmlFor="email">Email</Label>
