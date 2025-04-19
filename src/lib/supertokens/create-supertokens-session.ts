@@ -1,7 +1,7 @@
 import { Agent } from "../api/agents/type";
 import { fetchSupertokens } from "./fetch-supertokens";
 
-type CreateSupertokensSessionResponse = {
+export type CreateSupertokensSessionResponse = {
   session: Session;
   accessToken: AccessToken;
   refreshToken: RefreshToken;

@@ -1,7 +1,33 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifySupertokensSession } from "./lib/supertokens/verify-supertokens-session";
+import { refreshSupertokensSession } from "./lib/supertokens/refresh-supertokens-session";
 
-export async function middleware() {
-  return NextResponse.next();
+export async function middleware(request: NextRequest) {
+  const accessToken = request.cookies.get("accessToken")?.value;
+  if (!accessToken) {
+    return NextResponse.redirect(new URL("/auth", request.url));
+  }
+
+  const response = NextResponse.next();
+  try {
+    const sessionVerification = await verifySupertokensSession(accessToken);
+    if (sessionVerification.status !== "OK") {
+      const refreshToken = request.cookies.get("refreshToken")?.value as string;
+      const newSession = await refreshSupertokensSession(refreshToken);
+      if (newSession.status === "OK") {
+        response.cookies.set("accessToken", newSession.accessToken.token);
+        response.cookies.set("refreshToken", newSession.refreshToken.token);
+      } else {
+        response.cookies.delete("accessToken");
+        response.cookies.delete("refreshToken");
+      }
+    }
+
+    return response;
+  } catch (error) {
+    console.error("MIDDLEWARE ERRROR:\n", error);
+    return response;
+  }
 }
 
 export const config = {
