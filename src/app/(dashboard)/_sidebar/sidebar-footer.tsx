@@ -1,9 +1,8 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getAgentTokenData } from "@/lib/cookie/get-agent-token-data";
 import { useQuery } from "@tanstack/react-query";
-import { LuLogOut } from "react-icons/lu";
+import { LogoutButton } from "./sidebar-logout";
 
 export const SidebarFooter = () => {
   const { isLoading, data } = useQuery({
@@ -29,9 +28,7 @@ export const SidebarFooter = () => {
         <div>{data?.fullname}</div>
         <div className="text-foreground/50">{data?.email}</div>
       </span>
-      <Button variant="ghost" size="icon">
-        <LuLogOut />
-      </Button>
+      <LogoutButton />
     </div>
   );
 };
