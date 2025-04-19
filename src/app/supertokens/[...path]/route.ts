@@ -8,13 +8,6 @@ const handleCall = getAppDirRequestHandler();
 
 export async function GET(request: NextRequest) {
   const res = await handleCall(request);
-  if (!res.headers.has("Cache-Control")) {
-    // This is needed for production deployments with Vercel
-    res.headers.set(
-      "Cache-Control",
-      "no-cache, no-store, max-age=0, must-revalidate",
-    );
-  }
   return res;
 }
 

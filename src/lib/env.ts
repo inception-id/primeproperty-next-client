@@ -9,8 +9,6 @@ export const env = createEnv({
   server: {
     SUPERTOKENS_CONNECTION_URI: z.string().min(1),
     SUPERTOKENS_API_KEY: z.string(),
-    API_URL: z.string().min(1),
-    API_KEY: z.string().min(1),
     SENTRY_AUTH_TOKEN: z.string(),
     S3_ENDPOINT: z.string().min(1),
     S3_ACCESS_KEY: z.string().min(1),
@@ -23,6 +21,7 @@ export const env = createEnv({
    */
   client: {
     NEXT_PUBLIC_HOST_URL: z.string().min(1),
+    NEXT_PUBLIC_API_URL: z.string().min(1),
     NEXT_PUBLIC_SENTRY_DSN: z.string(),
   },
   /*
@@ -33,10 +32,9 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NEXT_PUBLIC_HOST_URL: process.env.NEXT_PUBLIC_HOST_URL,
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
     SUPERTOKENS_CONNECTION_URI: process.env.SUPERTOKENS_CONNECTION_URI,
     SUPERTOKENS_API_KEY: process.env.SUPERTOKENS_API_KEY,
-    API_URL: process.env.API_URL,
-    API_KEY: process.env.API_KEY,
     S3_ENDPOINT: process.env.S3_ENDPOINT,
     S3_ACCESS_KEY: process.env.S3_ACCESS_KEY,
     S3_SECRET_KEY: process.env.S3_SECRET_KEY,
