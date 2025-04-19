@@ -24,7 +24,7 @@ export const SidebarFooter = () => {
 
   return (
     <div className="flex items-center gap-2 justify-between">
-      <span className="flex flex-col px-4 text-xs">
+      <span className="flex flex-col px-3 text-xs">
         <div>{data?.fullname}</div>
         <div className="text-foreground/50">{data?.email}</div>
       </span>

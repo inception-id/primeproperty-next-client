@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useState } from "react";
 import { LuPanelRight, LuX } from "react-icons/lu";
-import { SidebarFooter } from "../_sidebar";
+import { SidebarFooter, SidebarMenu } from "../_sidebar";
 
 export const HeaderSheet = () => {
   const [open, setOpen] = useState(false);
@@ -26,16 +26,16 @@ export const HeaderSheet = () => {
       <SheetTrigger className={cn(iconClassname)} onClick={() => setOpen(true)}>
         <LuPanelRight className="size-6" />
       </SheetTrigger>
-      <SheetContent className="p-0 flex flex-col">
+      <SheetContent className="p-0 flex flex-col gap-2">
         <SheetHeader>
           <div className="flex items-center justify-between">
             <SheetTitle>
               <Link
                 href="/"
-                className={cn(buttonVariants({ variant: "link" }))}
+                className={cn(buttonVariants({ variant: "link" }), "px-3")}
                 onClick={onLinkClick}
               >
-                Primepro Agent
+                Primepro
               </Link>
             </SheetTitle>
             <SheetClose
@@ -46,7 +46,7 @@ export const HeaderSheet = () => {
             </SheetClose>
           </div>
         </SheetHeader>
-        <div className="flex-1">hi</div>
+        <SidebarMenu onLinkClick={() => setOpen(false)} />
         <SheetFooter>
           <SidebarFooter />
         </SheetFooter>

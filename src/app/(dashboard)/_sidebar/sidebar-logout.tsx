@@ -6,6 +6,7 @@ import { removeSupertokensSession } from "@/lib/supertokens/remove-supertokens-s
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { LuLoader, LuLogOut } from "react-icons/lu";
+import { Tooltip } from "react-tooltip";
 
 export const LogoutButton = () => {
   const router = useRouter();
@@ -27,13 +28,18 @@ export const LogoutButton = () => {
     }
   };
   return (
-    <Button
-      variant="ghost"
-      size="icon"
-      disabled={isLoading}
-      onClick={handleClick}
-    >
-      {isLoading ? <LuLoader className="animate-spin" /> : <LuLogOut />}
-    </Button>
+    <>
+      <Button
+        variant="ghost"
+        size="icon"
+        disabled={isLoading}
+        onClick={handleClick}
+        data-tooltip-id="sidebar-logout"
+        data-tooltip-content="Logout"
+      >
+        {isLoading ? <LuLoader className="animate-spin" /> : <LuLogOut />}
+      </Button>
+      <Tooltip id="sidebar-logout" />
+    </>
   );
 };
