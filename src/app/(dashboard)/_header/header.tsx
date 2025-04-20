@@ -5,6 +5,10 @@ import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { useSidebarStore } from "../_sidebar";
 import { LuPanelLeft } from "react-icons/lu";
+import { HeaderBreadcrumb } from "./breadcrumb";
+import dynamic from "next/dynamic";
+
+const ThemeButton = dynamic(() => import("./theme-button"), { ssr: false });
 
 const MobileHeader = () => {
   return (
@@ -23,14 +27,19 @@ const MobileHeader = () => {
 const DesktopHeader = () => {
   const { isMinimized, setMinimized } = useSidebarStore();
   return (
-    <div className="hidden md:flex items-center justify-between border-b p-1">
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={() => setMinimized(!isMinimized)}
-      >
-        <LuPanelLeft />
-      </Button>
+    <div className="hidden md:flex items-center border-b p-1 justify-between">
+      <div className="flex items-center gap-2">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setMinimized(!isMinimized)}
+        >
+          <LuPanelLeft />
+        </Button>
+        <div className="bg-foreground/75 w-[1px] h-4" />
+        <HeaderBreadcrumb />
+      </div>
+      <ThemeButton />
     </div>
   );
 };

@@ -8,10 +8,12 @@ export const ADMIN_SIDEBAR_MENU = [
     items: [
       {
         title: "Agent List",
+        subtitle: "See agent list",
         url: "/agents",
       },
       {
         title: "Add Agent",
+        subtitle: "Add new agent",
         url: "/agents/creation",
       },
     ],

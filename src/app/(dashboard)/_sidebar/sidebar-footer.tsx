@@ -1,14 +1,10 @@
 "use client";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getAgentTokenData } from "@/lib/cookie/get-agent-token-data";
-import { useQuery } from "@tanstack/react-query";
 import { LogoutButton } from "./sidebar-logout";
+import { useAgentBySupertokensId } from "@/hooks";
 
 export const SidebarFooter = () => {
-  const { isLoading, data } = useQuery({
-    queryKey: ["sidebar-footer"],
-    queryFn: () => getAgentTokenData(),
-  });
+  const { isLoading, data } = useAgentBySupertokensId();
 
   if (isLoading) {
     return (
@@ -25,8 +21,8 @@ export const SidebarFooter = () => {
   return (
     <div className="flex items-center gap-2 justify-between">
       <span className="flex flex-col px-3 text-xs">
-        <div>{data?.fullname}</div>
-        <div className="text-foreground/50">{data?.email}</div>
+        <div>{data?.data?.fullname}</div>
+        <div className="text-foreground/50">{data?.data?.email}</div>
       </span>
       <LogoutButton />
     </div>
