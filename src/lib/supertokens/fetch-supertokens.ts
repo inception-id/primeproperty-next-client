@@ -14,7 +14,7 @@ export const fetchSupertokens = async <T>(
       ...options,
     });
 
-    return response.json();
+    return await response.json();
   } catch (error) {
     throw error;
   }

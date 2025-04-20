@@ -8,14 +8,12 @@ export const ADMIN_SIDEBAR_MENU = [
     items: [
       {
         title: "Agent List",
-        subtitle: "See agent list",
         url: "/agents",
         icon: <LuUsers />,
       },
       {
-        title: "Add Agent",
-        subtitle: "Add new agent",
-        url: "/agents/creation",
+        title: "New Agent",
+        url: "/agents/new",
         icon: <LuCirclePlus />,
       },
     ],

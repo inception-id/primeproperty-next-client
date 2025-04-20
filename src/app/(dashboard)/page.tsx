@@ -36,7 +36,7 @@ const DashboardPage = () => {
         >
           {menu.items.map((menuItem, i) => (
             <Link
-              key={`${i}_dashboard_${menuItem.subtitle}`}
+              key={`${i}_dashboard_${menuItem.title}`}
               href={menuItem.url}
               className={cn(
                 buttonVariants({ size: "sm" }),
@@ -44,7 +44,7 @@ const DashboardPage = () => {
               )}
             >
               {menuItem.icon}
-              {menuItem.subtitle}
+              {menuItem.title}
             </Link>
           ))}
         </div>
