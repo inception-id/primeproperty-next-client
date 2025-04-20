@@ -32,14 +32,18 @@ const DashboardPage = () => {
       {ADMIN_SIDEBAR_MENU.map((menu, index) => (
         <div
           key={`${index}_dashboard_${menu.title}`}
-          className="grid grid-cols-2 gap-4 max-w-sm"
+          className="grid grid-cols-2 gap-4 max-w-xs"
         >
           {menu.items.map((menuItem, i) => (
             <Link
               key={`${i}_dashboard_${menuItem.subtitle}`}
               href={menuItem.url}
-              className={cn(buttonVariants({ size: "sm" }))}
+              className={cn(
+                buttonVariants({ size: "sm" }),
+                "justify-start text-xs",
+              )}
             >
+              {menuItem.icon}
               {menuItem.subtitle}
             </Link>
           ))}

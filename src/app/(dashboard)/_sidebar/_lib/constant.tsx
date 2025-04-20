@@ -1,4 +1,4 @@
-import { LuUsers } from "react-icons/lu";
+import { LuCirclePlus, LuUsers } from "react-icons/lu";
 
 export const ADMIN_SIDEBAR_MENU = [
   {
@@ -10,11 +10,13 @@ export const ADMIN_SIDEBAR_MENU = [
         title: "Agent List",
         subtitle: "See agent list",
         url: "/agents",
+        icon: <LuUsers />,
       },
       {
         title: "Add Agent",
         subtitle: "Add new agent",
         url: "/agents/creation",
+        icon: <LuCirclePlus />,
       },
     ],
   },

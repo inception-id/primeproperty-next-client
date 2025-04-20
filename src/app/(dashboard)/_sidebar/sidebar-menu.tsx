@@ -112,7 +112,7 @@ export const SidebarMenu = ({ onLinkClick }: SidebarMenuProps) => {
               </div>
             </AccordionTrigger>
             <AccordionContent className=" p-0 pl-3 mt-1">
-              <div className="border-l pl-2">
+              <div className="border-l pl-2 flex flex-col gap-1">
                 {menu.items.map((menuItem, index) => (
                   <Link
                     key={`${index}_${menuItem.title}_${menuItem.url}`}
@@ -127,6 +127,7 @@ export const SidebarMenu = ({ onLinkClick }: SidebarMenuProps) => {
                       "w-full px-2 justify-start md:text-xs",
                     )}
                   >
+                    {menuItem.icon}
                     {menuItem.title}
                   </Link>
                 ))}
