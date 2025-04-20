@@ -8,6 +8,8 @@ import { toast } from "react-toastify";
 import { LuLoader } from "react-icons/lu";
 import { signupSupertokens } from "@/lib/supertokens/signup-supertokens";
 import { createAgent } from "@/lib/api/agents/create-agent";
+import { createSupertokensResetPasswordToken } from "@/lib/supertokens/create-supertokens-reset-password-token";
+import { sendNewPasswordMail } from "@/lib/mail/send-new-password-mail";
 
 export const NewAgentForm = () => {
   const { resetStore, setStore, fullName, email, phoneNumber, loadingText } =
@@ -57,7 +59,30 @@ export const NewAgentForm = () => {
           : phoneNumber,
       };
       const agent = await createAgent(payload);
-      console.log(agent);
+      if (agent.status === 400) {
+        toast.error(agent.message);
+        return;
+      }
+
+      setStore("loadingText", "Sending email invitation...");
+      const resetPasswordToken = await createSupertokensResetPasswordToken(
+        supertokensSignup.user.id,
+        email.trim(),
+      );
+      const newPasswordMail = await sendNewPasswordMail(
+        email.trim(),
+        resetPasswordToken.token,
+      );
+      if (newPasswordMail.accepted.length > 0) {
+        toast.success(
+          "Agent created successfully, please have them check their inbox or spam folder",
+        );
+      } else {
+        toast.warn(
+          "Agent created but fail to send invitation email, please have them reset their password manually",
+        );
+      }
+      resetStore();
       return;
     } catch (error) {
       console.error(error);
