@@ -4,7 +4,7 @@ import { LuArrowLeft } from "react-icons/lu";
 
 const NewAgentPage = () => {
   return (
-    <div className="p-2 px-3 flex flex-col gap-6">
+    <div className="p-4 flex flex-col gap-6">
       <h3 className="text-base font-bold">Add New Agent</h3>
       <NewAgentForm />
 

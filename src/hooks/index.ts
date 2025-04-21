@@ -1,1 +1,1 @@
-export * from "./use-agent-by-supertokens-id";
+export * from "./agents";

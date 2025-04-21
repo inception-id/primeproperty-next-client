@@ -1,9 +1,16 @@
-import { Header } from "./_components";
+import { FindAgentsQuery } from "@/lib/api/agents/find-agents";
+import { AgentsTable, Filter } from "./_components";
 
-const AgentsPage = () => {
+export const revalidate = 0;
+type AgensPageProps = {
+  searchParams: FindAgentsQuery;
+};
+
+const AgentsPage = ({ searchParams }: AgensPageProps) => {
   return (
-    <div className="w-full h-full flex flex-col gap-2 p-2 px-3">
-      <Header />
+    <div className="w-screen md:w-full h-full flex flex-col gap-4 p-4">
+      <Filter />
+      <AgentsTable searchParams={searchParams} />
     </div>
   );
 };

@@ -29,7 +29,8 @@ export const NewAgentForm = () => {
         .string()
         .min(10, "Phone number must be at least 10 characters long")
         .max(15, "Phone number must be at most 15 characters long")
-        .regex(/^[08]/, "Phone number must start with 0 or 8"),
+        .regex(/^[08]/, "Phone number must start with 0 or 8")
+        .regex(/^[^a-zA-Z]*$/, "Invalid phone number"),
     });
 
     try {
@@ -127,6 +128,7 @@ export const NewAgentForm = () => {
           placeholder="08..."
           required
           min={10}
+          max={15}
           value={phoneNumber}
           onChange={(e) => setStore("phoneNumber", e.target.value)}
         />

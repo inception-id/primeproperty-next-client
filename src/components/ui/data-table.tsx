@@ -12,16 +12,54 @@ import {
 } from "@/components/ui/table";
 import { Table as TanstackTable } from "@tanstack/react-table";
 import { cn } from "@/lib/utils";
+import { memo } from "react";
+import { LuLoader } from "react-icons/lu";
 
 type TDataTableProps<T> = {
+  isLoading?: boolean;
   table: TanstackTable<T>;
   tableCellClassName?: string;
 };
 
-export function DataTable<T>({
+function DataTableComponent<T>({
+  isLoading,
   table,
   tableCellClassName,
 }: TDataTableProps<T>) {
+  if (isLoading) {
+    return (
+      <Table>
+        <TableHeader>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <TableRow key={headerGroup.id}>
+              {headerGroup.headers.map((header) => {
+                return (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
+                  </TableHead>
+                );
+              })}
+            </TableRow>
+          ))}
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell colSpan={table.getAllColumns().length}>
+              <div className="flex items-center gap-2 animate-bounce">
+                <LuLoader className="animate-spin" />
+                Loading
+              </div>
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+  }
   return (
     <Table>
       <TableHeader>
@@ -58,10 +96,20 @@ export function DataTable<T>({
           ))
         ) : (
           <TableRow>
-            <TableCell className={cn(tableCellClassName)} />
+            <TableCell colSpan={table.getAllColumns().length}>
+              No Data
+            </TableCell>
           </TableRow>
         )}
       </TableBody>
     </Table>
   );
 }
+
+const DataTable = <T,>(props: TDataTableProps<T>) => (
+  <MemoizedDataTable {...props} />
+);
+
+const MemoizedDataTable = memo(DataTableComponent) as typeof DataTableComponent;
+
+export { DataTable };
