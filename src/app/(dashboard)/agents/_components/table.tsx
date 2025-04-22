@@ -12,7 +12,7 @@ type AgentsTableProps = {
 };
 
 export const AgentsTable = ({ searchParams }: AgentsTableProps) => {
-  const { data, isLoading } = useAgents(searchParams);
+  const { data, isFetching } = useAgents(searchParams);
 
   const table = useReactTable({
     data: data?.data?.data ?? [],
@@ -23,7 +23,7 @@ export const AgentsTable = ({ searchParams }: AgentsTableProps) => {
   return (
     <>
       <div className="flex-1 h-full overflow-y-auto">
-        <DataTable isLoading={isLoading} table={table} />
+        <DataTable isLoading={isFetching} table={table} />
       </div>
       <Pagination
         currentPage={searchParams.page ?? 1}

@@ -1,10 +1,23 @@
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { LuUpload, LuUser } from "react-icons/lu";
 
-export const ProfilePictureInput = () => {
-  const [profileImage, setProfileImage] = useState<string | null>(null);
+type ProfilePictureInputProps = {
+  containerClassname?: string;
+  className?: string;
+  defaultProfileImage?: string;
+};
+
+export const ProfilePictureInput = ({
+  containerClassname,
+  className,
+  defaultProfileImage,
+}: ProfilePictureInputProps) => {
+  const [profileImage, setProfileImage] = useState<string>(
+    defaultProfileImage ?? "",
+  );
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,12 +32,14 @@ export const ProfilePictureInput = () => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      <div className="relative h-32 w-32 overflow-hidden rounded-full border">
+    <div className={cn("flex flex-col items-center gap-4", containerClassname)}>
+      <div
+        className={cn("size-32 overflow-hidden rounded-full border", className)}
+      >
         {profileImage ? (
           <Image
-            src={profileImage || "/placeholder.svg"}
-            alt="Profile preview"
+            src={profileImage}
+            alt="Profile Image"
             className="h-full w-full object-cover"
             width={50}
             height={50}

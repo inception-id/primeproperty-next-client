@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { Agent } from "@/lib/api/agents/type";
-import { formatDateToIndonesian } from "@/lib/date-time/format-date-to-indonesian";
 import { env } from "@/lib/env";
 import { ColumnDef } from "@tanstack/react-table";
 import { LuUser } from "react-icons/lu";
+import { EditDialog } from "./edit-dialog";
 
 export const tableColumns: ColumnDef<Agent>[] = [
   {
@@ -45,17 +45,14 @@ export const tableColumns: ColumnDef<Agent>[] = [
     },
   },
   {
-    accessorKey: "created_at",
-    header: "Created",
+    accessorKey: "action",
+    header: "",
     cell: ({ row }) => {
-      return formatDateToIndonesian(row.original.created_at, true);
-    },
-  },
-  {
-    accessorKey: "updated_at",
-    header: "Last Updated",
-    cell: ({ row }) => {
-      return formatDateToIndonesian(row.original.updated_at, true);
+      return (
+        <>
+          <EditDialog row={row} />
+        </>
+      );
     },
   },
 ];

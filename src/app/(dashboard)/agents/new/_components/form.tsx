@@ -10,7 +10,7 @@ import { signupSupertokens } from "@/lib/supertokens/signup-supertokens";
 import { createAgent } from "@/lib/api/agents/create-agent";
 import { createSupertokensResetPasswordToken } from "@/lib/supertokens/create-supertokens-reset-password-token";
 import { sendNewPasswordMail } from "@/lib/mail/send-new-password-mail";
-import { ProfilePictureInput } from "./profile-picture-input";
+import { ProfilePictureInput } from "@/components/custom-ui/profile-picture-input";
 import { uploadAgentProfilePicture } from "@/lib/s3";
 
 export const NewAgentForm = () => {
@@ -21,6 +21,7 @@ export const NewAgentForm = () => {
     const fullname = formData.get("fullname") as string;
     const email = formData.get("email") as string;
     const phoneNumber = formData.get("phone_number") as string;
+    const profilePicture = formData.get("profile_picture") as File;
 
     const zodSchema = z.object({
       fullname: z
@@ -53,11 +54,14 @@ export const NewAgentForm = () => {
         return;
       }
 
-      setStore("loadingText", "Uploading profile picture...");
-      const profilePicturePath = await uploadAgentProfilePicture(
-        supertokensSignup.user.id,
-        formData,
-      );
+      let profilePicturePath = null;
+      if (profilePicture.size > 0) {
+        setStore("loadingText", "Uploading profile picture...");
+        profilePicturePath = await uploadAgentProfilePicture(
+          supertokensSignup.user.id,
+          formData,
+        );
+      }
 
       const payload = {
         supertokens_user_id: supertokensSignup.user.id,
@@ -69,7 +73,6 @@ export const NewAgentForm = () => {
         profile_picture_url: profilePicturePath,
       };
       const agent = await createAgent(payload);
-      console.log(222, agent);
       if (agent.status === 400) {
         toast.error(agent.message);
         return;

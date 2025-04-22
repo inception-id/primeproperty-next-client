@@ -84,7 +84,7 @@ export const SidebarMenu = ({ onLinkClick }: SidebarMenuProps) => {
             variant: pathname === "/" ? "default" : "ghost",
             size: "sm",
           }),
-          "w-full px-2 justify-start mb-2 md:text-xs",
+          "w-full px-2 justify-start mb-1 md:text-xs",
         )}
       >
         <LuHouse />
@@ -95,7 +95,7 @@ export const SidebarMenu = ({ onLinkClick }: SidebarMenuProps) => {
           <AccordionItem
             value={`${index}_${menu.url}`}
             key={`${index}_${menu.title}_${menu.url}`}
-            className="border-none gap-2"
+            className="border-none mb-1"
           >
             <AccordionTrigger
               className={cn(

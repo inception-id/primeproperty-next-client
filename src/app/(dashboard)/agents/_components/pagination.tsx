@@ -22,13 +22,13 @@ export const Pagination = ({ currentPage, totalPages }: PaginationProps) => {
           className="rounded-full"
           onClick={() =>
             router.replace(
-              `/agents?page=${currentPage - 1}&${nameOrEmailParams && `name_or_email=${nameOrEmailParams}`}`,
+              `/agents?page=${+currentPage - 1}&${nameOrEmailParams && `name_or_email=${nameOrEmailParams}`}`,
             )
           }
         >
           <LuChevronLeft />
         </Button>
-        <span>
+        <span className="text-sm">
           {currentPage} of {totalPages}
         </span>
         <Button
@@ -38,7 +38,7 @@ export const Pagination = ({ currentPage, totalPages }: PaginationProps) => {
           disabled={currentPage === totalPages}
           onClick={() =>
             router.replace(
-              `/agents?page=${currentPage + 1}&${nameOrEmailParams && `search=${nameOrEmailParams}`}`,
+              `/agents?page=${+currentPage + 1}&${nameOrEmailParams && `search=${nameOrEmailParams}`}`,
             )
           }
         >
