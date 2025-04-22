@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { deleteAgent } from "@/lib/api/agents/delete-agent";
 import { Agent } from "@/lib/api/agents/type";
+import { deleteSupertokensUser } from "@/lib/supertokens/delete-supertokens-user";
 import { cn } from "@/lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import { Row } from "@tanstack/react-table";
@@ -25,11 +26,10 @@ export const DeleteDialog = ({ row }: DeleteDialogProps) => {
   const query = useQueryClient();
   const onDeleteClick = async () => {
     try {
-      const agent = await deleteAgent(row.original.id);
-      if (agent.status !== 200) {
-        toast.error("Server error, please try again later");
-        return;
-      }
+      Promise.all([
+        await deleteSupertokensUser(row.original.supertokens_user_id),
+        await deleteAgent(row.original.id),
+      ]);
 
       query.invalidateQueries({ queryKey: ["agents"] });
       toast.success("Agent deleted successfully");
