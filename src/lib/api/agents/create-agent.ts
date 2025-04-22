@@ -7,6 +7,7 @@ type CreateAgentPayload = {
   fullname: string;
   email: string;
   phone_number: string;
+  profile_picture_url?: string | null;
 };
 
 export const createAgent = async (payload: CreateAgentPayload) => {

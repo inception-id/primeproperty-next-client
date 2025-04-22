@@ -10,6 +10,8 @@ import { signupSupertokens } from "@/lib/supertokens/signup-supertokens";
 import { createAgent } from "@/lib/api/agents/create-agent";
 import { createSupertokensResetPasswordToken } from "@/lib/supertokens/create-supertokens-reset-password-token";
 import { sendNewPasswordMail } from "@/lib/mail/send-new-password-mail";
+import { ProfilePictureInput } from "./profile-picture-input";
+import { uploadAgentProfilePicture } from "@/lib/s3";
 
 export const NewAgentForm = () => {
   const { resetStore, setStore, fullName, email, phoneNumber, loadingText } =
@@ -51,6 +53,12 @@ export const NewAgentForm = () => {
         return;
       }
 
+      setStore("loadingText", "Uploading profile picture...");
+      const profilePicturePath = await uploadAgentProfilePicture(
+        supertokensSignup.user.id,
+        formData,
+      );
+
       const payload = {
         supertokens_user_id: supertokensSignup.user.id,
         fullname: fullname.toString(),
@@ -58,8 +66,10 @@ export const NewAgentForm = () => {
         phone_number: phoneNumber.startsWith("0")
           ? phoneNumber.replace("0", "")
           : phoneNumber,
+        profile_picture_url: profilePicturePath,
       };
       const agent = await createAgent(payload);
+      console.log(222, agent);
       if (agent.status === 400) {
         toast.error(agent.message);
         return;
@@ -94,7 +104,8 @@ export const NewAgentForm = () => {
   };
 
   return (
-    <form className="max-w-md flex flex-col gap-4" action={handleAction}>
+    <form className="max-w-sm flex flex-col gap-4" action={handleAction}>
+      <ProfilePictureInput />
       <div className="grid gap-2">
         <Label htmlFor="fullname">Full Name</Label>
         <Input
@@ -138,7 +149,7 @@ export const NewAgentForm = () => {
         {loadingText !== "" ? (
           <span className="flex items-center gap-2">
             <LuLoader className="animate-spin" />
-            Processing...
+            {loadingText}
           </span>
         ) : (
           "Create"

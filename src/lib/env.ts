@@ -15,7 +15,6 @@ export const env = createEnv({
     SMTP_PASS: z.string().min(1),
     SMTP_FROM: z.string().min(1),
     SENTRY_AUTH_TOKEN: z.string(),
-    S3_ENDPOINT: z.string().min(1),
     S3_ACCESS_KEY: z.string().min(1),
     S3_SECRET_KEY: z.string().min(1),
   },
@@ -27,6 +26,7 @@ export const env = createEnv({
   client: {
     NEXT_PUBLIC_HOST_URL: z.string().min(1),
     NEXT_PUBLIC_API_URL: z.string().min(1),
+    NEXT_PUBLIC_S3_ENDPOINT: z.string().min(1),
     NEXT_PUBLIC_SENTRY_DSN: z.string(),
   },
   /*
@@ -45,7 +45,7 @@ export const env = createEnv({
     SMTP_USER: process.env.SMTP_USER,
     SMTP_PASS: process.env.SMTP_PASS,
     SMTP_FROM: process.env.SMTP_FROM,
-    S3_ENDPOINT: process.env.S3_ENDPOINT,
+    NEXT_PUBLIC_S3_ENDPOINT: process.env.NEXT_PUBLIC_S3_ENDPOINT,
     S3_ACCESS_KEY: process.env.S3_ACCESS_KEY,
     S3_SECRET_KEY: process.env.S3_SECRET_KEY,
     NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
