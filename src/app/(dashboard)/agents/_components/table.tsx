@@ -14,7 +14,7 @@ export const AgentsTable = ({ searchParams }: AgentsTableProps) => {
   const { data, isLoading } = useAgents(searchParams);
 
   const table = useReactTable({
-    data: data?.data ?? [],
+    data: data?.data?.data ?? [],
     columns: tableColumns,
     getCoreRowModel: getCoreRowModel(),
   });
