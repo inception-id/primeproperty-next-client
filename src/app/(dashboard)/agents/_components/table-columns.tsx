@@ -20,16 +20,16 @@ export const tableColumns: ColumnDef<Agent>[] = [
   },
   {
     accessorKey: "created_at",
-    header: "Created At",
+    header: "Created",
     cell: ({ row }) => {
-      return formatDateToIndonesian(row.original.created_at);
+      return formatDateToIndonesian(row.original.created_at, true);
     },
   },
   {
     accessorKey: "updated_at",
-    header: "Updated At",
+    header: "Last Updated",
     cell: ({ row }) => {
-      return formatDateToIndonesian(row.original.updated_at);
+      return formatDateToIndonesian(row.original.updated_at, true);
     },
   },
 ];
