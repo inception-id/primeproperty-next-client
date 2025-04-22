@@ -12,6 +12,8 @@ import { Row } from "@tanstack/react-table";
 import { LuUserPen } from "react-icons/lu";
 import { EditForm } from "./edit-form";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
 
 type EditDialogProps = {
   row: Row<Agent>;
@@ -21,7 +23,10 @@ export const EditDialog = ({ row }: EditDialogProps) => {
   const [open, setOpen] = useState(false);
   return (
     <Dialog open={open}>
-      <DialogTrigger onClick={() => setOpen(true)}>
+      <DialogTrigger
+        className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
+        onClick={() => setOpen(true)}
+      >
         <LuUserPen />
       </DialogTrigger>
       <DialogContent

@@ -4,6 +4,7 @@ import { env } from "@/lib/env";
 import { ColumnDef } from "@tanstack/react-table";
 import { LuUser } from "react-icons/lu";
 import { EditDialog } from "./edit-dialog";
+import { DeleteDialog } from "./delete-dialog";
 
 export const tableColumns: ColumnDef<Agent>[] = [
   {
@@ -49,9 +50,10 @@ export const tableColumns: ColumnDef<Agent>[] = [
     header: "",
     cell: ({ row }) => {
       return (
-        <>
+        <div className="flex items-center gap-2">
           <EditDialog row={row} />
-        </>
+          <DeleteDialog row={row} />
+        </div>
       );
     },
   },
