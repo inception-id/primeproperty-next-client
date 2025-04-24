@@ -1,17 +1,19 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useStore } from "../_stores";
 import { z } from "zod";
 import { toast } from "react-toastify";
-import { LuLoader } from "react-icons/lu";
+import { LuChevronLeft, LuLoader } from "react-icons/lu";
 import { signupSupertokens } from "@/lib/supertokens/signup-supertokens";
 import { createAgent } from "@/lib/api/agents/create-agent";
 import { createSupertokensResetPasswordToken } from "@/lib/supertokens/create-supertokens-reset-password-token";
 import { sendNewPasswordMail } from "@/lib/mail/send-new-password-mail";
 import { ProfilePictureInput } from "@/components/custom-ui/profile-picture-input";
 import { uploadAgentProfilePicture } from "@/lib/s3";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export const NewAgentForm = () => {
   const { resetStore, setStore, fullName, email, phoneNumber, loadingText } =
@@ -110,7 +112,7 @@ export const NewAgentForm = () => {
     <form className="max-w-sm flex flex-col gap-4" action={handleAction}>
       <ProfilePictureInput />
       <div className="grid gap-2">
-        <Label htmlFor="fullname">Full Name</Label>
+        <Label htmlFor="fullname">Name</Label>
         <Input
           id="fullname"
           type="text"
@@ -127,14 +129,14 @@ export const NewAgentForm = () => {
           id="email"
           type="email"
           name="email"
-          placeholder="email@primeproindonesia.com"
+          placeholder="email@example.com"
           required
           value={email}
           onChange={(e) => setStore("email", e.target.value)}
         />
       </div>
       <div className="grid gap-2">
-        <Label htmlFor="phone_number">Phone Number</Label>
+        <Label htmlFor="phone_number">Phone</Label>
         <Input
           id="phone_number"
           type="tel"
@@ -148,16 +150,29 @@ export const NewAgentForm = () => {
         />
       </div>
 
-      <Button type="submit" disabled={loadingText !== ""}>
-        {loadingText !== "" ? (
-          <span className="flex items-center gap-2">
-            <LuLoader className="animate-spin" />
-            {loadingText}
-          </span>
-        ) : (
-          "Create"
-        )}
-      </Button>
+      <div className="flex items-center justify-between">
+        <Link
+          href="/agent/list"
+          className={cn(buttonVariants({ variant: "outline" }))}
+        >
+          <LuChevronLeft />
+          Back
+        </Link>
+        <Button
+          type="submit"
+          disabled={loadingText !== ""}
+          className="flex-1 max-w-[33.3%]"
+        >
+          {loadingText !== "" ? (
+            <span className="flex items-center gap-2">
+              <LuLoader className="animate-spin" />
+              {loadingText}
+            </span>
+          ) : (
+            "Invite"
+          )}
+        </Button>
+      </div>
     </form>
   );
 };

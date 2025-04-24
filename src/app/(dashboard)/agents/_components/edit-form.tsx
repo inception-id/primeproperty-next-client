@@ -81,7 +81,6 @@ export const EditForm = ({ row, closeDialog }: EditFormProps) => {
   return (
     <form className="flex flex-col gap-4" action={handleAction}>
       <ProfilePictureInput
-        className="size-24"
         defaultProfileImage={
           row.original.profile_picture_url
             ? `${env.NEXT_PUBLIC_S3_ENDPOINT}${row.original.profile_picture_url}`

@@ -1,18 +1,13 @@
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { LuUpload, LuUser } from "react-icons/lu";
+import { LuCircleUserRound } from "react-icons/lu";
 
 type ProfilePictureInputProps = {
-  containerClassname?: string;
-  className?: string;
   defaultProfileImage?: string;
 };
 
 export const ProfilePictureInput = ({
-  containerClassname,
-  className,
   defaultProfileImage,
 }: ProfilePictureInputProps) => {
   const [profileImage, setProfileImage] = useState<string>(
@@ -32,43 +27,38 @@ export const ProfilePictureInput = ({
   };
 
   return (
-    <div className={cn("flex flex-col items-center gap-4", containerClassname)}>
-      <div
-        className={cn("size-32 overflow-hidden rounded-full border", className)}
+    <div className={cn("flex flex-col items-center gap-4")}>
+      <button
+        type="button"
+        onClick={() => fileInputRef.current?.click()}
+        className={cn(
+          "border border-dashed w-full h-48 text-muted-foreground/50 hover:bg-muted flex flex-col items-center justify-center rounded gap-2",
+        )}
       >
         {profileImage ? (
           <Image
             src={profileImage}
             alt="Profile Image"
-            className="h-full w-full object-cover"
-            width={50}
-            height={50}
+            className="size-40 object-cover border rounded-full bg-background"
+            width={100}
+            height={100}
           />
         ) : (
-          <LuUser className="h-full w-full text-muted-foreground/50" />
+          <>
+            <LuCircleUserRound className="size-24" />
+            <div>Image (optional)</div>
+          </>
         )}
-      </div>
+      </button>
 
-      <div>
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          className="flex items-center gap-2"
-          onClick={() => fileInputRef.current?.click()}
-        >
-          <LuUpload className="h-4 w-4" />
-          Upload Picture
-        </Button>
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="image/*"
-          className="hidden"
-          onChange={handleImageChange}
-          name="profile_picture"
-        />
-      </div>
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/png"
+        className="hidden"
+        onChange={handleImageChange}
+        name="profile_picture"
+      />
     </div>
   );
 };

@@ -2,7 +2,6 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
@@ -34,14 +33,9 @@ export const EditDialog = ({ row }: EditDialogProps) => {
         onOverlayClick={() => setOpen(false)}
         onEscapeKeyDown={() => setOpen(false)}
       >
-        <div>
-          <DialogTitle className="font-bold text-center">
-            Edit Agent
-          </DialogTitle>
-          <DialogDescription className="text-center">
-            {row.original.email}
-          </DialogDescription>
-        </div>
+        <DialogTitle className="font-bold text-center">
+          {row.original.email}
+        </DialogTitle>
         <EditForm row={row} closeDialog={() => setOpen(false)} />
       </DialogContent>
     </Dialog>

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Agent } from "@/lib/api/agents/type";
 import { env } from "@/lib/env";
 import { ColumnDef } from "@tanstack/react-table";
-import { LuUser } from "react-icons/lu";
+import { LuUserRound } from "react-icons/lu";
 import { EditDialog } from "./edit-dialog";
 import { DeleteDialog } from "./delete-dialog";
 
@@ -24,7 +24,7 @@ export const tableColumns: ColumnDef<Agent>[] = [
               height={50}
             />
           ) : (
-            <LuUser className="h-full w-full text-muted-foreground/50" />
+            <LuUserRound className="h-full w-full text-muted-foreground/50" />
           )}
         </div>
       );
@@ -32,15 +32,15 @@ export const tableColumns: ColumnDef<Agent>[] = [
   },
   {
     accessorKey: "fullname",
-    header: "Name",
+    header: "name",
   },
   {
     accessorKey: "email",
-    header: "Email",
+    header: "email",
   },
   {
     accessorKey: "phone_number",
-    header: "Phone",
+    header: "phone",
     cell: ({ row }) => {
       return `0${row.original.phone_number}`;
     },

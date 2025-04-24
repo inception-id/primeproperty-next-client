@@ -57,7 +57,7 @@ export const SendEmailForm = () => {
           id="email"
           type="email"
           name="email"
-          placeholder="email@primeproindonesia.com"
+          placeholder="email@example.com"
           required
         />
       </div>
