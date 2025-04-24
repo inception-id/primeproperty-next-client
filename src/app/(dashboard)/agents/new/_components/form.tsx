@@ -161,7 +161,7 @@ export const NewAgentForm = () => {
         <Button
           type="submit"
           disabled={loadingText !== ""}
-          className="flex-1 max-w-[33.3%]"
+          className="flex-1 w-[33.3%] max-w-[50%]"
         >
           {loadingText !== "" ? (
             <span className="flex items-center gap-2">
@@ -169,7 +169,7 @@ export const NewAgentForm = () => {
               {loadingText}
             </span>
           ) : (
-            "Invite"
+            "Create"
           )}
         </Button>
       </div>
