@@ -1,1 +1,1 @@
-export * from "./seo-detail-form";
+export * from "./form";
