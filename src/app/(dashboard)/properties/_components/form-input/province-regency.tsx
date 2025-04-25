@@ -16,7 +16,7 @@ export const ProvinceRegencySelect = ({ provinceId }: ProvinceRegencyProps) => {
   const { isLoading, data } = useProvinceRegency(provinceId);
   return (
     <div className="grid gap-2">
-      <Label htmlFor="regency">Kabupaten</Label>
+      <Label htmlFor="regency">Kabupaten (SEO)</Label>
       <Select name="regency">
         <SelectTrigger disabled={provinceId === ""}>
           <SelectValue
@@ -29,8 +29,11 @@ export const ProvinceRegencySelect = ({ provinceId }: ProvinceRegencyProps) => {
           {isLoading ? (
             <div>Loading...</div>
           ) : (
-            data?.map((regency) => (
-              <SelectItem key={regency.domain_id} value={regency.domain_name}>
+            data?.map((regency, index) => (
+              <SelectItem
+                key={`${index}-${regency.domain_id}`}
+                value={regency.domain_name}
+              >
                 {regency.domain_name}
               </SelectItem>
             ))

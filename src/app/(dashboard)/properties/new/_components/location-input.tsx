@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { ProvinceSelect } from "../../_components";
-import { ProvinceRegencySelect } from "../../_components/form-input/province-regency";
+import { ProvinceSelect, ProvinceRegencySelect } from "../../_components";
 
 export const LocationInput = () => {
   const [provinceId, setProvinceId] = useState<string>("");
-  console.log(provinceId);
 
   return (
     <div className="grid grid-cols-2 gap-4">

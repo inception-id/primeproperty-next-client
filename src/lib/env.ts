@@ -18,6 +18,7 @@ export const env = createEnv({
     S3_SECRET_KEY: z.string().min(1),
     BPS_API_URL: z.string().min(1),
     BPS_API_KEY: z.string().min(1),
+    OSM_URL: z.string().min(1),
     SENTRY_AUTH_TOKEN: z.string(),
   },
   /*
@@ -52,6 +53,7 @@ export const env = createEnv({
     S3_SECRET_KEY: process.env.S3_SECRET_KEY,
     BPS_API_URL: process.env.BPS_API_URL,
     BPS_API_KEY: process.env.BPS_API_KEY,
+    OSM_URL: process.env.OSM_URL,
     NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
     SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
   },

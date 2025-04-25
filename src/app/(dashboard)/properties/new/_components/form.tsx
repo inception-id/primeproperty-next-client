@@ -1,5 +1,13 @@
 "use client";
-import { DescriptionInput, TitleInput } from "../../_components";
+import {
+  DescriptionInput,
+  TitleInput,
+  StreetInput,
+  PriceInput,
+  PurchaseStatusSelect,
+  BuildingTypeSelect,
+  BuildingConditionSelect,
+} from "../../_components";
 import { LocationInput } from "./location-input";
 
 export const NewPropertyForm = () => {
@@ -8,6 +16,13 @@ export const NewPropertyForm = () => {
       <TitleInput />
       <DescriptionInput />
       <LocationInput />
+      <StreetInput />
+      <div className="grid grid-cols-2 gap-4">
+        <PurchaseStatusSelect />
+        <PriceInput />
+        <BuildingTypeSelect />
+        <BuildingConditionSelect />
+      </div>
     </form>
   );
 };

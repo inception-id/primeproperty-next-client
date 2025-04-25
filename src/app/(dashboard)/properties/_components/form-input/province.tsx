@@ -16,7 +16,7 @@ export const ProvinceSelect = ({ onProvinceChange }: ProvinceSelectProps) => {
   const { isLoading, data } = useProvince();
   return (
     <div className="grid gap-2">
-      <Label htmlFor="province">Provinsi</Label>
+      <Label htmlFor="province">Provinsi (SEO)</Label>
       <Select
         name="province"
         onValueChange={(val) => {
@@ -33,8 +33,11 @@ export const ProvinceSelect = ({ onProvinceChange }: ProvinceSelectProps) => {
           {isLoading ? (
             <div>Loading...</div>
           ) : (
-            data?.map((province) => (
-              <SelectItem key={province.domain_id} value={province.domain_name}>
+            data?.map((province, index) => (
+              <SelectItem
+                key={`${index}_${province.domain_id}`}
+                value={province.domain_name}
+              >
                 {province.domain_name}
               </SelectItem>
             ))

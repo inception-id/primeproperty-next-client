@@ -81,7 +81,7 @@ export const SidebarMenu = ({ onLinkClick }: SidebarMenuProps) => {
         onClick={() => onLinkClick && onLinkClick()}
         className={cn(
           buttonVariants({
-            variant: pathname === "/" ? "default" : "ghost",
+            variant: pathname === "/" ? "secondary" : "ghost",
             size: "sm",
           }),
           "w-full px-2 justify-start mb-1 md:text-xs",
@@ -100,7 +100,7 @@ export const SidebarMenu = ({ onLinkClick }: SidebarMenuProps) => {
             <AccordionTrigger
               className={cn(
                 buttonVariants({
-                  variant: pathname.includes(menu.url) ? "default" : "ghost",
+                  variant: pathname.includes(menu.url) ? "secondary" : "ghost",
                   size: "sm",
                 }),
                 "px-2 justify-between hover:no-underline md:text-xs",
@@ -121,7 +121,7 @@ export const SidebarMenu = ({ onLinkClick }: SidebarMenuProps) => {
                     className={cn(
                       buttonVariants({
                         variant:
-                          pathname === menuItem.url ? "default" : "ghost",
+                          pathname === menuItem.url ? "secondary" : "ghost",
                         size: "sm",
                       }),
                       "w-full px-2 justify-start md:text-xs",
