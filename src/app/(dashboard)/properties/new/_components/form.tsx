@@ -7,6 +7,8 @@ import {
   PurchaseStatusSelect,
   BuildingTypeSelect,
   BuildingConditionSelect,
+  BuildingFurnitureSelect,
+  BuildingCertificateSelect,
 } from "../../_components";
 import { LocationInput } from "./location-input";
 
@@ -21,7 +23,9 @@ export const NewPropertyForm = () => {
         <PurchaseStatusSelect />
         <PriceInput />
         <BuildingTypeSelect />
+        <BuildingCertificateSelect />
         <BuildingConditionSelect />
+        <BuildingFurnitureSelect />
       </div>
     </form>
   );
