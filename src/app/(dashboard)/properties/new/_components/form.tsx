@@ -11,6 +11,7 @@ import {
   BuildingCertificateSelect,
   FacilitiesSelect,
 } from "../../_components";
+import { GmapIframeInput } from "../../_components/form-input/gmap_iframe_input";
 import { LocationInput } from "./location-input";
 import { Measurements } from "./measurements";
 import { Specifications } from "./specifications";
@@ -38,6 +39,7 @@ export const NewPropertyForm = () => {
         <Measurements />
         <Specifications />
         <FacilitiesSelect />
+        <GmapIframeInput />
       </div>
     </form>
   );
