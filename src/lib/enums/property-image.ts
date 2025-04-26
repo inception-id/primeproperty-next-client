@@ -1,3 +1,8 @@
+export type PropertyImageTag = {
+  english_label: string;
+  indonesian_label: string;
+};
+
 export const PROPERTY_IMAGE_TAGS = [
   {
     english_label: "Living Room",
@@ -41,10 +46,8 @@ export const PROPERTY_IMAGE_TAGS = [
   },
 ];
 
-export type PropertyImage = {
+export type PropertyImage = PropertyImageTag & {
   is_cover: boolean;
   object_url: string;
   path: string;
-  english_label: string;
-  indonesian_label: string;
 };

@@ -21,12 +21,12 @@ export const GmapIframeInput = () => {
             </Link>
           </Label>
           <div className="text-muted-foreground text-xs ">
-            (Opsional) Harap jangan masukkan selain gmap iframe.
+            (Opsional) Jangan isi selain gmap iframe.
           </div>
         </div>
         <Textarea
           id="gmap_iframe"
-          placeholder="<iframe"
+          placeholder="<iframe..."
           name="gmap_iframe"
           required
           className="resize-none"
