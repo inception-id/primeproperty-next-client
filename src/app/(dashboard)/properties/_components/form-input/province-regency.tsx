@@ -20,9 +20,7 @@ export const ProvinceRegencySelect = ({ provinceId }: ProvinceRegencyProps) => {
       <Select name="regency">
         <SelectTrigger disabled={provinceId === ""}>
           <SelectValue
-            placeholder={
-              provinceId ? "Select regency" : "Select province first"
-            }
+            placeholder={provinceId ? "Pilih kabupaten" : "Pilih provinsi dulu"}
           />
         </SelectTrigger>
         <SelectContent>

@@ -27,7 +27,7 @@ export const ProvinceSelect = ({ onProvinceChange }: ProvinceSelectProps) => {
         }}
       >
         <SelectTrigger>
-          <SelectValue placeholder="Select province" />
+          <SelectValue placeholder="Pilih provinsi" />
         </SelectTrigger>
         <SelectContent>
           {isLoading ? (

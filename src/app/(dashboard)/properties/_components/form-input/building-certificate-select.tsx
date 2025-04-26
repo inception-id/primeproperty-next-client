@@ -14,7 +14,7 @@ export const BuildingCertificateSelect = () => {
       <Label htmlFor="building_certificate">Sertifikat</Label>
       <Select name="building_certificate">
         <SelectTrigger className="capitalize">
-          <SelectValue placeholder="Hak Guna/Sewa" />
+          <SelectValue placeholder="HGU/HGB" />
         </SelectTrigger>
         <SelectContent>
           {BUILDING_CERTIFICATES.map((building, index) => (

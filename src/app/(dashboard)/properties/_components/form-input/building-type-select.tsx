@@ -14,7 +14,7 @@ export const BuildingTypeSelect = () => {
       <Label htmlFor="building_type">Tipe Properti</Label>
       <Select name="building_type">
         <SelectTrigger className="capitalize">
-          <SelectValue placeholder="Rumah/Apartemen" />
+          <SelectValue placeholder="Rumah/Apart" />
         </SelectTrigger>
         <SelectContent>
           {BUILDING_TYPES.map((building, index) => (

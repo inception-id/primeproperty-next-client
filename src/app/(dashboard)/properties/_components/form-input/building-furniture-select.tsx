@@ -14,7 +14,7 @@ export const BuildingFurnitureSelect = () => {
       <Label htmlFor="building_furniture_capacity">Furniture</Label>
       <Select name="building_furniture_capacity">
         <SelectTrigger className="capitalize">
-          <SelectValue placeholder="Furnished/Semi" />
+          <SelectValue placeholder="Full/Semi" />
         </SelectTrigger>
         <SelectContent>
           {FURNITURE_CAPACITIES.map((building, index) => (

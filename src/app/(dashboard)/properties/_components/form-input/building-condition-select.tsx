@@ -14,7 +14,7 @@ export const BuildingConditionSelect = () => {
       <Label htmlFor="building_condition">Kondisi Properti</Label>
       <Select name="building_condition">
         <SelectTrigger className="capitalize">
-          <SelectValue placeholder="Baru/Renov/Tua" />
+          <SelectValue placeholder="Baru/Tua" />
         </SelectTrigger>
         <SelectContent>
           {BUILDING_CONDITIONS.map((building, index) => (

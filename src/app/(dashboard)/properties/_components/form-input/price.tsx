@@ -6,7 +6,7 @@ export const PriceInput = () => {
   const [price, setPrice] = useState(0);
   return (
     <div className="grid gap-2 w-full">
-      <Label htmlFor="price" className="flex gap-2">
+      <Label htmlFor="price" className="flex gap-2 flex-wrap">
         <span>Harga</span>
         {price > 0 && <span>(Rp. {price.toLocaleString("id-ID")})</span>}
       </Label>
