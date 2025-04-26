@@ -46,7 +46,7 @@ export const ProfilePictureInput = ({
         ) : (
           <>
             <LuCircleUserRound className="size-24" />
-            <div>Image (optional)</div>
+            <div className="text-sm">Image (optional)</div>
           </>
         )}
       </button>

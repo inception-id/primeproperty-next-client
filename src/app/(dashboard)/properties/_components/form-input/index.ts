@@ -10,3 +10,4 @@ export * from "./building-condition-select";
 export * from "./building-furniture-select";
 export * from "./building-certificate-select";
 export * from "./measurement-input";
+export * from "./facilities-select";

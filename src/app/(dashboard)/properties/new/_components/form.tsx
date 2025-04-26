@@ -9,6 +9,7 @@ import {
   BuildingConditionSelect,
   BuildingFurnitureSelect,
   BuildingCertificateSelect,
+  FacilitiesSelect,
 } from "../../_components";
 import { LocationInput } from "./location-input";
 import { Measurements } from "./measurements";
@@ -33,10 +34,10 @@ export const NewPropertyForm = () => {
       </div>
 
       <div className="h-0.5 w-full bg-muted rounded md:hidden" />
-
       <div className="flex flex-col gap-4">
         <Measurements />
         <Specifications />
+        <FacilitiesSelect />
       </div>
     </form>
   );

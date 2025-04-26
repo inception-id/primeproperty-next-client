@@ -36,7 +36,7 @@ export const Filter = () => {
           type="text"
           id="agent-search"
           placeholder="Search name or email..."
-          className="rounded-l-none border-l-transparent focus-visible:ring-transparent placeholder:text-sm w-full md:w-fit"
+          className="rounded-l-none border-l-transparent focus-visible:ring-transparent w-full md:w-fit"
           onChange={onChange}
         />
       </div>
