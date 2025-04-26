@@ -10,6 +10,7 @@ import {
   BuildingFurnitureSelect,
   BuildingCertificateSelect,
   FacilitiesSelect,
+  ImagesUpload,
 } from "../../_components";
 import { GmapIframeInput } from "../../_components/form-input/gmap_iframe_input";
 import { LocationInput } from "./location-input";
@@ -28,7 +29,7 @@ export const NewPropertyForm = () => {
         </div>
         <GmapIframeInput />
       </div>
-      <div className="grid gap-4 md:gap-14">
+      <div className="grid gap-4 md:gap-12">
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
           <PurchaseStatusSelect />
           <BuildingCertificateSelect />
@@ -41,7 +42,10 @@ export const NewPropertyForm = () => {
           <Measurements />
           <Specifications />
         </div>
-        <FacilitiesSelect />
+        <div className="grid gap-4">
+          <FacilitiesSelect />
+          <ImagesUpload />
+        </div>
       </div>
     </form>
   );

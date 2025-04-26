@@ -11,3 +11,4 @@ export * from "./building-furniture-select";
 export * from "./building-certificate-select";
 export * from "./measurement-input";
 export * from "./facilities-select";
+export * from "./images-upload";
