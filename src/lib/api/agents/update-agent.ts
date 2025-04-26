@@ -2,15 +2,15 @@
 import { fetchApi } from "../fetch-api";
 import { Agent } from "./type";
 
-type UpdateAgentFromAdminPayload = {
+type UpdateAgentPayload = {
   fullname: string;
   phone_number: string;
   profile_picture_url?: string | null;
 };
 
-export const updateAgentFromAdmin = async (
+export const updateAgent = async (
   agentId: string,
-  payload: UpdateAgentFromAdminPayload,
+  payload: UpdateAgentPayload,
 ) => {
   return await fetchApi<Agent>(`/agents/${agentId}`, {
     method: "PUT",

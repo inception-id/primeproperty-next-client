@@ -11,7 +11,7 @@ import { z } from "zod";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { uploadAgentProfilePicture } from "@/lib/s3";
-import { updateAgentFromAdmin } from "@/lib/api/agents/update-agent-from-admin";
+import { updateAgent } from "@/lib/api/agents/update-agent";
 import { useQueryClient } from "@tanstack/react-query";
 
 type EditFormProps = {
@@ -57,7 +57,7 @@ export const EditForm = ({ row, closeDialog }: EditFormProps) => {
           formData,
         );
       }
-      const agent = await updateAgentFromAdmin(row.original.id, {
+      const agent = await updateAgent(row.original.id, {
         fullname,
         phone_number: phoneNumber,
         profile_picture_url: profilePicturePath,
