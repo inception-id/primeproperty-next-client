@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { PropertyImage } from "@/lib/enums/property-image";
@@ -6,10 +6,14 @@ import { Button } from "@/components/ui/button";
 import { LuUpload } from "react-icons/lu";
 import Image from "next/image";
 import { env } from "@/lib/env";
+import { useStore } from "../../_stores";
+import { useShallow } from "zustand/react/shallow";
 
 export const ImagesUpload = () => {
+  const { images, setStore } = useStore(
+    useShallow((state) => ({ images: state.images, setStore: state.setStore })),
+  );
   const inputRef = useRef<HTMLInputElement>(null);
-  const [images, setImages] = useState<PropertyImage[]>([]);
 
   const handleAdditionalImagesChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -38,7 +42,7 @@ export const ImagesUpload = () => {
         };
       });
       const newImages = [...images, ...newUploadedImages];
-      setImages(newImages);
+      setStore("images", newImages);
       return;
     }
   };
@@ -78,7 +82,7 @@ export const ImagesUpload = () => {
             alt={image.english_label}
             width={100}
             height={100}
-            className="w-full rounded h-32 gap-4"
+            className="w-full h-32 gap-4 border rounded"
           />
         ))}
       </div>

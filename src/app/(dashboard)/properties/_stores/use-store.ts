@@ -1,4 +1,5 @@
 import { TFacility } from "@/lib/enums/facilities";
+import { PropertyImage } from "@/lib/enums/property-image";
 import { create } from "zustand";
 
 type Store = {
@@ -6,11 +7,13 @@ type Store = {
   selectedFacilities: TFacility[];
   addFacility: (facility: TFacility) => void;
   removeFacility: (facility: TFacility) => void;
-  setStore: (key: keyof Store, value: string) => void;
+  images: PropertyImage[];
+  setStore: (key: keyof Store, value: any) => void;
 };
 
 export const useStore = create<Store>((set) => ({
   isLoading: false,
+  images: [],
   selectedFacilities: [],
   setStore: (key: keyof Store, value: string) => set(() => ({ [key]: value })),
   addFacility: (facility: TFacility) =>

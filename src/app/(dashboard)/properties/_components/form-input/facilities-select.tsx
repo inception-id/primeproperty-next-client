@@ -15,7 +15,7 @@ import {
 import { FACILITIES } from "@/lib/enums/facilities";
 import { cn } from "@/lib/utils";
 import { LuCheck, LuChevronsUpDown, LuX } from "react-icons/lu";
-import { useStore } from "../../new/_stores";
+import { useStore } from "../../_stores";
 import { useShallow } from "zustand/react/shallow";
 
 export const FacilitiesSelect = () => {
