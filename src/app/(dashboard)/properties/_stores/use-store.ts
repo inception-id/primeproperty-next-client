@@ -3,7 +3,7 @@ import { PropertyImage } from "@/lib/enums/property-image";
 import { create } from "zustand";
 
 type Store = {
-  isLoading: boolean;
+  loadingText: string;
   selectedFacilities: TFacility[];
   addFacility: (facility: TFacility) => void;
   removeFacility: (facility: TFacility) => void;
@@ -12,7 +12,7 @@ type Store = {
 };
 
 export const useStore = create<Store>((set) => ({
-  isLoading: false,
+  loadingText: "",
   images: [],
   selectedFacilities: [],
   setStore: (key: keyof Store, value: string) => set(() => ({ [key]: value })),

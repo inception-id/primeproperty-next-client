@@ -29,7 +29,7 @@ export const ProvinceRegencySelect = ({ provinceId }: ProvinceRegencyProps) => {
           ) : (
             data?.map((regency, index) => (
               <SelectItem
-                key={`${index}-${regency.domain_id}`}
+                key={`${index}-${regency.domain_id}-${regency.domain_name}`}
                 value={regency.domain_name}
               >
                 {regency.domain_name}

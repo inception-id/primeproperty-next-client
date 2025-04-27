@@ -50,4 +50,5 @@ export type PropertyImage = PropertyImageTag & {
   is_cover: boolean;
   object_url: string;
   path: string;
+  name: string;
 };

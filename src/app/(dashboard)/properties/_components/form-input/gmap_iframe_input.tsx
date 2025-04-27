@@ -28,7 +28,6 @@ export const GmapIframeInput = () => {
           id="gmap_iframe"
           placeholder="<iframe..."
           name="gmap_iframe"
-          required
           className="resize-none"
           value={iframe}
           onChange={(e) => setIframe(e.target.value)}
