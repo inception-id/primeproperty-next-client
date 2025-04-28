@@ -67,23 +67,23 @@ export const NewPropertyForm = () => {
       }
 
       setStore("loadingText", "Creating property...");
+      propertyApiData.images = uploadedImages;
+      const property = await createProperty(propertyApiData);
+      if (property.status !== 201) {
+        toast.error("Error: please check your input and try again");
+        return;
+      }
+
       uploadedImages.forEach((img) => {
         if (img.object_url) URL.revokeObjectURL(img.object_url);
       });
-      propertyApiData.images = uploadedImages;
-      const property = await createProperty(propertyApiData);
-      if (property.status === 201) {
-        toast.success("Property created successfully");
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
-        return;
-      }
-      toast.error("An error occurred, please check your input and try again");
+      setStore("selectedFacilities", []);
+      setStore("images", []);
+      toast.success("Property created successfully");
       return;
     } catch (error) {
       console.error(error);
-      toast.error("An error occurred, please check your input and try again");
+      toast.error("Error: please check your input and try again");
     } finally {
       setStore("loadingText", "");
     }
