@@ -38,6 +38,7 @@ export const Filter = () => {
           placeholder="Search name or email..."
           className="rounded-l-none border-l-transparent focus-visible:ring-transparent w-full md:w-fit"
           onChange={onChange}
+          ref={typingTimeoutRef}
         />
       </div>
 
