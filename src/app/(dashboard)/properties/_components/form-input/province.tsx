@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/select";
 import { useProvince } from "@/hooks";
 import { BpsDomain } from "@/lib/bps/find-bps-domain-province";
+import { useEffect } from "react";
 
 type ProvinceSelectProps = {
   isFilter?: boolean;
@@ -22,6 +23,15 @@ export const ProvinceSelect = ({
   defaultValue,
 }: ProvinceSelectProps) => {
   const { isLoading, data } = useProvince();
+
+  useEffect(() => {
+    if (defaultValue && !isFilter) {
+      const selectedProvince = data?.find(
+        (prov) => prov.domain_name.toLowerCase() === defaultValue,
+      );
+      onProvinceChange(selectedProvince);
+    }
+  }, [defaultValue, data, onProvinceChange, isFilter]);
 
   return (
     <div className="grid gap-2">

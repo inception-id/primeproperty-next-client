@@ -25,6 +25,5 @@ export const findProperties = async (query?: FindPropertyQuery) => {
   if (query?.page) {
     path += `&page=${query.page}`;
   }
-  console.log(path);
   return await fetchApi<JsonFindApiResponse<PropertyWithAgent>>(path);
 };

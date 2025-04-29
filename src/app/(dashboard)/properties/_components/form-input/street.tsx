@@ -6,7 +6,11 @@ import { useOsmSearch } from "@/hooks/osm/use-osm-search";
 import { ChangeEvent, useRef, useState } from "react";
 import { useDismiss, useFloating, useInteractions } from "@floating-ui/react";
 
-export const StreetInput = () => {
+type StreetInputProps = {
+  defaultValue?: string;
+};
+
+export const StreetInput = ({ defaultValue }: StreetInputProps) => {
   const typingTimeoutRef = useRef<any>(null);
   const [isTyping, setIsTyping] = useState(false);
   const [keyword, setKeyword] = useState("");
@@ -47,6 +51,7 @@ export const StreetInput = () => {
           placeholder="Lebak Bulus"
           required
           onChange={onChange}
+          defaultValue={defaultValue}
         />
       </div>
 

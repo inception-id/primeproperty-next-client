@@ -1,11 +1,15 @@
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { LuMap } from "react-icons/lu";
 
-export const GmapIframeInput = () => {
-  const [iframe, setIframe] = useState("");
+type GmapIframeInputProps = {
+  defaultValue?: string;
+};
+
+const GmapIframeInputComponent = ({ defaultValue }: GmapIframeInputProps) => {
+  const [iframe, setIframe] = useState(defaultValue || "");
   return (
     <div className="grid gap-4">
       <div className="grid w-full gap-2">
@@ -31,6 +35,7 @@ export const GmapIframeInput = () => {
           className="resize-none"
           value={iframe}
           onChange={(e) => setIframe(e.target.value)}
+          defaultValue={defaultValue}
         />
       </div>
 
@@ -49,3 +54,5 @@ export const GmapIframeInput = () => {
     </div>
   );
 };
+
+export const GmapIframeInput = memo(GmapIframeInputComponent);

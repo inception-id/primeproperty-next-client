@@ -14,7 +14,7 @@ import {
   ImagesUpload,
 } from "../../_components";
 import { GmapIframeInput } from "../../_components/form-input/gmap_iframe_input";
-import { LocationInput } from "./location-input";
+import { LocationInput } from "../../_components/form-input/location-input";
 import { Measurements } from "./measurements";
 import { Specifications } from "./specifications";
 import Link from "next/link";
@@ -30,8 +30,10 @@ import { useShallow } from "zustand/react/shallow";
 import { toast } from "react-toastify";
 import { createProperty } from "@/lib/api/properties/create-property";
 import { uploadPropertyImages } from "@/lib/s3/upload-property-images";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const NewPropertyForm = () => {
+  const queryClient = useQueryClient();
   const { facilities, images, setStore, loadingText } = useStore(
     useShallow((state) => ({
       facilities: state.selectedFacilities,
@@ -77,6 +79,7 @@ export const NewPropertyForm = () => {
       uploadedImages.forEach((img) => {
         if (img.object_url) URL.revokeObjectURL(img.object_url);
       });
+      queryClient.invalidateQueries({ queryKey: ["properties"] });
       setStore("selectedFacilities", []);
       setStore("images", []);
       toast.success("Property created successfully");
@@ -133,7 +136,10 @@ export const NewPropertyForm = () => {
         </Link>
         <Button
           type="submit"
-          className="w-fit ml-auto"
+          className={cn(
+            "w-fit ml-auto",
+            loadingText !== "" && "animate-bounce",
+          )}
           disabled={loadingText !== ""}
         >
           {loadingText ? loadingText : "Create Property"}

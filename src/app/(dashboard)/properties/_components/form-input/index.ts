@@ -12,3 +12,4 @@ export * from "./building-certificate-select";
 export * from "./measurement-input";
 export * from "./facilities-select";
 export * from "./images-upload";
+export * from "./location-input";
