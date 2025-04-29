@@ -5,6 +5,7 @@ import { getTableColumns } from "./table-columns";
 import { DataTable } from "@/components/ui/data-table";
 import { useAgentTokenData } from "@/hooks/agents/use-agent-token-data";
 import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
+import { Pagination } from "./pagination";
 
 type PropertiesTableProps = {
   searchParams: FindPropertyQuery;
@@ -20,11 +21,18 @@ export const PropertiesTable = ({ searchParams }: PropertiesTableProps) => {
     getCoreRowModel: getCoreRowModel(),
   });
   return (
-    <div>
-      <DataTable
-        table={table}
-        isLoading={agent.isLoading || property.isFetching}
+    <>
+      <div className="flex-1 h-full overflow-y-auto">
+        <DataTable
+          table={table}
+          isLoading={agent.isLoading || property.isFetching}
+        />
+      </div>
+      <Pagination
+        searchParams={searchParams}
+        currentPage={searchParams?.page ? +searchParams.page : 1}
+        totalPages={property?.data?.data?.total_pages ?? 1}
       />
-    </div>
+    </>
   );
 };

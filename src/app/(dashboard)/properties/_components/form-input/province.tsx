@@ -1,3 +1,4 @@
+"use client";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -7,36 +8,48 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useProvince } from "@/hooks";
+import { BpsDomain } from "@/lib/bps/find-bps-domain-province";
 
 type ProvinceSelectProps = {
-  onProvinceChange: (provinceId: string) => void;
+  isFilter?: boolean;
+  defaultValue?: string;
+  onProvinceChange(bpsDomain: BpsDomain | undefined): void;
 };
 
-export const ProvinceSelect = ({ onProvinceChange }: ProvinceSelectProps) => {
+export const ProvinceSelect = ({
+  onProvinceChange,
+  isFilter,
+  defaultValue,
+}: ProvinceSelectProps) => {
   const { isLoading, data } = useProvince();
+
   return (
     <div className="grid gap-2">
-      <Label htmlFor="province">Provinsi (SEO)</Label>
+      <Label htmlFor="province" className={isFilter ? "hidden" : ""}>
+        Provinsi (SEO)
+      </Label>
       <Select
         name="province"
+        defaultValue={defaultValue}
         onValueChange={(val) => {
           const selectedProvince = data?.find(
-            (prov) => prov.domain_name === val,
+            (prov) => prov.domain_name.toLowerCase() === val,
           );
-          onProvinceChange(String(selectedProvince?.domain_id));
+          onProvinceChange(selectedProvince);
         }}
       >
         <SelectTrigger>
           <SelectValue placeholder="Pilih provinsi" />
         </SelectTrigger>
         <SelectContent>
+          {isFilter && <SelectItem value="-">Semua Provinsi</SelectItem>}
           {isLoading ? (
             <div>Loading...</div>
           ) : (
             data?.map((province, index) => (
               <SelectItem
                 key={`${index}_${province.domain_id}`}
-                value={province.domain_name}
+                value={province.domain_name.toLowerCase()}
               >
                 {province.domain_name}
               </SelectItem>

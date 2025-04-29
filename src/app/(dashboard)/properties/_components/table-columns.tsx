@@ -32,7 +32,12 @@ export const getTableColumns = (
       ),
     },
     {
-      header: "Area (jalan, kabupaten, provinsi)",
+      header: () => (
+        <div className="flex gap-1">
+          <span>Area</span>
+          <span className="hidden md:flex">(Jalan, Kabupaten, Provinsi)</span>
+        </div>
+      ),
       accessorKey: "area",
       cell: ({ row }) => {
         const address = [

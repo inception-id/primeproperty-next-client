@@ -23,7 +23,7 @@ export const SearchFilter = ({ searchParams }: SearchFilterProps) => {
     newParams.set("s", e.target.value);
 
     typingTimeoutRef.current = setTimeout(() => {
-      router.push(`/properties?${newParams.toString()}`);
+      router.replace(`/properties?${newParams.toString()}`);
     }, 500);
   };
   return (
@@ -42,6 +42,7 @@ export const SearchFilter = ({ searchParams }: SearchFilterProps) => {
         placeholder="id, judul, jalan"
         className="rounded-l-none border-l-transparent focus-visible:ring-transparent w-full md:w-fit"
         onChange={onChange}
+        defaultValue={searchParams?.s ?? ""}
       />
     </div>
   );
