@@ -1,20 +1,16 @@
 "use client";
 import Link from "next/link";
-import { ADMIN_SIDEBAR_MENU } from "./_lib/constant";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { LuHouse } from "react-icons/lu";
+import { ADMIN_SIDEBAR_MENU, AGENT_SIDEBAR_MENU } from "./_lib/constant";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { useSidebarStore } from "./_lib/store";
 import { useShallow } from "zustand/react/shallow";
 import { Tooltip } from "react-tooltip";
-import React from "react";
+import React, { useMemo } from "react";
+import Image from "next/image";
+import { useAgentBySupertokensId } from "@/hooks";
+import { AgentRole } from "@/lib/api/agents/type";
 
 type SidebarMenuProps = {
   onLinkClick?: () => void;
@@ -23,43 +19,39 @@ type SidebarMenuProps = {
 export const SidebarMenu = ({ onLinkClick }: SidebarMenuProps) => {
   const pathname = usePathname();
   const isMinimized = useSidebarStore(useShallow((state) => state.isMinimized));
+  const { data } = useAgentBySupertokensId();
+
+  const MENU = useMemo(() => {
+    if (data?.data?.role === AgentRole.Admin) {
+      return ADMIN_SIDEBAR_MENU;
+    }
+    return AGENT_SIDEBAR_MENU;
+  }, [data]);
 
   if (isMinimized) {
     return (
-      <div className="flex-1 flex flex-col h-full gap-1">
+      <div className="flex-1 flex flex-col h-full gap-2 pt-2">
         <Link
           href="/"
-          className={cn(
-            buttonVariants({
-              variant: "ghost",
-              size: "icon",
-            }),
-          )}
-        >
-          P
-        </Link>
-        <Link
-          href="/"
-          onClick={() => onLinkClick && onLinkClick()}
-          className={cn(
-            buttonVariants({
-              variant: pathname === "/" ? "default" : "ghost",
-              size: "icon",
-            }),
-          )}
           data-tooltip-id="sidebar-home-link"
           data-tooltip-content="Home"
         >
-          <LuHouse />
+          <Image
+            src="/images/primepro.png"
+            alt="Primepro"
+            width={25}
+            height={25}
+            className="mx-auto"
+          />
         </Link>
         <Tooltip id="sidebar-home-link" />
-        {ADMIN_SIDEBAR_MENU.map((menu, index) => (
+        {MENU.map((menu, index) => (
           <React.Fragment key={`${index}_${menu.title}_${menu.url}`}>
             <Link
               href={menu.url}
               className={cn(
                 buttonVariants({
-                  variant: pathname === menu.url ? "default" : "ghost",
+                  variant: pathname.includes(menu.url) ? "default" : "ghost",
                   size: "icon",
                 }),
               )}
@@ -68,74 +60,33 @@ export const SidebarMenu = ({ onLinkClick }: SidebarMenuProps) => {
             >
               {menu.icon}
             </Link>
-            <Tooltip id={`sidebar-${menu.title}-link`} />
+            <Tooltip id={`sidebar-${menu.title}-link`} className="z-50" />
           </React.Fragment>
         ))}
       </div>
     );
   }
   return (
-    <div className="flex-1 h-full px-2">
-      <Link
-        href="/"
-        onClick={() => onLinkClick && onLinkClick()}
-        className={cn(
-          buttonVariants({
-            variant: pathname === "/" ? "secondary" : "ghost",
-            size: "sm",
-          }),
-          "w-full px-2 justify-start mb-1 md:text-xs",
-        )}
-      >
-        <LuHouse />
-        Home
-      </Link>
-      <Accordion type="single" collapsible>
-        {ADMIN_SIDEBAR_MENU.map((menu, index) => (
-          <AccordionItem
-            value={`${index}_${menu.url}`}
-            key={`${index}_${menu.title}_${menu.url}`}
-            className="border-none mb-1"
-          >
-            <AccordionTrigger
-              className={cn(
-                buttonVariants({
-                  variant: pathname.includes(menu.url) ? "secondary" : "ghost",
-                  size: "sm",
-                }),
-                "px-2 justify-between hover:no-underline md:text-xs",
-              )}
-            >
-              <div className="flex items-center gap-2">
-                {menu.icon}
-                {menu.title}
-              </div>
-            </AccordionTrigger>
-            <AccordionContent className=" p-0 pl-3 mt-1">
-              <div className="border-l pl-2 flex flex-col gap-1">
-                {menu.items.map((menuItem, index) => (
-                  <Link
-                    key={`${index}_${menuItem.title}_${menuItem.url}`}
-                    href={menuItem.url}
-                    onClick={() => onLinkClick && onLinkClick()}
-                    className={cn(
-                      buttonVariants({
-                        variant:
-                          pathname === menuItem.url ? "secondary" : "ghost",
-                        size: "sm",
-                      }),
-                      "w-full px-2 justify-start md:text-xs",
-                    )}
-                  >
-                    {menuItem.icon}
-                    {menuItem.title}
-                  </Link>
-                ))}
-              </div>
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
+    <div className="flex-1 h-full px-2 flex flex-col gap-2">
+      {MENU.map((menu, index) => (
+        <Link
+          key={`${index}_${menu.title}_${menu.url}`}
+          href={menu.url}
+          onClick={onLinkClick}
+          className={cn(
+            buttonVariants({
+              variant: pathname.includes(menu.url) ? "default" : "ghost",
+              size: "icon",
+            }),
+            "w-full justify-start px-2",
+          )}
+          data-tooltip-id={`sidebar-${menu.title}-link`}
+          data-tooltip-content={menu.title}
+        >
+          {menu.icon}
+          {menu.title}
+        </Link>
+      ))}
     </div>
   );
 };

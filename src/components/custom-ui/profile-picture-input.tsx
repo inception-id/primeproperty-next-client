@@ -54,7 +54,7 @@ export const ProfilePictureInput = ({
       <input
         ref={fileInputRef}
         type="file"
-        accept="image/png"
+        accept="image/*"
         className="hidden"
         onChange={handleImageChange}
         name="profile_picture"

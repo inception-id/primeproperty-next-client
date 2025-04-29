@@ -50,6 +50,14 @@ export const getTableColumns = (
       },
     },
     {
+      header: "Sold/Available",
+      accessorKey: "sold_status",
+      cell: ({ row }) => {
+        const status = row.original[0].sold_status;
+        return status;
+      },
+    },
+    {
       header: "Created at",
       accessorKey: "created_at",
       cell: ({ row }) => {
@@ -90,33 +98,23 @@ export const getTableColumns = (
     });
   }
 
-  columns.push(
-    {
-      header: "Sold/Available",
-      accessorKey: "sold_status",
-      cell: ({ row }) => {
-        const status = row.original[0].sold_status;
-        return status;
-      },
+  columns.push({
+    header: "",
+    accessorKey: "action",
+    cell: ({ row }) => {
+      return (
+        <div className="flex flex-col gap-1 items-center md:flex-row">
+          <Link
+            href={`/properties/${row.original[0].id}`}
+            className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
+          >
+            <LuPencil />
+          </Link>
+          <DeleteDialog property={row.original[0]} />
+        </div>
+      );
     },
-    {
-      header: "",
-      accessorKey: "action",
-      cell: ({ row }) => {
-        return (
-          <div className="flex flex-col gap-1 items-center md:flex-row">
-            <Link
-              href={`/properties/${row.original[0].id}`}
-              className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
-            >
-              <LuPencil />
-            </Link>
-            <DeleteDialog property={row.original[0]} />
-          </div>
-        );
-      },
-    },
-  );
+  });
 
   return columns;
 };

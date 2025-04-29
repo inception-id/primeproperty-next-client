@@ -1,38 +1,42 @@
-import { LuHouse, LuHousePlus, LuUserPlus, LuUsers } from "react-icons/lu";
+import { LuHandshake, LuHouse, LuUser, LuUsers } from "react-icons/lu";
 
 export const ADMIN_SIDEBAR_MENU = [
+  {
+    title: "Property",
+    url: "/properties",
+    icon: <LuHouse />,
+  },
+  {
+    title: "Leads",
+    url: "/leads",
+    icon: <LuHandshake />,
+  },
   {
     title: "Agents",
     url: "/agents",
     icon: <LuUsers />,
-    items: [
-      {
-        title: "Agent List",
-        url: "/agents",
-        icon: <LuUsers />,
-      },
-      {
-        title: "New Agent",
-        url: "/agents/new",
-        icon: <LuUserPlus />,
-      },
-    ],
   },
   {
-    title: "Properties",
+    title: "Account",
+    url: "/account",
+    icon: <LuUser />,
+  },
+];
+
+export const AGENT_SIDEBAR_MENU = [
+  {
+    title: "Property",
     url: "/properties",
     icon: <LuHouse />,
-    items: [
-      {
-        title: "Property List",
-        url: "/properties",
-        icon: <LuHouse />,
-      },
-      {
-        title: "Add Property",
-        url: "/properties/new",
-        icon: <LuHousePlus />,
-      },
-    ],
+  },
+  {
+    title: "Leads",
+    url: "/leads",
+    icon: <LuHandshake />,
+  },
+  {
+    title: "Account",
+    url: "/account",
+    icon: <LuUser />,
   },
 ];

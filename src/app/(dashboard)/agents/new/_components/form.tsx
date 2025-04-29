@@ -109,7 +109,7 @@ export const NewAgentForm = () => {
   };
 
   return (
-    <form className="max-w-sm flex flex-col gap-4" action={handleAction}>
+    <form className="w-full max-w-sm flex flex-col gap-4" action={handleAction}>
       <ProfilePictureInput />
       <div className="grid gap-2">
         <Label htmlFor="fullname">Name</Label>

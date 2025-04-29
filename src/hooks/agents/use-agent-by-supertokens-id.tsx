@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 export const useAgentBySupertokensId = () => {
   const useQueryKey = "agents-by-supertokens-id";
   return useQuery({
+    gcTime: 0,
     queryKey: [useQueryKey],
     queryFn: async () => {
       try {

@@ -14,6 +14,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { LuPanelRight, LuX } from "react-icons/lu";
 import { SidebarFooter, SidebarMenu } from "../_sidebar";
+import Image from "next/image";
 
 export const HeaderSheet = () => {
   const [open, setOpen] = useState(false);
@@ -28,14 +29,15 @@ export const HeaderSheet = () => {
       </SheetTrigger>
       <SheetContent className="p-0 flex flex-col gap-2">
         <SheetHeader>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between pl-3">
             <SheetTitle>
-              <Link
-                href="/"
-                className={cn(buttonVariants({ variant: "link" }), "px-3")}
-                onClick={onLinkClick}
-              >
-                Primepro
+              <Link href="/" onClick={onLinkClick}>
+                <Image
+                  src="/images/primepro.png"
+                  alt="Primepro"
+                  width={25}
+                  height={25}
+                />
               </Link>
             </SheetTitle>
             <SheetClose

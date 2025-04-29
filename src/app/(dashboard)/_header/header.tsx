@@ -1,23 +1,24 @@
 "use client";
-import Link from "next/link";
 import { HeaderSheet } from "./sheet";
-import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { useSidebarStore } from "../_sidebar";
 import { LuPanelLeft } from "react-icons/lu";
 import { HeaderBreadcrumb } from "./breadcrumb";
-import dynamic from "next/dynamic";
-
-const ThemeButton = dynamic(() => import("./theme-button"), { ssr: false });
+import Image from "next/image";
+import Link from "next/link";
+import { useAgentBySupertokensId } from "@/hooks";
 
 const MobileHeader = () => {
   return (
     <div className="flex items-center justify-between border-b md:hidden">
-      <Link
-        href="/"
-        className={cn(buttonVariants({ variant: "link" }), "px-3")}
-      >
-        Primepro
+      <Link href="/" className="w-10">
+        <Image
+          src="/images/primepro.png"
+          alt="Primepro"
+          width={25}
+          height={25}
+          className="mx-auto"
+        />
       </Link>
       <HeaderSheet />
     </div>
@@ -26,6 +27,7 @@ const MobileHeader = () => {
 
 const DesktopHeader = () => {
   const { isMinimized, setMinimized } = useSidebarStore();
+  const { data } = useAgentBySupertokensId();
   return (
     <div className="hidden md:flex items-center border-b p-1 justify-between">
       <div className="flex items-center gap-2">
@@ -39,7 +41,11 @@ const DesktopHeader = () => {
         <div className="bg-foreground/75 w-[1px] h-4" />
         <HeaderBreadcrumb />
       </div>
-      <ThemeButton />
+
+      <span className="flex flex-col px-3 text-xs text-right">
+        <div>{data?.data?.fullname}</div>
+        <div className="text-foreground/50">{data?.data?.email}</div>
+      </span>
     </div>
   );
 };

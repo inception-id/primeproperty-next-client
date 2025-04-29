@@ -1,12 +1,11 @@
 "use client";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { SidebarFooter } from "./sidebar-footer";
 import { SidebarMenu } from "./sidebar-menu";
 import { useSidebarStore } from "./_lib/store";
 import { useShallow } from "zustand/react/shallow";
 import { LogoutButton } from "./sidebar-logout";
+import Image from "next/image";
 
 export const Sidebar = () => {
   const isMinimized = useSidebarStore(useShallow((state) => state.isMinimized));
@@ -23,12 +22,15 @@ export const Sidebar = () => {
   }
 
   return (
-    <div className="hidden md:flex flex-col h-full border-r min-w-48">
-      <Link
-        href="/"
-        className={cn(buttonVariants({ variant: "link" }), "justify-start")}
-      >
-        Primepro
+    <div className="hidden md:flex flex-col h-full border-r gap-2">
+      <Link href="/" className="py-2 px-3 flex items-center gap-2">
+        <Image
+          src="/images/primepro.png"
+          alt="Primepro"
+          width={25}
+          height={25}
+        />
+        <span className="text-xs">Primepro Indonesia</span>
       </Link>
       <SidebarMenu />
       <SidebarFooter />

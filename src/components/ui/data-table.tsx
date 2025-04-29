@@ -13,7 +13,7 @@ import {
 import { Table as TanstackTable } from "@tanstack/react-table";
 import { cn } from "@/lib/utils";
 import { memo } from "react";
-import { LuLoader } from "react-icons/lu";
+import Image from "next/image";
 
 type TDataTableProps<T> = {
   isLoading?: boolean;
@@ -28,36 +28,15 @@ function DataTableComponent<T>({
 }: TDataTableProps<T>) {
   if (isLoading) {
     return (
-      <Table>
-        <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => {
-                return (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
-                  </TableHead>
-                );
-              })}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody>
-          <TableRow>
-            <TableCell colSpan={table.getAllColumns().length}>
-              <div className="flex items-center gap-2 animate-bounce">
-                <LuLoader className="animate-spin" />
-                Loading
-              </div>
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
+      <div className="flex items-center justify-center h-full">
+        <Image
+          src="/images/primepro.png"
+          alt="Primepro"
+          width={100}
+          height={100}
+          className="animate-bounce"
+        />
+      </div>
     );
   }
   return (
