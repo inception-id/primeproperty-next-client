@@ -41,6 +41,6 @@ export const config = {
      * - auth (authentication routes)
      * - supertokens (SuperTokens routes)
      */
-    "/((?!api|_next/static|_next/image|favicon.ico|icon.png|apple-icon.png|sitemap.xml|robots.txt|auth|supertokens).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|icon.png|apple-icon.png|sitemap.xml|robots.txt|auth|supertokens|images).*)",
   ],
 };

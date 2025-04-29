@@ -8,6 +8,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 import Link from "next/link";
 import { LuPencil, LuUserRound } from "react-icons/lu";
+import { DeleteDialog } from "./delete-dialog";
 
 export const getTableColumns = (
   role?: AgentRole,
@@ -103,14 +104,15 @@ export const getTableColumns = (
       accessorKey: "action",
       cell: ({ row }) => {
         return (
-          <>
+          <div className="flex flex-col gap-1 items-center md:flex-row">
             <Link
               href={`/properties/${row.original[0].id}`}
               className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
             >
               <LuPencil />
             </Link>
-          </>
+            <DeleteDialog property={row.original[0]} />
+          </div>
         );
       },
     },

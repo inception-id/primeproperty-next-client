@@ -64,6 +64,10 @@ export const NewPropertyForm = () => {
       images,
     );
     try {
+      if (images.length < 3) {
+        toast.error("Minimum 3 gambar");
+        return;
+      }
       const schemaValidation = PropertyApiSchema.safeParse(propertyApiData);
       if (!schemaValidation.success) {
         const errorMsg = schemaValidation.error.errors[0].message;

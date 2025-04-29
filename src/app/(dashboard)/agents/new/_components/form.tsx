@@ -80,7 +80,7 @@ export const NewAgentForm = () => {
         return;
       }
 
-      setStore("loadingText", "Sending email invitation...");
+      setStore("loadingText", "Sending email...");
       const resetPasswordToken = await createSupertokensResetPasswordToken(
         supertokensSignup.user.id,
         email.trim(),
