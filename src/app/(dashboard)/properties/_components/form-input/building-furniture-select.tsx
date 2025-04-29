@@ -8,11 +8,17 @@ import {
 } from "@/components/ui/select";
 import { FURNITURE_CAPACITIES } from "@/lib/enums/furniture-capacity";
 
-export const BuildingFurnitureSelect = () => {
+type BuildingFurnitureSelectProps = {
+  defaultValue?: string;
+};
+
+export const BuildingFurnitureSelect = ({
+  defaultValue,
+}: BuildingFurnitureSelectProps) => {
   return (
     <div className="grid gap-2">
       <Label htmlFor="building_furniture_capacity">Furniture</Label>
-      <Select name="building_furniture_capacity">
+      <Select name="building_furniture_capacity" defaultValue={defaultValue}>
         <SelectTrigger className="capitalize">
           <SelectValue placeholder="Full/Semi" />
         </SelectTrigger>

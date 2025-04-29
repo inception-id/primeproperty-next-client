@@ -3,8 +3,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 
-export const PriceInput = () => {
-  const [price, setPrice] = useState(0);
+type PriceInputProps = {
+  defaultValue?: number;
+};
+
+export const PriceInput = ({ defaultValue }: PriceInputProps) => {
+  const [price, setPrice] = useState(defaultValue || 0);
   return (
     <div className="grid gap-2 w-full ">
       <Label htmlFor="price" className="flex flex-wrap gap-1">

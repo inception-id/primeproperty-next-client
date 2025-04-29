@@ -21,7 +21,6 @@ export const uploadAgentProfilePicture = async (
       ? `/${S3_AGENT_BUCKET}/${agentSupertokensId}`
       : null;
 
-    // can't pass return {audio_url, transcription} directly
     // Warning: Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
     return profilePicturePath;
   } catch (e) {

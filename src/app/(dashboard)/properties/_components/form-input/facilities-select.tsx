@@ -60,16 +60,19 @@ export const FacilitiesSelect = () => {
                   <div
                     className={cn(
                       "flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
-                      selectedFacilities.includes(facil)
+                      selectedFacilities
+                        .map((f) => f.indonesian_label)
+                        .includes(facil.indonesian_label)
                         ? "bg-primary text-primary-foreground"
                         : "opacity-50",
                     )}
                   >
-                    {selectedFacilities.includes(facil) && (
+                    {selectedFacilities
+                      .map((f) => f.indonesian_label)
+                      .includes(facil.indonesian_label) && (
                       <LuCheck className="h-3 w-3" />
                     )}
                   </div>
-                  {facil.icon}
                   {facil.indonesian_label}
                 </CommandItem>
               ))}
@@ -85,12 +88,7 @@ export const FacilitiesSelect = () => {
               key={`${index}_${facil.value}_selected`}
               className="border rounded flex items-center p-1 gap-2 pl-2"
             >
-              <span className="flex items-center gap-2">
-                {facil.icon}
-                <div className="text-xs capitalize">
-                  {facil.indonesian_label}
-                </div>
-              </span>
+              <div className="text-xs capitalize">{facil.indonesian_label}</div>
 
               <Button
                 size="icon"

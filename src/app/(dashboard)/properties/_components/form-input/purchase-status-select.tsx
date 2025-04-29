@@ -8,11 +8,17 @@ import {
 } from "@/components/ui/select";
 import { PURCHASE_STATUS } from "@/lib/enums/purchase-status";
 
-export const PurchaseStatusSelect = () => {
+type PurchaseStatusSelectProps = {
+  defaultValue?: string;
+};
+
+export const PurchaseStatusSelect = ({
+  defaultValue,
+}: PurchaseStatusSelectProps) => {
   return (
     <div className="grid gap-2">
       <Label htmlFor="purchase_status">Jual/Sewa?</Label>
-      <Select name="purchase_status">
+      <Select name="purchase_status" defaultValue={defaultValue}>
         <SelectTrigger className="capitalize">
           <SelectValue placeholder="Jual/Sewa" />
         </SelectTrigger>

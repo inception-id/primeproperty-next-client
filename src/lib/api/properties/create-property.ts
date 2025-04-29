@@ -3,7 +3,7 @@ import { fetchApi } from "../fetch-api";
 import { PropertyImage } from "@/lib/enums/property-image";
 import { Property, PropertyMeasurements, PropertySpecifications } from "./type";
 
-export type CreatePropertyPayload = {
+export type CreateUpdatePropertyPayload = {
   title: string;
   description: string;
   province: string;
@@ -13,6 +13,7 @@ export type CreatePropertyPayload = {
   price: number;
   images: PropertyImage[];
   purchase_status: string;
+  sold_status?: string;
   measurements: PropertyMeasurements;
   building_type: string;
   building_condition: string;
@@ -22,7 +23,7 @@ export type CreatePropertyPayload = {
   facilities: TFacility[];
 };
 
-export const createProperty = async (payload: CreatePropertyPayload) => {
+export const createProperty = async (payload: CreateUpdatePropertyPayload) => {
   return await fetchApi<Property>(`/properties`, {
     method: "POST",
     body: JSON.stringify(payload),

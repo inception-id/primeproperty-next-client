@@ -8,11 +8,17 @@ import {
 } from "@/components/ui/select";
 import { BUILDING_TYPES } from "@/lib/enums/building-type";
 
-export const BuildingTypeSelect = () => {
+type BuildingTypeSelectProps = {
+  defaultValue?: string;
+};
+
+export const BuildingTypeSelect = ({
+  defaultValue,
+}: BuildingTypeSelectProps) => {
   return (
     <div className="grid gap-2">
       <Label htmlFor="building_type">Tipe Properti</Label>
-      <Select name="building_type">
+      <Select name="building_type" defaultValue={defaultValue}>
         <SelectTrigger className="capitalize">
           <SelectValue placeholder="Rumah/Apart" />
         </SelectTrigger>

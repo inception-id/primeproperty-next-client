@@ -13,7 +13,7 @@ export const MeasurementInput = ({
   unit,
   ...props
 }: MeasurementInputProps) => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(props.defaultValue || 0);
   return (
     <div className="grid gap-2 w-full">
       <Label htmlFor={props.id}>
@@ -26,7 +26,6 @@ export const MeasurementInput = ({
         min={0}
         onChange={(e) => setValue(Number(e.target.value))}
         value={value}
-        {...props}
       />
     </div>
   );

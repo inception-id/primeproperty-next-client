@@ -8,11 +8,17 @@ import {
 } from "@/components/ui/select";
 import { BUILDING_CONDITIONS } from "@/lib/enums/building-condition";
 
-export const BuildingConditionSelect = () => {
+type BuildingConditionSelectProps = {
+  defaultValue?: string;
+};
+
+export const BuildingConditionSelect = ({
+  defaultValue,
+}: BuildingConditionSelectProps) => {
   return (
     <div className="grid gap-2">
       <Label htmlFor="building_condition">Kondisi Properti</Label>
-      <Select name="building_condition">
+      <Select name="building_condition" defaultValue={defaultValue}>
         <SelectTrigger className="capitalize">
           <SelectValue placeholder="Baru/Tua" />
         </SelectTrigger>

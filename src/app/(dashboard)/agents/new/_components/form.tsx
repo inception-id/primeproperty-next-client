@@ -58,7 +58,7 @@ export const NewAgentForm = () => {
 
       let profilePicturePath = null;
       if (profilePicture.size > 0) {
-        setStore("loadingText", "Uploading profile picture...");
+        setStore("loadingText", "Uploading picture...");
         profilePicturePath = await uploadAgentProfilePicture(
           supertokensSignup.user.id,
           formData,

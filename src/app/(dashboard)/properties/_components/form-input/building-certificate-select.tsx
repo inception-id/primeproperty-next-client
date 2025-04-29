@@ -8,11 +8,17 @@ import {
 } from "@/components/ui/select";
 import { BUILDING_CERTIFICATES } from "@/lib/enums/building-certificate";
 
-export const BuildingCertificateSelect = () => {
+type BuildingCertificateSelectProps = {
+  defaultValue?: string;
+};
+
+export const BuildingCertificateSelect = ({
+  defaultValue,
+}: BuildingCertificateSelectProps) => {
   return (
     <div className="grid gap-2">
       <Label htmlFor="building_certificate">Sertifikat</Label>
-      <Select name="building_certificate">
+      <Select name="building_certificate" defaultValue={defaultValue}>
         <SelectTrigger className="capitalize">
           <SelectValue placeholder="HGU/HGB" />
         </SelectTrigger>

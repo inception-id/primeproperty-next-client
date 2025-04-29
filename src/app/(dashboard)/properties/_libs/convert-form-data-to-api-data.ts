@@ -1,4 +1,4 @@
-import { CreatePropertyPayload } from "@/lib/api/properties/create-property";
+import { CreateUpdatePropertyPayload } from "@/lib/api/properties/create-property";
 import { TFacility } from "@/lib/enums/facilities";
 import { PropertyImage } from "@/lib/enums/property-image";
 
@@ -29,7 +29,7 @@ export const converPropertyFormDataToApiData = (
   formData: PropertyFormData,
   facilities: TFacility[],
   images: PropertyImage[],
-): CreatePropertyPayload => {
+): CreateUpdatePropertyPayload => {
   return {
     ...formData,
     price: formData.price ? parseInt(formData.price) : 0,

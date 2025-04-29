@@ -15,8 +15,8 @@ import {
 } from "../../_components";
 import { GmapIframeInput } from "../../_components/form-input/gmap_iframe_input";
 import { LocationInput } from "../../_components/form-input/location-input";
-import { Measurements } from "./measurements";
-import { Specifications } from "./specifications";
+import { Measurements } from "../../_components/form-input/measurements";
+import { Specifications } from "../../_components/form-input/specifications";
 import Link from "next/link";
 import { LuChevronLeft } from "react-icons/lu";
 import { cn } from "@/lib/utils";
@@ -30,7 +30,7 @@ import { useShallow } from "zustand/react/shallow";
 import { toast } from "react-toastify";
 import { createProperty } from "@/lib/api/properties/create-property";
 import { uploadPropertyImages } from "@/lib/s3/upload-property-images";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const NewPropertyForm = () => {
   const queryClient = useQueryClient();
@@ -42,6 +42,16 @@ export const NewPropertyForm = () => {
       loadingText: state.loadingText,
     })),
   );
+
+  useQuery({
+    queryKey: ["new-property"],
+    queryFn: async () => {
+      setStore("selectedFacilities", []);
+      setStore("images", []);
+      return [];
+    },
+  });
+
   const handleAction = async (formData: FormData) => {
     const dataEntry = Object.fromEntries(formData) as PropertyFormData;
     if (dataEntry.gmap_iframe && !dataEntry.gmap_iframe.includes("iframe")) {

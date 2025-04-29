@@ -35,7 +35,6 @@ const GmapIframeInputComponent = ({ defaultValue }: GmapIframeInputProps) => {
           className="resize-none"
           value={iframe}
           onChange={(e) => setIframe(e.target.value)}
-          defaultValue={defaultValue}
         />
       </div>
 

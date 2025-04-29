@@ -8,11 +8,12 @@ import { DialogClose } from "@/components/ui/dialog";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { z } from "zod";
-import { useState } from "react";
 import { toast } from "react-toastify";
 import { uploadAgentProfilePicture } from "@/lib/s3";
 import { updateAgent } from "@/lib/api/agents/update-agent";
 import { useQueryClient } from "@tanstack/react-query";
+import { useStore } from "../new/_stores";
+import { useShallow } from "zustand/react/shallow";
 
 type EditFormProps = {
   row: Row<Agent>;
@@ -20,8 +21,13 @@ type EditFormProps = {
 };
 
 export const EditForm = ({ row, closeDialog }: EditFormProps) => {
+  const { setStore, loadingText } = useStore(
+    useShallow((state) => ({
+      loadingText: state.loadingText,
+      setStore: state.setStore,
+    })),
+  );
   const query = useQueryClient();
-  const [isLoading, setIsLoading] = useState(false);
   const handleAction = async (formData: FormData) => {
     const fullname = formData.get("fullname") as string;
     const phoneNumber = formData.get("phone_number") as string;
@@ -39,7 +45,7 @@ export const EditForm = ({ row, closeDialog }: EditFormProps) => {
         .regex(/^[^a-zA-Z]*$/, "Invalid phone number"),
     });
     try {
-      setIsLoading(true);
+      setStore("loadingText", "Updating agent...");
       const formValidation = zodSchema.safeParse({
         fullname,
         phoneNumber,
@@ -75,7 +81,7 @@ export const EditForm = ({ row, closeDialog }: EditFormProps) => {
       console.error(error);
       toast.error("Server error, please try again later");
     } finally {
-      setIsLoading(false);
+      setStore("loadingText", "");
     }
   };
   return (
@@ -116,12 +122,12 @@ export const EditForm = ({ row, closeDialog }: EditFormProps) => {
         <DialogClose
           className={cn(buttonVariants({ variant: "outline" }))}
           onClick={closeDialog}
-          disabled={isLoading}
+          disabled={loadingText !== ""}
         >
           Close
         </DialogClose>
-        <Button type="submit" disabled={isLoading}>
-          {isLoading ? "Loading..." : "Save"}
+        <Button type="submit" disabled={loadingText !== ""}>
+          {loadingText ? loadingText : "Save"}
         </Button>
       </div>
     </form>
