@@ -1,5 +1,15 @@
+import { BuildingCertificate } from "@/lib/enums/building-certificate";
+import { BuildingCondition } from "@/lib/enums/building-condition";
+import { BuildingType } from "@/lib/enums/building-type";
 import { TFacility } from "@/lib/enums/facilities";
+import { FurnitureCapacity } from "@/lib/enums/furniture-capacity";
 import { PropertyImage } from "@/lib/enums/property-image";
+import { PurchaseStatus } from "@/lib/enums/purchase-status";
+
+export enum SoldStatus {
+  Available = "Available",
+  Sold = "Sold",
+}
 
 export type Property = {
   id: number;
@@ -15,13 +25,13 @@ export type Property = {
   gmap_iframe: string;
   price: number;
   images: PropertyImage[];
-  purchase_status: string;
-  sold_status: string;
+  purchase_status: PurchaseStatus;
+  sold_status: SoldStatus;
   measurements: PropertyMeasurements;
-  building_type: string;
-  building_condition: string;
-  building_furniture_capacity: string;
-  building_certificate: string;
+  building_type: BuildingType;
+  building_condition: BuildingCondition;
+  building_furniture_capacity: FurnitureCapacity | null;
+  building_certificate: BuildingCertificate;
   specifications: PropertySpecifications;
   facilities: TFacility[];
   is_deleted: boolean;

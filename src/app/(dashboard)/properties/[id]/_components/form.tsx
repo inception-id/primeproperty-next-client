@@ -141,7 +141,9 @@ export const EditPropertyForm = ({
                 defaultValue={propertyWithAgent[0].building_condition}
               />
               <BuildingFurnitureSelect
-                defaultValue={propertyWithAgent[0].building_furniture_capacity}
+                defaultValue={
+                  propertyWithAgent[0].building_furniture_capacity ?? undefined
+                }
               />
             </div>
             <div className="grid gap-4">
