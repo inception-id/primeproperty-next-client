@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Agent } from "@/lib/api/agents/type";
 import { ProfilePictureInput } from "@/components/custom-ui";
 import { env } from "@/lib/env";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { z } from "zod";
 import { toast } from "react-toastify";
 import { uploadAgentProfilePicture } from "@/lib/s3";
@@ -12,6 +12,8 @@ import { updateAgent } from "@/lib/api/agents/update-agent";
 import { useQueryClient } from "@tanstack/react-query";
 import { useShallow } from "zustand/react/shallow";
 import { useStore } from "../_stores";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 type EditFormProps = {
   agent: Agent;
@@ -114,7 +116,13 @@ export const EditForm = ({ agent }: EditFormProps) => {
         />
       </div>
 
-      <div className="flex justify-end">
+      <div className="flex items-center justify-between">
+        <Link
+          href="/auth/change-password"
+          className={cn(buttonVariants({ variant: "outline" }))}
+        >
+          Change Password
+        </Link>
         <Button type="submit" disabled={loadingText !== ""}>
           {loadingText ? loadingText : "Save"}
         </Button>
