@@ -6,7 +6,7 @@ import "./globals.css";
 const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Primepro Agent",
+  title: "Primepro Indonesia",
 };
 
 export const viewport: Viewport = {
