@@ -1,9 +1,9 @@
 export enum BuildingCertificate {
-  SHM = "SHM",
-  HGB = "HGB",
+  SHM = "shm",
+  HGB = "hgb",
   HakPakai = "hak pakai",
   HakSewa = "hak sewa",
-  HGU = "HGU",
+  HGU = "hgu",
   Adat = "adat",
   Girik = "girik",
   PPJB = "ppjb",
