@@ -2,7 +2,7 @@
 
 import { ThemeProvider } from "next-themes";
 import { ToastContainer } from "react-toastify";
-import { TanstackProviders } from "@/components/custom-ui/tanstack-providers";
+import { TanstackProviders } from "@/components/custom-ui";
 
 type TProviders = {
   children: React.ReactNode;

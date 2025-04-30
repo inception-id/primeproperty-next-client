@@ -1,7 +1,7 @@
 services:
   primeproperty-next-agent:
-    container_name: primeproperty_next_agent
-    image: 355355355/primeproperty-next-agent
+    container_name: primeproperty_next_client
+    image: 355355355/primeproperty-next-client
     restart: on-failure
     env_file:
       - .env
