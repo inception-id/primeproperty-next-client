@@ -1,4 +1,3 @@
-import { getAccessToken } from "../cookie/get-access-token";
 import { env } from "../env";
 
 type JsonApiResponse<T> = {
@@ -15,7 +14,7 @@ export const fetchApi = async <T>(
     const response = await fetch(env.NEXT_PUBLIC_API_URL + path, {
       headers: {
         "Content-Type": "application/json",
-        "x-access-token": await getAccessToken(),
+        ...options?.headers,
       },
       ...options,
     });

@@ -25,7 +25,7 @@ export const NavLinks = ({ onClick }: NavLinksProps) => {
             href={nav.href}
             className={cn(
               buttonVariants({ variant: "link", size: "lg" }),
-              pathname.includes(nav.href) && "underline",
+              pathname === nav.href && "underline",
             )}
             onClick={() => onClick?.()}
           >
