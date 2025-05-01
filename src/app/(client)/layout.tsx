@@ -1,7 +1,10 @@
+import { Header } from "./_header";
+
 const ClientLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <main className="container mx-auto">{children}</main>
+      <Header />
+      <main className="container mx-auto p-4">{children}</main>
     </>
   );
 };
