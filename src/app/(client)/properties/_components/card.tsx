@@ -26,7 +26,10 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
 
   return (
     <Card className="relative">
-      <Link href={`/properties/${propertyWithAgent[0].id}`}>
+      <Link
+        href={`/properties/${propertyWithAgent[0].id}`}
+        className="flex flex-col"
+      >
         <CardHeader className="p-0 w-full h-64">
           <Image
             src={baseImgPath + coverImage.path}
@@ -36,7 +39,7 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
             className="w-full h-full object-cover rounded-t-lg"
           />
         </CardHeader>
-        <CardContent className="p-4 flex flex-col gap-2">
+        <CardContent className="px-4 pt-4 pb-2 flex flex-col gap-2 overflow-hidden">
           <div>
             <div className="flex items-center justify-between">
               <CardTitle className="text-lg">
@@ -46,13 +49,13 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
                 {propertyWithAgent[0].building_type}
               </div>
             </div>
-            <h2 className="text-sm">{propertyWithAgent[0].title}</h2>
+            <h2 className="text-sm truncate">{propertyWithAgent[0].title}</h2>
             <CardDescription className="text-muted-foreground text-xs">
               {propertyWithAgent[0].street} - {propertyWithAgent[0].regency}
             </CardDescription>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 pl-1">
             {propertyWithAgent[0].specifications.bedrooms > 0 && (
               <span className="flex items-center gap-1">
                 <LuBedDouble className="text-muted-foreground/50" />
@@ -88,7 +91,6 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
               </span>
             )}
           </div>
-          <div className="w-full h-0.5 bg-muted" />
         </CardContent>
       </Link>
       <CardFooter className="px-4 pb-2 flex flex-col items-center justify-between">

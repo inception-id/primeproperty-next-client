@@ -76,8 +76,7 @@ export const ContactAgentDialog = ({
         const whatsappUrl = new URL("https://api.whatsapp.com/send");
         const propertyUrl =
           env.NEXT_PUBLIC_HOST_URL + `/properties/${propertyWithAgent[0].id}`;
-        // whatsappUrl.searchParams.append("phone", `62${propertyWithAgent[2]}`);
-        whatsappUrl.searchParams.append("phone", `628567557979`);
+        whatsappUrl.searchParams.append("phone", `62${propertyWithAgent[2]}`);
         const text = `Hai, saya ${name} tertarik dengan informasi mengenai: ${propertyWithAgent[0].title}\nyang berlokasi di ${propertyWithAgent[0].street} - ${propertyWithAgent[0].regency}.\nMohon informasi nya terkait unit tersebut: ${propertyUrl}`;
         whatsappUrl.searchParams.append("text", text);
         window.open(whatsappUrl, "_blank");
@@ -98,7 +97,7 @@ export const ContactAgentDialog = ({
             size: "lg",
             variant: isWhatsapp ? "default" : "outline",
           }),
-          "rounded-lg cursor-pointer",
+          "rounded-lg cursor-pointer overflow-hidden truncate",
           isWhatsapp
             ? "bg-green-500 hover:bg-green-400"
             : "dark:bg-foreground dark:text-background",
@@ -112,7 +111,7 @@ export const ContactAgentDialog = ({
         ) : (
           <>
             <LuPhone />
-            <span>+62{propertyWithAgent[2]}</span>
+            <span>+62{propertyWithAgent[2].slice(0, 3).concat("...")}</span>
           </>
         )}
       </DialogTrigger>

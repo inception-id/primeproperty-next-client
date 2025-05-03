@@ -27,7 +27,7 @@ export const PropertyList = () => {
   }
 
   return (
-    <div className="grid gap-x-4 gap-y-8 md:grid-cols-4">
+    <div className="grid gap-x-4 gap-y-8 md:grid-cols-3 xl:grid-cols-4 ">
       {data.data.data.map((propertyWithAgent, index) => (
         <React.Fragment key={`${index}-${propertyWithAgent[0].id}`}>
           <PropertyCard propertyWithAgent={propertyWithAgent} />
