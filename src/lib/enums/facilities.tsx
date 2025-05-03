@@ -1,3 +1,4 @@
+import { LuWifi, LuSchool, LuPenLine } from "react-icons/lu";
 export enum Facility {
   WIFI = "wifi",
   School = "school",
@@ -9,17 +10,8 @@ export type TFacility = {
   indonesian_label: string;
 };
 
-export const FACILITIES = [
-  {
-    value: Facility.WIFI,
-    indonesian_label: Facility.WIFI,
-  },
-  {
-    value: Facility.School,
-    indonesian_label: "Sekolah",
-  },
-  {
-    value: Facility.University,
-    indonesian_label: "Universitas",
-  },
-];
+export const FACILITY_ICON = {
+  [Facility.WIFI]: <LuWifi />,
+  [Facility.School]: <LuSchool />,
+  [Facility.University]: <LuPenLine />,
+};

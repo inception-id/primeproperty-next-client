@@ -6,30 +6,17 @@ export enum BuildingCondition {
   Old = "Old",
 }
 
-export const BUILDING_CONDITIONS = [
-  {
-    value: BuildingCondition.New,
-    indonesian_label: "Baru",
-    english_label: "New",
-  },
-  {
-    value: BuildingCondition.Good,
-    indonesian_label: "Bagus",
-    english_label: "Good",
-  },
-  {
-    value: BuildingCondition.Renovated,
-    indonesian_label: "Sudah Direnovasi",
-    english_label: "Renovated",
-  },
-  {
-    value: BuildingCondition.RenovationRequired,
-    indonesian_label: "Butuh Renovasi",
-    english_label: "Renovation Required",
-  },
-  {
-    value: BuildingCondition.Old,
-    indonesian_label: "Tua",
-    english_label: "Old",
-  },
-];
+export const buildingConditionToIndonesian = (condition: BuildingCondition) => {
+  switch (condition) {
+    case BuildingCondition.New:
+      return "Baru";
+    case BuildingCondition.Good:
+      return "Bagus";
+    case BuildingCondition.Renovated:
+      return "Sudah Direnovasi";
+    case BuildingCondition.RenovationRequired:
+      return "Butuh Renovasi";
+    case BuildingCondition.Old:
+      return "Tua";
+  }
+};

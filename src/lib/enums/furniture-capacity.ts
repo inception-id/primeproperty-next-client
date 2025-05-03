@@ -4,17 +4,8 @@ export enum FurnitureCapacity {
   Unfurnished = "Unfurnished",
 }
 
-export const FURNITURE_CAPACITIES = [
-  {
-    value: FurnitureCapacity.Furnished,
-    label: "Furnished",
-  },
-  {
-    value: FurnitureCapacity.SemiFurnished,
-    label: "Semi Furnished",
-  },
-  {
-    value: FurnitureCapacity.Unfurnished,
-    label: "Unfurnished",
-  },
-];
+export const FURNITURE_CAPACITY_LABELS = {
+  [FurnitureCapacity.Furnished]: "Furnished",
+  [FurnitureCapacity.SemiFurnished]: "Semi Furnished",
+  [FurnitureCapacity.Unfurnished]: "Unfurnished",
+};
