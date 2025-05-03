@@ -2,6 +2,7 @@ import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { PropertyInformation } from "./property-information";
 import { FACILITY_ICON } from "@/lib/enums/facilities";
 import { formatToCurrencyUnit } from "@/lib/intl/format-to-currency-unit";
+import { cn } from "@/lib/utils";
 
 type PropertyOverviewProps = {
   property: PropertyWithAgent;
@@ -11,6 +12,9 @@ export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
   return (
     <div className="flex flex-col gap-8   flex-1">
       <div>
+        <div className="bg-brand rounded px-2 py-1 w-fit text-xs mb-2">
+          {property[0].building_type}
+        </div>
         <div className="font-bold text-lg">
           {formatToCurrencyUnit(property[0].price)}
         </div>
@@ -29,7 +33,7 @@ export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
         </h2>
       </div>
 
-      <div>
+      <div className={cn(property[0].facilities.length === 0 ? "hidden" : "")}>
         <p className="text-base font-semibold mb-2">Fasilitas</p>
         <div className="grid grid-cols-2 gap-y-2">
           {property[0].facilities.map((facility, index) => (

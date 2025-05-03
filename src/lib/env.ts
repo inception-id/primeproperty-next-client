@@ -7,6 +7,7 @@ export const env = createEnv({
    * Will throw if you access these variables on the client.
    */
   server: {
+    API_KEY_LEADS: z.string().min(1),
     BPS_API_URL: z.string().min(1),
     BPS_API_KEY: z.string().min(1),
     OSM_URL: z.string().min(1),
@@ -32,6 +33,7 @@ export const env = createEnv({
   runtimeEnv: {
     NEXT_PUBLIC_HOST_URL: process.env.NEXT_PUBLIC_HOST_URL,
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    API_KEY_LEADS: process.env.API_KEY_LEADS,
     NEXT_PUBLIC_S3_ENDPOINT: process.env.NEXT_PUBLIC_S3_ENDPOINT,
     BPS_API_URL: process.env.BPS_API_URL,
     BPS_API_KEY: process.env.BPS_API_KEY,

@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,18 +8,11 @@ import {
 } from "@/components/ui/card";
 import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { env } from "@/lib/env";
-import { formatDateToIndonesian } from "@/lib/intl/format-date-to-indonesian";
 import { formatToCurrencyUnit } from "@/lib/intl/format-to-currency-unit";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  LuBath,
-  LuBedDouble,
-  LuCar,
-  LuCircleUser,
-  LuPhone,
-} from "react-icons/lu";
-import { MdWhatsapp } from "react-icons/md";
+import { LuBath, LuBedDouble, LuCar } from "react-icons/lu";
+import { ContactAgentDialog } from "./contact-agent-dialog";
 
 type PropertyCardProps = {
   propertyWithAgent: PropertyWithAgent;
@@ -34,8 +26,8 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
 
   return (
     <Card className="relative">
-      <Link href="/">
-        <CardHeader className="p-0 w-full h-64 md:h-96">
+      <Link href={`/properties/${propertyWithAgent[0].id}`}>
+        <CardHeader className="p-0 w-full h-64">
           <Image
             src={baseImgPath + coverImage.path}
             alt={coverImage.indonesian_label}
@@ -99,8 +91,19 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
           <div className="w-full h-0.5 bg-muted" />
         </CardContent>
       </Link>
-      <CardFooter className="px-4 pb-2 flex items-center justify-between">
-        <div className="flex gap-2 items-center">
+      <CardFooter className="px-4 pb-2 flex flex-col items-center justify-between">
+        <div className="grid grid-cols-2 gap-4">
+          <ContactAgentDialog
+            isWhatsapp={false}
+            propertyWithAgent={propertyWithAgent}
+          />
+          <ContactAgentDialog
+            isWhatsapp={true}
+            propertyWithAgent={propertyWithAgent}
+          />
+        </div>
+
+        {/* <div className="flex gap-2 items-center">
           <div className="w-10 h-10">
             {propertyWithAgent[3] ? (
               <Image
@@ -121,18 +124,7 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
             </span>
             <span className="text-sm">{propertyWithAgent[1]}</span>
           </div>
-        </div>
-
-        <div className="grid grid-cols-2 gap-2">
-          <Button className="rounded-lg" variant="outline">
-            <LuPhone />
-            <span>0{propertyWithAgent[2]}</span>
-          </Button>
-          <Button className="rounded-lg bg-green-500 hover:bg-green-400">
-            <MdWhatsapp />
-            Whatsapp
-          </Button>
-        </div>
+        </div> */}
       </CardFooter>
     </Card>
   );
