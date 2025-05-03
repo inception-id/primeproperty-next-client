@@ -12,9 +12,6 @@ export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
   return (
     <div className="flex flex-col gap-8   flex-1">
       <div>
-        <div className="bg-brand rounded px-2 py-1 w-fit text-xs mb-2">
-          {property[0].building_type}
-        </div>
         <div className="font-bold text-lg">
           {formatToCurrencyUnit(property[0].price)}
         </div>

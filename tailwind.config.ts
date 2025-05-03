@@ -8,6 +8,12 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    container: {
+      screens: {
+        xl: "1152px",
+        "2xl": "1152px",
+      },
+    },
     extend: {
       colors: {
         brand: {

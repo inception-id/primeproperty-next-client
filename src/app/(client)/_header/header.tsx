@@ -5,7 +5,7 @@ import { NavLinks } from "./nav-links";
 
 export const Header = () => {
   return (
-    <nav className="shadow">
+    <nav>
       <div className="flex items-center justify-between container mx-auto">
         <LogoLink />
         <HeaderSheet />
