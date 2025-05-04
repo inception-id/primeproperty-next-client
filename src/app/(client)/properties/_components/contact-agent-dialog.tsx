@@ -64,8 +64,8 @@ export const ContactAgentDialog = ({
         user_id: propertyWithAgent[0].user_id,
         property_id: propertyWithAgent[0].id,
         name,
-        phone: phone.startsWith("0") ? phone.replace("0") : `0${phone}`,
-        ...(email && email),
+        phone: phone.startsWith("0") ? phone.replace("0", "") : phone,
+        ...(email && { email }),
       };
 
       return await createLead(payload);
