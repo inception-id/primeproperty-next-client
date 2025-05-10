@@ -97,21 +97,21 @@ export const ContactAgentDialog = ({
             size: "lg",
             variant: isWhatsapp ? "default" : "outline",
           }),
-          "rounded-lg cursor-pointer overflow-hidden truncate",
+          "rounded-lg cursor-pointer line-clamp-1 flex",
           isWhatsapp
-            ? "bg-green-500 hover:bg-green-400"
+            ? "bg-green-500 hover:bg-green-400 text-base"
             : "dark:bg-foreground dark:text-background",
         )}
       >
         {isWhatsapp ? (
           <>
             <MdWhatsapp />
-            Whatsapp
+            WhatsApp
           </>
         ) : (
           <>
             <LuPhone />
-            <span>+62{propertyWithAgent[2].slice(0, 3).concat("...")}</span>
+            <span>+62{propertyWithAgent[2]}</span>
           </>
         )}
       </DialogTrigger>
@@ -126,7 +126,7 @@ export const ContactAgentDialog = ({
           </DialogClose>
         </div>
         <DialogDescription className="text-muted-foreground text-sm mb-4">
-          Harap isi data berikut untuk dapat melakukan komunikasi dengan agen
+          Harap isi data berikut untuk berkomunikasi dengan agen
         </DialogDescription>
 
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -161,14 +161,14 @@ export const ContactAgentDialog = ({
             className={cn(
               "rounded-lg cursor-pointer",
               isWhatsapp
-                ? "bg-green-500 hover:bg-green-400"
+                ? "bg-green-500 hover:bg-green-400 text-base"
                 : "dark:bg-foreground dark:text-background",
             )}
           >
             {isWhatsapp ? (
               <>
                 <MdWhatsapp />
-                Whatsapp
+                WhatsApp
               </>
             ) : (
               <>

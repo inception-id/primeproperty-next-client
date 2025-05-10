@@ -19,7 +19,7 @@ export const LogoLink = ({ onClick }: LogoLinkProps) => {
         width={25}
         height={25}
       />
-      <div className="text-xs flex flex-col">
+      <div className="text-xs flex flex-col font-bold">
         <span>Primepro</span>
         <span>Indonesia</span>
       </div>
