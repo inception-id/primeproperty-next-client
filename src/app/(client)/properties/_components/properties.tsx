@@ -18,7 +18,7 @@ export const Properties = async ({ searchParams }: PropertiesProps) => {
   }
   return (
     <div>
-      <PropertiesFilter />
+      <PropertiesFilter searchParams={searchParams} />
       <div className="container mx-auto px-4 pt-2 pb-8 md:py-4 flex flex-col md:gap-4 ">
         <h1 className="py-2 flex gap-1 text-sm justify-center md:text-base md:justify-start">
           Menampilkan
