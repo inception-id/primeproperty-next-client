@@ -95,12 +95,12 @@ export const ContactAgentDialog = ({
         className={cn(
           buttonVariants({
             size: "sm",
-            variant: isWhatsapp ? "default" : "outline",
+            variant: "default",
           }),
           "rounded-lg cursor-pointer line-clamp-1 flex",
           isWhatsapp
-            ? "bg-green-500 hover:bg-green-400 text-base dark:text-foreground"
-            : "dark:bg-foreground dark:text-background",
+            ? "bg-green-500 hover:bg-green-500 text-base dark:text-foreground"
+            : "",
         )}
       >
         {isWhatsapp ? (

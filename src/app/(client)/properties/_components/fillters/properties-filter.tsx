@@ -9,12 +9,9 @@ type PropertiesFilterProps = {
 export const PropertiesFilter = ({ searchParams }: PropertiesFilterProps) => {
   return (
     <div className="bg-secondary p-2 px-4">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 container mx-auto">
         <Search />
         <FilterDialog searchParams={searchParams} />
-      </div>
-      <div className="container mx-auto">
-        {/* <Input placeholder="Lokasi, keyword, area" /> */}
       </div>
     </div>
   );

@@ -13,9 +13,9 @@ export type FindPropertyQuery = {
   province?: string;
   regency?: string;
   page?: string;
-  purchase_status?: PurchaseStatus;
-  buiding_type?: BuildingType;
-  sort?: FindPropertySort;
+  purchase_status?: PurchaseStatus | string;
+  buiding_type?: BuildingType | string;
+  sort?: FindPropertySort | string;
 };
 
 export type PropertyWithAgent = [Property, string, string, string | null];

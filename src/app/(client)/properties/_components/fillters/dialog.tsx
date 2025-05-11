@@ -19,7 +19,13 @@ type FilterDialogProps = {
 export const FilterDialog = ({ searchParams }: FilterDialogProps) => {
   return (
     <Dialog>
-      <DialogTrigger className={cn(buttonVariants({ variant: "outline" }))}>
+      <DialogTrigger
+        className={cn(
+          buttonVariants({
+            variant: "outline",
+          }),
+        )}
+      >
         <LuListFilter />
         <span>Filter</span>
       </DialogTrigger>

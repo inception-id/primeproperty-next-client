@@ -7,11 +7,10 @@ import { DialogClose } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { FilterSort } from "./sort";
 import { PropertyTypeFilter } from "./property-type-filter";
-import { ProvinceFilter } from "./province-filter";
-import { RegencyFilter } from "./regency-filter";
 import { MdWhatsapp } from "react-icons/md";
 import { SearchTypeFilter } from "./search-type-filter";
 import { useRouter } from "next/navigation";
+import { LocationFilter } from "./location-filter";
 
 type FilterFormProps = {
   searchParams: FindPropertyQuery;
@@ -32,15 +31,36 @@ export const FilterForm = ({ searchParams }: FilterFormProps) => {
       <SearchTypeFilter
         searchType={filterParams.purchase_status}
         onClick={(purchase_status) => {
-          console.log(purchase_status);
-          setFilterParams({ ...filterParams, purchase_status });
+          setFilterParams({
+            ...filterParams,
+            purchase_status: purchase_status ?? "",
+          });
         }}
       />
-      <div className="grid grid-cols-2 gap-4">
-        <ProvinceFilter onProvinceChange={() => {}} />
-        <RegencyFilter provinceId="" />
-      </div>
-      <PropertyTypeFilter />
+      <LocationFilter
+        searchParams={searchParams}
+        onProvinceChange={(bpsDomain) => {
+          setFilterParams({
+            ...filterParams,
+            province: bpsDomain ? bpsDomain?.domain_name.toLowerCase() : "",
+          });
+        }}
+        onRegencyChange={(bpsDomain) => {
+          setFilterParams({
+            ...filterParams,
+            regency: bpsDomain ? bpsDomain.domain_name.toLowerCase() : "",
+          });
+        }}
+      />
+      <PropertyTypeFilter
+        defaultValue={searchParams.buiding_type}
+        onValueChange={(buildType) => {
+          setFilterParams({
+            ...filterParams,
+            buiding_type: buildType ?? "",
+          });
+        }}
+      />
       <FilterSort />
       <div className="flex items-center justify-between mt-4">
         <DialogClose className={cn(buttonVariants({ variant: "outline" }))}>
