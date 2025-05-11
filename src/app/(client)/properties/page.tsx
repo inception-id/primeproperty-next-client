@@ -1,12 +1,17 @@
 import { Suspense } from "react";
 import { Properties } from "./_components";
+import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
 
 export const revalidate = 0;
 
-const PropertiesPage = () => {
+type PropertiesPageProps = {
+  searchParams: FindPropertyQuery;
+};
+
+const PropertiesPage = ({ searchParams }: PropertiesPageProps) => {
   return (
     <Suspense>
-      <Properties />
+      <Properties searchParams={searchParams} />
     </Suspense>
   );
 };

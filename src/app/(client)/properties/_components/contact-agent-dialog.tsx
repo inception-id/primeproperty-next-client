@@ -94,7 +94,7 @@ export const ContactAgentDialog = ({
         onClick={() => setOpen(true)}
         className={cn(
           buttonVariants({
-            size: "lg",
+            size: "sm",
             variant: isWhatsapp ? "default" : "outline",
           }),
           "rounded-lg cursor-pointer line-clamp-1 flex",
