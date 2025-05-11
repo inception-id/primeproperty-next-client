@@ -99,7 +99,7 @@ export const ContactAgentDialog = ({
           }),
           "rounded-lg cursor-pointer line-clamp-1 flex",
           isWhatsapp
-            ? "bg-green-500 hover:bg-green-400 text-base"
+            ? "bg-green-500 hover:bg-green-400 text-base dark:text-foreground"
             : "dark:bg-foreground dark:text-background",
         )}
       >

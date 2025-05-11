@@ -39,7 +39,7 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
             className="w-full h-full object-cover rounded-lg"
           />
 
-          <div className="bg-brand px-2 py-1 text-xs rounded absolute top-0 right-2 capitalize dark:text-background">
+          <div className="bg-background px-2 py-1 text-xs rounded absolute top-0 right-2 capitalize ">
             {propertyWithAgent[0].building_type}
           </div>
         </CardHeader>
