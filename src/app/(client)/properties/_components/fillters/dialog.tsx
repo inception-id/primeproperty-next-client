@@ -23,10 +23,16 @@ export const FilterDialog = ({ searchParams }: FilterDialogProps) => {
           buttonVariants({
             variant: "outline",
           }),
+          "relative",
         )}
       >
         <LuListFilter />
         <span>Filter</span>
+        {Object.values(searchParams).filter((val) => val).length > 0 && (
+          <span className="absolute -top-2 -right-2 bg-foreground text-background rounded-full h-4 w-4 text-xs font-semibold">
+            {Object.values(searchParams).filter((val) => val).length}
+          </span>
+        )}
       </DialogTrigger>
       <DialogContent className="flex flex-col gap-4 z-40">
         <div className="flex items-center justify-between">

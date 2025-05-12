@@ -1,16 +1,77 @@
+"use client";
 import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
 import { FilterDialog } from "./dialog";
 import { Search } from "./search";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 type PropertiesFilterProps = {
   searchParams: FindPropertyQuery;
 };
 
+const PurchaseStatusToggle = ({ searchParams }: PropertiesFilterProps) => {
+  const router = useRouter();
+
+  const onAllClick = () => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("purchase_status", "");
+    router.replace(`/properties?${newParams.toString()}`);
+  };
+  const onBuyClick = () => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("purchase_status", "ForSale");
+    router.replace(`/properties?${newParams.toString()}`);
+  };
+  const onSellClick = () => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("purchase_status", "ForRent");
+    router.replace(`/properties?${newParams.toString()}`);
+  };
+
+  return (
+    <div className="flex gap-1 items-center p-0.5 bg-background rounded-lg border ">
+      <Button
+        type="button"
+        size="sm"
+        onClick={onAllClick}
+        variant={!searchParams.purchase_status ? "default" : "ghost"}
+      >
+        Semua
+      </Button>
+      <Button
+        type="button"
+        size="sm"
+        onClick={onBuyClick}
+        variant={
+          searchParams.purchase_status === "ForSale" ? "default" : "ghost"
+        }
+      >
+        Dijual
+      </Button>
+      <Button
+        type="button"
+        size="sm"
+        onClick={onSellClick}
+        variant={
+          searchParams.purchase_status === "ForRent" ? "default" : "ghost"
+        }
+      >
+        Disewa
+      </Button>
+    </div>
+  );
+};
+
 export const PropertiesFilter = ({ searchParams }: PropertiesFilterProps) => {
   return (
-    <div className="bg-secondary p-2 px-4">
-      <div className="flex items-center gap-2 container mx-auto">
+    <div className="bg-secondary">
+      <div className="flex items-center gap-2 container mx-auto md:hidden p-2 px-4">
         <Search />
+        <FilterDialog searchParams={searchParams} />
+      </div>
+      <div className="hidden md:flex items-center gap-2 container mx-auto p-2">
+        <Search />
+        <PurchaseStatusToggle searchParams={searchParams} />
         <FilterDialog searchParams={searchParams} />
       </div>
     </div>

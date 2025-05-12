@@ -5,6 +5,7 @@ import {
 import { PropertyList } from "./list";
 import { Pagination } from "./pagination";
 import { PropertiesFilter } from "./fillters/properties-filter";
+import { PropertiesTitle } from "./title";
 
 type PropertiesProps = {
   searchParams: FindPropertyQuery;
@@ -19,13 +20,11 @@ export const Properties = async ({ searchParams }: PropertiesProps) => {
   return (
     <div>
       <PropertiesFilter searchParams={searchParams} />
-      <div className="container mx-auto px-4 pt-2 pb-8 md:py-4 md:px-2 flex flex-col md:gap-4 ">
-        <h1 className="py-2 flex gap-1 text-sm justify-center md:text-base md:justify-start">
-          Menampilkan
-          <b>{properties.data.total_data} properti dijual</b>
-          di
-          <b>Indonesia</b>
-        </h1>
+      <div className="container mx-auto px-4 md:px-2 flex flex-col ">
+        <PropertiesTitle
+          propertyCount={properties.data.total_data}
+          searchParams={searchParams}
+        />
         <PropertyList propertiesWithAgent={properties.data?.data} />
         <Pagination
           searchParams={searchParams}
