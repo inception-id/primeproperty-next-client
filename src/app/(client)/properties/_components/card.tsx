@@ -43,8 +43,8 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
             {propertyWithAgent[0].building_type}
           </div>
         </CardHeader>
-        <CardContent className="flex flex-col gap-2 px-0 w-full group pb-4 md:px-1">
-          <div className="flex flex-col gap-2 group-hover:underline">
+        <CardContent className="px-0 w-full group pb-2">
+          <div className="flex flex-col gap-1 lg:gap-0 group-hover:underline">
             <strong className="text-xl">
               {formatToCurrencyUnit(propertyWithAgent[0].price)}
             </strong>
@@ -65,7 +65,7 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
         </CardContent>
       </Link>
       <CardFooter className="p-0 w-full">
-        <div className="flex flex-col gap-4 flex-1">
+        <div className="flex flex-col gap-4 lg:gap-3 flex-1">
           <Specifications propertyWithAgent={propertyWithAgent} />
           <div className="grid grid-cols-2 gap-4 w-full">
             <ContactAgentDialog

@@ -7,8 +7,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useProvince } from "@/hooks";
 import { BpsDomain } from "@/lib/bps/find-bps-domain-province";
+import { PROVINCES } from "@/lib/enums/provinces";
 import { useEffect } from "react";
 
 type ProvinceFilterProps = {
@@ -20,17 +20,15 @@ export const ProvinceFilter = ({
   onProvinceChange,
   defaultValue,
 }: ProvinceFilterProps) => {
-  const { isLoading, data } = useProvince();
-
   useEffect(() => {
     if (defaultValue) {
-      const selectedProvince = data?.find(
+      const selectedProvince = PROVINCES?.find(
         (prov) => prov.domain_name.toLowerCase() === defaultValue,
       );
       onProvinceChange(selectedProvince);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data, defaultValue]);
+  }, [defaultValue]);
 
   return (
     <div className="grid gap-2">
@@ -39,7 +37,7 @@ export const ProvinceFilter = ({
         name="province"
         defaultValue={defaultValue}
         onValueChange={(val) => {
-          const selectedProvince = data?.find(
+          const selectedProvince = PROVINCES?.find(
             (prov) => prov.domain_name.toLowerCase() === val,
           );
           onProvinceChange(selectedProvince);
@@ -50,18 +48,14 @@ export const ProvinceFilter = ({
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="-">Semua Provinsi</SelectItem>
-          {isLoading ? (
-            <div>Loading...</div>
-          ) : (
-            data?.map((province, index) => (
-              <SelectItem
-                key={`${index}_${province.domain_id}`}
-                value={province.domain_name.toLowerCase()}
-              >
-                {province.domain_name}
-              </SelectItem>
-            ))
-          )}
+          {PROVINCES?.map((province, index) => (
+            <SelectItem
+              key={`${index}_${province.domain_id}`}
+              value={province.domain_name.toLowerCase()}
+            >
+              {province.domain_name}
+            </SelectItem>
+          ))}
         </SelectContent>
       </Select>
     </div>

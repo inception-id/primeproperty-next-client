@@ -7,18 +7,30 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export const FilterSort = () => {
+type FilterSortProps = {
+  defaultValue?: string;
+  onValueChange: (value: string) => void;
+};
+
+export const FilterSort = ({
+  defaultValue,
+  onValueChange,
+}: FilterSortProps) => {
   return (
     <div>
       <Label>Urutkan</Label>
-      <Select name="order_by">
+      <Select
+        name="order_by"
+        defaultValue={defaultValue ?? "Newest"}
+        onValueChange={onValueChange}
+      >
         <SelectTrigger>
-          <SelectValue placeholder="Rekomendasi" />
+          <SelectValue placeholder="Terbaru" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="recommended">Rekomendasi</SelectItem>
-          <SelectItem value="lowest_price">Harga Terendah</SelectItem>
-          <SelectItem value="highest_price">Harga Tertinggi</SelectItem>
+          <SelectItem value="Newest">Terbaru</SelectItem>
+          <SelectItem value="LowestPrice">Harga Terendah</SelectItem>
+          <SelectItem value="HighestPrice">Harga Tertinggi</SelectItem>
         </SelectContent>
       </Select>
     </div>

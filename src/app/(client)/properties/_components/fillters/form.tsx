@@ -1,6 +1,6 @@
 "use client";
 import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { buttonVariants } from "@/components/ui/button";
 import { DialogClose } from "@/components/ui/dialog";
@@ -11,6 +11,7 @@ import { MdWhatsapp } from "react-icons/md";
 import { SearchTypeFilter } from "./search-type-filter";
 import { useRouter } from "next/navigation";
 import { LocationFilter } from "./location-filter";
+import Link from "next/link";
 
 type FilterFormProps = {
   searchParams: FindPropertyQuery;
@@ -18,6 +19,13 @@ type FilterFormProps = {
 
 export const FilterForm = ({ searchParams }: FilterFormProps) => {
   const router = useRouter();
+  const askUrl = useMemo(() => {
+    const whatsappUrl = new URL("https://api.whatsapp.com/send");
+    whatsappUrl.searchParams.append("phone", "6282116162995");
+    const text = `Hai, saya ingin bertanya-tanya tentang daftar properti di : \n${window.location.href}\nMohon informasinya terkait hal tersebut.`;
+    whatsappUrl.searchParams.append("text", text);
+    return whatsappUrl;
+  }, []);
   const [filterParams, setFilterParams] =
     useState<Omit<FindPropertyQuery, "page">>(searchParams);
 
@@ -61,12 +69,24 @@ export const FilterForm = ({ searchParams }: FilterFormProps) => {
           });
         }}
       />
-      <FilterSort />
+      <FilterSort
+        defaultValue={searchParams.sort}
+        onValueChange={(val) => {
+          setFilterParams({
+            ...filterParams,
+            sort: val === "Newest" ? "" : val,
+          });
+        }}
+      />
       <div className="flex items-center justify-between mt-4">
-        <DialogClose className={cn(buttonVariants({ variant: "outline" }))}>
+        <Link
+          href={askUrl}
+          target="_blank"
+          className={cn(buttonVariants({ variant: "outline" }))}
+        >
           <MdWhatsapp />
           Tanya langsung
-        </DialogClose>
+        </Link>
         <DialogClose className={cn(buttonVariants())} onClick={onCloseClick}>
           Tampilkan
         </DialogClose>

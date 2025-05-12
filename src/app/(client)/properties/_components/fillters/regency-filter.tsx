@@ -45,7 +45,7 @@ export const RegencyFilter = ({
         <SelectContent>
           <SelectItem value="-">Semua Wilayah</SelectItem>
           {isLoading ? (
-            <div>Loading...</div>
+            <div className="text-sm p-2 animate-pulse">Loading...</div>
           ) : (
             data?.map((regency, index) => (
               <SelectItem
