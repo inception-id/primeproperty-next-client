@@ -6,9 +6,17 @@ type PropertiesTitleProps = {
   searchParams: FindPropertyQuery;
 };
 
-const createLocation = (province?: string, regency?: string) => {
+const createLocation = (
+  province?: string,
+  regency?: string,
+  street?: string,
+) => {
   if (province && regency) {
     return regency + " " + province;
+  }
+
+  if (regency && street) {
+    return street + " " + regency;
   }
 
   if (province) {
@@ -38,7 +46,11 @@ export const PropertiesTitle = ({
       </b>
       di
       <b className="capitalize">
-        {createLocation(searchParams.province, searchParams.regency)}
+        {createLocation(
+          searchParams.province,
+          searchParams.regency,
+          searchParams.street,
+        )}
       </b>
     </h1>
   );

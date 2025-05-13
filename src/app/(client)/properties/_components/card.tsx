@@ -13,6 +13,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ContactAgentDialog } from "./contact-agent-dialog";
 import { Specifications } from "./specifications";
+import { formatDateToIndonesian } from "@/lib/intl/format-date-to-indonesian";
 
 type PropertyCardProps = {
   propertyWithAgent: PropertyWithAgent;
@@ -68,10 +69,13 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
         <div className="flex flex-col gap-4 lg:gap-3 flex-1">
           <Specifications propertyWithAgent={propertyWithAgent} />
           <div className="grid grid-cols-2 gap-4 w-full">
-            <ContactAgentDialog
-              isWhatsapp={false}
-              propertyWithAgent={propertyWithAgent}
-            />
+            <div className="flex flex-col text-xs">
+              <span>
+                Diperbarui{" "}
+                {formatDateToIndonesian(propertyWithAgent[0].updated_at)}
+              </span>
+              <span>{propertyWithAgent[1]}</span>
+            </div>
             <ContactAgentDialog
               isWhatsapp={true}
               propertyWithAgent={propertyWithAgent}

@@ -3,6 +3,7 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
+  DialogDescription,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
@@ -37,6 +38,7 @@ export const FilterDialog = ({ searchParams }: FilterDialogProps) => {
       <DialogContent className="flex flex-col gap-4 z-40">
         <div className="flex items-center justify-between">
           <DialogTitle className="font-semibold">Filter Properti</DialogTitle>
+          <DialogDescription />
           <DialogClose>
             <LuX />
           </DialogClose>

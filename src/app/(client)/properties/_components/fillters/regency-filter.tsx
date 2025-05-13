@@ -27,7 +27,6 @@ export const RegencyFilter = ({
       <Label htmlFor="regency">Wilayah</Label>
       <Select
         name="regency"
-        defaultValue={defaultValue}
         onValueChange={(value) => {
           if (onValueChange) {
             const selectedRegency = data?.find(
@@ -39,7 +38,7 @@ export const RegencyFilter = ({
       >
         <SelectTrigger disabled={provinceId === ""}>
           <SelectValue
-            placeholder={provinceId ? "Pilih kabupaten" : "Pilih provinsi dulu"}
+            placeholder={defaultValue ? defaultValue : "Pilih provinsi dulu"}
           />
         </SelectTrigger>
         <SelectContent>

@@ -22,6 +22,7 @@ import { env } from "@/lib/env";
 type ContactAgentDialogProps = {
   isWhatsapp: boolean;
   propertyWithAgent: PropertyWithAgent;
+  ctaText?: string;
 };
 
 export const ContactAgentDialog = ({

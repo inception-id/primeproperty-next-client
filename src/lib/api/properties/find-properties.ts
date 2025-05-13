@@ -12,6 +12,7 @@ export enum FindPropertySort {
 export type FindPropertyQuery = {
   province?: string;
   regency?: string;
+  street?: string;
   page?: string;
   purchase_status?: PurchaseStatus | string;
   buiding_type?: BuildingType | string;
