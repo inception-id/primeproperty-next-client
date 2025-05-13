@@ -24,12 +24,6 @@ export const FilterForm = ({ searchParams }: FilterFormProps) => {
 
   const onCloseClick = () => {
     const newParams = new URLSearchParams(filterParams);
-    if (searchParams.regency && !searchParams.province) {
-      newParams.set("regency", "");
-    }
-    if (searchParams.street) {
-      newParams.set("street", "");
-    }
     router.replace(`/properties?${newParams}`);
   };
 

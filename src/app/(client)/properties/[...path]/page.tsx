@@ -20,11 +20,14 @@ const DynamicPropertyPage = ({ params }: DynamicPropertyPageProps) => {
     const newSearchParams: FindPropertyQuery = {
       purchase_status: pathParamsToPurchaseStatus(params.path?.[0] ?? ""),
       buiding_type: params.path?.[1] ? (params.path[1] as BuildingType) : "",
-      regency: params.path?.[2]
+      province: params.path?.[2]
         ? params.path[2].replaceAll("-", " ").toLowerCase()
         : "",
-      street: params.path?.[3]
+      regency: params.path?.[3]
         ? params.path[3].replaceAll("-", " ").toLowerCase()
+        : "",
+      street: params.path?.[4]
+        ? params.path[4].replaceAll("-", " ").toLowerCase()
         : "",
     };
     return (
