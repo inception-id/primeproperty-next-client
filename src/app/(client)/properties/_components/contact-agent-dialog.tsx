@@ -28,6 +28,7 @@ type ContactAgentDialogProps = {
 export const ContactAgentDialog = ({
   isWhatsapp,
   propertyWithAgent,
+  ctaText,
 }: ContactAgentDialogProps) => {
   const [open, setOpen] = useState(false);
 
@@ -107,7 +108,7 @@ export const ContactAgentDialog = ({
         {isWhatsapp ? (
           <>
             <MdWhatsapp />
-            WhatsApp
+            {ctaText || "WhatsApp"}
           </>
         ) : (
           <>
@@ -117,7 +118,8 @@ export const ContactAgentDialog = ({
         )}
       </DialogTrigger>
       <DialogContent
-        className="md:max-w-sm"
+        className="md:max-w-sm z-[100]"
+        overlayClassName="z-[100]"
         onOverlayClick={() => setOpen(false)}
       >
         <div className="flex items-center justify-between">
@@ -169,7 +171,7 @@ export const ContactAgentDialog = ({
             {isWhatsapp ? (
               <>
                 <MdWhatsapp />
-                WhatsApp
+                {ctaText || "WhatsApp"}
               </>
             ) : (
               <>

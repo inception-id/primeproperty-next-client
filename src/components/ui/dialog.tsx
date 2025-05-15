@@ -32,28 +32,34 @@ type TDialogContent = React.ComponentPropsWithoutRef<
   typeof DialogPrimitive.Content
 > & {
   onOverlayClick?: () => void;
+  overlayClassName?: string;
 };
 
 const DialogContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   TDialogContent
->(({ className, children, onOverlayClick, ...props }, ref) => (
-  <DialogPortal>
-    <DialogOverlay onClick={onOverlayClick} />
-    <DialogPrimitive.Content
-      ref={ref}
-      className={cn(
-        "fixed top-[50%] left-[50%] z-50 -translate-x-1/2 -translate-y-1/2",
-        "p-4 rounded-lg bg-background w-full max-w-lg shadow border",
-        "duration-200 data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out",
-        className,
-      )}
-      {...props}
-    >
-      {children}
-    </DialogPrimitive.Content>
-  </DialogPortal>
-));
+>(
+  (
+    { className, children, onOverlayClick, overlayClassName, ...props },
+    ref,
+  ) => (
+    <DialogPortal>
+      <DialogOverlay onClick={onOverlayClick} className={overlayClassName} />
+      <DialogPrimitive.Content
+        ref={ref}
+        className={cn(
+          "fixed top-[50%] left-[50%] z-50 -translate-x-1/2 -translate-y-1/2",
+          "p-4 rounded-lg bg-background w-full max-w-lg shadow border",
+          "duration-200 data-[state=open]:animate-in data-[state=open]:fade-in data-[state=closed]:animate-out data-[state=closed]:fade-out",
+          className,
+        )}
+        {...props}
+      >
+        {children}
+      </DialogPrimitive.Content>
+    </DialogPortal>
+  ),
+);
 DialogContent.displayName = DialogPrimitive.Content.displayName;
 
 export {

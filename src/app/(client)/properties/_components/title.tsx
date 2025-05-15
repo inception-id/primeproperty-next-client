@@ -11,12 +11,12 @@ const createLocation = (
   regency?: string,
   street?: string,
 ) => {
-  if (province && regency) {
-    return regency + " " + province;
-  }
-
   if (regency && street) {
     return street + " " + regency;
+  }
+
+  if (province && regency) {
+    return regency + " " + province;
   }
 
   if (province) {

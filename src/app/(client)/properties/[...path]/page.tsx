@@ -38,7 +38,7 @@ const DynamicPropertyPage = ({ params }: DynamicPropertyPageProps) => {
   }
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto max-w-6xl">
       <Suspense>
         <DynamicProperty propertyId={+propertyId} />
       </Suspense>

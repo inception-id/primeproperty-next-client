@@ -11,6 +11,7 @@ const ThemeButton = () => {
     <Button
       data-tooltip-id="theme-button"
       data-tooltip-content={resolvedTheme}
+      data-tooltip-place="right"
       variant="ghost"
       size="icon"
       onClick={() =>

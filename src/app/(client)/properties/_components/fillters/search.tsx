@@ -28,9 +28,12 @@ export const Search = () => {
       const matches =
         data.data
           ?.map((path) => {
+            const labelArr = path.split("/");
+            labelArr.splice(3, 1);
+            const label = labelArr.join(" ").replaceAll("-", " ");
             return {
               value: path,
-              label: path.replaceAll("/", " ").replaceAll("-", " "),
+              label,
             };
           })
           .filter((path) => path.label.includes(keyword)) ?? [];
