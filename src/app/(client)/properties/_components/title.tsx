@@ -1,9 +1,11 @@
 import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
 import { PURCHASE_STATUS, PurchaseStatus } from "@/lib/enums/purchase-status";
+import { cn } from "@/lib/utils";
 
 type PropertiesTitleProps = {
   propertyCount: number;
   searchParams: FindPropertyQuery;
+  className?: string;
 };
 
 const createLocation = (
@@ -29,9 +31,15 @@ const createLocation = (
 export const PropertiesTitle = ({
   propertyCount,
   searchParams,
+  className,
 }: PropertiesTitleProps) => {
   return (
-    <h1 className="py-4 flex gap-1 text-base justify-center md:text-base md:justify-start">
+    <h1
+      className={cn(
+        "py-4 flex gap-1 text-base justify-center md:text-base md:justify-start",
+        className,
+      )}
+    >
       Menampilkan
       <b>
         {propertyCount}{" "}

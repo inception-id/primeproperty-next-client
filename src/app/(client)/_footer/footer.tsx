@@ -7,26 +7,6 @@ import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { MdCopyright } from "react-icons/md";
 
-const PropertyTypes = () => {
-  return (
-    <div className="grid gap-4">
-      <div className="font-bold">Jenis Properti</div>
-      <div className="grid grid-cols-2 gap-2">
-        <Link href={`/properties/dijual`} className="hover:underline">
-          Dijual
-        </Link>
-
-        <Link href={`/properties/disewa`} className="hover:underline">
-          Disewa
-        </Link>
-        <Link href={`/properties/disewa`} className="hover:underline">
-          Dijual &amp; Disewa
-        </Link>
-      </div>
-    </div>
-  );
-};
-
 const PropertyArea = () => {
   return (
     <div className="grid gap-2">
@@ -114,10 +94,7 @@ export const Footer = () => {
       >
         <div className="grid gap-8 md:grid-cols-4 lg:gap-12">
           <Brand />
-          <div className="grid gap-8">
-            <PropertyTypes />
-            <PropertyArea />
-          </div>
+          <PropertyArea />
           <BuildingTypes />
         </div>
 

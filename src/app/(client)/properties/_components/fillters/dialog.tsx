@@ -14,9 +14,10 @@ import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
 
 type FilterDialogProps = {
   searchParams: FindPropertyQuery;
+  title?: string;
 };
 
-export const FilterDialog = ({ searchParams }: FilterDialogProps) => {
+export const FilterDialog = ({ searchParams, title }: FilterDialogProps) => {
   return (
     <Dialog>
       <DialogTrigger
@@ -28,7 +29,7 @@ export const FilterDialog = ({ searchParams }: FilterDialogProps) => {
         )}
       >
         <LuListFilter />
-        <span>Filter</span>
+        <span>{title || "Filter"}</span>
         {Object.values(searchParams).filter((val) => val).length > 0 && (
           <span className="absolute -top-2 -right-2 bg-foreground text-background rounded-full h-4 w-4 text-xs font-semibold">
             {Object.values(searchParams).filter((val) => val).length}

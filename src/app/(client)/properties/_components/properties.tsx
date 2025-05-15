@@ -6,6 +6,7 @@ import { PropertyList } from "./list";
 import { Pagination } from "./pagination";
 import { PropertiesFilter } from "./fillters/properties-filter";
 import { PropertiesTitle } from "./title";
+import { PropertyNotFound } from "./not-found";
 
 type PropertiesProps = {
   searchParams: FindPropertyQuery;
@@ -13,9 +14,8 @@ type PropertiesProps = {
 
 export const Properties = async ({ searchParams }: PropertiesProps) => {
   const properties = await findProperties(searchParams);
-  // TODO: Error handling
-  if (!properties.data?.data) {
-    return <>Error</>;
+  if (!properties.data?.data || properties.data.data.length === 0) {
+    return <PropertyNotFound searchParams={searchParams} />;
   }
   return (
     <div>
