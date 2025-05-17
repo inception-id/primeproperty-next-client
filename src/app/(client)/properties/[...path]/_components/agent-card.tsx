@@ -11,7 +11,7 @@ type AgentCardProps = {
 
 export const AgentCard = ({ property }: AgentCardProps) => {
   return (
-    <Card className="h-fit shadow-lg sticky bottom-4 md:top-4 md:max-w-sm">
+    <Card className="h-fit shadow-lg rounded-b-none md:rounded-b-md fixed md:sticky bottom-0 left-0 md:top-4  w-full md:max-w-sm">
       <p className="text-center pt-4 font-semibold hidden md:block">
         Tanya Jawab
       </p>
