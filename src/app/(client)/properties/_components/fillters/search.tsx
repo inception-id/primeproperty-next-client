@@ -9,8 +9,10 @@ import Link from "next/link";
 import { useDismiss, useFloating, useInteractions } from "@floating-ui/react";
 import { MdWhatsapp } from "react-icons/md";
 import { createAskUrl } from "@/lib/create-ask-url";
+import { useRouter } from "next/navigation";
 
 export const Search = () => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [keyword, setKeyword] = useState("");
   const { data } = usePropertiesSitePaths(isOpen);
@@ -46,8 +48,17 @@ export const Search = () => {
     return [];
   }, [data, keyword]);
 
+  const handleAction = () => {
+    if (searchResult.length > 0) {
+      router.push(`/properties${searchResult[0].value}`);
+      return;
+    }
+    router.push("/properties/0");
+  };
+
   return (
-    <div
+    <form
+      action={handleAction}
       className="flex items-center w-full md:w-96 relative"
       ref={refs.setReference}
       {...getReferenceProps()}
@@ -115,6 +126,6 @@ export const Search = () => {
           )}
         </div>
       )}
-    </div>
+    </form>
   );
 };
