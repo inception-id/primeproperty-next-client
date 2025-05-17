@@ -2,6 +2,7 @@ import { findPropertyById } from "@/lib/api/properties/find-property-by-id";
 import { PropertyOverview } from "./property-overview";
 import { AgentCard } from "./agent-card";
 import { PropertyImages } from "./property-images";
+import { PropertyNotFound } from "../../_components/not-found";
 
 type DynamicPropertyProps = {
   propertyId: number;
@@ -11,7 +12,7 @@ export const DynamicProperty = async ({ propertyId }: DynamicPropertyProps) => {
   const property = await findPropertyById(propertyId);
 
   if (!property.data) {
-    return <>Search</>;
+    return <PropertyNotFound searchParams={{}} />;
   }
   return (
     <div>

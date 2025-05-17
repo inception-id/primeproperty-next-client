@@ -9,20 +9,23 @@ type PropertiesTitleProps = {
 };
 
 const createLocation = (
+  propertyCount: number,
   province?: string,
   regency?: string,
   street?: string,
 ) => {
-  if (regency && street) {
-    return street + " " + regency;
+  if (province && regency && street) {
+    return street + ", " + regency + ", " + province;
   }
-
   if (province && regency) {
-    return regency + " " + province;
+    return regency + ", " + province;
   }
 
   if (province) {
     return province;
+  }
+  if (propertyCount === 0) {
+    return "";
   }
 
   return "Indonesia";
@@ -36,25 +39,41 @@ export const PropertiesTitle = ({
   return (
     <h1
       className={cn(
-        "py-4 flex gap-1 text-base justify-center md:text-base md:justify-start",
+        "flex gap-1 text-base flex-wrap ",
+        propertyCount === 0 &&
+          Object.values(searchParams).filter((val) => val).length === 0 &&
+          "font-bold lg:text-xl ",
         className,
       )}
     >
-      Menampilkan
+      {propertyCount === 0 ? "Pencarian tidak ditemukan" : "Menampilkan"}
+      {propertyCount > 0 ? (
+        <b>{propertyCount}</b>
+      ) : Object.values(searchParams).filter((val) => val).length > 0 ? (
+        <p>untuk</p>
+      ) : (
+        ""
+      )}
       <b>
-        {propertyCount}{" "}
         {searchParams.buiding_type
           ? searchParams.buiding_type.toLowerCase()
-          : "properti"}{" "}
+          : propertyCount > 0 || Object.keys(searchParams).length > 0
+            ? "properti"
+            : ""}
+      </b>
+      <b>
         {searchParams.purchase_status
           ? PURCHASE_STATUS[
               searchParams.purchase_status as PurchaseStatus
             ].toLowerCase()
-          : "dijual"}
+          : propertyCount > 0
+            ? "dijual"
+            : ""}
       </b>
-      di
+      {Object.keys(searchParams).length > 0 && "di"}
       <b className="capitalize">
         {createLocation(
+          propertyCount,
           searchParams.province,
           searchParams.regency,
           searchParams.street,

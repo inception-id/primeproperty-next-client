@@ -4,14 +4,23 @@ import { Properties } from "../_components";
 import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
 import { pathParamsToPurchaseStatus } from "@/lib/enums/purchase-status";
 import { BuildingType } from "@/lib/enums/building-type";
+import { Metadata } from "next";
+import { generatePropertiesMetadata } from "../_lib/create-properties-metadata";
 
 export const revalidate = 0;
 
 type DynamicPropertyPageProps = {
+  searchParams: FindPropertyQuery;
   params: {
     path: string[];
   };
 };
+
+export const generateMetadata = async ({
+  searchParams,
+  params,
+}: DynamicPropertyPageProps): Promise<Metadata> =>
+  generatePropertiesMetadata(searchParams, params.path);
 
 const DynamicPropertyPage = ({ params }: DynamicPropertyPageProps) => {
   const isList = Number.isNaN(+params.path[params.path.length - 1]);

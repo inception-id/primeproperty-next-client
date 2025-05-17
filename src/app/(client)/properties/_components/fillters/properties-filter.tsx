@@ -64,7 +64,7 @@ const PurchaseStatusToggle = ({ searchParams }: PropertiesFilterProps) => {
 
 export const PropertiesFilter = ({ searchParams }: PropertiesFilterProps) => {
   return (
-    <div className="bg-secondary">
+    <div className="bg-secondary rounded">
       <div className="flex items-center gap-2 container mx-auto md:hidden p-2 px-4">
         <Search />
         <FilterDialog searchParams={searchParams} />

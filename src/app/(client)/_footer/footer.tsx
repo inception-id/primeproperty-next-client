@@ -82,7 +82,7 @@ export const Footer = () => {
   const params = useParams();
   const pathname = usePathname();
   return (
-    <footer className="mt-8">
+    <footer>
       <div
         className={cn(
           "container mx-auto p-4 border-t grid gap-8",

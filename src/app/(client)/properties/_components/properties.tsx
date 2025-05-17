@@ -18,9 +18,9 @@ export const Properties = async ({ searchParams }: PropertiesProps) => {
     return <PropertyNotFound searchParams={searchParams} />;
   }
   return (
-    <div>
+    <>
       <PropertiesFilter searchParams={searchParams} />
-      <div className="container mx-auto px-4 md:px-2 flex flex-col ">
+      <div className="container mx-auto flex flex-col gap-4 p-4 lg:px-0">
         <PropertiesTitle
           propertyCount={properties.data.total_data}
           searchParams={searchParams}
@@ -32,6 +32,6 @@ export const Properties = async ({ searchParams }: PropertiesProps) => {
           totalPages={properties.data.total_pages}
         />
       </div>
-    </div>
+    </>
   );
 };

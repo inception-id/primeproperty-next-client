@@ -1,6 +1,6 @@
 import { env } from "../env";
 
-type JsonApiResponse<T> = {
+export type JsonApiResponse<T> = {
   status: number;
   data: T | null;
   message: string;

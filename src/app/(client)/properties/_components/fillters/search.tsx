@@ -11,9 +11,9 @@ import { MdWhatsapp } from "react-icons/md";
 import { createAskUrl } from "@/lib/create-ask-url";
 
 export const Search = () => {
-  const { data } = usePropertiesSitePaths();
-  const [keyword, setKeyword] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [keyword, setKeyword] = useState("");
+  const { data } = usePropertiesSitePaths(isOpen);
 
   const { refs, context } = useFloating({
     open: isOpen,
