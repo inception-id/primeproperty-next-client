@@ -1,7 +1,7 @@
 export const PROVINCES = [
   {
     domain_id: "3100",
-    domain_name: "Dki Jakarta",
+    domain_name: "Jakarta",
     domain_url: "https://jakarta.bps.go.id",
   },
   {
@@ -16,7 +16,7 @@ export const PROVINCES = [
   },
   {
     domain_id: "3400",
-    domain_name: "Di Yogyakarta",
+    domain_name: "Yogyakarta",
     domain_url: "https://yogyakarta.bps.go.id",
   },
   {
