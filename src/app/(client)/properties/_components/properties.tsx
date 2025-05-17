@@ -14,9 +14,10 @@ type PropertiesProps = {
 
 export const Properties = async ({ searchParams }: PropertiesProps) => {
   const properties = await findProperties(searchParams);
-  if (!properties.data?.data || properties.data.data.length === 0) {
+  if (!properties.data?.data) {
     return <PropertyNotFound searchParams={searchParams} />;
   }
+
   return (
     <>
       <PropertiesFilter searchParams={searchParams} />
@@ -25,7 +26,10 @@ export const Properties = async ({ searchParams }: PropertiesProps) => {
           propertyCount={properties.data.total_data}
           searchParams={searchParams}
         />
-        <PropertyList propertiesWithAgent={properties.data?.data} />
+        <PropertyList
+          searchParams={searchParams}
+          propertiesWithAgent={properties.data?.data}
+        />
         <Pagination
           searchParams={searchParams}
           currentPage={searchParams.page ? +searchParams.page : 1}

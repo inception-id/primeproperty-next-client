@@ -9,7 +9,6 @@ type PropertiesTitleProps = {
 };
 
 const createLocation = (
-  propertyCount: number,
   province?: string,
   regency?: string,
   street?: string,
@@ -24,9 +23,6 @@ const createLocation = (
   if (province) {
     return province;
   }
-  if (propertyCount === 0) {
-    return "";
-  }
 
   return "Indonesia";
 };
@@ -36,44 +32,58 @@ export const PropertiesTitle = ({
   searchParams,
   className,
 }: PropertiesTitleProps) => {
+  if (
+    propertyCount === 0 &&
+    Object.values(searchParams).filter((val) => val).length === 0
+  ) {
+    return (
+      <h1 className={cn("font-bold text-lg lg:text-xl", className)}>
+        Pencarian tidak ditemukan
+      </h1>
+    );
+  }
+
+  if (propertyCount === 0) {
+    return (
+      <h1 className={cn("flex gap-1 text-base flex-wrap", className)}>
+        Pencarian tidak ditemukan untuk{" "}
+        <b>{searchParams.buiding_type ?? "Properti"}</b>
+        <b>
+          {searchParams.purchase_status
+            ? PURCHASE_STATUS[
+                searchParams.purchase_status as PurchaseStatus
+              ].toLowerCase()
+            : "dijual"}
+        </b>
+        {"di"}
+        <b className="capitalize">
+          {createLocation(
+            searchParams.province,
+            searchParams.regency,
+            searchParams.street,
+          )}
+        </b>
+      </h1>
+    );
+  }
+
   return (
-    <h1
-      className={cn(
-        "flex gap-1 text-base flex-wrap ",
-        propertyCount === 0 &&
-          Object.values(searchParams).filter((val) => val).length === 0 &&
-          "font-bold lg:text-xl ",
-        className,
-      )}
-    >
-      {propertyCount === 0 ? "Pencarian tidak ditemukan" : "Menampilkan"}
-      {propertyCount > 0 ? (
-        <b>{propertyCount}</b>
-      ) : Object.values(searchParams).filter((val) => val).length > 0 ? (
-        <p>untuk</p>
-      ) : (
-        ""
-      )}
+    <h1 className={cn("flex gap-1 text-base flex-wrap ", className)}>
+      Menampilkan
+      <b>{propertyCount}</b>
       <b>
-        {searchParams.buiding_type
-          ? searchParams.buiding_type.toLowerCase()
-          : propertyCount > 0 || Object.keys(searchParams).length > 0
-            ? "properti"
-            : ""}
+        {searchParams.buiding_type ? searchParams.buiding_type : "properti"}
       </b>
       <b>
         {searchParams.purchase_status
           ? PURCHASE_STATUS[
               searchParams.purchase_status as PurchaseStatus
             ].toLowerCase()
-          : propertyCount > 0
-            ? "dijual"
-            : ""}
+          : "dijual"}
       </b>
-      {Object.keys(searchParams).length > 0 && "di"}
+      {"di"}
       <b className="capitalize">
         {createLocation(
-          propertyCount,
           searchParams.province,
           searchParams.regency,
           searchParams.street,

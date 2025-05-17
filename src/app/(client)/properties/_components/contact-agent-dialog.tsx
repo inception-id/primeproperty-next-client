@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { LuPhone, LuX } from "react-icons/lu";
-import { MdWhatsapp } from "react-icons/md";
+import { MdOutlinePhotoLibrary, MdWhatsapp } from "react-icons/md";
 import { FormEvent, useState } from "react";
 import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { z } from "zod";
@@ -22,13 +22,13 @@ import { env } from "@/lib/env";
 type ContactAgentDialogProps = {
   isWhatsapp: boolean;
   propertyWithAgent: PropertyWithAgent;
-  ctaText?: string;
+  isPhotoRequest?: boolean;
 };
 
 export const ContactAgentDialog = ({
   isWhatsapp,
+  isPhotoRequest,
   propertyWithAgent,
-  ctaText,
 }: ContactAgentDialogProps) => {
   const [open, setOpen] = useState(false);
 
@@ -74,11 +74,14 @@ export const ContactAgentDialog = ({
     } catch (error) {
       console.error(error);
     } finally {
-      if (isWhatsapp) {
-        const whatsappUrl = new URL("https://api.whatsapp.com/send");
-        const propertyUrl =
-          env.NEXT_PUBLIC_HOST_URL + `/properties/${propertyWithAgent[0].id}`;
-        whatsappUrl.searchParams.append("phone", `62${propertyWithAgent[2]}`);
+      const whatsappUrl = new URL("https://api.whatsapp.com/send");
+      const propertyUrl =
+        env.NEXT_PUBLIC_HOST_URL + `/properties/${propertyWithAgent[0].id}`;
+      whatsappUrl.searchParams.append("phone", `62${propertyWithAgent[2]}`);
+      if (isWhatsapp && isPhotoRequest) {
+        const text = `Hai, saya ${name} ingin meminta gambar lebih terakit: ${propertyWithAgent[0].title}\nyang berlokasi di ${propertyWithAgent[0].street} - ${propertyWithAgent[0].regency}.\nMohon informasi nya terkait unit tersebut: ${propertyUrl}`;
+        whatsappUrl.searchParams.append("text", text);
+      } else if (isWhatsapp) {
         const text = `Hai, saya ${name} tertarik dengan informasi mengenai: ${propertyWithAgent[0].title}\nyang berlokasi di ${propertyWithAgent[0].street} - ${propertyWithAgent[0].regency}.\nMohon informasi nya terkait unit tersebut: ${propertyUrl}`;
         whatsappUrl.searchParams.append("text", text);
         window.open(whatsappUrl, "_blank");
@@ -97,18 +100,23 @@ export const ContactAgentDialog = ({
         className={cn(
           buttonVariants({
             size: "sm",
-            variant: "default",
+            variant: isWhatsapp ? "default" : "outline",
           }),
           "rounded-lg cursor-pointer line-clamp-1 flex",
-          isWhatsapp
+          isWhatsapp && !isPhotoRequest
             ? "bg-emerald-500 hover:bg-emerald-400 text-base dark:text-foreground"
             : "",
         )}
       >
-        {isWhatsapp ? (
+        {isWhatsapp && isPhotoRequest ? (
+          <>
+            <MdOutlinePhotoLibrary />
+            Minta foto lainnya
+          </>
+        ) : isWhatsapp ? (
           <>
             <MdWhatsapp />
-            {ctaText || "WhatsApp"}
+            WhatsApp
           </>
         ) : (
           <>
@@ -161,17 +169,24 @@ export const ContactAgentDialog = ({
 
           <Button
             type="submit"
+            size="sm"
+            variant={isWhatsapp ? "default" : "outline"}
             className={cn(
-              "rounded-lg cursor-pointer",
-              isWhatsapp
-                ? "bg-emerald-500 hover:bg-emerald-400 text-base"
-                : "dark:bg-foreground dark:text-background",
+              "rounded-lg cursor-pointer line-clamp-1 flex ",
+              isWhatsapp && !isPhotoRequest
+                ? "bg-emerald-500 hover:bg-emerald-400 text-base dark:text-foreground"
+                : "",
             )}
           >
-            {isWhatsapp ? (
+            {isWhatsapp && isPhotoRequest ? (
+              <>
+                <MdOutlinePhotoLibrary />
+                Minta foto lainnya
+              </>
+            ) : isWhatsapp ? (
               <>
                 <MdWhatsapp />
-                {ctaText || "WhatsApp"}
+                WhatsApp
               </>
             ) : (
               <>

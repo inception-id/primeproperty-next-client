@@ -32,7 +32,7 @@ export const PropertyDialogCarousel = ({
         onClick={onCloseClick}
         className={cn(
           buttonVariants({ variant: "outline", size: "icon" }),
-          "absolute -top-2 -right-2 z-50 rounded-full",
+          "absolute -top-2 -right-2 z-50 rounded-full border-none",
         )}
       >
         <LuX />
@@ -63,8 +63,8 @@ export const PropertyDialogCarousel = ({
         <div className="flex items-center justify-between mt-4">
           <ContactAgentDialog
             isWhatsapp
+            isPhotoRequest
             propertyWithAgent={propertyWithAgent}
-            ctaText="Tanya Lebih Lanjut"
           />
           <div className="flex items-center gap-2">
             <CarouselPrevious className="static translate-y-0" />

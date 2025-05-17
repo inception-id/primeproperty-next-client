@@ -54,6 +54,10 @@ export const BUILDING_TYPES = [
     english_label: "Factory",
   },
   {
+    value: BuildingType.Toko,
+    english_label: "Toko",
+  },
+  {
     value: BuildingType.RuangUsaha,
     english_label: "Business Space",
   },
@@ -68,10 +72,6 @@ export const BUILDING_TYPES = [
   {
     value: BuildingType.SpaceMall,
     english_label: "Mall Space",
-  },
-  {
-    value: BuildingType.Toko,
-    english_label: "Toko",
   },
   {
     value: BuildingType.Villa,

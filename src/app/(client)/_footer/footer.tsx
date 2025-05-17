@@ -1,82 +1,11 @@
 "use client";
-import { BUILDING_TYPES } from "@/lib/enums/building-type";
-import { PROVINCES } from "@/lib/enums/provinces";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
-import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 import { MdCopyright } from "react-icons/md";
-
-const PropertyArea = () => {
-  return (
-    <div className="grid gap-2">
-      <div className="font-bold">Wilayah</div>
-      <div className="grid grid-cols-2 gap-2">
-        {PROVINCES.map((province, index) => (
-          <Link
-            key={`${index}_${province.domain_name}_footer`}
-            href={`/properties?province=${province.domain_name.toLowerCase()}`}
-            className="hover:underline"
-          >
-            {province.domain_name}
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const BuildingTypes = () => {
-  return (
-    <div className="grid gap-2">
-      <div className="font-bold">Daftar Properti</div>
-      <div className="grid grid-cols-3 gap-2">
-        {BUILDING_TYPES.map((buildingType, index) => (
-          <Link
-            key={`${index}_${buildingType.value}_footer`}
-            href={`/properties?buiding_type=${buildingType.value.toLowerCase()}`}
-            className="hover:underline"
-          >
-            {buildingType.value}
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const Brand = () => {
-  return (
-    <div className=" grid gap-2">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-1 font-semibold">
-          <Image
-            src="/images/primepro.png"
-            alt="Primepro"
-            width={50}
-            height={50}
-          />
-          <span>
-            <div>Primepro</div>
-            <div>Indonesia</div>
-          </span>
-        </div>
-        <div className="md:hidden text-muted-foreground">
-          {new Date().getFullYear()}
-        </div>
-      </div>
-
-      <div className="text-sm text-justify">
-        Primepro Indonesia adalah situs teknologi jual beli dan sewa properti
-        terdepan di Indonesia, yang hadir sejak tahun 2024 dan telah melayani
-        jutaan orang di Indonesia. Primepro Indonesia senantiasa berkomitmen
-        untuk membuat pengalaman &quot;Jual Beli dan Sewa Properti Lebih
-        Mudah&quot; dengan dukungan dari developer terkemuka serta agen
-        profesional.
-      </div>
-    </div>
-  );
-};
+import { FooterBrand } from "./brand";
+import { FooterPropertyArea } from "./area";
+import { FooterBuildingTypes } from "./building-types";
+import { FooterContact } from "./contact";
 
 export const Footer = () => {
   const params = useParams();
@@ -92,10 +21,11 @@ export const Footer = () => {
             "max-w-6xl",
         )}
       >
-        <div className="grid gap-8 md:grid-cols-4 lg:gap-12">
-          <Brand />
-          <PropertyArea />
-          <BuildingTypes />
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <FooterBrand />
+          <FooterContact />
+          <FooterPropertyArea />
+          <FooterBuildingTypes />
         </div>
 
         <div className="flex flex-col gap-2 text-sm lg:justify-center lg:flex-row text-muted-foreground">
