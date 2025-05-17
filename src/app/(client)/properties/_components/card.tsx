@@ -1,3 +1,4 @@
+"use client";
 import {
   Card,
   CardContent,
@@ -9,12 +10,11 @@ import {
 import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { env } from "@/lib/env";
 import { formatToCurrencyUnit } from "@/lib/intl/format-to-currency-unit";
-import Image from "next/image";
 import Link from "next/link";
 import { ContactAgentDialog } from "./contact-agent-dialog";
 import { Specifications } from "./specifications";
 import { formatDateToIndonesian } from "@/lib/intl/format-date-to-indonesian";
-
+import { WatermarkImage } from "@/components/custom-ui/watermark-image";
 type PropertyCardProps = {
   propertyWithAgent: PropertyWithAgent;
 };
@@ -31,13 +31,20 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
         href={`/properties/${propertyWithAgent[0].id}`}
         className="flex flex-col gap-2"
       >
-        <CardHeader className="p-0 w-full h-64 relative">
-          <Image
-            src={baseImgPath + coverImage.path}
-            alt={coverImage.indonesian_label}
-            width={1000}
-            height={1000}
-            className="w-full h-full object-cover rounded-lg"
+        <CardHeader className="p-0 w-full relative">
+          <WatermarkImage
+            watermarkProps={{
+              content: "primepro_id",
+              fontSize: 20,
+              fontColor: "#ffffff75",
+            }}
+            imageProps={{
+              src: baseImgPath + coverImage.path,
+              alt: coverImage.indonesian_label,
+              width: 1000,
+              height: 1000,
+              className: "w-full h-64 object-cover rounded-lg",
+            }}
           />
 
           <div className="bg-background bg-opacity-50 px-2 py-1 text-xs rounded capitalize absolute top-0 right-2 ">

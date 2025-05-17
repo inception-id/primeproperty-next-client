@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { env } from "@/lib/env";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { LuArrowLeft, LuTag } from "react-icons/lu";
 import {
@@ -9,6 +8,8 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { WatermarkImage } from "@/components/custom-ui/watermark-image";
+import React from "react";
 
 type PropertyCarouselProps = {
   propertyWithAgent: PropertyWithAgent;
@@ -27,7 +28,10 @@ export const PropertyCarousel = ({
   const coverImageIndex = propertyWithAgent[0].images.indexOf(coverImage);
 
   return (
-    <div className="relative md:grid md:grid-cols-3">
+    <div
+      className="relative md:grid md:grid-cols-3"
+      onContextMenu={(e) => e.preventDefault()}
+    >
       <Button
         onClick={() => router.back()}
         type="button"
@@ -48,13 +52,18 @@ export const PropertyCarousel = ({
               onClick={() => onImageClick(index)}
             >
               <div className="relative cursor-ew-resize">
-                <Image
-                  src={baseImgPath + propImg.path}
-                  alt={propImg.indonesian_label}
-                  width={720}
-                  height={640}
-                  priority
-                  className="w-full h-64 md:h-80 md:rounded-md"
+                <WatermarkImage
+                  watermarkProps={{
+                    fontSize: 24,
+                  }}
+                  imageProps={{
+                    src: baseImgPath + propImg.path,
+                    alt: propImg.indonesian_label,
+                    width: 1000,
+                    height: 1000,
+                    priority: true,
+                    className: "w-full h-64 md:h-80 md:rounded-md",
+                  }}
                 />
                 {propImg.indonesian_label && (
                   <div className="bg-background text-foreground text-xs flex gap-1 absolute right-0 top-0 items-center px-1 py-0.5 rounded">
@@ -69,16 +78,20 @@ export const PropertyCarousel = ({
       </Carousel>
       <div className="grid grid-cols-3 md:hidden">
         {propertyWithAgent[0].images.slice(0, 3).map((img, index) => (
-          <Image
-            key={`${index}_${img.indonesian_label}_preview`}
-            src={baseImgPath + img.path}
-            alt={img.indonesian_label}
-            width={720}
-            height={640}
-            priority
-            className="w-full h-20"
-            onClick={() => onImageClick(index)}
-          />
+          <React.Fragment key={`${index}_${img.indonesian_label}_preview`}>
+            <WatermarkImage
+              watermarkProps={{
+                fontSize: 36,
+              }}
+              imageProps={{
+                src: baseImgPath + img.path,
+                alt: img.indonesian_label,
+                width: 1000,
+                height: 1000,
+                className: "w-full h-20",
+              }}
+            />
+          </React.Fragment>
         ))}
       </div>
       <div className="hidden md:grid grid-cols-2 h-80">
@@ -87,14 +100,18 @@ export const PropertyCarousel = ({
             key={`${index}_${img.indonesian_label}_preview_desktop`}
             className="relative"
           >
-            <Image
-              src={baseImgPath + img.path}
-              alt={img.indonesian_label}
-              width={720}
-              height={640}
-              priority
-              className="w-full h-40 rounded-md cursor-pointer"
-              onClick={() => onImageClick(index)}
+            <WatermarkImage
+              watermarkProps={{
+                fontSize: 24,
+              }}
+              imageProps={{
+                src: baseImgPath + img.path,
+                alt: img.indonesian_label,
+                width: 1000,
+                height: 1000,
+                className: "w-full h-40 rounded-md cursor-pointer",
+                onClick: () => onImageClick(index),
+              }}
             />
             {img.indonesian_label && (
               <div className="bg-background text-foreground text-xs flex gap-1 absolute right-0 top-0 items-center px-1 py-0.5 rounded">
@@ -106,14 +123,18 @@ export const PropertyCarousel = ({
         ))}
         {propertyWithAgent[0].images.length % 2 != 0 && (
           <div className="relative">
-            <Image
-              src={baseImgPath + propertyWithAgent[0].images[0].path}
-              alt={propertyWithAgent[0].images[0].indonesian_label}
-              width={720}
-              height={640}
-              priority
-              className="w-full h-40 rounded cursor-pointer"
-              onClick={() => onImageClick(0)}
+            <WatermarkImage
+              watermarkProps={{
+                fontSize: 24,
+              }}
+              imageProps={{
+                src: baseImgPath + propertyWithAgent[0].images[0].path,
+                alt: propertyWithAgent[0].images[0].indonesian_label,
+                width: 1000,
+                height: 1000,
+                className: "w-full h-40 rounded-md cursor-pointer",
+                onClick: () => onImageClick(0),
+              }}
             />
 
             {propertyWithAgent[0].images[0].indonesian_label && (
