@@ -4,6 +4,7 @@ import Image from "next/image";
 import { LuCircleUser } from "react-icons/lu";
 import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { ContactAgentDialog } from "../../_components/contact-agent-dialog";
+import { cn } from "@/lib/utils";
 
 type AgentCardProps = {
   property: PropertyWithAgent;
@@ -11,11 +12,13 @@ type AgentCardProps = {
 
 export const AgentCard = ({ property }: AgentCardProps) => {
   return (
-    <Card className="h-fit shadow-lg rounded-b-none md:rounded-b-md fixed md:sticky bottom-0 left-0 md:top-4  w-full md:max-w-sm">
-      <p className="text-center pt-4 font-semibold hidden md:block">
-        Tanya Jawab
-      </p>
-      <CardHeader className="p-4 pt-2 hidden md:block">
+    <Card
+      className={cn(
+        "h-fit lg:max-w-sm rounded-none lg:rounded-md flex flex-col gap-4",
+        "fixed left-0 bottom-0 w-full p-4 lg:static",
+      )}
+    >
+      <CardHeader className="p-0 hidden md:block">
         <div className="flex gap-2 items-center">
           <div className="w-10 h-10">
             {property[3] ? (
@@ -38,7 +41,7 @@ export const AgentCard = ({ property }: AgentCardProps) => {
           </div>
         </div>
       </CardHeader>
-      <CardContent className="px-4 pb-4 pt-4 md:pt-0 cursor-auto ">
+      <CardContent className="cursor-auto p-0">
         <div className="grid grid-cols-2 gap-4">
           <ContactAgentDialog isWhatsapp={false} propertyWithAgent={property} />
           <ContactAgentDialog isWhatsapp={true} propertyWithAgent={property} />

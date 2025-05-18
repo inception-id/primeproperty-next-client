@@ -18,9 +18,9 @@ export const DynamicProperty = async ({ propertyId }: DynamicPropertyProps) => {
   return (
     <div>
       <PropertyImages propertyWithAgent={property.data} />
-      <div className="p-4 lg:px-0 flex flex-col gap-4 md:flex-row md:justify-between md:gap-16 relative">
+      <div className="flex flex-col gap-8 lg:flex-row p-4">
         <PropertyOverview property={property.data} />
-        <div className="flex flex-col gap-4 md:sticky md:top-4">
+        <div className="flex flex-col gap-8 lg:sticky lg:top-4 h-fit">
           <AgentCard property={property.data} />
           <ShareLinks title={property.data[0].title} />
         </div>

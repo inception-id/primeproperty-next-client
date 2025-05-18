@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
 import { useRouter } from "next/navigation";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 
 type PaginationProps = {
@@ -17,6 +17,7 @@ export const Pagination = ({
   totalPages,
   searchParams,
 }: PaginationProps) => {
+  const [pageValue, setPageValue] = useState(currentPage);
   const router = useRouter();
   const typingTimeoutRef = useRef<any>(null);
   const onPageChange = (pageNumber: number) => {
@@ -24,6 +25,7 @@ export const Pagination = ({
     let newPageNumber = pageNumber;
     if (pageNumber < 1) newPageNumber = 1;
     if (pageNumber > totalPages) newPageNumber = totalPages;
+    setPageValue(newPageNumber);
     newParams.set("page", String(newPageNumber));
     router.replace(`/properties?${newParams.toString()}`);
   };
@@ -42,13 +44,18 @@ export const Pagination = ({
       <div className="text-sm flex items-center gap-2">
         <span>Halaman</span>
         <Input
-          type="number"
+          type="text"
           ref={typingTimeoutRef}
           min={1}
           max={totalPages}
-          className="h-8"
-          defaultValue={currentPage}
+          className="h-8 w-12"
+          placeholder={String(pageValue)}
+          value={pageValue}
           onChange={(e) => {
+            if (isNaN(+e.target.value)) {
+              return;
+            }
+            setPageValue(+e.target.value);
             if (typingTimeoutRef.current) {
               clearTimeout(typingTimeoutRef?.current);
             }

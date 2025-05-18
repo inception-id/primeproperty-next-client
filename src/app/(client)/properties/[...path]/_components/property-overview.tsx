@@ -10,7 +10,7 @@ type PropertyOverviewProps = {
 
 export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
   return (
-    <div className="flex flex-col gap-8   flex-1">
+    <div className="flex flex-col gap-8 flex-1">
       <div>
         <div className="font-bold text-lg">
           {formatToCurrencyUnit(property[0].price)}

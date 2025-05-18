@@ -62,7 +62,7 @@ export const PropertyCarousel = ({
                     width: 1000,
                     height: 1000,
                     priority: true,
-                    className: "w-full h-64 md:h-80 md:rounded-md",
+                    className: "w-full h-60 md:h-80 xl:rounded-md",
                   }}
                 />
                 {propImg.indonesian_label && (
@@ -109,7 +109,7 @@ export const PropertyCarousel = ({
                 alt: img.indonesian_label,
                 width: 1000,
                 height: 1000,
-                className: "w-full h-40 rounded-md cursor-pointer",
+                className: "w-full h-40 xl:rounded-md cursor-pointer",
                 onClick: () => onImageClick(index),
               }}
             />
