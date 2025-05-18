@@ -3,7 +3,8 @@
 import { ThemeProvider } from "next-themes";
 import { ToastContainer } from "react-toastify";
 import { TanstackProviders } from "@/components/custom-ui";
-
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { env } from "@/lib/env";
 type TProviders = {
   children: React.ReactNode;
 };
@@ -23,6 +24,7 @@ const Providers = ({ children }: TProviders) => {
         pauseOnHover
         theme="light"
       />
+      <GoogleAnalytics gaId={env.NEXT_PUBLIC_GA_ID} />
     </ThemeProvider>
   );
 };

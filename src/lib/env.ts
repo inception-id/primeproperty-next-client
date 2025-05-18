@@ -10,7 +10,6 @@ export const env = createEnv({
     API_KEY_LEADS: z.string().min(1),
     BPS_API_URL: z.string().min(1),
     BPS_API_KEY: z.string().min(1),
-    OSM_URL: z.string().min(1),
     SENTRY_AUTH_TOKEN: z.string(),
   },
   /*
@@ -23,6 +22,7 @@ export const env = createEnv({
     NEXT_PUBLIC_API_URL: z.string().min(1),
     NEXT_PUBLIC_S3_ENDPOINT: z.string().min(1),
     NEXT_PUBLIC_SENTRY_DSN: z.string(),
+    NEXT_PUBLIC_GA_ID: z.string(),
   },
   /*
    * Due to how Next.js bundles environment variables on Edge and Client,
@@ -37,8 +37,8 @@ export const env = createEnv({
     NEXT_PUBLIC_S3_ENDPOINT: process.env.NEXT_PUBLIC_S3_ENDPOINT,
     BPS_API_URL: process.env.BPS_API_URL,
     BPS_API_KEY: process.env.BPS_API_KEY,
-    OSM_URL: process.env.OSM_URL,
     NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
     SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
+    NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
   },
 });
