@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { env } from "@/lib/env";
 import { useRouter } from "next/navigation";
-import { LuArrowLeft, LuTag } from "react-icons/lu";
+import { LuArrowLeft, LuEye, LuTag } from "react-icons/lu";
 import {
   Carousel,
   CarouselContent,
@@ -76,7 +76,7 @@ export const PropertyCarousel = ({
           ))}
         </CarouselContent>
       </Carousel>
-      <div className="grid grid-cols-3 md:hidden">
+      <div className="grid grid-cols-3 md:grid-cols-2 md:h-80">
         {propertyWithAgent[0].images.slice(0, 3).map((img, index) => (
           <React.Fragment key={`${index}_${img.indonesian_label}_preview`}>
             <WatermarkImage
@@ -88,63 +88,39 @@ export const PropertyCarousel = ({
                 alt: img.indonesian_label,
                 width: 1000,
                 height: 1000,
-                className: "w-full h-20",
+                className: "w-full h-20 md:h-40 xl:rounded-md cursor-pointer",
+                onClick: () => onImageClick(index),
               }}
             />
           </React.Fragment>
         ))}
-      </div>
-      <div className="hidden md:grid grid-cols-2 h-80">
-        {propertyWithAgent[0].images.map((img, index) => (
-          <div
-            key={`${index}_${img.indonesian_label}_preview_desktop`}
-            className="relative"
-          >
-            <WatermarkImage
-              watermarkProps={{
-                fontSize: 24,
-              }}
-              imageProps={{
-                src: baseImgPath + img.path,
-                alt: img.indonesian_label,
-                width: 1000,
-                height: 1000,
-                className: "w-full h-40 xl:rounded-md cursor-pointer",
-                onClick: () => onImageClick(index),
-              }}
-            />
-            {img.indonesian_label && (
-              <div className="bg-background text-foreground text-xs flex gap-1 absolute right-0 top-0 items-center px-1 py-0.5 rounded">
-                <LuTag />
-                <span>{img.indonesian_label}</span>
-              </div>
-            )}
-          </div>
-        ))}
-        {propertyWithAgent[0].images.length % 2 != 0 && (
-          <div className="relative">
-            <WatermarkImage
-              watermarkProps={{
-                fontSize: 24,
-              }}
-              imageProps={{
-                src: baseImgPath + propertyWithAgent[0].images[0].path,
-                alt: propertyWithAgent[0].images[0].indonesian_label,
-                width: 1000,
-                height: 1000,
-                className: "w-full h-40 rounded-md cursor-pointer",
-                onClick: () => onImageClick(0),
-              }}
-            />
 
-            {propertyWithAgent[0].images[0].indonesian_label && (
-              <div className="bg-background text-foreground text-xs flex gap-1 absolute right-0 top-0 items-center px-1 py-0.5 rounded">
-                <LuTag />
-                <span>{propertyWithAgent[0].images[0].indonesian_label}</span>
-              </div>
-            )}
-          </div>
-        )}
+        <div className="relative hidden md:block cursor-pointer">
+          <WatermarkImage
+            watermarkProps={{
+              fontSize: 24,
+            }}
+            imageProps={{
+              src: baseImgPath + propertyWithAgent[0].images[0].path,
+              alt: propertyWithAgent[0].images[0].indonesian_label,
+              width: 1000,
+              height: 1000,
+              className: "w-full h-40 rounded-md cursor-pointer blur-md",
+              onClick: () => onImageClick(0),
+            }}
+          />
+
+          <Button
+            type="button"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            variant="outline"
+            size="sm"
+            onClick={() => onImageClick(0)}
+          >
+            <LuEye />
+            Lihat Semua
+          </Button>
+        </div>
       </div>
     </div>
   );

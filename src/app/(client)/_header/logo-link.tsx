@@ -16,12 +16,12 @@ export const LogoLink = ({ onClick }: LogoLinkProps) => {
       <Image
         src="/images/primepro.png"
         alt="PrimePro Logo"
-        width={25}
-        height={25}
+        width={35}
+        height={35}
       />
       <div className="text-xs flex flex-col font-bold">
-        <span>Primepro</span>
-        <span>Indonesia</span>
+        <span>PRIMEPRO</span>
+        <span>INDONESIA</span>
       </div>
     </Link>
   );

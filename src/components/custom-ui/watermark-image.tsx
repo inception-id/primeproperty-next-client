@@ -11,7 +11,7 @@ export const WatermarkImage = ({
   watermarkProps,
   imageProps,
 }: WatermarkImageProps) => {
-  const { content, fontColor, ...restOfWatermarkProps } = watermarkProps;
+  const { fontColor, ...restOfWatermarkProps } = watermarkProps;
   const { alt, ...restOfImageProps } = imageProps;
   return (
     <Watermark

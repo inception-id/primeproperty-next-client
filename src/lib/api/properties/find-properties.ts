@@ -17,6 +17,7 @@ export type FindPropertyQuery = {
   purchase_status?: PurchaseStatus | string;
   buiding_type?: BuildingType | string;
   sort?: FindPropertySort | string;
+  is_popular?: "true" | "false";
 };
 
 export type PropertyWithAgent = [Property, string, string, string | null];
@@ -40,6 +41,9 @@ export const findProperties = async (query?: FindPropertyQuery) => {
   }
   if (query?.sort) {
     path += `&sort=${query.sort}`;
+  }
+  if (query?.is_popular) {
+    path += `&is_popular=${query.is_popular}`;
   }
   return await fetchApi<JsonFindApiResponse<PropertyWithAgent>>(path);
 };
