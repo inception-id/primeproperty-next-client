@@ -21,7 +21,7 @@ export const Footer = () => {
             "max-w-6xl",
         )}
       >
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           <FooterBrand />
           <FooterContact />
           <FooterPropertyArea />

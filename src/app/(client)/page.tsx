@@ -52,11 +52,14 @@ const Partners = () => {
     "/images/banks/bni.png",
     "/images/banks/bri.png",
     "/images/banks/bsi.png",
-    "/images/banks/mandiri.png",
-    "/images/banks/danamon.png",
+    "/images/banks/mandiri.webp",
     "/images/banks/cimb.png",
-    "/images/banks/maybank.png",
+    "/images/banks/ocbc.png",
     "/images/banks/panin.png",
+    "/images/banks/permata.png",
+    "/images/banks/danamon.webp",
+    "/images/banks/maybank.png",
+    "/images/banks/smbc.png",
   ];
   return (
     <div className="p-4 flex flex-col gap-4 md:gap-8">
@@ -69,15 +72,15 @@ const Partners = () => {
           perbankan untuk kemudahan transaksi Anda
         </h4>
       </div>
-      <div className="grid grid-cols-2 gap-8 md:grid-cols-3 md:place-items-center">
+      <div className="grid grid-cols-3 place-items-center gap-2 md:grid-cols-4 lg:grid-cols-6">
         {PARTNERS.map((part, index) => (
           <Image
             key={`partner_${index}`}
             src={part}
             alt={part}
-            width={130}
-            height={130}
-            className="w-full h-auto md:w-auto md:h-full"
+            width={150}
+            height={100}
+            className="w-full h-20 border px-2 object-contain rounded"
           />
         ))}
       </div>
