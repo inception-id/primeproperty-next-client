@@ -22,14 +22,21 @@ export const Properties = async ({ searchParams }: PropertiesProps) => {
     <>
       <PropertiesFilter searchParams={searchParams} />
       <div className="container mx-auto flex flex-col gap-4 p-4 lg:px-0">
-        <PropertiesTitle
-          propertyCount={properties.data.total_data}
-          searchParams={searchParams}
-        />
+        <div className="flex items-center justify-between">
+          <PropertiesTitle
+            propertyCount={properties.data.total_data}
+            searchParams={searchParams}
+          />
+          <div className="hidden lg:flex text-xs">
+            Halaman {searchParams.page ? searchParams.page : 1} dari{" "}
+            {properties.data.total_pages}
+          </div>
+        </div>
         <PropertyList
           searchParams={searchParams}
           propertiesWithAgent={properties.data?.data}
         />
+
         <Pagination
           searchParams={searchParams}
           currentPage={searchParams.page ? +searchParams.page : 1}

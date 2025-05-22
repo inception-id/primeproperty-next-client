@@ -99,7 +99,6 @@ export const ContactAgentDialog = ({
         onClick={() => setOpen(true)}
         className={cn(
           buttonVariants({
-            size: "lg",
             variant: isWhatsapp ? "default" : "outline",
           }),
           "rounded-lg cursor-pointer line-clamp-1 flex",
@@ -121,7 +120,7 @@ export const ContactAgentDialog = ({
         ) : (
           <>
             <LuPhone />
-            <span>+62{propertyWithAgent[2]}</span>
+            <span>+62{propertyWithAgent[2].slice(0, 4).concat("...")}</span>
           </>
         )}
       </DialogTrigger>

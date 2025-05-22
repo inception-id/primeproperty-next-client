@@ -105,7 +105,7 @@ export const PropertyCarousel = ({
               alt: propertyWithAgent[0].images[0].indonesian_label,
               width: 1000,
               height: 1000,
-              className: "w-full h-40 rounded-md cursor-pointer blur-md",
+              className: "w-full h-40 rounded-md cursor-pointer blur-sm",
               onClick: () => onImageClick(0),
             }}
           />

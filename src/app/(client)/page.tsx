@@ -6,6 +6,8 @@ import { buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
 import { Metadata } from "next";
 
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "PRIMEPRO INDONESIA",
   description: "Your practical ways of selling and buying properties",
