@@ -8,11 +8,6 @@ import { Metadata } from "next";
 
 export const revalidate = 0;
 
-export const metadata: Metadata = {
-  title: "PRIMEPRO INDONESIA",
-  description: "Your practical ways of selling and buying properties",
-};
-
 const Hero = () => {
   return (
     <div className="p-4 flex flex-col gap-4">

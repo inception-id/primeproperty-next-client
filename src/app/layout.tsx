@@ -6,7 +6,8 @@ import "./globals.css";
 const ptsans = PT_Sans({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
-  title: "Primepro Indonesia",
+  title: "PRIMEPRO INDONESIA",
+  description: "Your practical ways of selling and buying properties",
 };
 
 export const viewport: Viewport = {
