@@ -23,7 +23,7 @@ export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
 
       <PropertyInformation property={property[0]} />
 
-      <div>
+      <div className="flex flex-col gap-2">
         <p className="text-base font-semibold">Deskripsi</p>
         <h2 className="whitespace-pre-wrap text-muted-foreground text-sm">
           {property[0].description}
@@ -32,14 +32,14 @@ export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
 
       <div className={cn(property[0].facilities.length === 0 ? "hidden" : "")}>
         <p className="text-base font-semibold mb-2">Fasilitas</p>
-        <div className="grid grid-cols-2 gap-y-2">
+        <div className="grid grid-cols-2 gap-4">
           {property[0].facilities.map((facility, index) => (
             <p
               key={`${index}-${facility.indonesian_label}`}
               className="flex items-center text-lg gap-2"
             >
               {FACILITY_ICON[facility.value]}
-              <span className="capitalize text-base">
+              <span className="capitalize text-sm text-muted-foreground">
                 {facility.indonesian_label}
               </span>
             </p>
