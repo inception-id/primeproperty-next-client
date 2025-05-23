@@ -6,7 +6,7 @@ export const WhyUs = () => {
       <div className="container mx-auto" id="why">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
-            <div className="inline-block rounded-lg bg-primary px-3 py-1 text-sm text-primary-foreground">
+            <div className="inline-block rounded bg-primary px-3 py-1 text-sm text-primary-foreground">
               Keunggulan Kami
             </div>
             <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
@@ -22,7 +22,7 @@ export const WhyUs = () => {
         </div>
         <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
           <Image
-            src="/images/abriel.jpeg"
+            src="/images/primepro/training.jpg"
             width={550}
             height={550}
             alt="Real estate agents in meeting"

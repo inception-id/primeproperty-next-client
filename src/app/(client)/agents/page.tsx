@@ -14,9 +14,9 @@ import {
 
 export default function JobPosting() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+    <div className="min-h-screen">
       {/* Header */}
-      <header className="bg-gradient-to-b from-brand/50 to-brand">
+      <header className="bg-gradient-to-b from-brand/50 to-brand text-black">
         <div className="container mx-auto px-4 py-16 md:py-24">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-3xl md:text-5xl font-bold mb-4">
@@ -36,8 +36,8 @@ export default function JobPosting() {
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
           {/* Introduction */}
-          <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-            <p className="text-gray-700 leading-relaxed mb-4">
+          <div className="rounded-lg shadow-lg p-8 mb-8">
+            <p className="leading-relaxed mb-4">
               PrimePro Indonesia, sebuah perusahaan broker properti yang dinamis
               dan terus berkembang, sedang memperluas timnya dan mencari
               individu yang termotivasi tinggi untuk bergabung sebagai Marketing
@@ -47,21 +47,21 @@ export default function JobPosting() {
             </p>
             <div className="flex justify-center my-8">
               <Image
-                src="/images/primepro.png"
+                src="/images/primepro/agent.JPG"
                 alt="Real Estate Team"
                 width={600}
                 height={300}
-                className="rounded-lg shadow-md"
+                className="rounded-lg shadow-md w-full "
               />
             </div>
           </div>
 
           {/* Benefits */}
-          <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
+          <div className="rounded-lg shadow-lg p-8 mb-8">
             <h2 className="text-2xl font-bold mb-6">
               Mengapa Bergabung dengan PrimePro Indonesia?
             </h2>
-            <p className="text-gray-700 leading-relaxed mb-6">
+            <p className="leading-relaxed mb-6">
               Di PrimePro Indonesia, kami percaya dalam menghargai ambisi dan
               kerja keras. Sebagai posisi berbasis komisi, peran ini menawarkan
               potensi penghasilan tak terbatas, memungkinkan Anda mengendalikan
@@ -73,10 +73,10 @@ export default function JobPosting() {
                   <LuTrendingUp className="h-6 w-6" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">
+                  <h3 className="font-semibold ">
                     Struktur Komisi yang Sangat Kompetitif
                   </h3>
-                  <p className="text-gray-600">
+                  <p>
                     Dapatkan komisi besar untuk setiap transaksi sukses, tanpa
                     batas gaji tetap.
                   </p>
@@ -87,10 +87,10 @@ export default function JobPosting() {
                   <LuUsers className="h-6 w-6" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">
+                  <h3 className="font-semibold ">
                     Program Pelatihan Komprehensif
                   </h3>
-                  <p className="text-gray-500">
+                  <p>
                     Dapatkan pelatihan terbaik di industri untuk meningkatkan
                     pengetahuan Anda.
                   </p>
@@ -101,10 +101,8 @@ export default function JobPosting() {
                   <LuAward className="h-6 w-6" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">
-                    Insentif Berbasis Kinerja
-                  </h3>
-                  <p className="text-gray-600">
+                  <h3 className="font-semibold">Insentif Berbasis Kinerja</h3>
+                  <p>
                     Capai target Anda dan dapatkan bonus perjalanan eksklusif
                     serta penghargaan lainnya.
                   </p>
@@ -115,24 +113,20 @@ export default function JobPosting() {
                   <LuTarget className="h-6 w-6" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">
-                    Jalur Karir yang Fleksibel
-                  </h3>
-                  <p className="text-gray-600">
-                    Terbuka untuk semua latar belakang dan kelompok usia.
-                  </p>
+                  <h3 className="font-semibold ">Jalur Karir yang Fleksibel</h3>
+                  <p>Terbuka untuk semua latar belakang dan kelompok usia.</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Qualities */}
-          <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
+          <div className="rounded-lg shadow-lg p-8 mb-8">
             <h2 className="text-2xl font-bold mb-6">Kualitas yang Kami Cari</h2>
-            <p className="text-gray-700 leading-relaxed mb-6">
+            <p className="leading-relaxed mb-6">
               Kami mencari individu yang mencerminkan kualitas berikut:
             </p>
-            <ul className="space-y-4 text-gray-700">
+            <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <div className="min-w-5 mt-1">•</div>
                 <div>
@@ -168,14 +162,14 @@ export default function JobPosting() {
           </div>
 
           {/* Role */}
-          <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
+          <div className="rounded-lg shadow-lg p-8 mb-8">
             <h2 className="text-2xl font-bold  mb-6">
               Peran Anda sebagai Marketing Executive
             </h2>
-            <p className="text-gray-700 leading-relaxed mb-6">
+            <p className="leading-relaxed mb-6">
               Sebagai anggota kunci tim penjualan kami, Anda akan:
             </p>
-            <ul className="space-y-4 text-gray-700">
+            <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <div className="min-w-5 mt-1 ">•</div>
                 <div>
@@ -205,7 +199,7 @@ export default function JobPosting() {
           </div>
 
           {/* Application */}
-          <div className="bg-gradient-to-r from-brand/10 to-brand  rounded-lg shadow-lg p-8">
+          <div className="bg-gradient-to-r from-brand/10 to-brand rounded-lg shadow-lg p-8">
             <h2 className="text-2xl font-bold mb-6">Cara Mendaftar</h2>
             <p className="leading-relaxed mb-6">
               Jika Anda siap mengambil langkah berikutnya dalam karir Anda,
@@ -223,7 +217,10 @@ export default function JobPosting() {
               </div>
               <div className="flex items-center gap-2">
                 <LuMapPin className="h-5 w-5" />
-                <span>Jl Kemang Raya No. 1, Jakarta Selatan 12730</span>
+                <span>
+                  Kemang Icon Jakarta, Jl Kemang Raya No 1, Jakarta Selatan
+                  12730
+                </span>
               </div>
             </div>
             <div className="text-center">
@@ -238,7 +235,7 @@ export default function JobPosting() {
 
           {/* Call to Action */}
           <div className="text-center mt-10 mb-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            <h2 className="text-2xl font-bold mb-4">
               Bergabunglah dengan PrimePro Indonesia hari ini
             </h2>
             <p className="text-gray-600 text-lg">

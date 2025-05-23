@@ -12,7 +12,7 @@ export const Header = () => {
     <nav>
       <div
         className={cn(
-          "flex items-center justify-between container mx-auto py-2",
+          "flex items-center justify-between container mx-auto",
           pathname.includes("/properties") &&
             params?.path?.length === 1 &&
             !Number.isNaN(+params.path[0]) &&

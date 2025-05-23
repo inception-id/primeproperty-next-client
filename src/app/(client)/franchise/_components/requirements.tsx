@@ -8,7 +8,7 @@ export const Requirements = () => {
       <div className="container mx-auto">
         <div className="grid gap-10 md:grid-cols-2 md:gap-16">
           <div>
-            <div className="inline-block rounded-lg bg-primary px-3 py-1 text-sm text-primary-foreground">
+            <div className="inline-block rounded bg-primary px-3 py-1 text-sm text-primary-foreground">
               Kualifikasi
             </div>
             <h2 className="mt-4 text-3xl font-bold">Persyaratan Franchise</h2>
@@ -57,7 +57,7 @@ export const Requirements = () => {
             </ul>
           </div>
           <div>
-            <div className="inline-block rounded-lg bg-primary px-3 py-1 text-sm text-primary-foreground">
+            <div className="inline-block rounded bg-primary px-3 py-1 text-sm text-primary-foreground">
               Lokasi Prioritas
             </div>
             <h2 className="mt-4 text-3xl font-bold">
@@ -70,7 +70,7 @@ export const Requirements = () => {
                 </CardHeader>
                 <CardContent>
                   <Image
-                    src="/images/primepro.png"
+                    src="/images/primepro/jakarta.jpg"
                     width={400}
                     height={200}
                     alt="Jakarta Pusat"
@@ -84,7 +84,7 @@ export const Requirements = () => {
                 </CardHeader>
                 <CardContent>
                   <Image
-                    src="/images/primepro.png"
+                    src="/images/primepro/bandung.jpg"
                     width={400}
                     height={200}
                     alt="Bandung"
@@ -98,7 +98,7 @@ export const Requirements = () => {
                 </CardHeader>
                 <CardContent>
                   <Image
-                    src="/images/primepro.png"
+                    src="/images/primepro/bali.jpg"
                     width={800}
                     height={200}
                     alt="Bali"

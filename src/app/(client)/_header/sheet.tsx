@@ -12,6 +12,7 @@ import { LogoLink } from "./logo-link";
 import { LuX } from "react-icons/lu";
 import { useState } from "react";
 import { NavLinks } from "./nav-links";
+import { TbMenuDeep } from "react-icons/tb";
 
 export const HeaderSheet = () => {
   const [open, setOpen] = useState(false);
@@ -19,9 +20,12 @@ export const HeaderSheet = () => {
     <Sheet open={open}>
       <SheetTrigger
         onClick={() => setOpen(true)}
-        className={cn(buttonVariants({ variant: "link" }), "md:hidden")}
+        className={cn(
+          buttonVariants({ variant: "link", size: "icon" }),
+          "md:hidden",
+        )}
       >
-        Menu
+        <TbMenuDeep />
       </SheetTrigger>
       <SheetContent
         className="p-0 flex flex-col"
@@ -33,7 +37,10 @@ export const HeaderSheet = () => {
           </SheetTitle>
           <SheetClose
             onClick={() => setOpen(false)}
-            className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "icon" }),
+              "text-muted-foreground",
+            )}
           >
             <LuX />
           </SheetClose>

@@ -12,11 +12,9 @@ export const FooterBrand = () => {
             alt="Primepro"
             width={50}
             height={50}
+            className="w-9 h-9"
           />
-          <span>
-            <div>PRIMEPRO</div>
-            <div>INDONESIA</div>
-          </span>
+          <span className="text-3xl">PRIMEPRO INDONESIA</span>
         </div>
 
         <p className="text-muted-foreground text-sm">

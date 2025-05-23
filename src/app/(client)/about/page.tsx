@@ -225,7 +225,10 @@ export default function TentangKami() {
 
           <div className="flex items-start gap-3 mb-4">
             <LuMapPin className="h-6 w-6 flex-shrink-0 mt-1" />
-            <p>Jl. Kemang Raya No. 1, Jakarta Selatan 12730</p>
+            <p>
+              Kemang Icon Jakarta, Jl Kemang Raya No 1, Jakarta Selatan 12730
+              Jl. Kemang Raya No. 1, Jakarta Selatan 12730
+            </p>
           </div>
 
           <div className="flex items-start gap-3 mb-4">
