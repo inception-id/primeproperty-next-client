@@ -36,7 +36,7 @@ export const AgentCard = ({ property }: AgentCardProps) => {
           <div className="flex flex-col ">
             <span className="text-sm">{property[1]}</span>
             <span className="text-xs text-muted-foreground">
-              Primepro Agent
+              PrimePro Agent
             </span>
           </div>
         </div>

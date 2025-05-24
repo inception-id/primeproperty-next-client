@@ -45,13 +45,20 @@ export default function JobPosting() {
               berorientasi pada hasil, dan memiliki visi untuk sukses, kami
               mengundang Anda untuk menjelajahi peluang menarik ini.
             </p>
-            <div className="flex justify-center my-8">
+            <div className="grid my-8 gap-4 md:grid-cols-2 md:h-96">
               <Image
                 src="/images/primepro/agent.JPG"
                 alt="Real Estate Team"
                 width={600}
-                height={300}
-                className="rounded-lg shadow-md w-full "
+                height={600}
+                className="rounded-lg shadow-md w-full h-auto  object-fill aspect-square"
+              />
+              <Image
+                src="/images/primepro/abby_and_partner.HEIC"
+                alt="Real Estate Team"
+                width={600}
+                height={600}
+                className="rounded-lg shadow-md w-full h-auto object-fill aspect-square"
               />
             </div>
           </div>

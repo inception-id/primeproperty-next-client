@@ -52,7 +52,7 @@ export const PropertyDialogCarousel = ({
                     width: 1000,
                     height: 1000,
                     className:
-                      "w-full rounded-md size-96 md:h-[75vh] object-fill",
+                      "w-full rounded-md size-96 md:h-[75vh] object-fill aspect-video",
                   }}
                 />
                 {propImg.indonesian_label && (

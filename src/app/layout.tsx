@@ -7,7 +7,7 @@ const ptsans = PT_Sans({ subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
   title: "PRIMEPRO INDONESIA",
-  description: "Your practical ways of selling and buying properties",
+  description: "Your Private Key to Exceptional Properties",
 };
 
 export const viewport: Viewport = {

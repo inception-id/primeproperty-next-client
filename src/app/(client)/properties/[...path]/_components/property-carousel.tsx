@@ -53,16 +53,15 @@ export const PropertyCarousel = ({
             >
               <div className="relative cursor-ew-resize">
                 <WatermarkImage
-                  watermarkProps={{
-                    fontSize: 24,
-                  }}
+                  watermarkProps={{}}
                   imageProps={{
                     src: baseImgPath + propImg.path,
                     alt: propImg.indonesian_label,
                     width: 1000,
                     height: 1000,
                     priority: true,
-                    className: "w-full h-60 md:h-80 xl:rounded-md",
+                    className:
+                      "w-full h-60 md:h-80 xl:rounded-md aspect-video object-fill",
                   }}
                 />
                 {propImg.indonesian_label && (
@@ -88,7 +87,8 @@ export const PropertyCarousel = ({
                 alt: img.indonesian_label,
                 width: 1000,
                 height: 1000,
-                className: "w-full h-20 md:h-40 xl:rounded-md cursor-pointer",
+                className:
+                  "w-full h-20 md:h-40 xl:rounded-md cursor-pointer object-fill aspect-square",
                 onClick: () => onImageClick(index),
               }}
             />

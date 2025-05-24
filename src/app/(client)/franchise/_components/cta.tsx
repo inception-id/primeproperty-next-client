@@ -35,7 +35,7 @@ export const CTASection = () => {
               </div>
               <div className="flex items-center justify-center gap-2 rounded-lg bg-secondary-foreground/10 px-4 py-2">
                 <LuPhone className="h-5 w-5" />
-                <span>+62 821-1616-2995</span>
+                <span>+62 856-755-7979</span>
               </div>
             </div>
           </div>

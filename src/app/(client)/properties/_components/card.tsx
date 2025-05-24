@@ -43,7 +43,7 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
               alt: coverImage.indonesian_label,
               width: 1000,
               height: 1000,
-              className: "w-full h-64 object-cover rounded-lg",
+              className: "w-full h-64 object-cover rounded-lg aspect-square",
             }}
           />
 
