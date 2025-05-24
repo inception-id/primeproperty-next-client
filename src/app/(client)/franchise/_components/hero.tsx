@@ -16,7 +16,7 @@ export const HeroSection = () => {
     return whatsappUrl;
   }, []);
   return (
-    <section className="w-full bg-gradient-to-b from-brand/50 to-brand pb-8 lg:pb-0">
+    <section className="w-full bg-secondary pb-8 lg:pb-0">
       <div className="container mx-auto">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-3 ">
           <div className="flex flex-col justify-center space-y-4 p-4 xl:col-span-2">

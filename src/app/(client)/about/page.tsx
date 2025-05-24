@@ -227,7 +227,6 @@ export default function TentangKami() {
             <LuMapPin className="h-6 w-6 flex-shrink-0 mt-1" />
             <p>
               Kemang Icon Jakarta, Jl Kemang Raya No 1, Jakarta Selatan 12730
-              Jl. Kemang Raya No. 1, Jakarta Selatan 12730
             </p>
           </div>
 
