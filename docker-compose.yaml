@@ -6,9 +6,9 @@ services:
     env_file:
       - .env
     ports:
-      - 3000:3000
+      - 4137:4137
     networks:
-      - next_network
+      - next_client_network
 networks:
-  next_network:
+  next_client_network:
     driver: bridge
