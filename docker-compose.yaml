@@ -1,5 +1,5 @@
 services:
-  primeproperty-next-agent:
+  primeproperty-next-client:
     container_name: primeproperty_next_client
     image: 355355355/primeproperty-next-client
     restart: on-failure
