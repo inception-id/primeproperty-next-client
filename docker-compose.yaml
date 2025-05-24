@@ -6,7 +6,7 @@ services:
     env_file:
       - .env
     ports:
-      - 4137:4137
+      - 4137:3000
     networks:
       - next_client_network
 networks:
