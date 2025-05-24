@@ -18,7 +18,7 @@ export const FooterBrand = () => {
         </div>
 
         <p className="text-muted-foreground text-sm">
-          Your most practical ways of selling and buying properties
+          Your Private Key to Exceptional Properties
         </p>
       </div>
 

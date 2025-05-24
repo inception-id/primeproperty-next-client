@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { LocationFilter } from "./location-filter";
 import Link from "next/link";
 import { createAskUrl } from "@/lib/create-ask-url";
+import { sendGAEvent } from "@next/third-parties/google";
 
 type FilterFormProps = {
   searchParams: FindPropertyQuery;
@@ -23,6 +24,7 @@ export const FilterForm = ({ searchParams }: FilterFormProps) => {
     useState<Omit<FindPropertyQuery, "page">>(searchParams);
 
   const onCloseClick = () => {
+    sendGAEvent("filter_submit");
     const newParams = new URLSearchParams(filterParams);
     router.replace(`/properties?${newParams}`);
   };

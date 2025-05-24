@@ -18,11 +18,11 @@ const Hero = () => {
           height={120}
           className="mb-4"
         />
-        <h1 className="text-3xl font-extrabold tracking-tight lg:text-4xl">
+        <h1 className="text-2xl lg:text-3xl font-extrabold tracking-tight">
           PRIMEPRO INDONESIA
         </h1>
         <h2 className="border-b text-base lg:text-xl tracking-tight text-muted-foreground pb-2">
-          Your practical ways of selling and buying properties
+          Your Private Key to Exceptional Properties
         </h2>
       </div>
       <div className="flex flex-col gap-4 items-center lg:justify-center">
@@ -84,13 +84,13 @@ const Partners = () => {
 
 const VideoThumbnail = () => {
   return (
-    <div className="p-4 flex flex-col gap-4">
+    <div className="p-4 flex flex-col gap-4 mb-16">
       <h3 className="text-xl font-bold text-center lg:text-3xl">
-        Dedicated To The Joy Of Home
+        Your Private Real Estate Partner
       </h3>
       <iframe
         width="100%"
-        src="https://www.youtube.com/embed/0GXsLpqd5Ag?si=vpGT5OyvAeTYO8Sy"
+        src="https://www.youtube.com/embed/ivN7BfhMv4g?si=zLm4yBwIrF7So1wM"
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerPolicy="strict-origin-when-cross-origin"

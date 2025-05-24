@@ -18,6 +18,7 @@ import { z } from "zod";
 import { toast } from "react-toastify";
 import { createLead } from "@/lib/api/leads/create-lead";
 import { env } from "@/lib/env";
+import { sendGAEvent } from "@next/third-parties/google";
 
 type ContactAgentDialogProps = {
   isWhatsapp: boolean;
@@ -70,7 +71,11 @@ export const ContactAgentDialog = ({
         ...(email && { email }),
       };
 
-      return await createLead(payload);
+      const lead = await createLead(payload);
+      if (lead.data?.id) {
+        sendGAEvent("leads_submit");
+      }
+      return lead;
     } catch (error) {
       console.error(error);
     } finally {
@@ -89,6 +94,7 @@ export const ContactAgentDialog = ({
         const url = `tel: +62${propertyWithAgent[2]}`;
         window.open(url, "_blank");
       }
+      sendGAEvent("leads_redirect");
       setOpen(false);
     }
   };
@@ -96,7 +102,10 @@ export const ContactAgentDialog = ({
   return (
     <Dialog open={open}>
       <DialogTrigger
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          setOpen(true);
+          sendGAEvent("leads_popup");
+        }}
         className={cn(
           buttonVariants({
             variant: isWhatsapp ? "default" : "outline",

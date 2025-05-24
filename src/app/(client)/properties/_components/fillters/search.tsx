@@ -10,6 +10,7 @@ import { useDismiss, useFloating, useInteractions } from "@floating-ui/react";
 import { MdWhatsapp } from "react-icons/md";
 import { createAskUrl } from "@/lib/create-ask-url";
 import { useRouter } from "next/navigation";
+import { sendGAEvent } from "@next/third-parties/google";
 
 export const Search = () => {
   const router = useRouter();
@@ -50,9 +51,11 @@ export const Search = () => {
 
   const handleAction = () => {
     if (searchResult.length > 0) {
+      sendGAEvent("search_redirect");
       router.push(`/properties${searchResult[0].value}`);
       return;
     }
+    sendGAEvent("search_not_found");
     router.push("/properties/0");
   };
 
