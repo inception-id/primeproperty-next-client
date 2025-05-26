@@ -92,7 +92,7 @@ export const Search = () => {
         <div
           ref={refs.setFloating}
           {...getFloatingProps()}
-          className="absolute top-11 left-0 bg-background shadow w-80 md:w-96 rounded z-30 border"
+          className="absolute top-11 left-0 bg-background shadow w-80 md:w-96 rounded z-30 border overflow-y-auto"
         >
           {searchResult?.length > 0 ? (
             <div className="w-full flex flex-col">
