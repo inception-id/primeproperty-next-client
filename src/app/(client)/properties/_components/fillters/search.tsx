@@ -39,7 +39,7 @@ export const Search = () => {
               label,
             };
           })
-          .filter((path) => path.label.includes(keyword)) ?? [];
+          .filter((path) => path.label.includes(keyword.toLowerCase())) ?? [];
       if (matches.length > 5) {
         return matches.slice(0, 5);
       }
