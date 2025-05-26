@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://primeproindonesia.com
+
+# Sitemaps
+Sitemap: https://primeproindonesia.com/sitemap.xml
