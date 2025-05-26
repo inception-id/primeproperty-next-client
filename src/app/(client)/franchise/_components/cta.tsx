@@ -9,7 +9,7 @@ import { buttonVariants } from "@/components/ui/button";
 export const CTASection = () => {
   const askUrl = useMemo(() => {
     const whatsappUrl = new URL("https://api.whatsapp.com/send");
-    whatsappUrl.searchParams.append("phone", "6282116162995");
+    whatsappUrl.searchParams.append("phone", "628567557979");
     const text = `Hai, saya ingin bertanya-tanya tentang franchise opportunity di : \n${env.NEXT_PUBLIC_HOST_URL}/franchise\n Mohon informasinya terkait hal tersebut.`;
     whatsappUrl.searchParams.append("text", text);
     return whatsappUrl;

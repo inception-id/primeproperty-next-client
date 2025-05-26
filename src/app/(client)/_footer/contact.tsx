@@ -10,8 +10,8 @@ export const FooterContact = () => {
           <p>Alamat:</p>
           <span className="flex flex-col gap-1">
             <p>Kemang Icon Jakarta</p>
-            <p>Kemang Raya No 1, Jakarta Selatan</p>
-            <p>12730</p>
+            <p>Kemang Raya No 1</p>
+            <p>Jakarta Selatan, 12730</p>
           </span>
         </span>
       </div>
