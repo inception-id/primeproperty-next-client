@@ -82,7 +82,7 @@ export const Search = () => {
           className="rounded-l-none border-l-transparent focus-visible:ring-transparent focus-visible:ring-offset-transparent w-full pl-0 "
           value={keyword}
           onChange={(e) => {
-            setKeyword(e.target.value);
+            setKeyword(e.target.value.toLowerCase());
             setIsOpen(true);
           }}
         />
