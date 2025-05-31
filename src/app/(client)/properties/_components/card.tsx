@@ -15,6 +15,8 @@ import { ContactAgentDialog } from "./contact-agent-dialog";
 import { Specifications } from "./specifications";
 import { formatDateToIndonesian } from "@/lib/intl/format-date-to-indonesian";
 import { WatermarkImage } from "@/components/custom-ui/watermark-image";
+import { PurchaseStatus } from "@/lib/enums/purchase-status";
+import { RENT_TIME } from "@/lib/enums/rent_time";
 type PropertyCardProps = {
   propertyWithAgent: PropertyWithAgent;
 };
@@ -53,8 +55,18 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
         </CardHeader>
         <CardContent className="px-0 w-full group pb-2">
           <div className="flex flex-col gap-1 lg:gap-0 group-hover:underline">
-            <strong className="text-xl">
-              {formatToCurrencyUnit(propertyWithAgent[0].price)}
+            <strong className="text-xl flex items-center gap-1">
+              <span>
+                {formatToCurrencyUnit(
+                  propertyWithAgent[0].price,
+                  propertyWithAgent[0].currency,
+                )}
+              </span>
+              {propertyWithAgent[0].purchase_status ===
+                PurchaseStatus.ForRent &&
+                propertyWithAgent[0].rent_time && (
+                  <span>{RENT_TIME[propertyWithAgent[0].rent_time]}</span>
+                )}
             </strong>
             <CardTitle>
               <h2 className="text-base text-wrap font-normal line-clamp-1">

@@ -3,6 +3,8 @@ import { PropertyInformation } from "./property-information";
 import { FACILITY_ICON } from "@/lib/enums/facilities";
 import { formatToCurrencyUnit } from "@/lib/intl/format-to-currency-unit";
 import { cn } from "@/lib/utils";
+import { PurchaseStatus } from "@/lib/enums/purchase-status";
+import { RENT_TIME } from "@/lib/enums/rent_time";
 
 type PropertyOverviewProps = {
   property: PropertyWithAgent;
@@ -12,8 +14,14 @@ export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
   return (
     <div className="flex flex-col gap-8 flex-1">
       <div>
-        <div className="font-bold text-lg">
-          {formatToCurrencyUnit(property[0].price)}
+        <div className="font-bold text-lg flex items-center gap-1">
+          <span>
+            {formatToCurrencyUnit(property[0].price, property[0].currency)}
+          </span>
+          {property[0].purchase_status === PurchaseStatus.ForRent &&
+            property[0].rent_time && (
+              <span>{RENT_TIME[property[0].rent_time]}</span>
+            )}
         </div>
         <h1 className="text-lg font-light">{property[0].title}</h1>
         <p className="text-sm text-muted-foreground/75">

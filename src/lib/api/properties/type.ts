@@ -5,6 +5,8 @@ import { TFacility } from "@/lib/enums/facilities";
 import { FurnitureCapacity } from "@/lib/enums/furniture-capacity";
 import { PropertyImage } from "@/lib/enums/property-image";
 import { PurchaseStatus } from "@/lib/enums/purchase-status";
+import { RentTimeUnit } from "@/lib/enums/rent_time";
+import { CurrencyUnit } from "@/lib/intl/format-to-currency-unit";
 
 export enum SoldStatus {
   Available = "Available",
@@ -35,6 +37,11 @@ export type Property = {
   specifications: PropertySpecifications;
   facilities: TFacility[];
   is_deleted: boolean;
+  configurations: {
+    is_popular?: boolean;
+  };
+  currency: CurrencyUnit;
+  rent_time?: RentTimeUnit;
 };
 
 export type PropertyMeasurements = {

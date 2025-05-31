@@ -1,11 +1,20 @@
-export const formatToCurrencyUnit = (value: number): string => {
+export enum CurrencyUnit {
+  IDR = "Idr",
+  USD = "Usd",
+}
+
+export const formatToCurrencyUnit = (
+  value: number,
+  currency?: string,
+): string => {
   const formatted = Intl.NumberFormat("id-ID", {
     notation: "compact",
     compactDisplay: "short",
-    currency: "IDR",
+    currency: currency
+      ? currency.toUpperCase()
+      : CurrencyUnit.IDR.toUpperCase(),
     style: "currency",
     maximumFractionDigits: 1,
-    // minimumFractionDigits: 1,
   }).format(value);
 
   return formatted.includes(",0") ? formatted.replace(",0", "") : formatted;
