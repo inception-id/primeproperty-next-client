@@ -15,10 +15,9 @@ export const WatermarkImage = ({
   const { alt, ...restOfImageProps } = imageProps;
   return (
     <Watermark
-      // content={content ?? "primepro_id"}
-      image="/images/primepro-watermark.png"
+      content="PRIMEPRO"
       rotate={0}
-      fontColor={fontColor ?? "#ffffff75"}
+      fontColor={fontColor ?? "#ffffff99"}
       onContextMenu={(e) => e.preventDefault()}
       {...restOfWatermarkProps}
     >

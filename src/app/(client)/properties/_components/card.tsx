@@ -36,9 +36,7 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
         <CardHeader className="p-0 w-full relative">
           <WatermarkImage
             watermarkProps={{
-              content: "primepro_id",
               fontSize: 20,
-              fontColor: "#ffffff75",
             }}
             imageProps={{
               src: baseImgPath + coverImage.path,
