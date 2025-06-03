@@ -9,16 +9,23 @@ import { env } from "@/lib/env";
 import { MdWhatsapp } from "react-icons/md";
 import { toast } from "react-toastify";
 import { Tooltip } from "react-tooltip";
+import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
+import { useMemo } from "react";
 
 type ShareLinksProps = {
   title: string;
+  property: PropertyWithAgent;
 };
 
-export const ShareLinks = ({ title }: ShareLinksProps) => {
+export const ShareLinks = ({ title, property }: ShareLinksProps) => {
+  const whatsappUrl = useMemo(() => {
+    const linkUrl = "https://api.whatsapp.com/send?text=";
+    const text = `*${property[0].title}*\nLokasi: ${property[0].street},${property[0].regency}\n${property[0].description}\n\nContact:\n${property[4] ? `https://instagram.com/${property[4]}` : ""}\nWhatsapp:\nwa.me/62${property[2]}\nLink:\n${env.NEXT_PUBLIC_HOST_URL}/properties/${property[0].id}`;
+    return linkUrl + text;
+  }, [property]);
   const pathname = usePathname();
   const url = env.NEXT_PUBLIC_HOST_URL + pathname;
   const caption = `Cek properti "${title}" menarik dengan harga terbaik! Bisa langsung tanya penjual juga di sini\n`;
-  const whatsappUrl = `https://api.whatsapp.com/send?text=\n ${url}`;
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${caption}`;
   const twitterUrl = `https://x.com/intent/tweet?url=${url}&text=${caption}`;
   const telegramUrl = `https://t.me/share/url?url=${url}&text=${caption}`;
@@ -48,7 +55,7 @@ export const ShareLinks = ({ title }: ShareLinksProps) => {
       </Link>
       <Tooltip id="tele-share" />
       <Link
-        href={whatsappUrl}
+        href={encodeURI(whatsappUrl)}
         target="_blank"
         className={buttonVariants({ size: "icon", variant: "outline" })}
         data-tooltip-id="whatsapp-share"

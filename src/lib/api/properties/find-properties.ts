@@ -20,7 +20,13 @@ export type FindPropertyQuery = {
   is_popular?: "true" | "false";
 };
 
-export type PropertyWithAgent = [Property, string, string, string | null];
+export type PropertyWithAgent = [
+  Property,
+  string,
+  string,
+  string | null,
+  string | null,
+];
 
 export const findProperties = async (query?: FindPropertyQuery) => {
   let path = "/properties?";

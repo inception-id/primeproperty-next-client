@@ -15,7 +15,7 @@ export const AgentCard = ({ property }: AgentCardProps) => {
     <Card
       className={cn(
         "h-fit lg:max-w-sm rounded-none lg:rounded-md flex flex-col gap-4",
-        "fixed left-0 bottom-0 w-full p-4 lg:static",
+        "left-0 bottom-0 w-full p-4 lg:static",
       )}
     >
       <CardHeader className="p-0 hidden md:block">
