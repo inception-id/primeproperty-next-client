@@ -31,8 +31,8 @@ export const DynamicProperty = async ({ propertyId }: DynamicPropertyProps) => {
                 <Image
                   src={env.NEXT_PUBLIC_S3_ENDPOINT + property.data[3]}
                   alt={property.data[2]}
-                  width={100}
-                  height={100}
+                  width={125}
+                  height={125}
                   className="w-full h-full rounded-full object-cover"
                 />
               ) : (
