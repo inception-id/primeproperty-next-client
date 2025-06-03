@@ -8,11 +8,11 @@ export const FooterPropertyArea = () => {
       <div className="grid gap-2 grid-cols-2">
         {FOOTER_PROVINCES.map((province, index) => (
           <Link
-            key={`${index}_${province.domain_name}_footer`}
-            href={`/properties?province=${province.domain_name.toLowerCase()}`}
-            className="hover:underline"
+            key={`${index}_${province.nama}_footer`}
+            href={`/properties?province=${province.nama.toLowerCase()}`}
+            className="hover:underline capitalize"
           >
-            {province.domain_name}
+            {province.nama.toLowerCase()}
           </Link>
         ))}
       </div>

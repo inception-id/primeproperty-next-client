@@ -6,8 +6,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useProvinceRegency } from "@/hooks/bps/use-province-regency";
 import { BpsDomain } from "@/lib/bps/find-bps-domain-province";
+import { REGENCIES } from "@/lib/enums/regency";
+import { useMemo } from "react";
 
 type RegencyFilterProps = {
   provinceId: string;
@@ -20,8 +21,12 @@ export const RegencyFilter = ({
   onValueChange,
   defaultValue,
 }: RegencyFilterProps) => {
-  const { isLoading, data } = useProvinceRegency(provinceId);
-
+  const PROVINCE_REGENCY: BpsDomain[] = useMemo(() => {
+    if (provinceId) {
+      return REGENCIES[provinceId as unknown as keyof typeof REGENCIES];
+    }
+    return [];
+  }, [provinceId]);
   return (
     <div className="grid gap-2">
       <Label htmlFor="regency">Wilayah</Label>
@@ -29,8 +34,8 @@ export const RegencyFilter = ({
         name="regency"
         onValueChange={(value) => {
           if (onValueChange) {
-            const selectedRegency = data?.find(
-              (regency) => regency.domain_name.toLowerCase() === value,
+            const selectedRegency = PROVINCE_REGENCY?.find(
+              (regency) => regency.nama.toLowerCase() === value,
             );
             onValueChange(selectedRegency);
           }
@@ -43,18 +48,14 @@ export const RegencyFilter = ({
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="-">Semua Wilayah</SelectItem>
-          {isLoading ? (
-            <div className="text-sm p-2 animate-pulse">Loading...</div>
-          ) : (
-            data?.map((regency, index) => (
-              <SelectItem
-                key={`${index}-${regency.domain_id}-${regency.domain_name}`}
-                value={regency.domain_name.toLowerCase()}
-              >
-                {regency.domain_name}
-              </SelectItem>
-            ))
-          )}
+          {PROVINCE_REGENCY?.map((regency, index) => (
+            <SelectItem
+              key={`${index}-${regency.id}-${regency.id}`}
+              value={regency.nama.toLowerCase()}
+            >
+              {regency.nama}
+            </SelectItem>
+          ))}
         </SelectContent>
       </Select>
     </div>

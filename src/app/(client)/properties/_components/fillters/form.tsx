@@ -45,13 +45,13 @@ export const FilterForm = ({ searchParams }: FilterFormProps) => {
         onProvinceChange={(bpsDomain) => {
           setFilterParams({
             ...filterParams,
-            province: bpsDomain ? bpsDomain?.domain_name.toLowerCase() : "",
+            province: bpsDomain ? bpsDomain?.nama.toLowerCase() : "",
           });
         }}
         onRegencyChange={(bpsDomain) => {
           setFilterParams({
             ...filterParams,
-            regency: bpsDomain ? bpsDomain.domain_name.toLowerCase() : "",
+            regency: bpsDomain ? bpsDomain.nama.toLowerCase() : "",
           });
         }}
       />

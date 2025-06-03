@@ -28,7 +28,7 @@ export const LocationFilter = ({
       />
       <RegencyFilter
         defaultValue={searchParams.regency}
-        provinceId={province?.domain_id ?? ""}
+        provinceId={province?.id ?? ""}
         onValueChange={onRegencyChange}
       />
     </div>
