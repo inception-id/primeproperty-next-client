@@ -58,6 +58,18 @@ export const generatePropertiesMetadata = async (
       };
     }
   }
+  if (paramsPath) {
+    const pathParams: FindPropertyQuery = {
+      purchase_status:
+        paramsPath[0] === "disewa"
+          ? PurchaseStatus.ForRent
+          : PurchaseStatus.ForSale,
+      buiding_type: paramsPath[1],
+      province: paramsPath[2],
+      regency: paramsPath[3],
+    };
+    searchParams = pathParams;
+  }
 
   return {
     title: generateTitleOrDesc(searchParams),
