@@ -1,6 +1,7 @@
 # *
 User-agent: *
 Allow: /
+Disallow: /primepro-property-2
 
 # Host
 Host: https://primeproindonesia.com

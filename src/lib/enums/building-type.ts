@@ -6,7 +6,6 @@ export enum BuildingType {
   Gudang = "gudang",
   Gedung = "gedung",
   Hotel = "hotel",
-  Kiosk = "kios",
   Pabrik = "pabrik",
   RuangUsaha = "ruang usaha",
   RumahKantor = "rumah kantor",
@@ -44,10 +43,6 @@ export const BUILDING_TYPES = [
   {
     value: BuildingType.Hotel,
     english_label: "Hotel",
-  },
-  {
-    value: BuildingType.Kiosk,
-    english_label: "Kios",
   },
   {
     value: BuildingType.Pabrik,

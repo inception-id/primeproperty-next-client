@@ -32,6 +32,24 @@ const generateKeyword = (searchParams: FindPropertyQuery) => {
   return `${propertyType}, ${purchaseType}, ${location}, Primepro Indonesia`;
 };
 
+const generateCanonical = (searchParams: FindPropertyQuery) => {
+  const searchParamsStr = new URLSearchParams(searchParams);
+  if (searchParams.buiding_type) {
+    searchParamsStr.append(
+      "buiding_type",
+      searchParams.buiding_type.toLowerCase(),
+    );
+  }
+  if (searchParams.province) {
+    searchParamsStr.append("province", searchParams.province.toLowerCase());
+  }
+  if (Object.keys(searchParams).length > 0) {
+    return `?${searchParamsStr.toString()}`;
+  }
+
+  return "";
+};
+
 export const generatePropertiesMetadata = async (
   searchParams: FindPropertyQuery,
   paramsPath?: string[],
@@ -81,7 +99,7 @@ export const generatePropertiesMetadata = async (
       canonical:
         paramsPath && paramsPath?.length > 0
           ? `${env.NEXT_PUBLIC_HOST_URL}/properties/${paramsPath.join("/")}`
-          : `${env.NEXT_PUBLIC_HOST_URL}/properties`,
+          : `${env.NEXT_PUBLIC_HOST_URL}/properties/${generateCanonical(searchParams)}`,
     },
   };
 };
