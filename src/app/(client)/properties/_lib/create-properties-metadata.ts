@@ -33,17 +33,17 @@ const generateKeyword = (searchParams: FindPropertyQuery) => {
 };
 
 const generateCanonical = (searchParams: FindPropertyQuery) => {
-  const searchParamsStr = new URLSearchParams(searchParams);
-  if (searchParams.buiding_type) {
-    searchParamsStr.append(
-      "buiding_type",
-      searchParams.buiding_type.toLowerCase(),
-    );
-  }
-  if (searchParams.province) {
-    searchParamsStr.append("province", searchParams.province.toLowerCase());
-  }
-  if (Object.keys(searchParams).length > 0) {
+  if (Object.values(searchParams).length > 0) {
+    const searchParamsStr = new URLSearchParams(searchParams);
+    if (searchParams.buiding_type) {
+      searchParamsStr.append(
+        "buiding_type",
+        searchParams.buiding_type.toLowerCase(),
+      );
+    }
+    if (searchParams.province) {
+      searchParamsStr.append("province", searchParams.province.toLowerCase());
+    }
     return `?${searchParamsStr.toString()}`;
   }
 
