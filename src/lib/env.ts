@@ -8,8 +8,6 @@ export const env = createEnv({
    */
   server: {
     API_KEY_LEADS: z.string().min(1),
-    BPS_API_URL: z.string().min(1),
-    BPS_API_KEY: z.string().min(1),
     SENTRY_AUTH_TOKEN: z.string(),
   },
   /*
@@ -35,8 +33,6 @@ export const env = createEnv({
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
     API_KEY_LEADS: process.env.API_KEY_LEADS,
     NEXT_PUBLIC_S3_ENDPOINT: process.env.NEXT_PUBLIC_S3_ENDPOINT,
-    BPS_API_URL: process.env.BPS_API_URL,
-    BPS_API_KEY: process.env.BPS_API_KEY,
     NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
     SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
     NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,

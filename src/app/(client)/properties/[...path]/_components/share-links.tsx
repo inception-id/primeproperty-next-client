@@ -11,13 +11,15 @@ import { toast } from "react-toastify";
 import { Tooltip } from "react-tooltip";
 import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { useMemo } from "react";
+import { cn } from "@/lib/utils";
 
 type ShareLinksProps = {
   title: string;
   property: PropertyWithAgent;
+  className?: string;
 };
 
-export const ShareLinks = ({ title, property }: ShareLinksProps) => {
+export const ShareLinks = ({ title, property, className }: ShareLinksProps) => {
   const whatsappUrl = useMemo(() => {
     const linkUrl = "https://api.whatsapp.com/send?text=";
     const text = `*${property[0].title}*\nLokasi: ${property[0].street},${property[0].regency}\n${property[0].description}\n\nContact:\n${property[4] ? `https://instagram.com/${property[4]}` : ""}\nWhatsapp:\nwa.me/62${property[2]}\nLink:\n${env.NEXT_PUBLIC_HOST_URL}/properties/${property[0].id}`;
@@ -30,7 +32,7 @@ export const ShareLinks = ({ title, property }: ShareLinksProps) => {
   const twitterUrl = `https://x.com/intent/tweet?url=${url}&text=${caption}`;
   const telegramUrl = `https://t.me/share/url?url=${url}&text=${caption}`;
   return (
-    <div className="flex items-center gap-4 mx-auto">
+    <div className={cn("flex items-center gap-4 mx-auto", className)}>
       <span>Share: </span>
       <Link
         href={facebookUrl}
