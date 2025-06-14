@@ -38,7 +38,7 @@ export const RelatedSearch = ({ property, className }: RelatedSearchProps) => {
               className: "uppercase justify-between",
             }),
           )}
-          href={`/properties/${property.purchase_status === "ForSale" ? "dijual" : "disewa"}/${property.building_type}/${property.province.replaceAll(" ", "-")}/${property.regency.replaceAll("", "-")}`}
+          href={`/properties/${property.purchase_status === "ForSale" ? "dijual" : "disewa"}/${property.building_type}/${property.province.replaceAll(" ", "-")}/${property.regency.replaceAll(" ", "-")}`}
         >
           <span>
             {property.building_type} di {property.regency}
