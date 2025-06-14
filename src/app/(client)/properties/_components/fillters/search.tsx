@@ -51,11 +51,11 @@ export const Search = () => {
 
   const handleAction = () => {
     if (searchResult.length > 0) {
-      sendGAEvent("search_redirect");
+      sendGAEvent("event", "search_redirect");
       router.push(`/properties${searchResult[0].value}`);
       return;
     }
-    sendGAEvent("search_not_found");
+    sendGAEvent("event", "search_not_found");
     router.push("/properties/0");
   };
 

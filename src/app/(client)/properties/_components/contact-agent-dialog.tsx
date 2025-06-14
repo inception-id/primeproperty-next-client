@@ -73,7 +73,7 @@ export const ContactAgentDialog = ({
 
       const lead = await createLead(payload);
       if (lead.data?.id) {
-        sendGAEvent("leads_submit");
+        sendGAEvent("event", "leads_submit");
       }
       return lead;
     } catch (error) {
@@ -94,7 +94,7 @@ export const ContactAgentDialog = ({
         const url = `tel: +62${propertyWithAgent[2]}`;
         window.open(url, "_blank");
       }
-      sendGAEvent("leads_redirect");
+      sendGAEvent("event", "leads_redirect");
       setOpen(false);
     }
   };
@@ -104,7 +104,7 @@ export const ContactAgentDialog = ({
       <DialogTrigger
         onClick={() => {
           setOpen(true);
-          sendGAEvent("leads_popup");
+          sendGAEvent("event", "leads_popup");
         }}
         className={cn(
           buttonVariants({

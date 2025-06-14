@@ -24,7 +24,7 @@ export const FilterForm = ({ searchParams }: FilterFormProps) => {
     useState<Omit<FindPropertyQuery, "page">>(searchParams);
 
   const onCloseClick = () => {
-    sendGAEvent("filter_submit");
+    sendGAEvent("event", "filter_submit");
     const newParams = new URLSearchParams(filterParams);
     newParams.set("page", "1");
     router.replace(`/properties?${newParams}`);
