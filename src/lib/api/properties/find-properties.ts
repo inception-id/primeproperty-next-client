@@ -10,6 +10,7 @@ export enum FindPropertySort {
 }
 
 export type FindPropertyQuery = {
+  s?: string;
   province?: string;
   regency?: string;
   street?: string;
@@ -30,6 +31,9 @@ export type PropertyWithAgent = [
 
 export const findProperties = async (query?: FindPropertyQuery) => {
   let path = "/properties?";
+  if (query?.s) {
+    path += `&s=${query.s}`;
+  }
   if (query?.province) {
     path += `&province=${query.province}`;
   }
