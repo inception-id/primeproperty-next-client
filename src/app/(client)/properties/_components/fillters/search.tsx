@@ -3,65 +3,81 @@ import { LuSearch } from "react-icons/lu";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
-import { usePropertiesSitePaths } from "@/hooks/properties/use-properties-site-paths";
-import { useMemo, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import Link from "next/link";
 import { useDismiss, useFloating, useInteractions } from "@floating-ui/react";
-import { MdWhatsapp } from "react-icons/md";
-import { createAskUrl } from "@/lib/create-ask-url";
-import { useRouter } from "next/navigation";
 import { sendGAEvent } from "@next/third-parties/google";
+import {
+  findProperties,
+  PropertyWithAgent,
+} from "@/lib/api/properties/find-properties";
+import { useMutation } from "@tanstack/react-query";
+import { PurchaseStatus } from "@/lib/enums/purchase-status";
+
+type SearchResultProps = {
+  isLoading: boolean;
+  results: PropertyWithAgent[];
+};
+
+export const SearchResult = ({ isLoading, results }: SearchResultProps) => {
+  if (isLoading) {
+    return <div className="w-full px-4 py-2 animate-pulse">Loading...</div>;
+  }
+
+  return (
+    <div className="max-h-48 lg:max-h-80 overflow-y-auto">
+      {results.map((result, index) => {
+        return (
+          <Link
+            href={`/properties${result[0].site_path}`}
+            key={`${index}_search`}
+            className={cn(
+              buttonVariants({ variant: "link" }),
+              "justify-start w-full capitalize",
+            )}
+            onClick={() => sendGAEvent("event", "search_redirect")}
+          >
+            {result[0].building_type}{" "}
+            {result[0].purchase_status === PurchaseStatus.ForRent
+              ? "dijual"
+              : "disewa"}{" "}
+            {"di"} {result[0].street} {result[0].regency}
+          </Link>
+        );
+      })}
+    </div>
+  );
+};
 
 export const Search = () => {
-  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
-  const [keyword, setKeyword] = useState("");
-  const { data } = usePropertiesSitePaths(isOpen);
 
   const { refs, context } = useFloating({
     open: isOpen,
     onOpenChange: setIsOpen,
   });
-
   const dismiss = useDismiss(context);
   const { getReferenceProps, getFloatingProps } = useInteractions([dismiss]);
 
-  const searchResult = useMemo(() => {
-    if (data && keyword) {
-      const matches =
-        data.data
-          ?.map((path) => {
-            const labelArr = path.split("/");
-            labelArr.splice(3, 1);
-            const label = labelArr.join(" ").replaceAll("-", " ");
-            return {
-              value: path,
-              label,
-            };
-          })
-          .filter((path) => path.label.includes(keyword.toLowerCase())) ?? [];
-      if (matches.length > 5) {
-        return matches.slice(0, 5);
-      }
-      return matches;
-    }
+  const searchMutation = useMutation({
+    mutationFn: async (keyword: string) => {
+      return await findProperties({ s: keyword });
+    },
+  });
 
-    return [];
-  }, [data, keyword]);
-
-  const handleAction = () => {
-    if (searchResult.length > 0) {
-      sendGAEvent("event", "search_redirect");
-      router.push(`/properties${searchResult[0].value}`);
-      return;
+  const typingTimeoutRef = useRef<any>(null);
+  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setIsOpen(true);
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current);
     }
-    sendGAEvent("event", "search_not_found");
-    router.push("/properties/0");
+    typingTimeoutRef.current = setTimeout(async () => {
+      searchMutation.mutate(e.target.value);
+    }, 500);
   };
 
   return (
-    <form
-      action={handleAction}
+    <div
       className="flex items-center w-full md:w-96 relative"
       ref={refs.setReference}
       {...getReferenceProps()}
@@ -76,59 +92,27 @@ export const Search = () => {
           <LuSearch />
         </div>
         <Input
+          ref={typingTimeoutRef}
           type="text"
           id="property-search"
           placeholder="Cari lokasi/area"
           className="rounded-l-none border-l-transparent focus-visible:ring-transparent focus-visible:ring-offset-transparent w-full pl-0 "
-          value={keyword}
-          onChange={(e) => {
-            setKeyword(e.target.value.toLowerCase());
-            setIsOpen(true);
-          }}
+          onChange={onInputChange}
         />
       </>
 
-      {keyword.length > 0 && isOpen && (
+      {isOpen && (
         <div
           ref={refs.setFloating}
           {...getFloatingProps()}
-          className="absolute top-11 left-0 bg-background shadow w-80 md:w-96 rounded z-30 border overflow-y-auto"
+          className="absolute top-11 left-0 bg-background shadow w-80 md:w-96 rounded z-30 overflow-y-auto"
         >
-          {searchResult?.length > 0 ? (
-            <div className="w-full flex flex-col">
-              {searchResult.map((path) => (
-                <Link
-                  href={`/properties/${path.value}`}
-                  key={path.value}
-                  className={cn(
-                    buttonVariants({ variant: "link" }),
-                    "justify-start",
-                  )}
-                >
-                  {path.label}
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <div className="flex flex-col text-sm p-2 gap-2">
-              <span>Tidak menemukan pencarian yang cocok</span>
-              <div className="flex items-center gap-2">
-                <Link
-                  href={createAskUrl()}
-                  target="_blank"
-                  className={cn(
-                    buttonVariants({ variant: "outline", size: "sm" }),
-                  )}
-                >
-                  <MdWhatsapp />
-                  Tanya langsung
-                </Link>
-                atau coba filter
-              </div>
-            </div>
-          )}
+          <SearchResult
+            isLoading={searchMutation.isPending}
+            results={searchMutation.data?.data?.data ?? []}
+          />
         </div>
       )}
-    </form>
+    </div>
   );
 };
