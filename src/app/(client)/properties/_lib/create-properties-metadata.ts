@@ -13,9 +13,21 @@ const generateTitleOrDesc = (searchParams: FindPropertyQuery) => {
         searchParams.purchase_status as PurchaseStatus
       ].toLowerCase()
     : "dijual";
-  const location = `${searchParams.street ?? ""} ${searchParams.regency ?? ""} ${searchParams.province ?? ""} Indonesia`;
+  let location = "";
+  if (searchParams.street) {
+    location += " jalan ";
+    location += searchParams.street.replaceAll("-", " ");
+  }
+  if (searchParams.regency) {
+    location += " ";
+    location += searchParams.regency.replaceAll("-", " ");
+  }
+  if (!searchParams.regency && searchParams.province) {
+    location += " ";
+    location += searchParams.province.replaceAll("-", " ");
+  }
 
-  return `${propertyType} ${purchaseType} di ${location} | Primepro Indonesia`;
+  return `${propertyType} ${purchaseType} di ${location ?? "Indonesia"} | Primepro Indonesia`;
 };
 
 const generateKeyword = (searchParams: FindPropertyQuery) => {
@@ -27,9 +39,22 @@ const generateKeyword = (searchParams: FindPropertyQuery) => {
         searchParams.purchase_status as PurchaseStatus
       ].toLowerCase()
     : "dijual";
-  const location = `${searchParams.street ?? ""}, ${searchParams.regency ?? ""}, ${searchParams.province ?? ""}, Indonesia`;
 
-  return `${propertyType}, ${purchaseType}, ${location}, Primepro Indonesia`;
+  let location = "";
+  if (searchParams.street) {
+    location += searchParams.street.replaceAll("-", " ");
+    location += ",";
+  }
+  if (searchParams.regency) {
+    location += searchParams.regency.replaceAll("-", " ");
+    location += ",";
+  }
+  if (searchParams.province) {
+    location += searchParams.province.replaceAll("-", " ");
+    location += ",";
+  }
+
+  return `${propertyType}, ${purchaseType}, ${location ?? "Indonesia"}, Primepro Indonesia`;
 };
 
 const generateCanonical = (searchParams: FindPropertyQuery) => {
@@ -43,6 +68,12 @@ const generateCanonical = (searchParams: FindPropertyQuery) => {
     }
     if (searchParams.province) {
       searchParamsStr.append("province", searchParams.province.toLowerCase());
+    }
+    if (searchParams.regency) {
+      searchParamsStr.append("regency", searchParams.regency.toLowerCase());
+    }
+    if (searchParams.street) {
+      searchParamsStr.append("street", searchParams.street.toLowerCase());
     }
     return `?${searchParamsStr.toString()}`;
   }
@@ -82,9 +113,10 @@ export const generatePropertiesMetadata = async (
         paramsPath[0] === "disewa"
           ? PurchaseStatus.ForRent
           : PurchaseStatus.ForSale,
-      buiding_type: paramsPath[1],
-      province: paramsPath[2],
-      regency: paramsPath[3],
+      buiding_type: paramsPath?.[1],
+      province: paramsPath?.[2],
+      regency: paramsPath?.[3],
+      street: paramsPath?.[4],
     };
     searchParams = pathParams;
   }
@@ -99,7 +131,7 @@ export const generatePropertiesMetadata = async (
       canonical:
         paramsPath && paramsPath?.length > 0
           ? `${env.NEXT_PUBLIC_HOST_URL}/properties/${paramsPath.join("/")}`
-          : `${env.NEXT_PUBLIC_HOST_URL}/properties/${generateCanonical(searchParams)}`,
+          : `${env.NEXT_PUBLIC_HOST_URL}/properties${generateCanonical(searchParams)}`,
     },
   };
 };
