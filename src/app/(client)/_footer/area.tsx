@@ -9,6 +9,7 @@ export const FooterPropertyArea = () => {
         {FOOTER_PROVINCES.map((province, index) => (
           <Link
             key={`${index}_${province.nama}_footer`}
+            title={`Rumah di ${province.nama}`}
             href={`/properties?province=${province.nama.toLowerCase()}`}
             className="hover:underline capitalize"
           >

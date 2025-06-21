@@ -9,6 +9,7 @@ export const FooterBuildingTypes = () => {
         {BUILDING_TYPES.map((buildingType, index) => (
           <Link
             key={`${index}_${buildingType.value}_footer`}
+            title={`Jual ${buildingType.value}`}
             href={`/properties?buiding_type=${buildingType.value.toLowerCase()}`}
             className="hover:underline capitalize"
           >

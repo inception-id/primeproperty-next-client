@@ -17,11 +17,13 @@ import { formatDateToIndonesian } from "@/lib/intl/format-date-to-indonesian";
 import { WatermarkImage } from "@/components/custom-ui/watermark-image";
 import { PurchaseStatus } from "@/lib/enums/purchase-status";
 import { RENT_TIME } from "@/lib/enums/rent_time";
+import { useRouter } from "next/navigation";
 type PropertyCardProps = {
   propertyWithAgent: PropertyWithAgent;
 };
 
 export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
+  const router = useRouter();
   const baseImgPath = env.NEXT_PUBLIC_S3_ENDPOINT;
   const coverImage =
     propertyWithAgent[0].images.find((img) => img.is_cover) ??
@@ -29,9 +31,9 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
 
   return (
     <Card className="relative border-none shadow-none">
-      <Link
-        href={`/properties/${propertyWithAgent[0].id}`}
-        className="flex flex-col gap-2"
+      <div
+        className="flex flex-col gap-2 cursor-pointer"
+        onClick={() => router.push(`/properties/${propertyWithAgent[0].id}`)}
       >
         <CardHeader className="p-0 w-full relative">
           <WatermarkImage
@@ -40,7 +42,7 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
             }}
             imageProps={{
               src: baseImgPath + coverImage.path,
-              alt: coverImage.indonesian_label,
+              alt: propertyWithAgent[0].title,
               width: 1000,
               height: 1000,
               className: "w-full h-64 object-cover rounded-lg aspect-square",
@@ -67,21 +69,26 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
                 )}
             </strong>
             <CardTitle>
-              <h2 className="text-base text-wrap font-normal line-clamp-1">
-                {propertyWithAgent[0].title}
-              </h2>
+              <Link
+                title={propertyWithAgent[0].title}
+                href={`/properties/${propertyWithAgent[0].id}`}
+              >
+                <h2 className="text-base text-wrap font-normal line-clamp-1">
+                  {propertyWithAgent[0].title}
+                </h2>
+              </Link>
             </CardTitle>
-            <span className="text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               {propertyWithAgent[0].street} - {propertyWithAgent[0].regency}
-            </span>
+            </p>
             <CardDescription>
-              <h3 className="text-xs line-clamp-1">
+              <p className="text-xs line-clamp-1">
                 {propertyWithAgent[0].description}
-              </h3>
+              </p>
             </CardDescription>
           </div>
         </CardContent>
-      </Link>
+      </div>
       <CardFooter className="p-0 w-full">
         <div className="flex flex-col gap-4 lg:gap-3 flex-1">
           <Specifications propertyWithAgent={propertyWithAgent} />

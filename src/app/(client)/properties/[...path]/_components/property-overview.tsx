@@ -33,9 +33,9 @@ export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
 
       <div className="flex flex-col gap-2">
         <p className="text-base font-semibold">Deskripsi</p>
-        <h2 className="whitespace-pre-wrap text-muted-foreground text-sm">
+        <p className="whitespace-pre-wrap text-muted-foreground text-sm">
           {property[0].description}
-        </h2>
+        </p>
       </div>
 
       <div className={cn(property[0].facilities.length === 0 ? "hidden" : "")}>
@@ -59,7 +59,10 @@ export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
         <div className="w-full overflow-hidden rounded">
           <p className="text-base font-semibold mb-2">Perkiraan Lokasi</p>
 
-          <div dangerouslySetInnerHTML={{ __html: property[0].gmap_iframe }} />
+          <div
+            title={property[0].title}
+            dangerouslySetInnerHTML={{ __html: property[0].gmap_iframe }}
+          />
         </div>
       )}
     </div>

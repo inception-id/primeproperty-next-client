@@ -56,7 +56,7 @@ export const PropertyCarousel = ({
                   watermarkProps={{}}
                   imageProps={{
                     src: baseImgPath + propImg.path,
-                    alt: propImg.indonesian_label,
+                    alt: propertyWithAgent[0].title,
                     width: 1000,
                     height: 1000,
                     priority: true,
@@ -84,7 +84,7 @@ export const PropertyCarousel = ({
               }}
               imageProps={{
                 src: baseImgPath + img.path,
-                alt: img.indonesian_label,
+                alt: propertyWithAgent[0].title,
                 width: 1000,
                 height: 1000,
                 className:
@@ -102,7 +102,7 @@ export const PropertyCarousel = ({
             }}
             imageProps={{
               src: baseImgPath + propertyWithAgent[0].images[0].path,
-              alt: propertyWithAgent[0].images[0].indonesian_label,
+              alt: propertyWithAgent[0].title,
               width: 1000,
               height: 1000,
               className: "w-full h-40 rounded-md cursor-pointer blur-sm",
