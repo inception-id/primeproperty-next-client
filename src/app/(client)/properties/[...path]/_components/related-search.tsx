@@ -11,7 +11,7 @@ type RelatedSearchProps = {
 
 export const RelatedSearch = ({ property, className }: RelatedSearchProps) => {
   return (
-    <div className={cn("rounded border h-fit", className)}>
+    <div id="related" className={cn("rounded border h-fit", className)}>
       <h3 className="text-lg font-bold border-b py-2 px-4">
         Pencarian Terkait
       </h3>
