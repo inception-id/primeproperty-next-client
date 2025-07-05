@@ -7,7 +7,6 @@ import { ContactAgentDialog } from "../../_components/contact-agent-dialog";
 import { AgentAvatar } from "./agent-avatar";
 import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { RelatedSearch } from "./related-search";
-import { createPropertySchema } from "../../_lib/create-properties-schema";
 import { createRelatedPropertySchema } from "../../_lib/create-related-property-breadcrumb";
 
 type DynamicPropertyProps = {
