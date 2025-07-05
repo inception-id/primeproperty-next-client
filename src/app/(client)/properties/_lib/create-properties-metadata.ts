@@ -3,8 +3,38 @@ import { findPropertyById } from "@/lib/api/properties/find-property-by-id";
 import { PURCHASE_STATUS, PurchaseStatus } from "@/lib/enums/purchase-status";
 import { env } from "@/lib/env";
 import { Metadata } from "next";
+import { toTitleCase } from "@/lib/to-title-case";
 
-const generateTitleOrDesc = (searchParams: FindPropertyQuery) => {
+export const generateTitle = (searchParams: FindPropertyQuery) => {
+  const propertyType = searchParams.buiding_type
+    ? searchParams.buiding_type
+    : "Properti";
+  const purchaseType = searchParams.purchase_status
+    ? PURCHASE_STATUS[
+        searchParams.purchase_status as PurchaseStatus
+      ].toLowerCase()
+    : "dijual";
+  let location = "";
+  if (searchParams.street) {
+    location += " ";
+    location += searchParams.street.replaceAll("-", " ");
+  }
+  if (searchParams.regency) {
+    location += " ";
+    location += searchParams.regency.replaceAll("-", " ");
+  }
+  if (!searchParams.regency && searchParams.province) {
+    location += " ";
+    location += searchParams.province.replaceAll("-", " ");
+  }
+
+  const fullLocation = `${propertyType} ${purchaseType} di ${location ? location : "Indonesia"}`;
+  const date = new Date();
+
+  return `${toTitleCase(fullLocation)} | Harga Terbaru ${date.toLocaleString("id-ID", { month: "long" })} ${date.getFullYear()} Primepro Indonesia`;
+};
+
+export const generateDescription = (searchParams: FindPropertyQuery) => {
   const propertyType = searchParams.buiding_type
     ? searchParams.buiding_type
     : "Properti";
@@ -27,7 +57,8 @@ const generateTitleOrDesc = (searchParams: FindPropertyQuery) => {
     location += searchParams.province.replaceAll("-", " ");
   }
 
-  return `${propertyType} ${purchaseType} di ${location ?? "Indonesia"} | Primepro Indonesia`;
+  const fullLocation = `${propertyType} ${purchaseType} Murah di ${location ? location : "Indonesia"}`;
+  return toTitleCase(fullLocation);
 };
 
 const generateKeyword = (searchParams: FindPropertyQuery) => {
@@ -66,6 +97,22 @@ const generateCanonical = (searchParams: FindPropertyQuery) => {
   return "";
 };
 
+export const pathParamsToSearchParams = (
+  paramsPath: string[],
+): FindPropertyQuery => {
+  const searchParams: FindPropertyQuery = {
+    purchase_status:
+      paramsPath[0] === "disewa"
+        ? PurchaseStatus.ForRent
+        : PurchaseStatus.ForSale,
+    buiding_type: paramsPath?.[1],
+    province: paramsPath?.[2],
+    regency: paramsPath?.[3],
+    street: paramsPath?.[4],
+  };
+  return searchParams;
+};
+
 export const generatePropertiesMetadata = async (
   searchParams: FindPropertyQuery,
   paramsPath?: string[],
@@ -84,6 +131,19 @@ export const generatePropertiesMetadata = async (
         keywords: property.data[0].site_path
           .replaceAll("-", " ")
           .replaceAll("/", ","),
+        twitter: {
+          title: property.data[0].title,
+          site: "@primeproindonesia",
+          creator: "@primeproindonesia",
+          card: "summary_large_image",
+          images: [`${env.NEXT_PUBLIC_HOST_URL}/images/primepro.png`],
+        },
+        openGraph: {
+          title: property.data[0].title,
+          description: property.data[0].description,
+          siteName: "Primepro Indonesia",
+          locale: "id_ID",
+        },
         appleWebApp: true,
         applicationName: "Primepro Indonesia",
         alternates: {
@@ -93,23 +153,26 @@ export const generatePropertiesMetadata = async (
     }
   }
   if (paramsPath) {
-    const pathParams: FindPropertyQuery = {
-      purchase_status:
-        paramsPath[0] === "disewa"
-          ? PurchaseStatus.ForRent
-          : PurchaseStatus.ForSale,
-      buiding_type: paramsPath?.[1],
-      province: paramsPath?.[2],
-      regency: paramsPath?.[3],
-      street: paramsPath?.[4],
-    };
-    searchParams = pathParams;
+    searchParams = pathParamsToSearchParams(paramsPath);
   }
 
   return {
-    title: generateTitleOrDesc(searchParams),
-    description: generateTitleOrDesc(searchParams),
+    title: generateTitle(searchParams),
+    description: generateDescription(searchParams),
     keywords: generateKeyword(searchParams),
+    twitter: {
+      title: generateTitle(searchParams),
+      site: "@primeproindonesia",
+      creator: "@primeproindonesia",
+      card: "summary_large_image",
+      images: [`${env.NEXT_PUBLIC_HOST_URL}/images/primepro.png`],
+    },
+    openGraph: {
+      title: generateTitle(searchParams),
+      description: generateDescription(searchParams),
+      siteName: "Primepro Indonesia",
+      locale: "id_ID",
+    },
     appleWebApp: true,
     applicationName: "Primepro Indonesia",
     alternates: {
