@@ -8,6 +8,7 @@ import { AgentAvatar } from "./agent-avatar";
 import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { RelatedSearch } from "./related-search";
 import { createRelatedPropertySchema } from "../../_lib/create-related-property-breadcrumb";
+import { createDynamicPropertySchema } from "../../_lib/create-dynamic-property-schema";
 
 type DynamicPropertyProps = {
   propertyId: number;
@@ -58,12 +59,19 @@ export const DynamicProperty = async ({ propertyId }: DynamicPropertyProps) => {
     return <PropertyNotFound searchParams={{}} />;
   }
   const relatedJsonLd = createRelatedPropertySchema(property.data[0]);
+  const dynamicJsonLd = createDynamicPropertySchema(property.data[0]);
   return (
     <div className="relative">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(relatedJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(dynamicJsonLd).replace(/</g, "\\u003c"),
         }}
       />
       <PropertyImages propertyWithAgent={property.data} />
