@@ -149,6 +149,7 @@ export const generatePropertiesMetadata = async (
         alternates: {
           canonical: `${env.NEXT_PUBLIC_HOST_URL}/properties/${propertyId}`,
         },
+        robots: "index, follow",
       };
     }
   }
@@ -181,5 +182,6 @@ export const generatePropertiesMetadata = async (
           ? `${env.NEXT_PUBLIC_HOST_URL}/properties/${paramsPath.join("/")}`
           : `${env.NEXT_PUBLIC_HOST_URL}/properties${generateCanonical(searchParams)}`,
     },
+    robots: "index, follow",
   };
 };
