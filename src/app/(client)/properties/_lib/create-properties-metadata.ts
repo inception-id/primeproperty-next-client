@@ -31,7 +31,7 @@ export const generateTitle = (searchParams: FindPropertyQuery) => {
   const fullLocation = `${propertyType} ${purchaseType} di ${location ? location : "Indonesia"}`;
   const date = new Date();
 
-  return `${toTitleCase(fullLocation)} | Harga Terbaru ${date.toLocaleString("id-ID", { month: "long" })} ${date.getFullYear()} Primepro Indonesia`;
+  return `${toTitleCase(fullLocation)} | Harga Terbaru ${date.getFullYear()}`;
 };
 
 export const generateDescription = (searchParams: FindPropertyQuery) => {
@@ -58,7 +58,10 @@ export const generateDescription = (searchParams: FindPropertyQuery) => {
   }
 
   const fullLocation = `${propertyType} ${purchaseType} Murah di ${location ? location : "Indonesia"}`;
-  return toTitleCase(fullLocation);
+  return (
+    toTitleCase(fullLocation) +
+    "| Jual Beli Rumah Terdekat ✓ Pencarian Mudah ✓ Lokasi Strategis ✓ Lengkap dengan Foto."
+  );
 };
 
 const generateKeyword = (searchParams: FindPropertyQuery) => {

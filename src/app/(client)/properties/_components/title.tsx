@@ -13,13 +13,12 @@ const createLocation = (
   regency?: string,
   street?: string,
 ) => {
-  if (province && regency && street) {
-    return street + ", " + regency + ", " + province;
+  if (street) {
+    return street;
   }
-  if (province && regency) {
-    return regency + ", " + province;
+  if (regency) {
+    return regency;
   }
-
   if (province) {
     return province;
   }
@@ -45,50 +44,46 @@ export const PropertiesTitle = ({
 
   if (propertyCount === 0) {
     return (
-      <h1 className={cn("flex gap-1 text-base flex-wrap", className)}>
+      <h1 className={cn("flex gap-1 text-base flex-wrap font-bold", className)}>
         Pencarian tidak ditemukan untuk{" "}
-        <b>{searchParams.buiding_type ?? "Properti"}</b>
-        <b>
-          {searchParams.purchase_status
-            ? PURCHASE_STATUS[
-                searchParams.purchase_status as PurchaseStatus
-              ].toLowerCase()
-            : "dijual"}
-        </b>
-        {"di"}
-        <b className="capitalize">
-          {createLocation(
-            searchParams.province,
-            searchParams.regency,
-            searchParams.street,
-          )}
-        </b>
-      </h1>
-    );
-  }
-
-  return (
-    <h1 className={cn("flex gap-1 text-base flex-wrap ", className)}>
-      Menampilkan
-      <b>{propertyCount}</b>
-      <b>
-        {searchParams.buiding_type ? searchParams.buiding_type : "properti"}
-      </b>
-      <b>
+        {searchParams.buiding_type ?? "Properti"}{" "}
         {searchParams.purchase_status
           ? PURCHASE_STATUS[
               searchParams.purchase_status as PurchaseStatus
             ].toLowerCase()
-          : "dijual"}
-      </b>
-      {"di"}
-      <b className="capitalize">
+          : "dijual"}{" "}
+        {"di"}{" "}
         {createLocation(
           searchParams.province,
           searchParams.regency,
           searchParams.street,
         )}
-      </b>
-    </h1>
+      </h1>
+    );
+  }
+
+  return (
+    <div className="flex flex-col">
+      <h1
+        className={cn(
+          "flex gap-1 text-base flex-wrap font-bold capitalize",
+          className,
+        )}
+      >
+        {searchParams.buiding_type ? searchParams.buiding_type : "properti"}{" "}
+        {searchParams.purchase_status
+          ? PURCHASE_STATUS[
+              searchParams.purchase_status as PurchaseStatus
+            ].toLowerCase()
+          : "dijual"}{" "}
+        {"di"}{" "}
+        {createLocation(
+          searchParams.province,
+          searchParams.regency,
+          searchParams.street,
+        )}
+      </h1>
+      <p>Menampilkan {propertyCount} properti</p>
+    </div>
   );
 };
