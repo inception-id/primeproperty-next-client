@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" suppressHydrationWarning>
+    <html lang="id-ID" suppressHydrationWarning>
       <body className={ptsans.className}>
         <Providers>{children}</Providers>
       </body>
