@@ -8,7 +8,6 @@ import {
   pathParamsToSearchParams,
 } from "./create-properties-metadata";
 import { env } from "@/lib/env";
-import { toTitleCase } from "@/lib/to-title-case";
 
 export const createPropertySchema = (
   properties: PropertyWithAgent[],
@@ -30,7 +29,7 @@ export const createPropertySchema = (
       },
       ...properties.map((property) => {
         return {
-          "@type": toTitleCase(property[0].building_type),
+          "@type": "SingleFamilyResidence",
           address: {
             "@type": "PostalAddress",
             addressCountry: "ID",
