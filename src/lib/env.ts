@@ -9,6 +9,8 @@ export const env = createEnv({
   server: {
     API_KEY_LEADS: z.string().min(1),
     SENTRY_AUTH_TOKEN: z.string(),
+    DATOCMS_API_URL: z.string().min(1),
+    DATOCMS_API_TOKEN: z.string().min(1),
   },
   /*
    * Environment variables available on the client (and server).
@@ -36,5 +38,7 @@ export const env = createEnv({
     NEXT_PUBLIC_SENTRY_DSN: process.env.NEXT_PUBLIC_SENTRY_DSN,
     SENTRY_AUTH_TOKEN: process.env.SENTRY_AUTH_TOKEN,
     NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
+    DATOCMS_API_URL: process.env.DATOCMS_API_URL,
+    DATOCMS_API_TOKEN: process.env.DATOCMS_API_TOKEN,
   },
 });
