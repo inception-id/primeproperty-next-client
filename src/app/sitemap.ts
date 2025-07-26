@@ -45,5 +45,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "daily",
       priority: 1.0,
     },
+    {
+      url: env.NEXT_PUBLIC_HOST_URL + "/blog/sitemap.xml",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 1.0,
+    },
   ];
 }

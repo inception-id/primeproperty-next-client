@@ -20,6 +20,11 @@ export const NAVIGATION_ITEMS = [
     href: "/agents",
   },
   {
+    indonesian_label: "Blog",
+    english_label: "Blog",
+    href: "/blog",
+  },
+  {
     indonesian_label: "Tentang",
     english_label: "About",
     href: "/about",
