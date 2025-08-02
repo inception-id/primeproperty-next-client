@@ -45,7 +45,7 @@ export const AgentBio = ({
 
         <div className="flex flex-col gap-2">
           <h2 className="font-bold">Properties Summary</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {Object.keys(groupedProperties).map((key) => (
               <div key={key} className="flex items-center gap-2">
                 <h3 className="capitalize text-muted-foreground w-28">
