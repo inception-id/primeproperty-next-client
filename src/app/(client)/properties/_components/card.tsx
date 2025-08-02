@@ -98,7 +98,7 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
                 Diperbarui{" "}
                 {formatDateToIndonesian(propertyWithAgent[0].updated_at)}
               </span>
-              <span>{propertyWithAgent[1]}</span>
+              <span className="capitalize">{propertyWithAgent[1]}</span>
             </div>
             <ContactAgentDialog
               isWhatsapp={true}

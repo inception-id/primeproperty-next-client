@@ -89,7 +89,9 @@ export const DynamicProperty = async ({ propertyId }: DynamicPropertyProps) => {
         <MobileAgentCard property={property.data} />
         <DesktopAgentCard property={property.data} />
       </div>
-      <Faq />
+      <div className="my-4">
+        <Faq />
+      </div>
     </div>
   );
 };
