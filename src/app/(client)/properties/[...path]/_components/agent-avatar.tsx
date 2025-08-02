@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import { LuCircleUser } from "react-icons/lu";
 import { env } from "@/lib/env";
@@ -25,10 +26,14 @@ export const AgentAvatar = ({ property, className }: AgentAvatarProps) => {
           <LuCircleUser className="w-full h-full text-muted-foreground/50" />
         )}
       </div>
-      <div className="flex flex-col ">
-        <span className="text-sm">{property[1]}</span>
+      <Link
+        title={property[1]}
+        href={`/agents/${property[1].replaceAll(" ", "-")}`}
+        className="flex flex-col hover:underline hover:underline-offset-4"
+      >
+        <span className="text-sm capitalize">{property[1]}</span>
         <span className="text-xs text-muted-foreground">PrimePro Agent</span>
-      </div>
+      </Link>
     </div>
   );
 };
