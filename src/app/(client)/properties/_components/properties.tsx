@@ -9,7 +9,6 @@ import { PropertiesTitle } from "./title";
 import { PropertyNotFound } from "./not-found";
 import { createPropertySchema } from "../_lib/create-properties-schema";
 import { Faq } from "./faq";
-import { createPropertiesFaqSchema } from "../_lib/create-propertis-faq-schema";
 
 type PropertiesProps = {
   searchParams: FindPropertyQuery;
@@ -22,7 +21,6 @@ export const Properties = async ({ searchParams }: PropertiesProps) => {
   }
 
   const jsonLd = createPropertySchema(properties?.data.data, searchParams);
-  const faqLd = createPropertiesFaqSchema();
 
   return (
     <>
@@ -30,12 +28,6 @@ export const Properties = async ({ searchParams }: PropertiesProps) => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqLd).replace(/</g, "\\u003c"),
         }}
       />
       <PropertiesFilter searchParams={searchParams} />

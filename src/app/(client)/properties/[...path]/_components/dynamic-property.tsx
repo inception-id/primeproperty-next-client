@@ -10,7 +10,6 @@ import { RelatedSearch } from "./related-search";
 import { createRelatedPropertySchema } from "../../_lib/create-related-property-breadcrumb";
 import { createDynamicPropertySchema } from "../../_lib/create-dynamic-property-schema";
 import { Faq } from "../../_components/faq";
-import { createPropertiesFaqSchema } from "../../_lib/create-propertis-faq-schema";
 
 type DynamicPropertyProps = {
   propertyId: number;
@@ -62,7 +61,6 @@ export const DynamicProperty = async ({ propertyId }: DynamicPropertyProps) => {
   }
   const relatedJsonLd = createRelatedPropertySchema(property.data[0]);
   const dynamicJsonLd = createDynamicPropertySchema(property.data[0]);
-  const faqLd = createPropertiesFaqSchema();
   return (
     <div className="relative">
       <script
@@ -75,12 +73,6 @@ export const DynamicProperty = async ({ propertyId }: DynamicPropertyProps) => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(dynamicJsonLd).replace(/</g, "\\u003c"),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqLd).replace(/</g, "\\u003c"),
         }}
       />
       <PropertyImages propertyWithAgent={property.data} />
