@@ -7,7 +7,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const articlesSitemap = allArticles.map((article) => {
     return {
       url: env.NEXT_PUBLIC_HOST_URL + "/blog/" + article.slug,
-      lastModified: new Date(article._publishedAt).toLocaleString(),
+      lastModified: new Date(article._publishedAt),
     };
   });
 

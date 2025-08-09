@@ -25,6 +25,7 @@ export const RelatedSearch = ({ property, className }: RelatedSearchProps) => {
             }),
           )}
           title={`${property.building_type} ${property.purchase_status === "ForSale" ? "dijual" : "disewa"} di ${property.province.replaceAll(" ", "-")}`}
+          aria-label={`${property.building_type} ${property.purchase_status === "ForSale" ? "dijual" : "disewa"} di ${property.province.replaceAll(" ", "-")}`}
           href={`/properties/${property.purchase_status === "ForSale" ? "dijual" : "disewa"}/${property.building_type}/${property.province.replaceAll(" ", "-")}`}
         >
           <span>
@@ -40,6 +41,7 @@ export const RelatedSearch = ({ property, className }: RelatedSearchProps) => {
             }),
           )}
           title={`${property.building_type} ${property.purchase_status === "ForSale" ? "dijual" : "disewa"} di ${property.regency.replaceAll(" ", "-")}, ${property.province.replaceAll(" ", "-")}`}
+          aria-label={`${property.building_type} ${property.purchase_status === "ForSale" ? "dijual" : "disewa"} di ${property.regency.replaceAll(" ", "-")}, ${property.province.replaceAll(" ", "-")}`}
           href={`/properties/${property.purchase_status === "ForSale" ? "dijual" : "disewa"}/${property.building_type}/${property.province.replaceAll(" ", "-")}/${property.regency.replaceAll(" ", "-")}`}
         >
           <span>
@@ -55,6 +57,7 @@ export const RelatedSearch = ({ property, className }: RelatedSearchProps) => {
             }),
           )}
           title={`${property.building_type} ${property.purchase_status === "ForSale" ? "dijual" : "disewa"} di ${property.street.replaceAll(" ", "-")}, ${property.regency.replaceAll(" ", "-")}`}
+          aria-label={`${property.building_type} ${property.purchase_status === "ForSale" ? "dijual" : "disewa"} di ${property.street.replaceAll(" ", "-")}, ${property.regency.replaceAll(" ", "-")}`}
           href={`/properties/${property.purchase_status === "ForSale" ? "dijual" : "disewa"}/${property.building_type}/${property.province.replaceAll(" ", "-")}/${property.regency.replaceAll(" ", "-")}/${property.street.replaceAll(" ", "-")}`}
         >
           <span>

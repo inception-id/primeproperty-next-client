@@ -34,12 +34,16 @@ export const HeroSection = () => {
                 href={askUrl}
                 target="_blank"
                 className={cn(buttonVariants({}), "inline-flex")}
+                title="contact us"
+                aria-label="contact us"
               >
                 Mulai Sekarang <LuArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/franchise#why"
                 className={cn(buttonVariants({ variant: "outline" }))}
+                title="contact us"
+                aria-label="contact us"
               >
                 Pelajari lebih lanjut
               </Link>

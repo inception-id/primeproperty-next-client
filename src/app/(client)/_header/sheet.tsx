@@ -19,6 +19,8 @@ export const HeaderSheet = () => {
   return (
     <Sheet open={open}>
       <SheetTrigger
+        aria-label="Menu"
+        title="Menu"
         onClick={() => setOpen(true)}
         className={cn(
           buttonVariants({ variant: "link", size: "icon" }),

@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
 import { Faq } from "./properties/_components/faq";
-import { createPropertiesFaqSchema } from "./properties/_lib/create-propertis-faq-schema";
 
 export const revalidate = 0;
 
@@ -104,23 +103,14 @@ const VideoThumbnail = () => {
 };
 
 const HomePage = () => {
-  const faqLd = createPropertiesFaqSchema();
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(faqLd).replace(/</g, "\\u003c"),
-        }}
-      />
-      <div className="container mx-auto flex flex-col gap-8 lg:gap-24">
-        <Hero />
-        <PopularProperties />
-        <Partners />
-        <Faq />
-        <VideoThumbnail />
-      </div>
-    </>
+    <div className="container mx-auto flex flex-col gap-8 lg:gap-24">
+      <Hero />
+      <PopularProperties />
+      <Partners />
+      <Faq />
+      <VideoThumbnail />
+    </div>
   );
 };
 

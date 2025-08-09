@@ -71,6 +71,7 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
             <CardTitle>
               <Link
                 title={propertyWithAgent[0].title}
+                aria-label={propertyWithAgent[0].title}
                 href={`/properties/${propertyWithAgent[0].id}`}
               >
                 <h2 className="text-base text-wrap font-normal line-clamp-1">

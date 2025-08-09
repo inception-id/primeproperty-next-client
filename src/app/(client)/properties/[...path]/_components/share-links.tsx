@@ -42,6 +42,7 @@ export const ShareLinks = ({ title, property, className }: ShareLinksProps) => {
         data-tooltip-content="Share to Facebook"
         data-tooltip-place="bottom"
         title={caption}
+        aria-label={caption}
       >
         <LuFacebook />
       </Link>
@@ -54,6 +55,7 @@ export const ShareLinks = ({ title, property, className }: ShareLinksProps) => {
         data-tooltip-content="Share to Telegram"
         data-tooltip-place="bottom"
         title={caption}
+        aria-label={caption}
       >
         <BsTelegram />
       </Link>
@@ -66,6 +68,7 @@ export const ShareLinks = ({ title, property, className }: ShareLinksProps) => {
         data-tooltip-content="Share to WhatsApp"
         data-tooltip-place="bottom"
         title={caption}
+        aria-label={caption}
       >
         <MdWhatsapp />
       </Link>
@@ -78,6 +81,7 @@ export const ShareLinks = ({ title, property, className }: ShareLinksProps) => {
         data-tooltip-content="Share to Twitter"
         data-tooltip-place="bottom"
         title={caption}
+        aria-label={caption}
       >
         <BsTwitterX />
       </Link>

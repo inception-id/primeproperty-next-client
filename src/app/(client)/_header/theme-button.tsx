@@ -9,6 +9,7 @@ const ThemeButton = () => {
 
   return (
     <Button
+      aria-label="Toggle Theme"
       data-tooltip-id="theme-button"
       data-tooltip-content={resolvedTheme}
       data-tooltip-place="right"

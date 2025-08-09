@@ -60,7 +60,7 @@ export const generateDescription = (searchParams: FindPropertyQuery) => {
   const fullLocation = `${propertyType} ${purchaseType} Murah di ${location ? location : "Indonesia"}`;
   return (
     toTitleCase(fullLocation) +
-    "| Jual Beli Rumah Terdekat ✓ Pencarian Mudah ✓ Lokasi Strategis ✓ Lengkap dengan Foto."
+    ". Jual Beli Rumah Terdekat ✓ Pencarian Mudah ✓ Lokasi Strategis ✓ Lengkap dengan Foto."
   );
 };
 

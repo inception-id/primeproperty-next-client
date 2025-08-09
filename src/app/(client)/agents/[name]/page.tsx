@@ -15,6 +15,7 @@ type AgentPageProps = {
 export const generateMetadata = async ({
   params,
 }: AgentPageProps): Promise<Metadata> => createAgentMetadata(params);
+
 export default async function AgentPage({ params }: AgentPageProps) {
   const agentWithProperties = await findPropertyByAgent(params.name);
   if (!agentWithProperties.data?.agent) {

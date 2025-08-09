@@ -8,7 +8,6 @@ export const createOrganizationSchema = () => {
     name: "Primepro Indonesia",
     legalName: "PT. Prima Berkat Propertindo",
     description: "Your Private Key to Exceptional Properties",
-    phone: "+62-821-1616-2995",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Jl. Kemang Raya No.1, RT.4/RW.1",

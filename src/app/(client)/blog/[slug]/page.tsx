@@ -56,6 +56,8 @@ const BlogSlug = async ({ params }: BlogSlugProps) => {
         <div className="max-w-5xl mr-auto">
           <Link
             href="/blog"
+            title="PrimePro Blog"
+            aria-label="PrimePro Blog"
             className={cn(buttonVariants({ variant: "outline" }))}
           >
             <LuChevronLeft />

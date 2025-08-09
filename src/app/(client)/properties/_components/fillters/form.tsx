@@ -79,6 +79,8 @@ export const FilterForm = ({ searchParams }: FilterFormProps) => {
           href={createAskUrl()}
           target="_blank"
           className={cn(buttonVariants({ variant: "outline" }))}
+          title="Tanya langsung"
+          aria-label="Tanya langsung"
         >
           <MdWhatsapp />
           Tanya langsung
