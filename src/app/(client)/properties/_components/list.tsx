@@ -28,6 +28,8 @@ export const PropertyList = ({
           <Link
             href="/properties"
             className={cn(buttonVariants({ variant: "default" }))}
+            aria-label="Lihat Semua Properti"
+            title="Lihat Semua Properti"
           >
             <LuHouse />
             Lihat Semua

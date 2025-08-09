@@ -10,6 +10,8 @@ export const LogoLink = ({ onClick }: LogoLinkProps) => {
   return (
     <Link
       href="/"
+      title="PrimePro Indonesia"
+      aria-label="PrimePro Indonesia"
       className="flex items-center gap-2 pl-2"
       onClick={() => onClick?.()}
     >

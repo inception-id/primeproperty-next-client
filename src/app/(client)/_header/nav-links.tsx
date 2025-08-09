@@ -23,6 +23,8 @@ export const NavLinks = ({ onClick }: NavLinksProps) => {
           <Link
             key={`${nav.href}-${index}`}
             href={nav.href}
+            title={nav.indonesian_label}
+            aria-label={nav.indonesian_label}
             className={cn(
               buttonVariants({ variant: "link", size: "lg" }),
               pathname === nav.href && "underline",

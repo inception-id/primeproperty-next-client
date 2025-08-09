@@ -28,6 +28,7 @@ export const AgentAvatar = ({ property, className }: AgentAvatarProps) => {
       </div>
       <Link
         title={property[1]}
+        aria-label={property[1]}
         href={`/agents/${property[1].replaceAll(" ", "-")}`}
         className="flex flex-col hover:underline hover:underline-offset-4"
       >

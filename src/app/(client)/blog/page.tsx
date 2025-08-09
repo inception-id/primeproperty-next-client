@@ -46,6 +46,7 @@ const Blog = async () => {
                   target="_blank"
                   className="transition-opacity duration-200 fade-in hover:opacity-70"
                   title={article.seo.title}
+                  aria-label={article.seo.title}
                 >
                   <Image
                     src={article.thumbnail.url}
@@ -61,6 +62,7 @@ const Blog = async () => {
                   <Link
                     target="_blank"
                     title={article.seo.title}
+                    aria-label={article.seo.title}
                     href={`/blog/${article.slug}`}
                   >
                     {article.title}
@@ -79,6 +81,7 @@ const Blog = async () => {
                   target="_blank"
                   className="flex items-center text-foreground hover:underline"
                   title={article.seo.title}
+                  aria-label={article.seo.title}
                 >
                   Read more
                   <LuArrowRight className="ml-2 size-4" />

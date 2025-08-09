@@ -209,6 +209,8 @@ export default function JobPosting() {
               <div className="flex items-center gap-2">
                 <LuMail className="h-5 w-5" />
                 <Link
+                  title="Email"
+                  aria-label="Email"
                   href="mailto:primeproagent@gmail.com"
                   className="hover:underline"
                 >

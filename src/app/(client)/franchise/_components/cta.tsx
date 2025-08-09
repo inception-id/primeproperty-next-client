@@ -41,6 +41,8 @@ export const CTASection = () => {
           </div>
           <div className="flex flex-col gap-2 min-[400px]:flex-row">
             <Link
+              title="Contact us"
+              aria-label="Contact us"
               href={askUrl}
               target="_blank"
               className={cn(buttonVariants({ size: "lg" }))}
