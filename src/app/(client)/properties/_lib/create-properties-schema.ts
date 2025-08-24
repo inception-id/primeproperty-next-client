@@ -24,10 +24,13 @@ export const createPropertySchema = (
         "@type": "RealEstateListing",
         name: generateTitle(searchParams),
         description: generateDescription(searchParams),
-        primaryImageOfPage: `${env.NEXT_PUBLIC_S3_ENDPOINT}${properties[0][0].images[0].path}`,
+        primaryImageOfPage:
+          properties.length > 0
+            ? `${env.NEXT_PUBLIC_S3_ENDPOINT}${properties[0][0].images[0].path}`
+            : `${env.NEXT_PUBLIC_HOST_URL}/images/primepro-with-full-text.png`,
         url: `${env.NEXT_PUBLIC_HOST_URL}/properties`,
       },
-      ...properties.map((property) => {
+      ...properties?.map((property) => {
         return {
           "@type": "SingleFamilyResidence",
           address: {
