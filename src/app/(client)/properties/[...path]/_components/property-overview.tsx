@@ -14,7 +14,7 @@ export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
   return (
     <div className="flex flex-col gap-8 flex-1">
       <div>
-        <div className="font-bold text-lg flex items-center gap-1">
+        <div className="font-bold text-2xl flex items-center gap-1">
           <span>
             {formatToCurrencyUnit(property[0].price, property[0].currency)}
           </span>
@@ -23,8 +23,18 @@ export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
               <span>{RENT_TIME[property[0].rent_time]}</span>
             )}
         </div>
-        <h1 className="text-lg font-light">{property[0].title}</h1>
-        <p className="text-sm text-muted-foreground/75">
+        {property[0].price_down_payment && (
+          <span className="text-sm text-muted-foreground">
+            (Down Payment:{" "}
+            {formatToCurrencyUnit(
+              property[0].price_down_payment,
+              property[0].currency,
+            )}
+            )
+          </span>
+        )}
+        <h1 className="text-lg font-bold">{property[0].title}</h1>
+        <p className="text-sm text-muted-foreground font-semibold">
           {property[0].street}, {property[0].regency}
         </p>
       </div>
