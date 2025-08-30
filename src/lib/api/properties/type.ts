@@ -42,6 +42,8 @@ export type Property = {
   };
   currency: CurrencyUnit;
   rent_time?: RentTimeUnit;
+  description_seo?: string | null;
+  price_down_payment?: number | null;
 };
 
 export type PropertyMeasurements = {

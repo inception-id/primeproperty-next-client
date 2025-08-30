@@ -60,7 +60,7 @@ export const generateDescription = (searchParams: FindPropertyQuery) => {
   const fullLocation = `${propertyType} ${purchaseType} Murah di ${location ? location : "Indonesia"}`;
   return (
     toTitleCase(fullLocation) +
-    ". Jual Beli Rumah Terdekat ✓ Pencarian Mudah ✓ Lokasi Strategis ✓ Lengkap dengan Foto."
+    "Lihat properti dan rumahan dijual di Indonesia terlengkap dan terdekat. ✓ Harga Murah ✓ Bisa KPR ✓ Lokasi Strategis ✓ Pencarian Mudah ."
   );
 };
 
@@ -130,7 +130,9 @@ export const generatePropertiesMetadata = async (
     if (property.data) {
       return {
         title: property.data[0].title,
-        description: property.data[0].description,
+        description: property.data[0].description_seo
+          ? property.data[0].description_seo
+          : property.data[0].description,
         keywords: property.data[0].site_path
           .replaceAll("-", " ")
           .replaceAll("/", ","),
