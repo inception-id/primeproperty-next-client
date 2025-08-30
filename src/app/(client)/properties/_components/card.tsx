@@ -32,7 +32,8 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
   return (
     <Card className="relative border-none shadow-none">
       <div
-        className="flex flex-col gap-2 cursor-pointer"
+        role="button"
+        className="flex flex-col gap-2 cursor-pointer mb-2"
         onClick={() => router.push(`/properties/${propertyWithAgent[0].id}`)}
       >
         <CardHeader className="p-0 w-full relative">
@@ -53,9 +54,9 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
             {propertyWithAgent[0].building_type}
           </div>
         </CardHeader>
-        <CardContent className="px-0 w-full group pb-2">
+        <CardContent className="p-0 w-full group">
           <div className="flex flex-col gap-1 lg:gap-0 group-hover:underline">
-            <strong className="text-xl flex items-center gap-1">
+            <strong className="text-2xl flex items-center gap-1">
               <span>
                 {formatToCurrencyUnit(
                   propertyWithAgent[0].price,
@@ -68,44 +69,55 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
                   <span>{RENT_TIME[propertyWithAgent[0].rent_time]}</span>
                 )}
             </strong>
+
+            {propertyWithAgent[0].price_down_payment && (
+              <span className="text-sm text-muted-foreground">
+                (Down Payment:{" "}
+                {formatToCurrencyUnit(
+                  propertyWithAgent[0].price_down_payment,
+                  propertyWithAgent[0].currency,
+                )}
+                )
+              </span>
+            )}
             <CardTitle>
               <Link
                 title={propertyWithAgent[0].title}
                 aria-label={propertyWithAgent[0].title}
                 href={`/properties/${propertyWithAgent[0].id}`}
               >
-                <h2 className="text-base text-wrap font-normal line-clamp-1">
+                <h2 className="text-lg text-wrap line-clamp-1">
                   {propertyWithAgent[0].title}
                 </h2>
               </Link>
             </CardTitle>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground font-semibold">
               {propertyWithAgent[0].street} - {propertyWithAgent[0].regency}
             </p>
-            <CardDescription>
-              <p className="text-xs line-clamp-1">
-                {propertyWithAgent[0].description}
-              </p>
-            </CardDescription>
           </div>
+          <CardDescription className="my-2">
+            <p className="text-sm line-clamp-1">
+              {propertyWithAgent[0].description_seo
+                ? propertyWithAgent[0].description_seo
+                : propertyWithAgent[0].description}
+            </p>
+          </CardDescription>
+          <Specifications propertyWithAgent={propertyWithAgent} />
         </CardContent>
       </div>
-      <CardFooter className="p-0 w-full">
-        <div className="flex flex-col gap-4 lg:gap-3 flex-1">
-          <Specifications propertyWithAgent={propertyWithAgent} />
-          <div className="grid grid-cols-2 gap-4 w-full">
-            <div className="flex flex-col text-xs">
-              <span>
-                Diperbarui{" "}
-                {formatDateToIndonesian(propertyWithAgent[0].updated_at)}
-              </span>
-              <span className="capitalize">{propertyWithAgent[1]}</span>
-            </div>
-            <ContactAgentDialog
-              isWhatsapp={true}
-              propertyWithAgent={propertyWithAgent}
-            />
+      <CardFooter className="p-0 w-full ">
+        <div className="grid grid-cols-2 gap-4 w-full">
+          <div className="flex flex-col text-xs">
+            <span>
+              Diperbarui{" "}
+              {formatDateToIndonesian(propertyWithAgent[0].updated_at)}
+            </span>
+            <span className="capitalize">{propertyWithAgent[1]}</span>
           </div>
+          <ContactAgentDialog
+            isWhatsapp={true}
+            propertyWithAgent={propertyWithAgent}
+          />
         </div>
       </CardFooter>
     </Card>
