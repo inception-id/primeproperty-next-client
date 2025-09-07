@@ -1,9 +1,11 @@
+"use client";
 import { CardDescription, CardTitle } from "@/components/ui/card";
 import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { Agent } from "@/lib/api/properties/find-property-by-agent";
 import { BuildingType } from "@/lib/enums/building-type";
 import { env } from "@/lib/env";
 import Image from "next/image";
+import { useMemo } from "react";
 import { LuInstagram } from "react-icons/lu";
 
 export const AgentBio = ({
@@ -13,10 +15,15 @@ export const AgentBio = ({
   agent: Agent;
   propertiesWithAgent: PropertyWithAgent[];
 }) => {
-  const groupedProperties = Object.groupBy(
-    propertiesWithAgent,
-    (property) => property[0].building_type,
-  );
+  const groupedProperties = useMemo(() => {
+    if (propertiesWithAgent) {
+      return Object.groupBy(
+        propertiesWithAgent,
+        (property) => property[0].building_type,
+      );
+    }
+    return {};
+  }, [propertiesWithAgent]);
   return (
     <div className="gap-4 flex flex-col sm:flex-row border p-4 rounded">
       <Image
@@ -46,7 +53,7 @@ export const AgentBio = ({
         <div className="flex flex-col gap-2">
           <h2 className="font-bold">Properties Summary</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-            {Object.keys(groupedProperties).map((key) => (
+            {Object.keys(groupedProperties).map((key: any) => (
               <div key={key} className="flex items-center gap-2">
                 <h3 className="capitalize text-muted-foreground w-28">
                   {key}:

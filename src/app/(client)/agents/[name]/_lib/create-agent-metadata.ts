@@ -9,7 +9,9 @@ export const createAgentMetadata = async (params: {
   const agentWithProperties = await findPropertyByAgent(params.name);
   return {
     title: toTitleCase(agentWithProperties.data?.agent.fullname ?? ""),
-    description: agentWithProperties.data?.agent.description,
+    description:
+      agentWithProperties.data?.agent.description ||
+      `Agen properti ${agentWithProperties.data?.agent.fullname} dari Primepro Indonesia.`,
     twitter: {
       title: agentWithProperties.data?.agent.fullname,
       site: "@primeproindonesia",
