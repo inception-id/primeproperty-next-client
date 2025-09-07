@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import {
   LuBuilding2,
@@ -11,6 +12,12 @@ import {
   LuPhone,
   LuYoutube,
 } from "react-icons/lu";
+
+export const metadata: Metadata = {
+  title: "Tentang PRIMEPRO INDONESIA",
+  description:
+    "Primepro Indonesia: Kantor properti spesialis dalam pemasaran properti residensial, komersial, dan investasi. ",
+};
 
 export default function TentangKami() {
   return (

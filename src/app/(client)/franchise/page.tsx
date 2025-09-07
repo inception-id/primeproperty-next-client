@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import {
   HeroSection,
   RegistrationSection,
@@ -6,6 +7,12 @@ import {
   WhyUs,
   CTASection,
 } from "./_components";
+
+export const metadata: Metadata = {
+  title: "Peluang Franchise - PRIMEPRO INDONESIA",
+  description:
+    "Kembangkan Bisnis Anda dengan Jaringan Properti Terkemuka di Indonesia",
+};
 
 const FranchisePage = () => {
   return (
