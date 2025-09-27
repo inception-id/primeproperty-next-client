@@ -18,6 +18,7 @@ import { WatermarkImage } from "@/components/custom-ui/watermark-image";
 import { PurchaseStatus } from "@/lib/enums/purchase-status";
 import { RENT_TIME } from "@/lib/enums/rent_time";
 import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 type PropertyCardProps = {
   propertyWithAgent: PropertyWithAgent;
 };
@@ -56,7 +57,7 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
         </CardHeader>
         <CardContent className="p-0 w-full group">
           <div className="flex flex-col gap-1 lg:gap-0 group-hover:underline">
-            <strong className="text-2xl flex items-center gap-1">
+            <strong className="text-xl flex items-center gap-1">
               <span>
                 {formatToCurrencyUnit(
                   propertyWithAgent[0].price,
@@ -70,16 +71,24 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
                 )}
             </strong>
 
-            {propertyWithAgent[0].price_down_payment && (
-              <span className="text-sm text-muted-foreground">
-                (Down Payment:{" "}
-                {formatToCurrencyUnit(
+            <span
+              className={cn(
+                "text-sm text-muted-foreground",
+                propertyWithAgent[0].price_down_payment &&
+                  propertyWithAgent[0].price_down_payment > 0
+                  ? "block"
+                  : "hidden",
+              )}
+            >
+              (Down Payment:{" "}
+              {propertyWithAgent?.[0]?.price_down_payment &&
+                propertyWithAgent?.[0]?.price_down_payment > 0 &&
+                formatToCurrencyUnit(
                   propertyWithAgent[0].price_down_payment,
                   propertyWithAgent[0].currency,
                 )}
-                )
-              </span>
-            )}
+              )
+            </span>
             <CardTitle>
               <Link
                 title={propertyWithAgent[0].title}
@@ -91,12 +100,12 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
                 </h2>
               </Link>
             </CardTitle>
-            <p className="text-sm text-muted-foreground font-semibold">
+            <p className="text-sm text-muted-foreground italic">
               {propertyWithAgent[0].street} - {propertyWithAgent[0].regency}
             </p>
           </div>
           <CardDescription className="my-2">
-            <p className="text-sm line-clamp-1">
+            <p className="text-xs line-clamp-1">
               {propertyWithAgent[0].description_seo
                 ? propertyWithAgent[0].description_seo
                 : propertyWithAgent[0].description}
