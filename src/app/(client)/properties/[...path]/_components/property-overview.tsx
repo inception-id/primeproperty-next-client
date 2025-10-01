@@ -23,16 +23,23 @@ export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
               <span>{RENT_TIME[property[0].rent_time]}</span>
             )}
         </div>
-        {property[0].price_down_payment && (
-          <span className="text-sm text-muted-foreground">
-            (Down Payment:{" "}
-            {formatToCurrencyUnit(
+        <span
+          className={cn(
+            "text-sm text-muted-foreground",
+            property[0].price_down_payment && property[0].price_down_payment > 0
+              ? "block"
+              : "hidden",
+          )}
+        >
+          (Down Payment:{" "}
+          {property?.[0]?.price_down_payment &&
+            property?.[0]?.price_down_payment > 0 &&
+            formatToCurrencyUnit(
               property[0].price_down_payment,
               property[0].currency,
             )}
-            )
-          </span>
-        )}
+          ) )
+        </span>
         <h1 className="text-lg font-bold">{property[0].title}</h1>
         <p className="text-sm text-muted-foreground font-semibold">
           {property[0].street}, {property[0].regency}
