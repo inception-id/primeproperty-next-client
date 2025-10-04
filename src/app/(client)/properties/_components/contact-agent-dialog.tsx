@@ -82,7 +82,10 @@ export const ContactAgentDialog = ({
       const whatsappUrl = new URL("https://api.whatsapp.com/send");
       const propertyUrl =
         env.NEXT_PUBLIC_HOST_URL + `/properties/${propertyWithAgent[0].id}`;
-      whatsappUrl.searchParams.append("phone", `62${propertyWithAgent[2]}`);
+      whatsappUrl.searchParams.append(
+        "phone",
+        `62${propertyWithAgent[1].phone_number}`,
+      );
       if (isWhatsapp && isPhotoRequest) {
         const text = `Hai, saya ${name} ingin meminta gambar lebih terakit: ${propertyWithAgent[0].title}\nyang berlokasi di ${propertyWithAgent[0].street} - ${propertyWithAgent[0].regency}.\nMohon informasi nya terkait unit tersebut: ${propertyUrl}`;
         whatsappUrl.searchParams.append("text", text);
@@ -91,7 +94,7 @@ export const ContactAgentDialog = ({
         whatsappUrl.searchParams.append("text", text);
         window.open(whatsappUrl, "_blank");
       } else {
-        const url = `tel: +62${propertyWithAgent[2]}`;
+        const url = `tel: +62${propertyWithAgent[1].phone_number}`;
         window.open(url, "_blank");
       }
       sendGAEvent("event", "leads_redirect");
@@ -112,7 +115,7 @@ export const ContactAgentDialog = ({
           }),
           "rounded-lg cursor-pointer line-clamp-1 flex",
           isWhatsapp && !isPhotoRequest
-            ? "bg-emerald-500 hover:bg-emerald-400 text-base dark:text-foreground"
+            ? "bg-emerald-500 hover:bg-emerald-400 text-base text-background"
             : "",
         )}
       >
@@ -129,7 +132,9 @@ export const ContactAgentDialog = ({
         ) : (
           <>
             <LuPhone />
-            <span>+62{propertyWithAgent[2].slice(0, 4).concat("...")}</span>
+            <span>
+              +62{propertyWithAgent[1].phone_number.slice(0, 4).concat("...")}
+            </span>
           </>
         )}
       </DialogTrigger>
@@ -182,7 +187,7 @@ export const ContactAgentDialog = ({
             className={cn(
               "rounded-lg cursor-pointer line-clamp-1 flex ",
               isWhatsapp && !isPhotoRequest
-                ? "bg-emerald-500 hover:bg-emerald-400 text-base dark:text-foreground"
+                ? "bg-emerald-500 hover:bg-emerald-400 text-base text-background"
                 : "",
             )}
           >

@@ -15,7 +15,10 @@ type PropertiesProps = {
 };
 
 export const Properties = async ({ searchParams }: PropertiesProps) => {
-  const properties = await findProperties(searchParams);
+  const properties = await findProperties({
+    limit: String(30),
+    ...searchParams,
+  });
   if (!properties.data?.data) {
     return <PropertyNotFound searchParams={searchParams} />;
   }
@@ -37,22 +40,18 @@ export const Properties = async ({ searchParams }: PropertiesProps) => {
             propertyCount={properties.data.total_data}
             searchParams={searchParams}
           />
-          <div className="hidden lg:flex text-xs">
-            Halaman {searchParams.page ? searchParams.page : 1} dari{" "}
-            {properties.data.total_pages}
+          <div className="hidden lg:flex">
+            <Pagination
+              searchParams={searchParams}
+              currentPage={searchParams.page ? +searchParams.page : 1}
+              totalPages={properties.data.total_pages}
+            />
           </div>
         </div>
         <PropertyList
           searchParams={searchParams}
           propertiesWithAgent={properties.data?.data}
         />
-
-        <Pagination
-          searchParams={searchParams}
-          currentPage={searchParams.page ? +searchParams.page : 1}
-          totalPages={properties.data.total_pages}
-        />
-
         <Faq />
       </div>
     </>
