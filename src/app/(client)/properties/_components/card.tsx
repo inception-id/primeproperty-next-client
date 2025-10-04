@@ -90,8 +90,8 @@ export const PropertyCard = ({ propertyWithAgent }: PropertyCardProps) => {
           imageProps={{
             src: baseImgPath + coverImage.path,
             alt: propertyWithAgent[0].title,
-            width: 1000,
-            height: 1000,
+            width: 1024,
+            height: 768,
             className: "w-full h-64 object-cover rounded-lg aspect-square",
           }}
         />

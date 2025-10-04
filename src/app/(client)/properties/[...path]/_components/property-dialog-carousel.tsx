@@ -27,11 +27,11 @@ export const PropertyDialogCarousel = ({
 }: PropertyDialogCarouselProps) => {
   const baseImgPath = env.NEXT_PUBLIC_S3_ENDPOINT;
   return (
-    <div className="relative ">
+    <div className="relative">
       <DialogClose
         onClick={onCloseClick}
         className={cn(
-          buttonVariants({ variant: "outline", size: "icon" }),
+          buttonVariants({ size: "icon" }),
           "absolute -top-2 -right-2 z-50 rounded-full",
         )}
       >
@@ -49,14 +49,14 @@ export const PropertyDialogCarousel = ({
                   imageProps={{
                     src: baseImgPath + propImg.path,
                     alt: propertyWithAgent[0].title,
-                    width: 1000,
-                    height: 1000,
+                    width: 1024,
+                    height: 768,
                     className:
-                      "w-full rounded-md size-96 md:h-[75vh] object-fill aspect-video",
+                      "w-full rounded-md size-96 md:h-[75vh] object-cover aspect-square",
                   }}
                 />
                 {propImg.indonesian_label && (
-                  <div className="bg-background text-foreground text-xs flex gap-1 absolute left-0 top-0 items-center px-1 py-0.5 ">
+                  <div className="bg-primary text-primary-foreground text-xs flex gap-1 absolute left-0 top-0 items-center px-1 py-0.5 rounded-md">
                     <LuTag />
                     <span>{propImg.indonesian_label}</span>
                   </div>
