@@ -21,7 +21,10 @@ export default async function sitemap({
   id: number;
 }): Promise<MetadataRoute.Sitemap> {
   // Google's limit is 50,000 URLs per sitemap
-  const properties = await findProperties({ page: String(id) });
+  const properties = await findProperties({
+    page: String(id),
+    limit: String(30),
+  });
   return properties.data?.data.map((property) => {
     return {
       url: env.NEXT_PUBLIC_HOST_URL + `/properties/${property[0].id}`,
