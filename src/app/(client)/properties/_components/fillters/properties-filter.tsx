@@ -15,16 +15,19 @@ const PurchaseStatusToggle = ({ searchParams }: PropertiesFilterProps) => {
   const onAllClick = () => {
     const newParams = new URLSearchParams(searchParams);
     newParams.set("purchase_status", "");
+    newParams.set("page", "1");
     router.replace(`/properties?${newParams.toString()}`);
   };
   const onBuyClick = () => {
     const newParams = new URLSearchParams(searchParams);
     newParams.set("purchase_status", "ForSale");
+    newParams.set("page", "1");
     router.replace(`/properties?${newParams.toString()}`);
   };
   const onSellClick = () => {
     const newParams = new URLSearchParams(searchParams);
     newParams.set("purchase_status", "ForRent");
+    newParams.set("page", "1");
     router.replace(`/properties?${newParams.toString()}`);
   };
 

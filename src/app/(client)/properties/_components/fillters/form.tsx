@@ -21,7 +21,7 @@ type FilterFormProps = {
 export const FilterForm = ({ searchParams }: FilterFormProps) => {
   const router = useRouter();
   const [filterParams, setFilterParams] =
-    useState<Omit<FindPropertyQuery, "page">>(searchParams);
+    useState<FindPropertyQuery>(searchParams);
 
   const onCloseClick = () => {
     sendGAEvent("event", "filter_submit");

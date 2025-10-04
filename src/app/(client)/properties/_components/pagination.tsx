@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 
 type PaginationProps = {
@@ -17,7 +17,6 @@ export const Pagination = ({
   totalPages,
   searchParams,
 }: PaginationProps) => {
-  const [pageValue, setPageValue] = useState(currentPage);
   const router = useRouter();
   const typingTimeoutRef = useRef<any>(null);
   const onPageChange = (pageNumber: number) => {
@@ -25,7 +24,6 @@ export const Pagination = ({
     let newPageNumber = pageNumber;
     if (pageNumber < 1) newPageNumber = 1;
     if (pageNumber > totalPages) newPageNumber = totalPages;
-    setPageValue(newPageNumber);
     newParams.set("page", String(newPageNumber));
     router.replace(`/properties?${newParams.toString()}`);
   };
@@ -49,13 +47,11 @@ export const Pagination = ({
           min={1}
           max={totalPages}
           className="h-8 w-12"
-          placeholder={String(pageValue)}
-          value={pageValue}
+          placeholder={searchParams.page ? searchParams.page : "1"}
           onChange={(e) => {
             if (isNaN(+e.target.value)) {
               return;
             }
-            setPageValue(+e.target.value);
             if (typingTimeoutRef.current) {
               clearTimeout(typingTimeoutRef?.current);
             }

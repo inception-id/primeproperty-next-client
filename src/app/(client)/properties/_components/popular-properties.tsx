@@ -26,7 +26,7 @@ export const PopularProperties = async () => {
             {properties.data.data.map((propertyWithAgent, index) => (
               <CarouselItem
                 key={`${index}_popular_properties`}
-                className="basis-4/5 md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+                className="basis-4/5 md:basis-1/2 lg:basis-1/3"
               >
                 <PropertyCard propertyWithAgent={propertyWithAgent} />
               </CarouselItem>

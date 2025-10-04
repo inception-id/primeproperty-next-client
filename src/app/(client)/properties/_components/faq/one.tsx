@@ -53,7 +53,7 @@ export const FaqOne = () => {
   return (
     <div>
       <p className="font-semibold">
-        Informasi Titip Jual &amp; Sewa Di Primero Indonesia
+        Informasi Titip Jual &amp; Sewa Di Primepro Indonesia
       </p>
       <Accordion type="single" collapsible className="w-full">
         {FAQ_ONE.map((faq) => (

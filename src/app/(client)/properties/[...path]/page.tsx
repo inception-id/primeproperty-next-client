@@ -27,16 +27,17 @@ const DynamicPropertyPage = ({ params }: DynamicPropertyPageProps) => {
   const propertyId = isList ? 0 : params.path[params.path.length - 1];
   if (isList) {
     const newSearchParams: FindPropertyQuery = {
+      limit: String(30),
       purchase_status: pathParamsToPurchaseStatus(params.path?.[0] ?? ""),
       buiding_type: params.path?.[1] ? (params.path[1] as BuildingType) : "",
       province: params.path?.[2]
-        ? params.path[2].replaceAll("-", " ").toLowerCase()
+        ? params.path[2].replaceAll("-", " ").replaceAll("+", " ").toLowerCase()
         : "",
       regency: params.path?.[3]
-        ? params.path[3].replaceAll("-", " ").toLowerCase()
+        ? params.path[3].replaceAll("-", " ").replaceAll("+", " ").toLowerCase()
         : "",
       street: params.path?.[4]
-        ? params.path[4].replaceAll("-", " ").toLowerCase()
+        ? params.path[4].replaceAll("-", " ").replaceAll("+", " ").toLowerCase()
         : "",
     };
     return (

@@ -108,7 +108,9 @@ const HomePage = () => {
       <Hero />
       <PopularProperties />
       <Partners />
-      <Faq />
+      <div className="px-2">
+        <Faq />
+      </div>
       <VideoThumbnail />
     </div>
   );

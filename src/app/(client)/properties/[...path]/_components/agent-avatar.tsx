@@ -14,10 +14,10 @@ export const AgentAvatar = ({ property, className }: AgentAvatarProps) => {
   return (
     <div className={cn("flex gap-2 items-center", className)}>
       <div className="w-10 h-10">
-        {property[3] ? (
+        {property[1].profile_picture_url ? (
           <Image
-            src={env.NEXT_PUBLIC_S3_ENDPOINT + property[3]}
-            alt={property[2]}
+            src={env.NEXT_PUBLIC_S3_ENDPOINT + property[1].profile_picture_url}
+            alt={property[1].fullname}
             width={100}
             height={100}
             className="w-full h-full rounded-full object-cover"
@@ -27,12 +27,12 @@ export const AgentAvatar = ({ property, className }: AgentAvatarProps) => {
         )}
       </div>
       <Link
-        title={property[1]}
-        aria-label={property[1]}
-        href={`/agents/${property[1].replaceAll(" ", "-")}`}
+        title={property[1].fullname}
+        aria-label={property[1].fullname}
+        href={`/agents/${property[1].fullname.replaceAll(" ", "-")}`}
         className="flex flex-col hover:underline hover:underline-offset-4"
       >
-        <span className="text-sm capitalize">{property[1]}</span>
+        <span className="text-sm capitalize">{property[1].fullname}</span>
         <span className="text-xs text-muted-foreground">PrimePro Agent</span>
       </Link>
     </div>
