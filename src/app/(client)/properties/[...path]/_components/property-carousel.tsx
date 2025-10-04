@@ -57,15 +57,15 @@ export const PropertyCarousel = ({
                   imageProps={{
                     src: baseImgPath + propImg.path,
                     alt: propertyWithAgent[0].title,
-                    width: 1000,
-                    height: 1000,
+                    width: 1024,
+                    height: 768,
                     priority: true,
                     className:
-                      "w-full h-60 md:h-80 xl:rounded-md aspect-video object-fill",
+                      "w-full h-60 md:h-80 xl:rounded-md aspect-square object-cover",
                   }}
                 />
                 {propImg.indonesian_label && (
-                  <div className="bg-background text-foreground text-xs flex gap-1 absolute right-0 top-0 items-center px-1 py-0.5 rounded">
+                  <div className="bg-primary text-primary-foreground text-xs flex gap-1 absolute right-1 top-1 items-center px-2 py-1 rounded">
                     <LuTag />
                     <span>{propImg.indonesian_label}</span>
                   </div>
@@ -85,10 +85,10 @@ export const PropertyCarousel = ({
               imageProps={{
                 src: baseImgPath + img.path,
                 alt: propertyWithAgent[0].title,
-                width: 1000,
-                height: 1000,
+                width: 512,
+                height: 512,
                 className:
-                  "w-full h-20 md:h-40 xl:rounded-md cursor-pointer object-fill aspect-square",
+                  "w-full h-20 md:h-40 xl:rounded-md cursor-pointer object-cover aspect-square",
                 onClick: () => onImageClick(index),
               }}
             />
@@ -103,9 +103,9 @@ export const PropertyCarousel = ({
             imageProps={{
               src: baseImgPath + propertyWithAgent[0].images[0].path,
               alt: propertyWithAgent[0].title,
-              width: 1000,
-              height: 1000,
-              className: "w-full h-40 rounded-md cursor-pointer blur-sm",
+              width: 512,
+              height: 512,
+              className: "w-full h-40 rounded-md cursor-pointer",
               onClick: () => onImageClick(0),
             }}
           />
@@ -113,7 +113,6 @@ export const PropertyCarousel = ({
           <Button
             type="button"
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-            variant="outline"
             size="sm"
             onClick={() => onImageClick(0)}
           >

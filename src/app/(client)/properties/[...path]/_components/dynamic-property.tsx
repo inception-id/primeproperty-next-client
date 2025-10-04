@@ -10,6 +10,7 @@ import { RelatedSearch } from "./related-search";
 import { createRelatedPropertySchema } from "../../_lib/create-related-property-breadcrumb";
 import { createDynamicPropertySchema } from "../../_lib/create-dynamic-property-schema";
 import { Faq } from "../../_components/faq";
+import { RelatedProperties } from "../../_components";
 
 type DynamicPropertyProps = {
   propertyId: number;
@@ -76,14 +77,14 @@ export const DynamicProperty = async ({ propertyId }: DynamicPropertyProps) => {
         }}
       />
       <PropertyImages propertyWithAgent={property.data} />
-      <div className="flex flex-col gap-4 lg:gap-8 lg:flex-row p-4 xl:px-0">
+      <div className="flex flex-col gap-4 lg:gap-8 lg:flex-row p-4 xl:px-0 mb-8">
         <PropertyOverview property={property.data} />
         <MobileAgentCard property={property.data} />
         <DesktopAgentCard property={property.data} />
       </div>
-      <div className="my-4">
-        <Faq />
-      </div>
+      <RelatedProperties propertyId={propertyId} />
+      <div className="mb-8" />
+      <Faq />
     </div>
   );
 };
