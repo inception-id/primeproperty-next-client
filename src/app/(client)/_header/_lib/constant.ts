@@ -30,3 +30,49 @@ export const NAVIGATION_ITEMS = [
     href: "/about",
   },
 ];
+
+export const FOR_SALE_PROPERTIES = [
+  {
+    key: "Properti Dijual di Jakarta Utara",
+    value: "/properties/dijual/rumah/jakarta/jakarta-utara",
+  },
+  {
+    key: "Properti Dijual di Jakarta Barat",
+    value: "/properties/dijual/rumah/jakarta/jakarta-barat",
+  },
+  {
+    key: "Properti Dijual di Jakarta Timur",
+    value: "/properties/dijual/rumah/jakarta/jakarta-timur",
+  },
+  {
+    key: "Properti Dijual di Jakarta Pusat",
+    value: "/properties/dijual/rumah/jakarta/jakarta-pusat",
+  },
+  {
+    key: "Properti Dijual di Jakarta Selatan",
+    value: "/properties/dijual/rumah/jakarta/jakarta-selatan",
+  },
+];
+
+export const FOR_RENT_PROPERTIES = [
+  {
+    key: "Properti Disewa di Jakarta Utara",
+    value: "/properties/disewa/rumah/jakarta/jakarta-utara",
+  },
+  {
+    key: "Properti Disewa di Jakarta Barat",
+    value: "/properties/disewa/rumah/jakarta/jakarta-barat",
+  },
+  {
+    key: "Properti Disewa di Jakarta Timur",
+    value: "/properties/disewa/rumah/jakarta/jakarta-timur",
+  },
+  {
+    key: "Properti Disewa di Jakarta Pusat",
+    value: "/properties/disewa/rumah/jakarta/jakarta-pusat",
+  },
+  {
+    key: "Properti Disewa di Jakarta Selatan",
+    value: "/properties/disewa/rumah/jakarta/jakarta-selatan",
+  },
+];

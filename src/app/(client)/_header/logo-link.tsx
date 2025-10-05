@@ -12,17 +12,17 @@ export const LogoLink = ({ onClick }: LogoLinkProps) => {
       href="/"
       title="PrimePro Indonesia"
       aria-label="PrimePro Indonesia"
-      className="flex items-center gap-2 pl-2"
+      className="flex items-center gap-2"
       onClick={() => onClick?.()}
     >
       <Image
         src="/images/primepro.png"
         alt="PrimePro Logo"
-        width={50}
-        height={50}
-        className="w-6 h-6"
+        width={75}
+        height={75}
+        className="w-8 h-8"
       />
-      <div className="text-lg flex flex-wrap font-bold">PRIMEPRO INDONESIA</div>
+      <div className="text-lg">PRIMEPRO INDONESIA</div>
     </Link>
   );
 };
