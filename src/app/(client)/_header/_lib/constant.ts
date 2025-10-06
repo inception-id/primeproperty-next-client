@@ -76,3 +76,26 @@ export const FOR_RENT_PROPERTIES = [
     value: "/properties/disewa/rumah/jakarta/jakarta-selatan",
   },
 ];
+
+export const PROPERTIES_TYPES = [
+  {
+    key: "Rumah",
+    value: "/properties?buiding_type=rumah",
+  },
+  {
+    key: "Apartemen",
+    value: "/properties?buiding_type=apartemen",
+  },
+  {
+    key: "Tanah",
+    value: "/properties?buiding_type=tanah",
+  },
+  {
+    key: "Gedung",
+    value: "/properties?buiding_type=gedung",
+  },
+  {
+    key: "Ruko",
+    value: "/properties?buiding_type=ruko",
+  },
+];

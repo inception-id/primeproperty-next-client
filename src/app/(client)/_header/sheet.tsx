@@ -22,7 +22,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { FOR_RENT_PROPERTIES, FOR_SALE_PROPERTIES } from "./_lib/constant";
+import {
+  FOR_RENT_PROPERTIES,
+  FOR_SALE_PROPERTIES,
+  PROPERTIES_TYPES,
+} from "./_lib/constant";
 import ThemeButton from "./theme-button";
 
 type SheetMenuProps = {
@@ -95,6 +99,33 @@ const SheetMenu = ({ onClick }: SheetMenuProps) => {
                 className={cn(
                   buttonVariants({ variant: "link" }),
                   "justify-between ",
+                )}
+                href={property.value}
+                onClick={onClick}
+                title={property.key}
+              >
+                {property.key}
+                <LuChevronRight />
+              </Link>
+            ))}
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="jenis" className="border-b-0">
+          <AccordionTrigger
+            className={cn(
+              buttonVariants({ variant: "link" }),
+              "justify-between",
+            )}
+          >
+            Tipe Properti
+          </AccordionTrigger>
+          <AccordionContent className="pl-2">
+            {PROPERTIES_TYPES.map((property) => (
+              <Link
+                key={property.key}
+                className={cn(
+                  buttonVariants({ variant: "link" }),
+                  "w-full justify-start",
                 )}
                 href={property.value}
                 onClick={onClick}
