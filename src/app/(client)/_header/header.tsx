@@ -1,30 +1,18 @@
 "use client";
 import { LogoLink } from "./logo-link";
+import { Navigation } from "./navigation";
 import { HeaderSheet } from "./sheet";
-import { NavLinks } from "./nav-links";
-import { useParams, usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
+import ThemeButton from "./theme-button";
 
 export const Header = () => {
-  const params = useParams();
-  const pathname = usePathname();
   return (
-    <nav>
-      <div
-        className={cn(
-          "flex items-center justify-between container mx-auto",
-          pathname.includes("/properties") &&
-            params?.path?.length === 1 &&
-            !Number.isNaN(+params.path[0]) &&
-            "max-w-6xl",
-        )}
-      >
-        <LogoLink />
-        <HeaderSheet />
-        <div className="hidden md:block">
-          <NavLinks />
-        </div>
+    <div className="flex items-center justify-between container mx-auto p-2">
+      <LogoLink />
+      <HeaderSheet />
+      <div className="hidden lg:flex items-center gap-2">
+        <Navigation />
+        <ThemeButton />
       </div>
-    </nav>
+    </div>
   );
 };
