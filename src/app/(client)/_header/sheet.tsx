@@ -26,7 +26,7 @@ import {
   FOR_RENT_PROPERTIES,
   FOR_SALE_PROPERTIES,
   PROPERTIES_TYPES,
-} from "./_lib/constant";
+} from "./constant";
 import ThemeButton from "./theme-button";
 
 type SheetMenuProps = {
@@ -191,7 +191,7 @@ export const HeaderSheet = () => {
         title="PrimePro Menu"
         className={cn(
           buttonVariants({ variant: "outline", size: "icon" }),
-          "md:hidden",
+          "lg:hidden",
         )}
       >
         <TbMenuDeep />
