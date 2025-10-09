@@ -1,258 +1,33 @@
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import {
-  LuAward,
-  LuBuilding,
-  LuMail,
-  LuMapPin,
-  LuTarget,
-  LuTrendingUp,
-  LuUsers,
-} from "react-icons/lu";
+import { Suspense } from "react";
+import { AgentList } from "./_components/agent-list";
+import { LuUsers } from "react-icons/lu";
 
 export const metadata: Metadata = {
-  title: "Peluang Karir: Marketing Executive - PRIMEPRO INDONESIA",
+  title: "Agents - PRIMEPRO INDONESIA",
   description:
     "PrimePro Indonesia sedang memperluas timnya dan mencari individu yang termotivasi tinggi untuk bergabung sebagai Marketing Executive.",
 };
 
 export default function JobPosting() {
   return (
-    <div className="min-h-screen">
-      {/* Header */}
-      <header className="bg-gradient-to-b from-brand/50 to-brand text-black">
-        <div className="container mx-auto px-4 py-16 md:py-24">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-3xl md:text-5xl font-bold mb-4">
-              Peluang Karir: Marketing Executive
-            </h1>
-            <div className="flex items-center justify-center gap-2 ">
-              <LuBuilding className="h-5 w-5" />
-              <span className="text-xl md:text-2xl font-medium">
-                PrimePro Indonesia
-              </span>
-            </div>
-          </div>
+    <div className="min-h-screen container mx-auto flex flex-col gap-8 p-4">
+      <div className="flex flex-col">
+        <div className="flex gap-2 items-center bg-primary text-primary-foreground rounded shadow p-1 w-fit text-xs mb-4">
+          <LuUsers />
+          Team Up!
         </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto">
-          {/* Introduction */}
-          <div className="rounded-lg shadow-lg p-8 mb-8">
-            <p className="leading-relaxed mb-4">
-              PrimePro Indonesia, sebuah perusahaan broker properti yang dinamis
-              dan terus berkembang, sedang memperluas timnya dan mencari
-              individu yang termotivasi tinggi untuk bergabung sebagai Marketing
-              Executive. Jika Anda seorang profesional yang mandiri,
-              berorientasi pada hasil, dan memiliki visi untuk sukses, kami
-              mengundang Anda untuk menjelajahi peluang menarik ini.
-            </p>
-            <div className="my-8">
-              <Image
-                src="/images/primepro/agent.JPG"
-                alt="Real Estate Team"
-                width={600}
-                height={600}
-                className="rounded-lg shadow-md w-full h-auto  object-fill aspect-square"
-              />
-            </div>
-          </div>
-
-          {/* Benefits */}
-          <div className="rounded-lg shadow-lg p-8 mb-8">
-            <h2 className="text-2xl font-bold mb-6">
-              Mengapa Bergabung dengan PrimePro Indonesia?
-            </h2>
-            <p className="leading-relaxed mb-6">
-              Di PrimePro Indonesia, kami percaya dalam menghargai ambisi dan
-              kerja keras. Sebagai posisi berbasis komisi, peran ini menawarkan
-              potensi penghasilan tak terbatas, memungkinkan Anda mengendalikan
-              sepenuhnya pertumbuhan finansial Anda. Manfaat utama meliputi:
-            </p>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full">
-                  <LuTrendingUp className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="font-semibold ">
-                    Struktur Komisi yang Sangat Kompetitif
-                  </h3>
-                  <p>
-                    Dapatkan komisi besar untuk setiap transaksi sukses, tanpa
-                    batas gaji tetap.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full">
-                  <LuUsers className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="font-semibold ">
-                    Program Pelatihan Komprehensif
-                  </h3>
-                  <p>
-                    Dapatkan pelatihan terbaik di industri untuk meningkatkan
-                    pengetahuan Anda.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full">
-                  <LuAward className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="font-semibold">Insentif Berbasis Kinerja</h3>
-                  <p>
-                    Capai target Anda dan dapatkan bonus perjalanan eksklusif
-                    serta penghargaan lainnya.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full">
-                  <LuTarget className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="font-semibold ">Jalur Karir yang Fleksibel</h3>
-                  <p>Terbuka untuk semua latar belakang dan kelompok usia.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Qualities */}
-          <div className="rounded-lg shadow-lg p-8 mb-8">
-            <h2 className="text-2xl font-bold mb-6">Kualitas yang Kami Cari</h2>
-            <p className="leading-relaxed mb-6">
-              Kami mencari individu yang mencerminkan kualitas berikut:
-            </p>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <div className="min-w-5 mt-1">•</div>
-                <div>
-                  <span className="font-semibold">Mandiri & Termotivasi:</span>{" "}
-                  Kemampuan bekerja secara mandiri sambil mencapai hasil.
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="min-w-5 mt-1">•</div>
-                <div>
-                  <span className="font-semibold">Berorientasi Target:</span>{" "}
-                  Keinginan kuat untuk memenuhi dan melampaui tujuan penjualan.
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="min-w-5 mt-1 ">•</div>
-                <div>
-                  <span className="font-semibold">Visioner & Ambisius:</span>{" "}
-                  Bersemangat membangun karir sukses di bidang properti.
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="min-w-5 mt-1 ">•</div>
-                <div>
-                  <span className="font-semibold">
-                    Keterampilan Komunikasi yang Baik:
-                  </span>{" "}
-                  Percaya diri dalam berinteraksi dengan klien dan menutup
-                  kesepakatan.
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          {/* Role */}
-          <div className="rounded-lg shadow-lg p-8 mb-8">
-            <h2 className="text-2xl font-bold  mb-6">
-              Peran Anda sebagai Marketing Executive
-            </h2>
-            <p className="leading-relaxed mb-6">
-              Sebagai anggota kunci tim penjualan kami, Anda akan:
-            </p>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <div className="min-w-5 mt-1 ">•</div>
-                <div>
-                  Secara proaktif menghasilkan prospek dan mengubahnya menjadi
-                  transaksi properti yang sukses.
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="min-w-5 mt-1 ">•</div>
-                <div>Membangun dan memelihara hubungan klien yang kuat.</div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="min-w-5 mt-1 ">•</div>
-                <div>
-                  Tetap update dengan tren pasar untuk memberikan rekomendasi
-                  yang informatif.
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="min-w-5 mt-1 ">•</div>
-                <div>
-                  Bekerja sama dengan tim PrimePro Indonesia untuk mencapai
-                  target kolektif dan individu.
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          {/* Application */}
-          <div className="bg-gradient-to-r from-brand/10 to-brand rounded-lg shadow-lg p-8">
-            <h2 className="text-2xl font-bold mb-6">Cara Mendaftar</h2>
-            <p className="leading-relaxed mb-6">
-              Jika Anda siap mengambil langkah berikutnya dalam karir Anda,
-              kirimkan CV/resume Anda ke:
-            </p>
-            <div className="flex flex-col md:flex-row gap-6 items-center justify-center mb-8">
-              <div className="flex items-center gap-2">
-                <LuMail className="h-5 w-5" />
-                <Link
-                  title="Email"
-                  aria-label="Email"
-                  href="mailto:primeproagent@gmail.com"
-                  className="hover:underline"
-                >
-                  primeproagent@gmail.com
-                </Link>
-              </div>
-              <div className="flex items-center gap-2">
-                <LuMapPin className="h-5 w-5" />
-                <span>
-                  Kemang Icon Jakarta, Jl Kemang Raya No 1, Jakarta Selatan
-                  12730
-                </span>
-              </div>
-            </div>
-            <div className="text-center">
-              <Link
-                href="mailto:primeproagent@gmail.com"
-                className={cn(buttonVariants())}
-              >
-                Kirim Lamaran Sekarang
-              </Link>
-            </div>
-          </div>
-
-          {/* Call to Action */}
-          <div className="text-center mt-10 mb-6">
-            <h2 className="text-2xl font-bold mb-4">
-              Bergabunglah dengan PrimePro Indonesia hari ini
-            </h2>
-            <p className="text-gray-600 text-lg">
-              dan buka peluang karir yang memberdayakan kesuksesan Anda!
-            </p>
-          </div>
-        </div>
-      </main>
+        <h1 className="text-3xl font-bold mb-2">
+          Meet PrimePro Indonesia Agents
+        </h1>
+        <h2 className="text-lg text-muted-foreground">
+          Our diverse team of experts brings together decades of experience in
+          real estate and property industries
+        </h2>
+      </div>
+      <Suspense>
+        <AgentList />
+      </Suspense>
     </div>
   );
 }

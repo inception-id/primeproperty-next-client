@@ -112,6 +112,16 @@ export const Navigation = () => {
             Blog
           </NavigationMenuLink>
         </NavigationMenuItem>
+
+        <NavigationMenuItem>
+          <NavigationMenuLink
+            href="/jobs"
+            title="Lowongan Kerja PrimePro Indonesia"
+            className={cn(buttonVariants({ variant: "link" }))}
+          >
+            Lowongan
+          </NavigationMenuLink>
+        </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink
             href="/franchise"

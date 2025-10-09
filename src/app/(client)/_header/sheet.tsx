@@ -159,6 +159,15 @@ const SheetMenu = ({ onClick }: SheetMenuProps) => {
       </Link>
       <Link
         className={cn(buttonVariants({ variant: "link" }), "justify-between")}
+        href="/jobs"
+        onClick={onClick}
+        title="Lowongan di PrimePro Indonesia"
+      >
+        Lowongan
+        <LuChevronRight />
+      </Link>
+      <Link
+        className={cn(buttonVariants({ variant: "link" }), "justify-between")}
         href="/franchise"
         onClick={onClick}
         title="PrimePro Indonesia Franchise"

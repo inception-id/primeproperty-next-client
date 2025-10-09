@@ -1,5 +1,6 @@
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -219,6 +220,12 @@ const CtaSection = () => {
       </div>
     </section>
   );
+};
+
+export const metadata: Metadata = {
+  title: "Peluang Karir: Marketing Executive - PRIMEPRO INDONESIA",
+  description:
+    "PrimePro Indonesia sedang memperluas timnya dan mencari individu yang termotivasi tinggi untuk bergabung sebagai Marketing Executive.",
 };
 
 export default function JobsPage() {
