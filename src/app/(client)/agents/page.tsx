@@ -17,9 +17,7 @@ export default function JobPosting() {
           <LuUsers />
           Team Up!
         </div>
-        <h1 className="text-3xl font-bold mb-2">
-          Meet PrimePro Indonesia Agents
-        </h1>
+        <h1 className="text-3xl font-bold mb-2">Meet PrimePro Agents</h1>
         <h2 className="text-lg text-muted-foreground">
           Our diverse team of experts brings together decades of experience in
           real estate and property industries

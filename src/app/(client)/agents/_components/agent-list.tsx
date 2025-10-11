@@ -40,7 +40,12 @@ export const AgentList = async () => {
             </div>
             <div className="flex flex-col gap-2 flex-1">
               <div className="flex flex-col">
-                <h3 className="font-bold capitalize">{agent.fullname}</h3>
+                <h3 className="font-bold capitalize text-lg">
+                  {agent.fullname}
+                </h3>
+                <p className="text-xs text-muted-foreground">
+                  {agent.description}
+                </p>
                 <div className="flex items-center gap-1 text-sm">
                   <LuMail />
                   {agent.email}
@@ -51,7 +56,6 @@ export const AgentList = async () => {
                     {agent.instagram}
                   </div>
                 )}
-                <p className="text-xs">{agent.description}</p>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <Link
@@ -63,7 +67,7 @@ export const AgentList = async () => {
                   title={`Chat with ${agent.fullname}`}
                 >
                   <MdWhatsapp />
-                  CHAT
+                  Whatsapp
                 </Link>
                 <Link
                   title={`View ${agent.fullname}'s properties`}
@@ -73,7 +77,7 @@ export const AgentList = async () => {
                   href={`/agents/${agent.fullname.replaceAll(" ", "-")}`}
                 >
                   <LuHouse />
-                  PROPERTI
+                  Properti
                 </Link>
               </div>
             </div>

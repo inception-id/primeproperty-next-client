@@ -40,6 +40,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1.0,
     },
     {
+      url: env.NEXT_PUBLIC_HOST_URL + "/agents/sitemap.xml",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 1.0,
+    },
+    {
       url: env.NEXT_PUBLIC_HOST_URL + "/properties/sitemap.xml",
       lastModified: new Date(),
       changeFrequency: "daily",

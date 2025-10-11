@@ -1,12 +1,11 @@
 "use client";
-import { CardDescription, CardTitle } from "@/components/ui/card";
 import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { Agent } from "@/lib/api/properties/find-property-by-agent";
 import { BuildingType } from "@/lib/enums/building-type";
 import { env } from "@/lib/env";
 import Image from "next/image";
 import { useMemo } from "react";
-import { LuInstagram } from "react-icons/lu";
+import { LuInstagram, LuMail } from "react-icons/lu";
 
 export const AgentBio = ({
   agent,
@@ -25,29 +24,31 @@ export const AgentBio = ({
     return {};
   }, [propertiesWithAgent]);
   return (
-    <div className="gap-4 flex flex-col sm:flex-row border p-4 rounded">
+    <div className="gap-4 flex flex-col sm:flex-row border p-4 rounded w-fit">
       <Image
         alt={agent.fullname}
         src={`${env.NEXT_PUBLIC_S3_ENDPOINT}${agent.profile_picture_url}`}
         width={200}
         height={200}
-        className="rounded-full aspect-square object-cover mx-auto sm:rounded sm:mx-0"
+        className="rounded-full aspect-square object-cover mx-auto sm:mx-0"
       />
 
       <div className="flex flex-col gap-4">
         <div className="sm:flex flex-col gap-1">
-          <CardTitle>
-            <h1 className="capitalize ">{agent.fullname}</h1>
-          </CardTitle>
+          <h1 className="capitalize font-bold text-xl">{agent.fullname}</h1>
+          {agent.description && (
+            <h2 className="text-muted-foreground">{agent.description}</h2>
+          )}
+          <div className="flex items-center gap-1">
+            <LuMail className="text-primary" />
+            <span>{agent.email}</span>
+          </div>
           {agent.instagram && (
-            <div className="text-accent-foreground flex items-center gap-1">
-              <LuInstagram />
+            <div className="flex items-center gap-1">
+              <LuInstagram className="text-pink-500" />
               <span>{agent.instagram}</span>
             </div>
           )}
-          <CardDescription>
-            {agent.description && <h2>{agent.description}</h2>}
-          </CardDescription>
         </div>
 
         <div className="flex flex-col gap-2">
