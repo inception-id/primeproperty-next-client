@@ -12,7 +12,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     ...(agents.data?.map((agent) => {
       return {
-        url: env.NEXT_PUBLIC_HOST_URL + `/agents/${agent.fullname}`,
+        url:
+          env.NEXT_PUBLIC_HOST_URL +
+          `/agents/${agent.fullname.replaceAll(" ", "-")}`,
         lastModified: new Date(agent.updated_at),
       };
     }) as MetadataRoute.Sitemap),
