@@ -78,7 +78,7 @@ export const Search = () => {
 
   return (
     <div
-      className="flex items-center w-full md:w-96 relative"
+      className="flex items-center w-full  relative"
       ref={refs.setReference}
       {...getReferenceProps()}
     >
@@ -86,7 +86,7 @@ export const Search = () => {
         <div
           className={cn(
             buttonVariants({ variant: "outline", size: "icon" }),
-            "border-r-transparent rounded-r-none",
+            "border-r-transparent rounded-r-none w-10 h-10",
           )}
         >
           <LuSearch />

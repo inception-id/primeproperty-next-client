@@ -9,7 +9,6 @@ import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { RelatedSearch } from "./related-search";
 import { createRelatedPropertySchema } from "../../_lib/create-related-property-breadcrumb";
 import { createDynamicPropertySchema } from "../../_lib/create-dynamic-property-schema";
-import { Faq } from "../../_components/faq";
 import { RelatedProperties } from "../../_components";
 
 type DynamicPropertyProps = {
@@ -84,7 +83,6 @@ export const DynamicProperty = async ({ propertyId }: DynamicPropertyProps) => {
       </div>
       <RelatedProperties propertyId={propertyId} />
       <div className="mb-8" />
-      <Faq />
     </div>
   );
 };
