@@ -1,1 +1,1 @@
-export * from "./faq-primepro";
+export * from "./faq";

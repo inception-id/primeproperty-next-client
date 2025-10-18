@@ -8,6 +8,7 @@ import { PropertiesFilter } from "./fillters/properties-filter";
 import { PropertiesTitle } from "./title";
 import { PropertyNotFound } from "./not-found";
 import { createPropertySchema } from "../_lib/create-properties-schema";
+import { Faq } from "./faq";
 
 type PropertiesProps = {
   searchParams: FindPropertyQuery;
@@ -51,6 +52,8 @@ export const Properties = async ({ searchParams }: PropertiesProps) => {
           searchParams={searchParams}
           propertiesWithAgent={properties.data?.data}
         />
+
+        <Faq defaultTab="PROPERTY" />
       </div>
     </>
   );

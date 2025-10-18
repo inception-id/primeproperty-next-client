@@ -10,6 +10,7 @@ import { RelatedSearch } from "./related-search";
 import { createRelatedPropertySchema } from "../../_lib/create-related-property-breadcrumb";
 import { createDynamicPropertySchema } from "../../_lib/create-dynamic-property-schema";
 import { RelatedProperties } from "../../_components";
+import { Faq } from "../../_components/faq";
 
 type DynamicPropertyProps = {
   propertyId: number;
@@ -82,7 +83,7 @@ export const DynamicProperty = async ({ propertyId }: DynamicPropertyProps) => {
         <DesktopAgentCard property={property.data} />
       </div>
       <RelatedProperties propertyId={propertyId} />
-      <div className="mb-8" />
+      <Faq defaultTab="PROPERTY" />
     </div>
   );
 };

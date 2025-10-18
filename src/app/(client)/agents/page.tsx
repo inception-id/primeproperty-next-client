@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 import { AgentList } from "./_components/agent-list";
 import { LuUsers } from "react-icons/lu";
+import { Faq } from "../properties/_components/faq";
 
 export const metadata: Metadata = {
   title: "Agents - PRIMEPRO INDONESIA",
@@ -26,6 +27,8 @@ export default function JobPosting() {
       <Suspense>
         <AgentList />
       </Suspense>
+
+      <Faq defaultTab="PRIMEPRO" />
     </div>
   );
 }

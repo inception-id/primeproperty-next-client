@@ -6,7 +6,7 @@ import { buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
 import { Search } from "./properties/_components/fillters/search";
 import { FilterDialog } from "./properties/_components/fillters";
-import { FaqPrimePro } from "./properties/_components/faq";
+import { Faq } from "./properties/_components/faq";
 
 export const revalidate = 0;
 
@@ -121,7 +121,7 @@ const HomePage = () => {
           <PopularProperties />
         </div>
         <Partners />
-        <FaqPrimePro />
+        <Faq defaultTab="PRIMEPRO" />
       </div>
       <VideoThumbnail />
     </div>

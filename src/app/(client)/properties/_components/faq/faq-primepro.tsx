@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Accordion,
   AccordionContent,
@@ -7,7 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const FAQ_ONE = [
+export const FAQ_ONE = [
   {
     question: "Apa saja layanan yang disediakan oleh PrimePro Indonesia ?",
     answer:
@@ -71,7 +69,7 @@ const FaqOne = () => {
   );
 };
 
-const FAQ_TWO = [
+export const FAQ_TWO = [
   {
     question:
       "Apa saja jenis property yang ditawarkan oleh Primepro Indonesia ?",
@@ -119,7 +117,7 @@ const FaqTwo = () => {
   );
 };
 
-const FAQ_THREE = [
+export const FAQ_THREE = [
   {
     question: "Jam berapa kantor PrimePro Indonesia beroperasional?",
     answer: (
@@ -171,16 +169,10 @@ const FaqThree = () => {
 
 export const FaqPrimePro = () => {
   return (
-    <section className="flex flex-col gap-12 my-16 max-w-2xl">
-      <div>
-        <h2 className="text-foreground text-4xl font-bold mb-4">FAQs</h2>
-        <h3 className="text-muted-foreground text-lg">
-          Temukan jawaban dari pertanyaanmu di sini.
-        </h3>
-      </div>
+    <div className="flex flex-col gap-8">
       <FaqOne />
       <FaqTwo />
       <FaqThree />
-    </section>
+    </div>
   );
 };
