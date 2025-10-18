@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { DynamicProperty } from "./_components";
-import { Properties } from "../_components";
+import { Properties, PropertiesFilter } from "../_components";
 import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
 import { pathParamsToPurchaseStatus } from "@/lib/enums/purchase-status";
 import { BuildingType } from "@/lib/enums/building-type";
@@ -48,11 +48,16 @@ const DynamicPropertyPage = ({ params }: DynamicPropertyPageProps) => {
   }
 
   return (
-    <div className="container mx-auto max-w-6xl">
-      <Suspense>
-        <DynamicProperty propertyId={+propertyId} />
-      </Suspense>
-    </div>
+    <>
+      <div className="hidden lg:block">
+        <PropertiesFilter searchParams={{}} />
+      </div>
+      <div className="container mx-auto lg:px-2">
+        <Suspense>
+          <DynamicProperty propertyId={+propertyId} />
+        </Suspense>
+      </div>
+    </>
   );
 };
 

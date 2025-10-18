@@ -52,6 +52,13 @@ export const Properties = async ({ searchParams }: PropertiesProps) => {
           searchParams={searchParams}
           propertiesWithAgent={properties.data?.data}
         />
+        <div className="mt-4">
+          <Pagination
+            searchParams={searchParams}
+            currentPage={searchParams.page ? +searchParams.page : 1}
+            totalPages={properties.data.total_pages}
+          />
+        </div>
 
         <Faq defaultTab="PROPERTY" />
       </div>

@@ -5,6 +5,39 @@ import { formatToCurrencyUnit } from "@/lib/intl/format-to-currency-unit";
 import { cn } from "@/lib/utils";
 import { PurchaseStatus } from "@/lib/enums/purchase-status";
 import { RENT_TIME } from "@/lib/enums/rent_time";
+import { Property } from "@/lib/api/properties/type";
+import { GoogleTranslateElement } from "../../_components/google-translate-element";
+
+type PriceTagProps = {
+  property: Property;
+};
+
+const PriceTag = ({ property }: PriceTagProps) => {
+  return (
+    <div className="border-l-4 border-primary pl-4">
+      <div className="font-bold text-3xl flex items-center gap-2">
+        <span>{formatToCurrencyUnit(property.price, property.currency)}</span>
+        {property.purchase_status === PurchaseStatus.ForRent &&
+          property.rent_time && <span>{RENT_TIME[property.rent_time]}</span>}
+        <span>per Bulan</span>
+      </div>
+      <span
+        className={cn(
+          "text-sm text-muted-foreground",
+          property.price_down_payment && property.price_down_payment > 0
+            ? "block"
+            : "hidden",
+        )}
+      >
+        (Down Payment:{" "}
+        {property?.price_down_payment &&
+          property?.price_down_payment > 0 &&
+          formatToCurrencyUnit(property.price_down_payment, property.currency)}
+        ) )
+      </span>
+    </div>
+  );
+};
 
 type PropertyOverviewProps = {
   property: PropertyWithAgent;
@@ -12,45 +45,20 @@ type PropertyOverviewProps = {
 
 export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
   return (
-    <div className="flex flex-col gap-8 flex-1">
+    <div className="flex flex-col gap-8 flex-1 mb-8">
       <div>
-        <div className="font-bold text-2xl flex items-center gap-1">
-          <span>
-            {formatToCurrencyUnit(property[0].price, property[0].currency)}
-          </span>
-          {property[0].purchase_status === PurchaseStatus.ForRent &&
-            property[0].rent_time && (
-              <span>{RENT_TIME[property[0].rent_time]}</span>
-            )}
-        </div>
-        <span
-          className={cn(
-            "text-sm text-muted-foreground",
-            property[0].price_down_payment && property[0].price_down_payment > 0
-              ? "block"
-              : "hidden",
-          )}
-        >
-          (Down Payment:{" "}
-          {property?.[0]?.price_down_payment &&
-            property?.[0]?.price_down_payment > 0 &&
-            formatToCurrencyUnit(
-              property[0].price_down_payment,
-              property[0].currency,
-            )}
-          ) )
-        </span>
-        <h1 className="text-lg font-bold">{property[0].title}</h1>
-        <p className="text-sm text-muted-foreground font-semibold">
+        <PriceTag property={property[0]} />
+        <h1 className="text-xl font-semibold mt-2">{property[0].title}</h1>
+        <p className="text-base text-muted-foreground">
           {property[0].street}, {property[0].regency}
         </p>
       </div>
 
       <PropertyInformation property={property[0]} />
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col">
         <p className="text-base font-semibold">Deskripsi</p>
-        <p className="whitespace-pre-wrap text-muted-foreground text-sm">
+        <p className="whitespace-pre-wrap text-muted-foreground text-base">
           {property[0].description}
         </p>
       </div>

@@ -24,16 +24,18 @@ const MobileAgentCard = ({ property }: AgentCardProps) => {
   return (
     <>
       <AgentAvatar property={property} className="lg:hidden" />
-      <div className="grid grid-cols-2 gap-4 sticky bottom-0 w-full p-4 border-t bg-background lg:hidden">
+      <div className="grid grid-cols-2 gap-4 sticky bottom-0 w-full p-4 border-t bg-background lg:hidden ">
         <ContactAgentDialog isWhatsapp={false} propertyWithAgent={property} />
         <ContactAgentDialog isWhatsapp={true} propertyWithAgent={property} />
       </div>
-      <RelatedSearch property={property[0]} className="lg:hidden" />
-      <ShareLinks
-        title={property[0].title}
-        property={property}
-        className="lg:hidden"
-      />
+      <div className="flex flex-col gap-4 mb-16">
+        <RelatedSearch property={property[0]} className="lg:hidden" />
+        <ShareLinks
+          title={property[0].title}
+          property={property}
+          className="lg:hidden"
+        />
+      </div>
     </>
   );
 };
@@ -63,27 +65,31 @@ export const DynamicProperty = async ({ propertyId }: DynamicPropertyProps) => {
   const relatedJsonLd = createRelatedPropertySchema(property.data[0]);
   const dynamicJsonLd = createDynamicPropertySchema(property.data[0]);
   return (
-    <div className="relative">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(relatedJsonLd).replace(/</g, "\\u003c"),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(dynamicJsonLd).replace(/</g, "\\u003c"),
-        }}
-      />
-      <PropertyImages propertyWithAgent={property.data} />
-      <div className="flex flex-col gap-4 lg:gap-8 lg:flex-row p-4 xl:px-0 mb-8">
-        <PropertyOverview property={property.data} />
-        <MobileAgentCard property={property.data} />
-        <DesktopAgentCard property={property.data} />
+    <>
+      <div className="relative">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(relatedJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(dynamicJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
+        <PropertyImages propertyWithAgent={property.data} />
+        <div className="py-4 px-2 md:px-0">
+          <div className="flex flex-col gap-4  lg:gap-8 lg:flex-row">
+            <PropertyOverview property={property.data} />
+            <MobileAgentCard property={property.data} />
+            <DesktopAgentCard property={property.data} />
+          </div>
+          <RelatedProperties propertyId={propertyId} />
+          <Faq defaultTab="PROPERTY" />
+        </div>
       </div>
-      <RelatedProperties propertyId={propertyId} />
-      <Faq defaultTab="PROPERTY" />
-    </div>
+    </>
   );
 };

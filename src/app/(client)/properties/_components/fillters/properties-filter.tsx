@@ -3,7 +3,7 @@ import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
 import { FilterDialog } from "./dialog";
 import { Search } from "./search";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 type PropertiesFilterProps = {
   searchParams: FindPropertyQuery;
@@ -11,6 +11,7 @@ type PropertiesFilterProps = {
 
 const PurchaseStatusToggle = ({ searchParams }: PropertiesFilterProps) => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const onAllClick = () => {
     const newParams = new URLSearchParams(searchParams);
@@ -37,7 +38,11 @@ const PurchaseStatusToggle = ({ searchParams }: PropertiesFilterProps) => {
         type="button"
         size="sm"
         onClick={onAllClick}
-        variant={!searchParams.purchase_status ? "default" : "ghost"}
+        variant={
+          !searchParams.purchase_status && pathname === "/properties"
+            ? "default"
+            : "ghost"
+        }
       >
         Semua
       </Button>

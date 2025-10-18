@@ -1,6 +1,4 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { useParams, usePathname } from "next/navigation";
 import { MdCopyright } from "react-icons/md";
 import { FooterBrand } from "./brand";
 import { FooterPropertyArea } from "./area";
@@ -8,19 +6,9 @@ import { FooterBuildingTypes } from "./building-types";
 import { FooterContact } from "./contact";
 
 export const Footer = () => {
-  const params = useParams();
-  const pathname = usePathname();
   return (
-    <footer>
-      <div
-        className={cn(
-          "container mx-auto p-4 border-t grid gap-8",
-          pathname.includes("/properties") &&
-            params?.path?.length === 1 &&
-            !Number.isNaN(+params.path[0]) &&
-            "max-w-6xl",
-        )}
-      >
+    <footer className="w-full">
+      <div className="container mx-auto p-4 border-t grid gap-8">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           <FooterBrand />
           <FooterContact />
