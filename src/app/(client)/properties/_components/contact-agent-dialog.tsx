@@ -110,9 +110,7 @@ export const ContactAgentDialog = ({
           sendGAEvent("event", "leads_popup");
         }}
         className={cn(
-          buttonVariants({
-            variant: isWhatsapp ? "default" : "outline",
-          }),
+          buttonVariants({}),
           "rounded-lg cursor-pointer line-clamp-1 flex",
           isWhatsapp && !isPhotoRequest
             ? "bg-emerald-500 hover:bg-emerald-400 text-base text-background"
@@ -183,7 +181,6 @@ export const ContactAgentDialog = ({
           <Button
             type="submit"
             size="sm"
-            variant={isWhatsapp ? "default" : "outline"}
             className={cn(
               "rounded-lg cursor-pointer line-clamp-1 flex ",
               isWhatsapp && !isPhotoRequest
