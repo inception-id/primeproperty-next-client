@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { PurchaseStatus } from "@/lib/enums/purchase-status";
 import { RENT_TIME } from "@/lib/enums/rent_time";
 import { Property } from "@/lib/api/properties/type";
-import { GoogleTranslateElement } from "../../_components/google-translate-element";
+import { GoogleTranslateElement } from "@/components/custom-ui/google-translate-element";
 
 type PriceTagProps = {
   property: Property;
@@ -47,6 +47,7 @@ export const PropertyOverview = ({ property }: PropertyOverviewProps) => {
   return (
     <div className="flex flex-col gap-8 flex-1 mb-8">
       <div>
+        <GoogleTranslateElement />
         <PriceTag property={property[0]} />
         <h1 className="text-xl font-semibold mt-2">{property[0].title}</h1>
         <p className="text-base text-muted-foreground">
