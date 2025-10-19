@@ -1,37 +1,44 @@
 import Link from "next/link";
-import { PopularProperties, PropertiesFilter } from "./properties/_components";
+import { PopularProperties } from "./properties/_components";
 import { LuHouse } from "react-icons/lu";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
+import { Search } from "./properties/_components/fillters/search";
+import { FilterDialog } from "./properties/_components/fillters";
 import { Faq } from "./properties/_components/faq";
 
 export const revalidate = 0;
 
 const Hero = () => {
   return (
-    <div className="p-4 flex flex-col gap-4">
-      <div className="w-fit mx-auto flex flex-col gap-2 items-center justify-center">
+    <div className="flex flex-col gap-4 my-8 lg:my-16">
+      <div className="w-fit mx-auto flex flex-col gap-2 items-center justify-center ">
         <Image
           src="/images/primepro.png"
           alt="Primepro Hero"
-          width={120}
-          height={120}
-          className="mb-4"
+          width={175}
+          height={175}
+          className="mb-8"
         />
-        <h1 className="text-2xl lg:text-3xl font-extrabold tracking-tight">
+        <h1 className="text-3xl lg:text-4xl font-extrabold tracking-tight lg:tracking-normal">
           PRIMEPRO INDONESIA
         </h1>
-        <h2 className="border-b text-base lg:text-xl tracking-tight text-muted-foreground pb-2">
+        <h2 className="border-b text-xl lg:text-2xl tracking-tight text-muted-foreground lg:tracking-normal">
           Your Private Key to Exceptional Properties
         </h2>
       </div>
-      <div className="flex flex-col gap-4 items-center lg:justify-center">
-        <PropertiesFilter searchParams={{}} />
-
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center mx-auto p-2 bg-secondary md:max-w-2xl w-full rounded gap-1">
+          <Search />
+          <FilterDialog isHomePage searchParams={{}} />
+        </div>
         <Link
           href="/properties"
-          className={cn(buttonVariants({ variant: "default" }))}
+          className={cn(
+            buttonVariants({ variant: "outline" }),
+            "w-fit mx-auto",
+          )}
         >
           <LuHouse />
           Lihat Semua
@@ -57,25 +64,23 @@ const Partners = () => {
     "/images/banks/smbc.png",
   ];
   return (
-    <div className="p-4 flex flex-col gap-4 md:gap-8">
-      <div className="flex flex-col gap-2">
-        <h3 className="text-2xl font-bold text-center lg:text-3xl">
-          Mitra Kami
-        </h3>
-        <h4 className="text-center text-muted-foreground lg:text-xl ">
+    <div className="my-16 flex flex-col gap-4 lg:gap-8">
+      <div className="flex flex-col gap-2 text-center">
+        <h3 className="text-3xl font-bold ">Mitra Kami</h3>
+        <h4 className="text-muted-foreground text-base lg:text-lg">
           Konsisten memberikan layanan terbaik, menjalin kemitraan dengan
           perbankan untuk kemudahan transaksi Anda
         </h4>
       </div>
-      <div className="grid grid-cols-3 place-items-center gap-2 md:grid-cols-4 lg:grid-cols-6">
+      <div className="grid grid-cols-3 gap-2 md:grid-cols-4 lg:grid-cols-6 lg:gap-4">
         {PARTNERS.map((part, index) => (
           <Image
             key={`partner_${index}`}
             src={part}
             alt={part}
-            width={150}
-            height={100}
-            className="w-full h-20 border px-2 object-contain rounded"
+            width={576}
+            height={576}
+            className="w-full h-20 lg:h-40 border p-2 object-contain aspect-square rounded bg-primary "
           />
         ))}
       </div>
@@ -85,31 +90,38 @@ const Partners = () => {
 
 const VideoThumbnail = () => {
   return (
-    <div className="p-4 flex flex-col gap-4 mb-16">
-      <h3 className="text-xl font-bold text-center lg:text-3xl">
-        Your Private Real Estate Partner
-      </h3>
-      <iframe
-        width="100%"
-        src="https://www.youtube.com/embed/ivN7BfhMv4g?si=zLm4yBwIrF7So1wM"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allowFullScreen
-        className="h-96 md:h-[400px] lg:h-[600px]"
-      />
+    <div className="w-full bg-primary py-16 px-4 sm:px-0">
+      <div className="flex flex-col gap-4 container mx-auto">
+        <div className="flex flex-col gap-2">
+          <h3 className="text-xl font-bold text-left lg:text-3xl">
+            Your Private Real Estate Partner
+          </h3>
+          <h4>Agen Properti berpengalaman dan terpercaya</h4>
+        </div>
+        <iframe
+          width="100%"
+          src="https://www.youtube.com/embed/ivN7BfhMv4g?si=zLm4yBwIrF7So1wM"
+          title="YouTube video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          className="h-96 md:h-[400px] lg:h-[600px] rounded-lg"
+        />
+      </div>
     </div>
   );
 };
 
 const HomePage = () => {
   return (
-    <div className="container mx-auto flex flex-col gap-8 lg:gap-24">
-      <Hero />
-      <PopularProperties />
-      <Partners />
-      <div className="px-2">
-        <Faq />
+    <div className="flex flex-col gap-8 ">
+      <div className="container mx-auto flex flex-col gap-8 p-4 sm:px-0">
+        <Hero />
+        <div className="lg:px-4">
+          <PopularProperties />
+        </div>
+        <Partners />
+        <Faq defaultTab="PRIMEPRO" />
       </div>
       <VideoThumbnail />
     </div>

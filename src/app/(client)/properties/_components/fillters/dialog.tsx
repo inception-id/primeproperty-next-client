@@ -15,15 +15,20 @@ import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
 type FilterDialogProps = {
   searchParams: FindPropertyQuery;
   title?: string;
+  isHomePage?: boolean;
 };
 
-export const FilterDialog = ({ searchParams, title }: FilterDialogProps) => {
+export const FilterDialog = ({
+  searchParams,
+  title,
+  isHomePage,
+}: FilterDialogProps) => {
   return (
     <Dialog>
       <DialogTrigger
         className={cn(
           buttonVariants({
-            variant: "outline",
+            variant: isHomePage ? "default" : "outline",
           }),
           "relative",
         )}

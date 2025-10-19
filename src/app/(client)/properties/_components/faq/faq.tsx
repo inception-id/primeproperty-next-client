@@ -1,14 +1,37 @@
-import { FaqOne } from "./one";
-import { FaqThree } from "./three";
-import { FaqTwo } from "./two";
+"use client";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { FaqPrimePro } from "./faq-primepro";
+import { FaqProperty } from "./faq-property";
+import { FaqSchema } from "./faq-schema";
 
-export const Faq = () => {
+type FaqProps = {
+  defaultTab: "PRIMEPRO" | "PROPERTY";
+};
+
+export const Faq = ({ defaultTab }: FaqProps) => {
   return (
-    <div className="flex flex-col gap-4" id="faq">
-      <h2 className="text-2xl font-bold">Frequently Asked Questions:</h2>
-      <FaqOne />
-      <FaqTwo />
-      <FaqThree />
-    </div>
+    <>
+      <FaqSchema />
+      <section className="flex flex-col gap-4 my-16 max-w-2xl" id="faq">
+        <div>
+          <h2 className="text-foreground text-4xl font-bold mb-4">FAQs</h2>
+          <h3 className="text-muted-foreground text-lg">
+            Temukan jawaban dari pertanyaanmu di sini.
+          </h3>
+        </div>
+        <Tabs defaultValue={defaultTab} className="max-w-2xl">
+          <TabsList>
+            <TabsTrigger value="PRIMEPRO">PRIMEPRO</TabsTrigger>
+            <TabsTrigger value="PROPERTY">PROPERTI</TabsTrigger>
+          </TabsList>
+          <TabsContent value="PRIMEPRO">
+            <FaqPrimePro />
+          </TabsContent>
+          <TabsContent value="PROPERTY">
+            <FaqProperty />
+          </TabsContent>
+        </Tabs>
+      </section>
+    </>
   );
 };

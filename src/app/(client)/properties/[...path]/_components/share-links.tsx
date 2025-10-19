@@ -33,7 +33,6 @@ export const ShareLinks = ({ title, property, className }: ShareLinksProps) => {
   const telegramUrl = `https://t.me/share/url?url=${url}&text=${caption}`;
   return (
     <div className={cn("flex items-center gap-4 mx-auto", className)}>
-      <span>Share: </span>
       <Link
         href={facebookUrl}
         target="_blank"

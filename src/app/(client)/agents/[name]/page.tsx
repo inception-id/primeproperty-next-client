@@ -2,9 +2,9 @@ import { findPropertyByAgent } from "@/lib/api/properties/find-property-by-agent
 import { AgentBio } from "./_components";
 import { redirect } from "next/navigation";
 import { PropertyList } from "../../properties/_components/list";
-import { Faq } from "../../properties/_components/faq";
 import { createAgentMetadata } from "./_lib/create-agent-metadata";
 import { Metadata } from "next";
+import { Faq } from "../../properties/_components/faq";
 
 export const revalidate = 0;
 
@@ -35,7 +35,7 @@ export default async function AgentPage({ params }: AgentPageProps) {
         />
       </div>
 
-      <Faq />
+      <Faq defaultTab="PRIMEPRO" />
     </div>
   );
 }
