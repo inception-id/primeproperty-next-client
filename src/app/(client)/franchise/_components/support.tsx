@@ -1,21 +1,71 @@
-import {
-  LuBookOpen,
-  LuBuilding2,
-  LuHeadphones,
-  LuLayoutGrid,
-} from "react-icons/lu";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
+import { LuBookOpen, LuBuilding2, LuComputer, LuNetwork } from "react-icons/lu";
 import Image from "next/image";
-export const SupportSection = () => {
+
+const SUPPORTS = [
+  {
+    icon: <LuBuilding2 />,
+    title: "Pengembangan",
+    description:
+      "Pemilihan lokasi, bantuan penyiapan, dan perencanaan pembukaan kantor.",
+  },
+  {
+    icon: <LuBookOpen />,
+    title: "Pelatihan",
+    description:
+      "Penjualan, negosiasi, hukum properti, dan perangkat teknologi.",
+  },
+  {
+    icon: <LuNetwork />,
+    title: "Pemasaran",
+    description:
+      "Kampanye merek bersama, templat media sosial, dan perolehan prospek.",
+  },
+  {
+    icon: <LuComputer />,
+    title: "Teknologi",
+    description:
+      "Akses ke CRM PrimePro Indonesia, aplikasi seluler, dan dasbor analitik",
+  },
+];
+
+export const Support = () => {
   return (
-    <section className="w-full py-16 px-4 ">
-      <div className="container mx-auto">
+    <section className="mx-auto my-32 max-w-6xl">
+      <div className="max-w-lg flex flex-col gap-4 mb-8 lg:mb-16 sm:items-center sm:mx-auto sm:max-w-4xl sm:text-center">
+        <div className="border rounded text-xs py-1 px-2 w-fit bg-primary">
+          Dukungan Penuh
+        </div>
+        <h2 className="text-3xl font-bold sm:text-4xl">
+          Dukungan yang akan Anda Terima
+        </h2>
+      </div>
+
+      <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid gap-4 lg:order-2 lg:grid-cols-2">
+          {SUPPORTS.map((supp) => (
+            <div
+              key={supp.title}
+              className="rounded flex flex-col lg:items-center justify-center border p-4"
+            >
+              <span className="text-primary text-3xl mb-4 rounded-full lg:p-4 lg:border border-primary">
+                {supp.icon}
+              </span>
+              <h3 className="font-semibold text-xl mb-2 lg:text-2xl">
+                {supp.title}
+              </h3>
+              <h4 className="lg:text-lg lg:text-center">{supp.description}</h4>
+            </div>
+          ))}
+        </div>
+        <Image
+          src="/images/primepro/abby_and_partner.HEIC"
+          alt="Abby and Partner"
+          width={512}
+          height={512}
+          className="w-full object-cover rounded-lg"
+        />
+      </div>
+      {/*<div className="container mx-auto">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
             <div className="inline-block rounded bg-primary px-3 py-1 text-sm text-primary-foreground">
@@ -27,13 +77,6 @@ export const SupportSection = () => {
           </div>
         </div>
         <div className="mx-auto max-w-5xl py-4 lg:py-12 grid md:grid-cols-2 gap-8">
-          <Image
-            src="/images/primepro/abby_and_partner.HEIC"
-            alt="Abby and Partner"
-            width={500}
-            height={500}
-            className="w-full h-auto object-cover rounded-lg"
-          />
 
           <div className="grid gap-8 md:grid-cols-2">
             <Card className="flex flex-col items-center text-center">
@@ -93,7 +136,7 @@ export const SupportSection = () => {
             </Card>
           </div>
         </div>
-      </div>
+      </div>*/}
     </section>
   );
 };

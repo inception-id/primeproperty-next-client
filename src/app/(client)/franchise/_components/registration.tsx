@@ -1,68 +1,54 @@
-export const RegistrationSection = () => {
+import React from "react";
+
+const STEPS = [
+  {
+    title: "Konsultasi",
+    description: "Diskusikan pasar dan tujuan Anda dengan tim kami.",
+  },
+  {
+    title: "Evaluasi",
+    description:
+      "Tim kami akan mengevaluasi aplikasi Anda dan menilai kesesuaian.",
+  },
+  {
+    title: "Persetujuan & Pelatihan",
+    description:
+      "Setelah disetujui, Anda akan menerima pelatihan komprehensif.",
+  },
+  {
+    title: "Peluncuran",
+    description:
+      "Buka kantor franchise PrimePro Indonesia Anda dengan dukungan penuh dari tim kami.",
+  },
+];
+
+export const Registration = () => {
   return (
-    <section className="w-full py-16 px-4  bg-muted">
-      <div className="container mx-auto">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight">
-              Cara Mendaftar
-            </h2>
-            <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-              Proses sederhana untuk memulai perjalanan franchise Anda dengan
-              PrimePro Indonesia
-            </p>
-          </div>
+    <section className="w-full my-16 max-w-6xl mx-auto">
+      <div className="max-w-lg flex flex-col gap-4 mb-8 lg:mb-16 sm:items-center sm:mx-auto sm:max-w-4xl sm:text-center">
+        <div className="border rounded text-xs py-1 px-2 w-fit bg-primary">
+          Pendaftaran
         </div>
-        <div className="mx-auto mt-12 max-w-3xl">
-          <div className="flex items-center">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-primary bg-primary text-primary-foreground">
-              1
+        <h2 className="text-3xl font-bold sm:text-4xl">Cara Mendaftar</h2>
+        <h3 className="text-muted-foreground sm:text-2xl">
+          Proses sederhana untuk memulai perjalanan franchise Anda dengan
+          PrimePro Indonesia
+        </h3>
+      </div>
+      <div className="flex flex-col gap-4 lg:gap-8 mx-auto max-w-3xl">
+        {STEPS.map((step, index) => (
+          <React.Fragment key={step.title}>
+            <div className="flex items-center gap-4">
+              <span className="bg-primary text-lg text-primary-foreground rounded-full w-12 h-12 flex items-center justify-center">
+                {index + 1}
+              </span>
+              <span className="flex-1">
+                <h4 className="font-semibold text-lg">{step.title}</h4>
+                <p>{step.description}</p>
+              </span>
             </div>
-            <div className="ml-4 flex-1">
-              <h3 className="text-xl font-bold">Konsultasi</h3>
-              <p className="text-muted-foreground">
-                Diskusikan pasar dan tujuan Anda dengan tim kami.
-              </p>
-            </div>
-          </div>
-          <div className="my-4 ml-6 h-12 w-0.5 bg-border"></div>
-          <div className="flex items-center">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-primary bg-primary text-primary-foreground">
-              2
-            </div>
-            <div className="ml-4 flex-1">
-              <h3 className="text-xl font-bold">Evaluasi</h3>
-              <p className="text-muted-foreground">
-                Tim kami akan mengevaluasi aplikasi Anda dan menilai kesesuaian.
-              </p>
-            </div>
-          </div>
-          <div className="my-4 ml-6 h-12 w-0.5 bg-border"></div>
-          <div className="flex items-center">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-primary bg-primary text-primary-foreground">
-              3
-            </div>
-            <div className="ml-4 flex-1">
-              <h3 className="text-xl font-bold">Persetujuan & Pelatihan</h3>
-              <p className="text-muted-foreground">
-                Setelah disetujui, Anda akan menerima pelatihan komprehensif.
-              </p>
-            </div>
-          </div>
-          <div className="my-4 ml-6 h-12 w-0.5 bg-border"></div>
-          <div className="flex items-center">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-primary bg-primary text-primary-foreground">
-              4
-            </div>
-            <div className="ml-4 flex-1">
-              <h3 className="text-xl font-bold">Peluncuran</h3>
-              <p className="text-muted-foreground">
-                Buka kantor franchise PrimePro Indonesia Anda dengan dukungan
-                penuh dari tim kami.
-              </p>
-            </div>
-          </div>
-        </div>
+          </React.Fragment>
+        ))}
       </div>
     </section>
   );

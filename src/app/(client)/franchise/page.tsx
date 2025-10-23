@@ -1,12 +1,12 @@
 import { Metadata } from "next";
 import {
-  HeroSection,
-  RegistrationSection,
-  Requirements,
-  SupportSection,
-  WhyUs,
-  CTASection,
+  Features,
+  Hero,
+  TermAndLocation,
+  Support,
+  Registration,
 } from "./_components";
+import { Cta } from "./_components/cta";
 
 export const metadata: Metadata = {
   title: "Peluang Franchise - PRIMEPRO INDONESIA",
@@ -16,13 +16,13 @@ export const metadata: Metadata = {
 
 const FranchisePage = () => {
   return (
-    <div className="flex min-h-screen flex-col">
-      <HeroSection />
-      <WhyUs />
-      <Requirements />
-      <SupportSection />
-      <RegistrationSection />
-      <CTASection />
+    <div className="flex flex-col gap-8 p-4 lg:px-0">
+      <Hero />
+      <Features />
+      <TermAndLocation />
+      <Support />
+      <Registration />
+      <Cta />
     </div>
   );
 };

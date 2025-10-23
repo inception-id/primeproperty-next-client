@@ -80,7 +80,7 @@ const Partners = () => {
             alt={part}
             width={576}
             height={576}
-            className="w-full h-20 lg:h-40 border p-2 object-contain aspect-square rounded bg-primary "
+            className="w-full h-20 lg:h-40 border p-2 object-contain aspect-square rounded "
           />
         ))}
       </div>
