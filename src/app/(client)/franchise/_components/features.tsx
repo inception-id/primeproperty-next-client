@@ -46,7 +46,7 @@ export const Features = () => {
           {FEATURES.map((feat) => (
             <li className="flex gap-4" key={feat.title}>
               <span className="mt-1">
-                <LuCircleCheck className="text-primary text-2xl" />
+                <LuCircleCheck className="text-green-500 text-2xl" />
               </span>
               <span>
                 <p className="font-bold text-lg lg:text-xl">{feat.title}</p>
