@@ -15,7 +15,6 @@ import { MdOutlinePhotoLibrary, MdWhatsapp } from "react-icons/md";
 import { FormEvent, useState } from "react";
 import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { z } from "zod";
-import { toast } from "react-toastify";
 import { createLead } from "@/lib/api/leads/create-lead";
 import { env } from "@/lib/env";
 import { sendGAEvent } from "@next/third-parties/google";
@@ -31,6 +30,7 @@ export const ContactAgentDialog = ({
   isPhotoRequest,
   propertyWithAgent,
 }: ContactAgentDialogProps) => {
+  const [errorMsg, setErrorMsg] = useState("");
   const [open, setOpen] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -39,17 +39,21 @@ export const ContactAgentDialog = ({
     const name = target.name.value;
     const phone = target.phone.value;
     const email = target.email.value;
+    if (!name || !phone) {
+      setErrorMsg("Harap isi nama dan nomor telepon");
+      return;
+    }
     const phoneSchema = z
       .string()
-      .min(10, "Nomor telepon tidak valid")
-      .max(15, "Nomor telepon tidak valid")
+      .min(10, "Harap isi nomor telepon")
+      .max(15, "Nomor telepon maksimal 15 digit")
       .regex(/^[08]/, "Nomor telepon harus dimulai dengan 0 or 8")
       .regex(/^[^a-zA-Z]*$/, "Nomor telepon tidak valid");
 
     const phoneValidation = phoneSchema.safeParse(phone);
     if (!phoneValidation.success) {
       const errorMsg = phoneValidation.error.errors[0].message;
-      toast.error(errorMsg);
+      setErrorMsg(errorMsg);
       return;
     }
     if (email) {
@@ -57,7 +61,7 @@ export const ContactAgentDialog = ({
       const emailValidation = emailSchema.safeParse(email);
       if (!emailValidation.success) {
         const errorMsg = emailValidation.error.errors[0].message;
-        toast.error(errorMsg);
+        setErrorMsg(errorMsg);
         return;
       }
     }
@@ -98,6 +102,7 @@ export const ContactAgentDialog = ({
         window.open(url, "_blank");
       }
       sendGAEvent("event", "leads_redirect");
+      setErrorMsg("");
       setOpen(false);
     }
   };
@@ -156,7 +161,6 @@ export const ContactAgentDialog = ({
             placeholder="Nama"
             type="text"
             className="focus-visible:ring-transparent"
-            required
             name="name"
           />
           <div className="flex items-center">
@@ -167,7 +171,6 @@ export const ContactAgentDialog = ({
               placeholder="Nomor Telepon"
               type="tel"
               className="rounded-l-none focus-visible:ring-transparent ring-offset-transparent"
-              required
               name="phone"
             />
           </div>
@@ -206,6 +209,9 @@ export const ContactAgentDialog = ({
             )}
           </Button>
         </form>
+        {errorMsg && (
+          <span className="text-destructive mt-4 text-sm">{errorMsg}</span>
+        )}
       </DialogContent>
     </Dialog>
   );
