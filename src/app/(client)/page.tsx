@@ -7,44 +7,67 @@ import Image from "next/image";
 import { Search } from "./properties/_components/fillters/search";
 import { FilterDialog } from "./properties/_components/fillters";
 import { Faq } from "./properties/_components/faq";
+import { Metadata } from "next";
+import { createMetadata } from "@/lib/metadata";
+import { createWebsiteSchema } from "@/lib/schema";
+import Script from "next/script";
 
+const seo = {
+  title: "Jual Beli Rumah Apartemen | PRIMEPRO INDONESIA",
+  description:
+    "Your private key to exceptional properties. Jual dan beli properti secara online dengan layanan terbaik di PrimePro Indonesia.",
+  keywords:
+    "PrimePro Indonesia, Properti, Properti Prime, Properti Jakarta Selatan",
+  path: "/",
+};
+export const metadata: Metadata = createMetadata(seo);
 export const revalidate = 0;
 
 const Hero = () => {
+  const websiteSchema = createWebsiteSchema();
   return (
-    <div className="flex flex-col gap-4 my-8 lg:my-16">
-      <div className="w-fit mx-auto flex flex-col gap-2 items-center justify-center ">
-        <Image
-          src="/images/primepro.png"
-          alt="Primepro Hero"
-          width={175}
-          height={175}
-          className="mb-8"
-        />
-        <h1 className="text-3xl lg:text-4xl font-extrabold tracking-tight lg:tracking-normal">
-          PRIMEPRO INDONESIA
-        </h1>
-        <h2 className="border-b text-xl lg:text-2xl tracking-tight text-muted-foreground lg:tracking-normal">
-          Your Private Key to Exceptional Properties
-        </h2>
-      </div>
-      <div className="flex flex-col gap-4">
-        <div className="flex items-center mx-auto p-2 bg-secondary md:max-w-2xl w-full rounded gap-1">
-          <Search />
-          <FilterDialog isHomePage searchParams={{}} />
+    <>
+      <Script
+        id="website"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(websiteSchema).replace(/</g, "\\u003c"),
+        }}
+      />
+      <div className="flex flex-col gap-4 my-8 lg:my-16" id="website">
+        <div className="w-fit mx-auto flex flex-col gap-2 items-center justify-center ">
+          <Image
+            src="/images/primepro.png"
+            alt="Primepro Hero"
+            width={175}
+            height={175}
+            className="mb-8"
+          />
+          <h1 className="text-3xl lg:text-4xl font-extrabold tracking-tight lg:tracking-normal">
+            PRIMEPRO INDONESIA
+          </h1>
+          <h2 className="border-b text-xl lg:text-2xl tracking-tight text-muted-foreground lg:tracking-normal">
+            Your Private Key to Exceptional Properties
+          </h2>
         </div>
-        <Link
-          href="/properties"
-          className={cn(
-            buttonVariants({ variant: "outline" }),
-            "w-fit mx-auto",
-          )}
-        >
-          <LuHouse />
-          Lihat Semua
-        </Link>
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center mx-auto p-2 bg-secondary md:max-w-2xl w-full rounded gap-1">
+            <Search />
+            <FilterDialog isHomePage searchParams={{}} />
+          </div>
+          <Link
+            href="/properties"
+            className={cn(
+              buttonVariants({ variant: "outline" }),
+              "w-fit mx-auto",
+            )}
+          >
+            <LuHouse />
+            Lihat Semua
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -90,7 +113,7 @@ const Partners = () => {
 
 const VideoThumbnail = () => {
   return (
-    <div className="w-full bg-primary py-16 px-4 sm:px-0">
+    <div className="w-full py-16 px-4 sm:px-0">
       <div className="flex flex-col gap-4 container mx-auto">
         <div className="flex flex-col gap-2">
           <h3 className="text-xl font-bold text-left lg:text-3xl">
@@ -114,17 +137,19 @@ const VideoThumbnail = () => {
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col gap-8 ">
-      <div className="container mx-auto flex flex-col gap-8 p-4 sm:px-0">
-        <Hero />
-        <div className="lg:px-4">
-          <PopularProperties />
+    <>
+      <div className="flex flex-col gap-8 ">
+        <div className="container mx-auto flex flex-col gap-8 p-4 sm:px-0">
+          <Hero />
+          <div className="lg:px-4">
+            <PopularProperties />
+          </div>
+          <Partners />
+          <Faq defaultTab="PRIMEPRO" />
         </div>
-        <Partners />
-        <Faq defaultTab="PRIMEPRO" />
+        <VideoThumbnail />
       </div>
-      <VideoThumbnail />
-    </div>
+    </>
   );
 };
 
