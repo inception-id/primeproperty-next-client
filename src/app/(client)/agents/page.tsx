@@ -4,6 +4,8 @@ import { AgentList } from "./_components/agent-list";
 import { LuUsers } from "react-icons/lu";
 import { Faq } from "../properties/_components/faq";
 
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Agents - PRIMEPRO INDONESIA",
   description:
