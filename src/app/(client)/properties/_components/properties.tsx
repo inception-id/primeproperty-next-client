@@ -7,8 +7,8 @@ import { Pagination } from "./pagination";
 import { PropertiesFilter } from "./fillters/properties-filter";
 import { PropertiesTitle } from "./title";
 import { PropertyNotFound } from "./not-found";
-import { createPropertySchema } from "../_lib/create-properties-schema";
 import { Faq } from "./faq";
+import { createPropertiesSchema } from "@/lib/schema/create-properties-schema";
 
 type PropertiesProps = {
   searchParams: FindPropertyQuery;
@@ -23,7 +23,7 @@ export const Properties = async ({ searchParams }: PropertiesProps) => {
     return <PropertyNotFound searchParams={searchParams} />;
   }
 
-  const jsonLd = createPropertySchema(properties?.data.data, searchParams);
+  const jsonLd = createPropertiesSchema(properties?.data.data, searchParams);
 
   return (
     <>

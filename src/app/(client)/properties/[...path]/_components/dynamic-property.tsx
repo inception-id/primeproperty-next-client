@@ -7,10 +7,11 @@ import { ContactAgentDialog } from "../../_components/contact-agent-dialog";
 import { AgentAvatar } from "./agent-avatar";
 import { PropertyWithAgent } from "@/lib/api/properties/find-properties";
 import { RelatedSearch } from "./related-search";
-import { createRelatedPropertySchema } from "../../_lib/create-related-property-breadcrumb";
-import { createDynamicPropertySchema } from "../../_lib/create-dynamic-property-schema";
 import { RelatedProperties } from "../../_components";
 import { Faq } from "../../_components/faq";
+import { createDynamicPropertySchema } from "@/lib/schema/create-dynamic-property-schema";
+import { createPlaceSchema } from "@/lib/schema/create-place-schema";
+import { createRelatedAreaSchema } from "@/lib/schema/create-related-area-schema";
 
 type DynamicPropertyProps = {
   propertyId: number;
@@ -62,21 +63,28 @@ export const DynamicProperty = async ({ propertyId }: DynamicPropertyProps) => {
   if (!property.data) {
     return <PropertyNotFound searchParams={{}} />;
   }
-  const relatedJsonLd = createRelatedPropertySchema(property.data[0]);
   const dynamicJsonLd = createDynamicPropertySchema(property.data[0]);
+  const placeLd = createPlaceSchema(property.data[0]);
+  const relatedAreaLd = createRelatedAreaSchema(property.data[0]);
   return (
     <>
       <div className="relative">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(relatedJsonLd).replace(/</g, "\\u003c"),
+            __html: JSON.stringify(dynamicJsonLd).replace(/</g, "\\u003c"),
           }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(dynamicJsonLd).replace(/</g, "\\u003c"),
+            __html: JSON.stringify(placeLd).replace(/</g, "\\u003c"),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(relatedAreaLd).replace(/</g, "\\u003c"),
           }}
         />
         <PropertyImages propertyWithAgent={property.data} />
