@@ -5,7 +5,7 @@ import { toTitleCase } from "@/lib/to-title-case";
 export const createDynamicPropertySchema = (property: Property) => {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": ["Product", "Accommodation"],
+    "@type": "Product",
     accommodationCategory: toTitleCase(property.building_type),
     address: {
       "@type": "PostalAddress",

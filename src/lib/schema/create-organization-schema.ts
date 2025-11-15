@@ -4,7 +4,7 @@ export const createOrganizationSchema = () => {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    id: "organization",
+    id: "#organization",
     description:
       "Your private key to exceptional properties. Jual dan beli properti secara online dengan layanan terbaik di PrimePro Indonesia.",
     email: "primeproagent@gmail.com",

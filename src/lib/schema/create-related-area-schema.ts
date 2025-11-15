@@ -1,7 +1,7 @@
 import { Property } from "@/lib/api/properties/type";
 import { env } from "@/lib/env";
 
-export const createRelatedPropertySchema = (property: Property) => {
+export const createRelatedAreaSchema = (property: Property) => {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",

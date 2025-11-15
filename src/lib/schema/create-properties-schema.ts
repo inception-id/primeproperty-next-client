@@ -1,15 +1,15 @@
 import {
-  FindPropertyQuery,
-  PropertyWithAgent,
-} from "@/lib/api/properties/find-properties";
-import {
   generateDescription,
   generateTitle,
   pathParamsToSearchParams,
-} from "./create-properties-metadata";
+} from "@/app/(client)/properties/_lib/create-properties-metadata";
+import {
+  FindPropertyQuery,
+  PropertyWithAgent,
+} from "@/lib/api/properties/find-properties";
 import { env } from "@/lib/env";
 
-export const createPropertySchema = (
+export const createPropertiesSchema = (
   properties: PropertyWithAgent[],
   searchParams: FindPropertyQuery,
   paramsPath?: string[],
