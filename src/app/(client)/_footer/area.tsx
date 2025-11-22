@@ -11,7 +11,7 @@ export const FooterPropertyArea = () => {
             key={`${index}_${province.nama}_footer`}
             title={`Rumah di ${province.nama}`}
             aria-label={`Rumah di ${province.nama}`}
-            href={`/properties?province=${province.nama.toLowerCase()}`}
+            href={`/properties?province=${province.nama.toLowerCase().replaceAll(" ", "+")}`}
             className="hover:underline capitalize"
           >
             {province.nama.toLowerCase()}
