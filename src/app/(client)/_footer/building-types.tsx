@@ -11,7 +11,7 @@ export const FooterBuildingTypes = () => {
             key={`${index}_${buildingType.value}_footer`}
             title={`Jual ${buildingType.value}`}
             aria-label={`Jual ${buildingType.value}`}
-            href={`/properties?buiding_type=${buildingType.value.toLowerCase()}`}
+            href={`/properties?buiding_type=${buildingType.value.toLowerCase().replaceAll(" ", "+")}`}
             className="hover:underline capitalize"
           >
             {buildingType.value}
