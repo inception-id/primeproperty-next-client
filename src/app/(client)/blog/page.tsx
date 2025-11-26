@@ -78,9 +78,9 @@ const Blog = async () => {
                     </Link>
                   </h3>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="line-clamp-3 text-muted-foreground">
                   <div
-                    className="text-muted-foreground line-clamp-3"
+                    className="line-clamp-3"
                     dangerouslySetInnerHTML={{ __html: article.content }}
                   />
                 </CardContent>
