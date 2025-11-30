@@ -26,6 +26,7 @@ export const BlogPost = ({ article }: BlogPostProps) => {
           "[&_ol]:list-decimal [&_ul]:list-disc [&_ul]:list-inside whitespace-normal [&_ol]:mb-4 [&_ul]:mb-4",
           "[&_p]:mb-4",
           "[&_img]:rounded",
+          "[&_a]:underline",
         )}
         dangerouslySetInnerHTML={{ __html: article.content }}
       />
