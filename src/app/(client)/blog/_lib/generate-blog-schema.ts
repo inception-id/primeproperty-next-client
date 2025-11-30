@@ -2,17 +2,26 @@ import { Article } from "@/lib/dato/types";
 import { env } from "@/lib/env";
 
 export const generateBlogSchema = async (article: Article) => {
+  const url = `${env.NEXT_PUBLIC_HOST_URL}/blog/${article.slug}`;
   return {
     "@context": "https://schema.org",
     "@type": "Article",
-    url: `${env.NEXT_PUBLIC_HOST_URL}/blog/${article.slug}`,
+    "@id": url + "#article",
+    url: url,
     headline: article.title,
-    description: article.seo.description,
-    image: article.thumbnail.url,
+    datePublished: new Date(article._publishedAt).toISOString(),
+    dateModified: new Date(article._updatedAt).toISOString(),
     thumbnailUrl: article.thumbnail.url,
+    articleSection: article.seo.title,
+    description: article.seo.description,
     author: {
       "@type": "Organization",
       name: "PrimePro Indonesia",
+      url: env.NEXT_PUBLIC_HOST_URL,
+    },
+    image: {
+      "@type": "ImageObject",
+      url: article.thumbnail.url,
     },
     publisher: {
       "@type": "Organization",
@@ -22,6 +31,5 @@ export const generateBlogSchema = async (article: Article) => {
         url: `${env.NEXT_PUBLIC_HOST_URL}/images/primerp-with-full-text.png`,
       },
     },
-    datePublished: new Date(article._publishedAt).toISOString(),
   };
 };

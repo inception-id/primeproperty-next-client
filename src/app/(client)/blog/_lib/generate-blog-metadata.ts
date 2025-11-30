@@ -4,6 +4,7 @@ import { Metadata } from "next";
 
 export const generateBlogMetadata = async (slug: string): Promise<Metadata> => {
   const { article } = await findArticle(slug);
+  const url = `${env.NEXT_PUBLIC_HOST_URL}/blog/${slug}`;
   return {
     title: article.seo.title,
     description: article.seo.description,
@@ -15,15 +16,17 @@ export const generateBlogMetadata = async (slug: string): Promise<Metadata> => {
       images: [article.thumbnail.url],
     },
     openGraph: {
+      url,
+      type: "website",
       title: article.seo.title,
       description: article.seo.description,
+      images: [article.thumbnail.url],
       siteName: "Primepro Indonesia",
-      locale: "id_ID",
     },
     appleWebApp: true,
     applicationName: "Primepro Indonesia",
     alternates: {
-      canonical: `${env.NEXT_PUBLIC_HOST_URL}/blog/${slug}`,
+      canonical: url,
     },
     robots: "index, follow",
   };

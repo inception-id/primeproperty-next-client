@@ -7,6 +7,7 @@ export type Article = {
   content: string;
   slug: string;
   _publishedAt: string;
+  _updatedAt: string;
   seo: {
     title: string;
     description: string;
