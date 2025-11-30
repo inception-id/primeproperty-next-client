@@ -13,9 +13,19 @@ const ARTICLE_QUERY = gql`
       content(markdown: true)
       slug
       _publishedAt
+      _updatedAt
       seo {
         title
         description
+      }
+    }
+    allArticles(filter: { slug: { neq: $slug } }, first: 10) {
+      title
+      slug
+      _publishedAt
+      _updatedAt
+      thumbnail {
+        url
       }
     }
   }
@@ -25,6 +35,10 @@ export const findArticle = async (
   slug: string,
 ): Promise<{
   article: Article;
+  allArticles: Pick<
+    Article,
+    "title" | "slug" | "thumbnail" | "_publishedAt" | "_updatedAt"
+  >[];
 }> => {
   try {
     const client = createDatoApolloClient();
