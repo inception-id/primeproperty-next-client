@@ -13,6 +13,7 @@ const ARTICLES_QUERY = gql`
       content(markdown: true)
       slug
       _publishedAt
+      _updatedAt
       seo {
         title
         description
