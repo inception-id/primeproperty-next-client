@@ -22,7 +22,7 @@ export const LogoLink = ({ onClick }: LogoLinkProps) => {
         height={75}
         className="w-8 h-8"
       />
-      <div className="text-lg">PRIMEPRO INDONESIA</div>
+      <div className="text-lg tracking-wider">PRIMEPRO INDONESIA</div>
     </Link>
   );
 };

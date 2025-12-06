@@ -28,7 +28,7 @@ export const generateBlogSchema = async (article: Article) => {
       name: "PrimePro Indonesia",
       logo: {
         "@type": "ImageObject",
-        url: `${env.NEXT_PUBLIC_HOST_URL}/images/primerp-with-full-text.png`,
+        url: `${env.NEXT_PUBLIC_HOST_URL}/images/primepro-with-full-text.png`,
       },
     },
   };

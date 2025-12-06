@@ -13,9 +13,28 @@ import { env } from "@/lib/env";
 import { generateBlogHomeSchema } from "./_lib/generate-blog-home-schema";
 
 export const revalidate = 0;
+const title = "PrimePro Indonesia Articles";
+const description =
+  "Temukan tren, tips dan trik dalam pemilihan properti terbaik.";
 export const metadata: Metadata = {
-  title: "PrimePro Indonesia Articles",
-  description: "Temukan tren, tips dan trik dalam pemilihan properti terbaik.",
+  title,
+  description,
+  twitter: {
+    title,
+    site: "@primeproindonesia",
+    creator: "@primeproindonesia",
+    card: "summary_large_image",
+    images: [`${env.NEXT_PUBLIC_HOST_URL}/images/primepro.png`],
+  },
+  openGraph: {
+    title,
+    description,
+    siteName: "Primepro Indonesia",
+    locale: "id_ID",
+  },
+  appleWebApp: true,
+  applicationName: "Primepro Indonesia",
+  robots: "index, follow",
   alternates: {
     canonical: `${env.NEXT_PUBLIC_HOST_URL}/blog`,
   },
@@ -23,7 +42,9 @@ export const metadata: Metadata = {
 
 const Blog = async () => {
   const articles = await findAllArticles();
-  const homeSchema = generateBlogHomeSchema(articles.allArticles);
+  const { homeSchema, breadcrumbSchema } = generateBlogHomeSchema(
+    articles.allArticles,
+  );
 
   return (
     <>
@@ -31,6 +52,12 @@ const Blog = async () => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(homeSchema).replace(/</g, "\\u003c"),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema).replace(/</g, "\\u003c"),
         }}
       />
       <section className="py-32">

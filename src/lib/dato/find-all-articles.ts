@@ -4,7 +4,7 @@ import { Article } from "./types";
 
 const ARTICLES_QUERY = gql`
   query {
-    allArticles(orderBy: _publishedAt_DESC) {
+    allArticles(orderBy: _publishedAt_DESC, first: 500) {
       id
       thumbnail {
         url
