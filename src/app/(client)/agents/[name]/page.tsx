@@ -6,10 +6,8 @@ import { createAgentMetadata } from "./_lib/create-agent-metadata";
 import { Metadata } from "next";
 import { Faq } from "../../properties/_components/faq";
 
-export const revalidate = 0;
-
 type AgentPageProps = {
-  params: { name: string };
+  params: Promise<{ name: string }>;
 };
 
 export const generateMetadata = async ({
@@ -17,7 +15,8 @@ export const generateMetadata = async ({
 }: AgentPageProps): Promise<Metadata> => createAgentMetadata(params);
 
 export default async function AgentPage({ params }: AgentPageProps) {
-  const agentWithProperties = await findPropertyByAgent(params.name);
+  const { name } = await params;
+  const agentWithProperties = await findPropertyByAgent(name);
   if (!agentWithProperties.data?.agent) {
     redirect("/agents");
   }

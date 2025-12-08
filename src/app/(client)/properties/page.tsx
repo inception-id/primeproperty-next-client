@@ -7,7 +7,7 @@ import { generatePropertiesMetadata } from "./_lib/create-properties-metadata";
 export const revalidate = 0;
 
 type PropertiesPageProps = {
-  searchParams: FindPropertyQuery;
+  searchParams: Promise<FindPropertyQuery>;
 };
 
 export const generateMetadata = async ({
@@ -15,10 +15,11 @@ export const generateMetadata = async ({
 }: PropertiesPageProps): Promise<Metadata> =>
   generatePropertiesMetadata(searchParams);
 
-const PropertiesPage = ({ searchParams }: PropertiesPageProps) => {
+const PropertiesPage = async ({ searchParams }: PropertiesPageProps) => {
+  const searchQuery = await searchParams;
   return (
     <Suspense>
-      <Properties searchParams={searchParams} />
+      <Properties searchParams={searchQuery} />
     </Suspense>
   );
 };

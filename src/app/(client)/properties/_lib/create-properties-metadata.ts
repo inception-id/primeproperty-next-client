@@ -117,9 +117,13 @@ export const pathParamsToSearchParams = (
 };
 
 export const generatePropertiesMetadata = async (
-  searchParams: FindPropertyQuery,
-  paramsPath?: string[],
+  searchQuery: Promise<FindPropertyQuery>,
+  params?: Promise<{ path: string[] }>,
 ): Promise<Metadata> => {
+  let searchParams = await searchQuery;
+  const parameter = await params;
+  const paramsPath = parameter?.path;
+
   const isList = paramsPath
     ? Number.isNaN(+paramsPath[paramsPath.length - 1])
     : true;
