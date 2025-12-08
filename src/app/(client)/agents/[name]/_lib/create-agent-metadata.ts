@@ -3,10 +3,13 @@ import { env } from "@/lib/env";
 import { toTitleCase } from "@/lib/to-title-case";
 import { Metadata } from "next";
 
-export const createAgentMetadata = async (params: {
-  name: string;
-}): Promise<Metadata> => {
-  const agentWithProperties = await findPropertyByAgent(params.name);
+export const createAgentMetadata = async (
+  params: Promise<{
+    name: string;
+  }>,
+): Promise<Metadata> => {
+  const { name } = await params;
+  const agentWithProperties = await findPropertyByAgent(name);
   return {
     title: toTitleCase(agentWithProperties.data?.agent.fullname ?? ""),
     description:

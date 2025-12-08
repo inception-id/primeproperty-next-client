@@ -2,7 +2,10 @@ import { findArticle } from "@/lib/dato/find-article";
 import { env } from "@/lib/env";
 import { Metadata } from "next";
 
-export const generateBlogMetadata = async (slug: string): Promise<Metadata> => {
+export const generateBlogMetadata = async (
+  params: Promise<{ slug: string }>,
+): Promise<Metadata> => {
+  const { slug } = await params;
   const { article } = await findArticle(slug);
   const url = `${env.NEXT_PUBLIC_HOST_URL}/blog/${slug}`;
   return {

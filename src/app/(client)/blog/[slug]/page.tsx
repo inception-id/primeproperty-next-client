@@ -9,17 +9,18 @@ import { BlogRelated } from "./_components/blog-related";
 export const revalidate = 0;
 
 type BlogSlugProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export const generateMetadata = async ({
   params,
-}: BlogSlugProps): Promise<Metadata> => generateBlogMetadata(params.slug);
+}: BlogSlugProps): Promise<Metadata> => generateBlogMetadata(params);
 
 const BlogSlug = async ({ params }: BlogSlugProps) => {
-  const { article, allArticles } = await findArticle(params.slug);
+  const { slug } = await params;
+  const { article, allArticles } = await findArticle(slug);
   const schema = generateBlogSchema(article);
   return (
     <>
@@ -42,7 +43,7 @@ const BlogSlug = async ({ params }: BlogSlugProps) => {
         </div>
         <div className="container flex flex-col gap-4 p-4 mx-auto md:flex-row md:justify-between">
           <BlogPost article={article} />
-          <BlogRelated slug={params.slug} allArticles={allArticles} />
+          <BlogRelated slug={slug} allArticles={allArticles} />
         </div>
       </div>
     </>
