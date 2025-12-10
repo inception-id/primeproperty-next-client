@@ -16,12 +16,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.5,
     },
     {
-      url: env.NEXT_PUBLIC_HOST_URL + "/agents",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
-    {
       url: env.NEXT_PUBLIC_HOST_URL + "/jobs",
       lastModified: new Date(),
       changeFrequency: "yearly",
@@ -34,7 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.5,
     },
     {
-      url: env.NEXT_PUBLIC_HOST_URL + "/properties",
+      url: env.NEXT_PUBLIC_HOST_URL + "/properties/sitemap.xml",
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 1.0,
@@ -46,21 +40,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1.0,
     },
     {
-      url: env.NEXT_PUBLIC_HOST_URL + "/properties/sitemap.xml",
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 1.0,
-    },
-    {
-      url: env.NEXT_PUBLIC_HOST_URL + "/properties/paths/sitemap.xml",
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 1.0,
-    },
-    {
       url: env.NEXT_PUBLIC_HOST_URL + "/blog/sitemap.xml",
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: "weekly",
       priority: 1.0,
     },
   ];
