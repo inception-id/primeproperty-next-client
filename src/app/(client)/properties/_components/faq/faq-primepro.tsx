@@ -50,7 +50,7 @@ export const FAQ_ONE = [
 const FaqOne = () => {
   return (
     <div className="flex flex-col ">
-      <h3 className="text-muted-foreground text-xl font-sans">
+      <h3 className="text-muted-foreground text-xl">
         A. Informasi Titip Jual &amp; Sewa Di Primepro Indonesia
       </h3>
       <Accordion type="single" collapsible className="w-full">
