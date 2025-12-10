@@ -39,7 +39,7 @@ export const Navigation = () => {
                     href={prop.value}
                     className={cn(
                       buttonVariants({ size: "lg", variant: "ghost" }),
-                      "justify-between w-full gap-2",
+                      "justify-between w-full gap-4 px-3 rounded-none first:rounded-t last:rounded-b",
                     )}
                   >
                     {prop.key}
@@ -61,7 +61,7 @@ export const Navigation = () => {
                     href={prop.value}
                     className={cn(
                       buttonVariants({ size: "lg", variant: "ghost" }),
-                      "justify-between w-full gap-2",
+                      "justify-between w-full gap-4 px-3 rounded-none first:rounded-t last:rounded-b",
                     )}
                   >
                     {prop.key}
@@ -83,7 +83,7 @@ export const Navigation = () => {
                     href={prop.value}
                     className={cn(
                       buttonVariants({ size: "lg", variant: "ghost" }),
-                      "justify-between w-full gap-2",
+                      "justify-between w-full gap-4 px-3 rounded-none first:rounded-t last:rounded-b",
                     )}
                   >
                     {prop.key}

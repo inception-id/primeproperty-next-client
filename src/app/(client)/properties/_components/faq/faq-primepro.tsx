@@ -54,10 +54,10 @@ const FaqOne = () => {
         A. Informasi Titip Jual &amp; Sewa Di Primepro Indonesia
       </h3>
       <Accordion type="single" collapsible className="w-full">
-        {FAQ_ONE.map((faq, index) => (
+        {FAQ_ONE.map((faq) => (
           <AccordionItem key={faq.question} value={faq.question}>
-            <AccordionTrigger className="text-left gap-4 text-lg tracking-tight">
-              A.{index + 1} {faq.question}
+            <AccordionTrigger className="text-left gap-4 text-lg tracking-tight ">
+              {faq.question}
             </AccordionTrigger>
             <AccordionContent className="text-base leading-7">
               {faq.answer}
@@ -102,10 +102,10 @@ const FaqTwo = () => {
         B. Informasi cari beli dan sewa Properti
       </h3>
       <Accordion type="single" collapsible className="w-full">
-        {FAQ_TWO.map((faq, index) => (
+        {FAQ_TWO.map((faq) => (
           <AccordionItem key={faq.question} value={faq.question}>
             <AccordionTrigger className="text-left gap-4 text-lg tracking-tight">
-              B.{index + 1} {faq.question}
+              {faq.question}
             </AccordionTrigger>
             <AccordionContent className="text-base leading-7">
               {faq.answer}
@@ -152,10 +152,10 @@ const FaqThree = () => {
         C. Informasi tentang PrimePro Indonesia
       </h3>
       <Accordion type="single" collapsible className="w-full">
-        {FAQ_THREE.map((faq, index) => (
+        {FAQ_THREE.map((faq) => (
           <AccordionItem key={faq.question} value={faq.question}>
             <AccordionTrigger className="text-left gap-4 text-lg tracking-tight">
-              C.{index + 1} {faq.question}
+              {faq.question}
             </AccordionTrigger>
             <AccordionContent className="text-base leading-7">
               {faq.answer}
