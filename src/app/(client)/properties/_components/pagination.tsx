@@ -1,9 +1,11 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FindPropertyQuery } from "@/lib/api/properties/find-properties";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 
 type PaginationProps = {
@@ -19,7 +21,7 @@ export const Pagination = ({
 }: PaginationProps) => {
   const router = useRouter();
   const typingTimeoutRef = useRef<any>(null);
-  const onPageChange = (pageNumber: number) => {
+  const onTypeChange = (pageNumber: number) => {
     const newParams = new URLSearchParams(searchParams);
     let newPageNumber = pageNumber;
     if (pageNumber < 1) newPageNumber = 1;
@@ -27,18 +29,42 @@ export const Pagination = ({
     newParams.set("page", String(newPageNumber));
     router.replace(`/properties?${newParams.toString()}`);
   };
+  const previousPageLink = useMemo(() => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("page", String(currentPage - 1));
+    return `/properties?${newParams.toString()}`;
+  }, [currentPage, searchParams]);
+
+  const nextPageLink = useMemo(() => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("page", String(currentPage + 1));
+    return `/properties?${newParams.toString()}`;
+  }, [currentPage, searchParams]);
+
   if (totalPages === 1) return <></>;
   return (
     <div className="flex items-center justify-between w-full md:w-fit md:ml-auto md:gap-4">
-      <Button
-        size="icon"
-        variant="outline"
-        disabled={currentPage === 1}
-        className="rounded-full"
-        onClick={() => onPageChange(currentPage - 1)}
-      >
-        <LuChevronLeft />
-      </Button>
+      {currentPage === 1 ? (
+        <Button
+          size="icon"
+          variant="outline"
+          disabled={currentPage === 1}
+          className="rounded-full"
+        >
+          <LuChevronLeft />
+        </Button>
+      ) : (
+        <Link
+          href={previousPageLink}
+          title="Previous"
+          className={cn(
+            buttonVariants({ variant: "outline", size: "icon" }),
+            "rounded-full",
+          )}
+        >
+          <LuChevronLeft />
+        </Link>
+      )}
       <div className="text-sm flex items-center gap-2">
         <span>Halaman</span>
         <Input
@@ -56,22 +82,34 @@ export const Pagination = ({
               clearTimeout(typingTimeoutRef?.current);
             }
             typingTimeoutRef.current = setTimeout(() => {
-              onPageChange(+e.target.value);
+              onTypeChange(+e.target.value);
             }, 500);
           }}
         />
         <span>dari</span>
         <span>{totalPages}</span>
       </div>
-      <Button
-        size="icon"
-        variant="outline"
-        className="rounded-full"
-        disabled={currentPage === totalPages}
-        onClick={() => onPageChange(currentPage + 1)}
-      >
-        <LuChevronRight />
-      </Button>
+      {currentPage === totalPages ? (
+        <Button
+          size="icon"
+          variant="outline"
+          className="rounded-full"
+          disabled={currentPage === totalPages}
+        >
+          <LuChevronRight />
+        </Button>
+      ) : (
+        <Link
+          href={nextPageLink}
+          title="Next"
+          className={cn(
+            buttonVariants({ variant: "outline", size: "icon" }),
+            "rounded-full",
+          )}
+        >
+          <LuChevronRight />
+        </Link>
+      )}
     </div>
   );
 };
