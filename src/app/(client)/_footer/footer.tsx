@@ -170,6 +170,26 @@ export const BUILDINGS = [
     key: "Ruko",
     value: "/properties?buiding_type=ruko",
   },
+  {
+    key: "Hotel",
+    value: "/properties?buiding_type=hotel",
+  },
+  {
+    key: "Ruang Usaha",
+    value: "/properties?buiding_type=ruang+usaha",
+  },
+  {
+    key: "Rumah Kantor",
+    value: "/properties?buiding_type=rumah+kantor",
+  },
+  {
+    key: "Space Kantor",
+    value: "/properties?buiding_type=space+kantor",
+  },
+  {
+    key: "Villa",
+    value: "/properties?buiding_type=villa",
+  },
 ];
 
 const Buildings = () => {

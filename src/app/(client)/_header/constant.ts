@@ -34,46 +34,72 @@ export const NAVIGATION_ITEMS = [
 export const FOR_SALE_PROPERTIES = [
   {
     key: "Properti Dijual di Jakarta Utara",
-    value: "/properties/dijual/rumah/jakarta/jakarta-utara",
+    value:
+      "/properties?purchase_status=ForSale&province=jakarta&regency=jakarta+utara",
   },
   {
     key: "Properti Dijual di Jakarta Barat",
-    value: "/properties/dijual/rumah/jakarta/jakarta-barat",
+    value:
+      "/properties?purchase_status=ForSale&province=jakarta&regency=jakarta+barat",
   },
   {
     key: "Properti Dijual di Jakarta Timur",
-    value: "/properties/dijual/rumah/jakarta/jakarta-timur",
+    value:
+      "/properties?purchase_status=ForSale&province=jakarta&regency=jakarta+timur",
   },
   {
     key: "Properti Dijual di Jakarta Pusat",
-    value: "/properties/dijual/rumah/jakarta/jakarta-pusat",
+    value:
+      "/properties?purchase_status=ForSale&province=jakarta&regency=jakarta+pusat",
   },
   {
     key: "Properti Dijual di Jakarta Selatan",
-    value: "/properties/dijual/rumah/jakarta/jakarta-selatan",
+    value:
+      "/properties?purchase_status=ForSale&province=jakarta&regency=jakarta+selatan",
+  },
+  {
+    key: "Properti Dijual di Bali",
+    value: "/properties?province=bali",
+  },
+  {
+    key: "Properti Dijual di Jawa Barat",
+    value: "/properties?province=jawa+barat",
   },
 ];
 
 export const FOR_RENT_PROPERTIES = [
   {
     key: "Properti Disewa di Jakarta Utara",
-    value: "/properties/disewa/rumah/jakarta/jakarta-utara",
+    value:
+      "/properties?purchase_status=ForRent&province=jakarta&regency=jakarta+utara",
   },
   {
     key: "Properti Disewa di Jakarta Barat",
-    value: "/properties/disewa/rumah/jakarta/jakarta-barat",
+    value:
+      "/properties?purchase_status=ForRent&province=jakarta&regency=jakarta+barat",
   },
   {
     key: "Properti Disewa di Jakarta Timur",
-    value: "/properties/disewa/rumah/jakarta/jakarta-timur",
+    value:
+      "/properties?purchase_status=ForRent&province=jakarta&regency=jakarta+timur",
   },
   {
     key: "Properti Disewa di Jakarta Pusat",
-    value: "/properties/disewa/rumah/jakarta/jakarta-pusat",
+    value:
+      "/properties?purchase_status=ForRent&province=jakarta&regency=jakarta+pusat",
   },
   {
     key: "Properti Disewa di Jakarta Selatan",
-    value: "/properties/disewa/rumah/jakarta/jakarta-selatan",
+    value:
+      "/properties?purchase_status=ForRent&province=jakarta&regency=jakarta+selatan",
+  },
+  {
+    key: "Properti Disewa di Bali",
+    value: "/properties?province=bali",
+  },
+  {
+    key: "Properti Disewa di Jawa Barat",
+    value: "/properties?province=jawa+barat",
   },
 ];
 
@@ -97,5 +123,25 @@ export const PROPERTIES_TYPES = [
   {
     key: "Ruko",
     value: "/properties?buiding_type=ruko",
+  },
+  {
+    key: "Hotel",
+    value: "/properties?buiding_type=hotel",
+  },
+  {
+    key: "Ruang Usaha",
+    value: "/properties?buiding_type=ruang+usaha",
+  },
+  {
+    key: "Rumah Kantor",
+    value: "/properties?buiding_type=rumah+kantor",
+  },
+  {
+    key: "Space Kantor",
+    value: "/properties?buiding_type=space+kantor",
+  },
+  {
+    key: "Villa",
+    value: "/properties?buiding_type=villa",
   },
 ];
