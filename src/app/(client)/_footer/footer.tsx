@@ -14,44 +14,40 @@ import {
   LuCopyright,
 } from "react-icons/lu";
 import { buttonVariants } from "@/components/ui/button";
+import { usePropertiesSitePaths } from "@/hooks/properties/use-properties-site-paths";
+import { useMemo } from "react";
+import { cn } from "@/lib/utils";
 
 const Organization = () => {
   return (
     <div id="organization" className="flex flex-col gap-4">
-      <div>
-        <div className="flex items-center gap-2">
-          <Image
-            src="/images/primepro.png"
-            alt="PrimePro Indonesia"
-            width={25}
-            height={25}
-            id="logo"
-          />
-          <h2 className="text-lg font-semibold">PRIMEPRO INDONESIA</h2>
-        </div>
-        <h3 className="text-muted-foreground text-sm">
-          Your private key to exceptional properties
-        </h3>
+      <div className="flex items-center gap-2">
+        <Image
+          src="/images/primepro.png"
+          alt="PrimePro Indonesia"
+          width={25}
+          height={25}
+          id="logo"
+        />
+        <h2 className="text-lg font-semibold">PRIMEPRO INDONESIA</h2>
       </div>
 
-      <div className="flex flex-col gap-1">
-        <div className="flex items-center gap-2">
-          <LuPhone />
-          <p className="text-muted-foreground">+62-821-1616-2995</p>
+      <div className="flex items-center gap-4">
+        <LuPhone />
+        <p className="text-muted-foreground">+62-821-1616-2995</p>
+      </div>
+      <div className="flex items-center gap-4">
+        <LuMail />
+        <p className="text-muted-foreground">primeproagent@gmail.com</p>
+      </div>
+      <div className="flex items-start gap-4">
+        <div className="pt-1">
+          <MdOutlineLocationOn />
         </div>
-        <div className="flex items-center gap-2">
-          <LuMail />
-          <p className="text-muted-foreground">primeproagent@gmail.com</p>
-        </div>
-        <div className="flex items-start gap-2">
-          <div className="pt-1">
-            <MdOutlineLocationOn />
-          </div>
-          <div className="text-muted-foreground">
-            <p>Kemang Icon Jakarta,</p>
-            <p>Jl. Kemang Raya No 1,</p>
-            <p>Jakarta Selatan, 12730</p>
-          </div>
+        <div className="text-muted-foreground">
+          <p>Kemang Icon Jakarta,</p>
+          <p>Jl. Kemang Raya No 1,</p>
+          <p>Jakarta Selatan, 12730</p>
         </div>
       </div>
 
@@ -85,129 +81,168 @@ const Organization = () => {
   );
 };
 
-const AREA = [
-  "jakarta utara",
-  "jakarta barat",
-  "jakarta pusat",
-  "jakarta timur",
-  "jakarta selatan",
-];
+const FooterMenu = () => {
+  const sitePaths = usePropertiesSitePaths(true);
 
-const Houses = () => {
+  const navigationPaths = useMemo(() => {
+    if (sitePaths.data?.data && sitePaths?.data?.data?.length > 0) {
+      const forSale = sitePaths.data?.data
+        ?.filter((path) => path.includes("/dijual/"))
+        .map((path) => path.split("/"));
+
+      const forSaleBuildingTypes = forSale
+        .filter((path) => path.length === 3)
+        .map((path) => ({
+          label: `${path[2]} dijual`.replaceAll("-", " "),
+          value: path.join("/"),
+        }));
+      const forSaleProvince = forSale
+        .filter((path) => path.length === 4)
+        .map((path) => ({
+          label: `${path[2]} dijual ${path[3]}`.replaceAll("-", " "),
+          value: path.join("/"),
+        }));
+      const forSaleRegency = forSale
+        .filter((path) => path.length === 5)
+        .map((path) => ({
+          label: `${path[2]} dijual ${path[4]}`.replaceAll("-", " "),
+          value: path.join("/"),
+        }));
+
+      const forRent = sitePaths.data?.data
+        ?.filter((path) => path.includes("/disewa/"))
+        .map((path) => path.split("/"));
+
+      const forRentBuildingTypes = forRent
+        .filter((path) => path.length === 3)
+        .map((path) => ({
+          label: `${path[2]} disewa`.replaceAll("-", " "),
+          value: path.join("/"),
+        }));
+      const forRentProvince = forRent
+        .filter((path) => path.length === 4)
+        .map((path) => ({
+          label: `${path[2]} disewa ${path[3]}`.replaceAll("-", " "),
+          value: path.join("/"),
+        }));
+      const forRentRegency = forRent
+        .filter((path) => path.length === 5)
+        .map((path) => ({
+          label: `${path[2]} disewa ${path[4]}`.replaceAll("-", " "),
+          value: path.join("/"),
+        }));
+
+      return {
+        forSaleBuildingTypes,
+        forSaleProvince,
+        forSaleRegency,
+        forRentBuildingTypes,
+        forRentProvince,
+        forRentRegency,
+      };
+    }
+
+    return null;
+  }, [sitePaths.data]);
+
   return (
-    <div className="flex flex-col gap-2">
-      <div className="font-bold text-lg">Rumah</div>
-      <div className="flex flex-col gap-2">
-        {AREA.map((area) => (
-          <Link
-            key={`rumah_${area}`}
-            title={`Rumah dijual di ${area}`}
-            aria-label={`Rumah dijual di ${area}`}
-            href={`/properties/dijual/rumah/jakarta/${area.replaceAll(" ", "-")}`}
-            className="hover:underline"
-          >
-            <span className="capitalize">Rumah Dijual</span> di{" "}
-            <span className="capitalize">{area}</span>
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-const Apartment = () => {
-  return (
-    <div className="flex flex-col gap-2">
-      <div className="font-bold text-lg">Apartemen</div>
-      <div className="flex flex-col gap-2">
-        {AREA.map((area) => (
-          <Link
-            key={`apartemen_dijual_${area}`}
-            title={`Apartemen dijual di ${area}`}
-            aria-label={`Apartemen dijual di ${area}`}
-            href={`/properties/dijual/apartemen/jakarta/${area.replaceAll(" ", "-")}`}
-            className="hover:underline"
-          >
-            <span className="capitalize">Apartemen Dijual</span> di{" "}
-            <span className="capitalize">{area}</span>
-          </Link>
-        ))}
-        {AREA.map((area) => (
-          <Link
-            key={`apartemen_disewa_${area}`}
-            title={`Apartemen disewa di ${area}`}
-            aria-label={`Apartemen disewa di ${area}`}
-            href={`/properties/disewa/apartemen/jakarta/${area.replaceAll(" ", "-")}`}
-            className="hover:underline"
-          >
-            <span className="capitalize">Apartemen Disewa</span> di{" "}
-            <span className="capitalize">{area}</span>
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export const BUILDINGS = [
-  {
-    key: "Rumah",
-    value: "/properties?buiding_type=rumah",
-  },
-  {
-    key: "Apartemen",
-    value: "/properties?buiding_type=apartemen",
-  },
-  {
-    key: "Tanah",
-    value: "/properties?buiding_type=tanah",
-  },
-  {
-    key: "Gedung",
-    value: "/properties?buiding_type=gedung",
-  },
-  {
-    key: "Ruko",
-    value: "/properties?buiding_type=ruko",
-  },
-  {
-    key: "Hotel",
-    value: "/properties?buiding_type=hotel",
-  },
-  {
-    key: "Ruang Usaha",
-    value: "/properties?buiding_type=ruang+usaha",
-  },
-  {
-    key: "Rumah Kantor",
-    value: "/properties?buiding_type=rumah+kantor",
-  },
-  {
-    key: "Space Kantor",
-    value: "/properties?buiding_type=space+kantor",
-  },
-  {
-    key: "Villa",
-    value: "/properties?buiding_type=villa",
-  },
-];
-
-const Buildings = () => {
-  return (
-    <div className="flex flex-col gap-2">
-      <div className="font-bold text-lg">Properti</div>
-      <div className="flex flex-col gap-2">
-        {BUILDINGS.map((build) => (
-          <Link
-            key={`properti_${build.key}`}
-            title={`Properti ${build.key}`}
-            aria-label={`Properti ${build.key}`}
-            href={build.value}
-            className="hover:underline"
-          >
-            {build.key}
-          </Link>
-        ))}
+    <div className="flex flex-col gap-4">
+      <h1 className="text-xl font-bold">Daftar Properti</h1>
+      <div className="grid lg:grid-cols-2 xl:grid-cols-4 font-sans flex-1 w-full gap-4">
+        <div className="flex flex-col">
+          <div className="flex flex-col">
+            {navigationPaths?.forSaleBuildingTypes.map((path) => (
+              <Link
+                key={path.value}
+                title={path.label}
+                href={`/properties${path.value}`}
+                className={cn(
+                  buttonVariants({ variant: "link" }),
+                  "justify-start capitalize pl-0",
+                )}
+              >
+                {path.label}
+              </Link>
+            ))}
+          </div>
+          <div className="flex flex-col">
+            {navigationPaths?.forRentBuildingTypes.map((path) => (
+              <Link
+                key={path.value}
+                title={path.label}
+                href={`/properties${path.value}`}
+                className={cn(
+                  buttonVariants({ variant: "link" }),
+                  "justify-start capitalize pl-0",
+                )}
+              >
+                {path.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+        <div className="flex flex-col">
+          <div className="flex flex-col">
+            {navigationPaths?.forSaleProvince.map((path) => (
+              <Link
+                key={path.value}
+                title={path.label}
+                href={`/properties${path.value}`}
+                className={cn(
+                  buttonVariants({ variant: "link" }),
+                  "justify-start capitalize pl-0",
+                )}
+              >
+                {path.label}
+              </Link>
+            ))}
+          </div>
+          <div className="flex flex-col">
+            {navigationPaths?.forRentProvince.map((path) => (
+              <Link
+                key={path.value}
+                title={path.label}
+                href={`/properties${path.value}`}
+                className={cn(
+                  buttonVariants({ variant: "link" }),
+                  "justify-start capitalize pl-0",
+                )}
+              >
+                {path.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+        <div className="flex flex-col">
+          {navigationPaths?.forSaleRegency.map((path) => (
+            <Link
+              key={path.value}
+              title={path.label}
+              href={`/properties${path.value}`}
+              className={cn(
+                buttonVariants({ variant: "link" }),
+                "justify-start capitalize pl-0",
+              )}
+            >
+              {path.label}
+            </Link>
+          ))}
+        </div>
+        <div className="flex flex-col">
+          {navigationPaths?.forRentRegency.map((path) => (
+            <Link
+              key={path.value}
+              title={path.label}
+              href={`/properties${path.value}`}
+              className={cn(
+                buttonVariants({ variant: "link" }),
+                "justify-start capitalize pl-0",
+              )}
+            >
+              {path.label}
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -224,12 +259,10 @@ export const Footer = () => {
           __html: JSON.stringify(organizationSchema).replace(/</g, "\\u003c"),
         }}
       />
-      <footer className="container mx-auto border-t py-16 px-4 lg:px-0 ">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          <Buildings />
-          <Houses />
-          <Apartment />
+      <footer className="container mx-auto py-16 px-4">
+        <div className="flex flex-col lg:flex-row gap-8">
           <Organization />
+          <FooterMenu />
         </div>
         <div className="flex items-center lg:justify-center gap-2 text-muted-foreground mt-16">
           <LuCopyright />

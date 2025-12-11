@@ -12,17 +12,24 @@ export const Faq = ({ defaultTab }: FaqProps) => {
   return (
     <>
       <FaqSchema />
-      <section className="flex flex-col gap-4 my-16 max-w-2xl" id="faq">
-        <div>
-          <h2 className="text-foreground text-4xl font-bold mb-4">FAQs</h2>
-          <h3 className="text-muted-foreground text-lg">
-            Temukan jawaban dari pertanyaanmu di sini.
-          </h3>
-        </div>
+      <section className="flex flex-col max-w-2xl gap-2" id="faq">
+        <h2 className="text-foreground text-2xl font-sans">
+          FAQ Primepro Indonesia
+        </h2>
         <Tabs defaultValue={defaultTab} className="max-w-2xl">
-          <TabsList>
-            <TabsTrigger value="PRIMEPRO">PRIMEPRO</TabsTrigger>
-            <TabsTrigger value="PROPERTY">PROPERTI</TabsTrigger>
+          <TabsList className="rounded">
+            <TabsTrigger
+              value="PRIMEPRO"
+              className="data-[state=active]:font-bold font-sans"
+            >
+              GENERAL FAQ
+            </TabsTrigger>
+            <TabsTrigger
+              value="PROPERTY"
+              className="data-[state=active]:font-bold font-sans"
+            >
+              PROPERTY FAQ
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="PRIMEPRO">
             <FaqPrimePro />
