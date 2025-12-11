@@ -148,7 +148,7 @@ const FooterMenu = () => {
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-xl font-bold">Daftar Properti</h1>
-      <div className="grid lg:grid-cols-2 xl:grid-cols-4 font-sans">
+      <div className="grid lg:grid-cols-2 xl:grid-cols-4 font-sans flex-1 w-full gap-4">
         <div className="flex flex-col">
           <div className="flex flex-col">
             {navigationPaths?.forSaleBuildingTypes.map((path) => (
