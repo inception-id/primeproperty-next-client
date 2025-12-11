@@ -61,10 +61,6 @@ export const FOR_SALE_PROPERTIES = [
     key: "Properti Dijual di Bali",
     value: "/properties?province=bali",
   },
-  {
-    key: "Properti Dijual di Jawa Barat",
-    value: "/properties?province=jawa+barat",
-  },
 ];
 
 export const FOR_RENT_PROPERTIES = [
@@ -96,10 +92,6 @@ export const FOR_RENT_PROPERTIES = [
   {
     key: "Properti Disewa di Bali",
     value: "/properties?province=bali",
-  },
-  {
-    key: "Properti Disewa di Jawa Barat",
-    value: "/properties?province=jawa+barat",
   },
 ];
 
