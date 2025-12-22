@@ -45,16 +45,6 @@ export const SearchTypeFilter = ({
         >
           Disewa
         </Button>
-        <Button
-          type="button"
-          size="sm"
-          variant={
-            searchType === PurchaseStatus.ForSaleOrRent ? "default" : "outline"
-          }
-          onClick={() => onClick(PurchaseStatus.ForSaleOrRent)}
-        >
-          Dijual &amp; Disewa
-        </Button>
       </div>
     </div>
   );
