@@ -13,7 +13,6 @@ export enum BuildingType {
   SpaceMall = "space mall",
   Toko = "toko",
   Villa = "villa",
-  Other = "lainnya",
 }
 export const BUILDING_TYPES = [
   {
@@ -71,9 +70,5 @@ export const BUILDING_TYPES = [
   {
     value: BuildingType.Villa,
     english_label: "Villa",
-  },
-  {
-    value: BuildingType.Other,
-    english_label: "Lainnya",
   },
 ];
