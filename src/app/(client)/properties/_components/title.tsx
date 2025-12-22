@@ -52,7 +52,7 @@ const Title = ({
         ? PURCHASE_STATUS[
             searchParams.purchase_status as PurchaseStatus
           ].toLowerCase()
-        : "dijual"}{" "}
+        : ""}{" "}
       {"di"}{" "}
       {createLocation(
         searchParams.province,

@@ -12,7 +12,7 @@ export const Faq = ({ defaultTab }: FaqProps) => {
   return (
     <>
       <FaqSchema />
-      <section className="flex flex-col max-w-2xl gap-2" id="faq">
+      <section className="flex flex-col max-w-2xl gap-4 my-4" id="faq">
         <h2 className="text-foreground text-2xl font-sans">
           FAQ Primepro Indonesia
         </h2>

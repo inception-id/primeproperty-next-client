@@ -58,10 +58,6 @@ export const FOR_SALE_PROPERTIES = [
       "/properties?purchase_status=ForSale&province=jakarta&regency=jakarta+selatan",
   },
   {
-    key: "Properti Dijual di Bali",
-    value: "/properties?province=bali",
-  },
-  {
     key: "Properti Dijual di Jawa Barat",
     value: "/properties?province=jawa+barat",
   },
@@ -94,12 +90,8 @@ export const FOR_RENT_PROPERTIES = [
       "/properties?purchase_status=ForRent&province=jakarta&regency=jakarta+selatan",
   },
   {
-    key: "Properti Disewa di Bali",
-    value: "/properties?province=bali",
-  },
-  {
     key: "Properti Disewa di Jawa Barat",
-    value: "/properties?province=jawa+barat",
+    value: "/properties?purchase_status=ForRent&province=jawa+barat",
   },
 ];
 
@@ -125,10 +117,6 @@ export const PROPERTIES_TYPES = [
     value: "/properties?buiding_type=ruko",
   },
   {
-    key: "Hotel",
-    value: "/properties?buiding_type=hotel",
-  },
-  {
     key: "Ruang Usaha",
     value: "/properties?buiding_type=ruang+usaha",
   },
@@ -140,8 +128,58 @@ export const PROPERTIES_TYPES = [
     key: "Space Kantor",
     value: "/properties?buiding_type=space+kantor",
   },
+];
+
+export const FOOTER_PROVINCE = [
   {
-    key: "Villa",
-    value: "/properties?buiding_type=villa",
+    key: "Jakarta ",
+    value: "/properties?province=jakarta",
+  },
+  {
+    key: "Jakarta Utara",
+    value: "/properties?province=jakarta&regency=jakarta+utara",
+  },
+  {
+    key: "Jakarta Barat",
+    value: "/properties?province=jakarta&regency=jakarta+barat",
+  },
+  {
+    key: "Jakarta Timur",
+    value: "/properties?province=jakarta&regency=jakarta+timur",
+  },
+  {
+    key: "Jakarta Pusat",
+    value: "/properties?province=jakarta&regency=jakarta+pusat",
+  },
+  {
+    key: "Jakarta Selatan",
+    value: "/properties?province=jakarta&regency=jakarta+selatan",
+  },
+  {
+    key: "Jawa Barat",
+    value: "/properties?province=jawa+barat",
+  },
+];
+
+export const FOOTER_STREET_HOME = [
+  {
+    key: "Kebayoran Baru",
+    value: "/properties/dijual/rumah/jakarta/jakarta-selatan/kebayoran-baru",
+  },
+  {
+    key: "Pondok Indah",
+    value: "/properties/dijual/rumah/jakarta/jakarta-selatan/pondok-indah",
+  },
+  {
+    key: "Kemang",
+    value: "/properties/dijual/rumah/jakarta/jakarta-selatan/kemang",
+  },
+  {
+    key: "Lebak Bulus",
+    value: "/properties/dijual/rumah/jakarta/jakarta-selatan/lebak-bulus",
+  },
+  {
+    key: "Kuningan",
+    value: "/properties/disewa/apartemen/jakarta/jakarta-selatan/kuningan",
   },
 ];

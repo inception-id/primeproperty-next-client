@@ -56,7 +56,7 @@ const PropertyContent = ({ propertyWithAgent }: PropertyCardProps) => {
       <h2 className="text-xl group-hover:underline line-clamp-2">
         {propertyWithAgent[0].title}
       </h2>
-      <p className="text-sm font-semibold text-muted-foreground group-hover:underline">
+      <p className="text-sm font-semibold text-muted-foreground group-hover:underline capitalize">
         {propertyWithAgent[0].street} - {propertyWithAgent[0].regency}
       </p>
       <p className="text-xs line-clamp-2 mb-1">
