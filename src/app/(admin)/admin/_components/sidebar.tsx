@@ -23,6 +23,7 @@ import type { Agent } from "@/lib/types";
 import {
   LuContact,
   LuHouse,
+  LuImage,
   LuLoader,
   LuLogOut,
   LuUser,
@@ -93,6 +94,11 @@ function SidebarMenus({ open, pathname }: SidebarMenusProps) {
             icon: <LuWaves />,
             title: "Developers",
             href: "/admin/developers",
+          },
+          {
+            icon: <LuImage />,
+            title: "Blog Images",
+            href: "/admin/blog/images",
           },
           profileMenu,
         ]
