@@ -11,7 +11,7 @@ export const imagesKeys = {
 // ==========================================
 
 /**
- * Mutation options factory for uploading S3 images.
+ * Mutation options factory for uploading S4 images.
  * Accepts additional parameters to configure onSuccess, onError, retry, etc.
  */
 export function uploadS3ImagesMutationOptions<TContext = unknown>(

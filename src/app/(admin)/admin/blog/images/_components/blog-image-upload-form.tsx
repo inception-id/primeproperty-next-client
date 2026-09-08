@@ -97,7 +97,7 @@ export function BlogImageUploadForm() {
 
     try {
       await navigator.clipboard.writeText(uploadedPath);
-      toast.success("S3 path copied to clipboard");
+      toast.success("Image path copied to clipboard");
     } catch (error) {
       console.error("Unable to copy the S3 path.", error);
       toast.error("S3 path could not be copied. Copy it manually instead.");

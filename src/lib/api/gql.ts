@@ -18,6 +18,7 @@ export const FIND_ARTICLE_BY_SLUG_QUERY = gql`
       }
       showRelatedProperties
       relatedProperties
+      thumbnailImagePath
     }
     allArticles(filter: { slug: { neq: $slug } }, first: 10) {
       title
@@ -27,6 +28,7 @@ export const FIND_ARTICLE_BY_SLUG_QUERY = gql`
       thumbnail {
         url
       }
+      thumbnailImagePath
     }
   }
 `;
@@ -47,6 +49,7 @@ export const FIND_ARTICLES_QUERY = gql`
         title
         description
       }
+      thumbnailImagePath
     }
   }
 `;

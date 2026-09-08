@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Article } from "@/lib/types";
+import { env } from "@/lib/env";
 
 type BlogRelatedProps = {
   slug: string;
   allArticles: Pick<
     Article,
-    "title" | "slug" | "thumbnail" | "_publishedAt" | "_updatedAt"
+    "title" | "slug" | "thumbnail" | "thumbnailImagePath" | "_publishedAt" | "_updatedAt"
   >[];
 };
 
@@ -23,7 +24,7 @@ export const BlogRelated = ({ allArticles }: BlogRelatedProps) => {
             className="hover:underline flex gap-4 items-center"
           >
             <Image
-              src={article.thumbnail.url}
+              src={article.thumbnailImagePath ? `${env.NEXT_PUBLIC_S3_ENDPOINT}${article.thumbnailImagePath}` : String(article.thumbnail.url)}
               alt={article.title}
               width={400}
               height={400}

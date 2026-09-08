@@ -1,7 +1,7 @@
 export type Article = {
   id: string;
   thumbnail: {
-    url: string;
+    url?: string;
   };
   title: string;
   content: string;
@@ -14,4 +14,5 @@ export type Article = {
   };
   showRelatedProperties: boolean;
   relatedProperties: string;
+  thumbnailImagePath?: string
 };

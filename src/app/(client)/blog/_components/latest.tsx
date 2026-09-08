@@ -2,6 +2,7 @@ import { Article } from "@/lib/types";
 import Image from "next/image";
 import Link from "next/link";
 import { createArticleExcerpt } from "../_lib/create-article-excerpt";
+import { env } from "@/lib/env";
 
 type LatestProps = {
   articles: Article[];
@@ -17,7 +18,7 @@ export const Latest = ({ articles }: LatestProps) => {
           <div key={art.slug} className="flex gap-4 border-b pb-4">
             <Link href={`/blog/${art.slug}`} title={art.seo.title}>
               <Image
-                src={art.thumbnail.url}
+                src={art.thumbnailImagePath ? `${env.NEXT_PUBLIC_S3_ENDPOINT}${art.thumbnailImagePath}` : String(art.thumbnail.url)}
                 alt={art.seo.title}
                 width={100}
                 height={100}
