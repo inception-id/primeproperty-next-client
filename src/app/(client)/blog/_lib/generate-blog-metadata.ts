@@ -1,4 +1,5 @@
 import { findArticleBySlug } from "@/lib/api/articles";
+import { env } from "@/lib/env";
 import { createMetadata } from "@/lib/metadata";
 import { normalizeSeoText } from "@/lib/metadata/seo-domain";
 import type { Metadata } from "next";
@@ -22,6 +23,6 @@ export async function generateBlogMetadata(
     title: normalizeSeoText(article.seo.title, 70),
     description: normalizeSeoText(article.seo.description, 160),
     path: `/blog/${slug}`,
-    image: article.thumbnail.url,
+    image: article.thumbnailImagePath ? `${env.NEXT_PUBLIC_S3_ENDPOINT}${article.thumbnailImagePath}` : article.thumbnail.url,
   });
 }

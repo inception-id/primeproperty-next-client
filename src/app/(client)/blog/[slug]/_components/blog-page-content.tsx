@@ -5,6 +5,7 @@ import { generateBlogSchema } from "../../_lib/generate-blog-schema";
 import { BlogPost } from "./blog-post";
 import { BlogRelated } from "./blog-related";
 import { BlogRelatedProperties } from "./blog-related-properties";
+import { env } from "@/lib/env";
 
 type BlogPageContentProps = {
   params: Promise<{ slug: string }>;
@@ -27,7 +28,11 @@ export const BlogPageContent = async ({ params }: BlogPageContentProps) => {
       <div className="flex flex-col gap-4 font-sans">
         <div className="w-full h-48 md:h-96 relative">
           <Image
-            src={article.thumbnail.url}
+            src={
+              article.thumbnailImagePath
+                ? `${env.NEXT_PUBLIC_S3_ENDPOINT}${article.thumbnailImagePath}`
+                : String(article.thumbnail.url)
+            }
             alt={article.title}
             fill
             className="object-cover"
