@@ -14,5 +14,5 @@ export type Article = {
   };
   showRelatedProperties: boolean;
   relatedProperties: string;
-  thumbnailImagePath?: string
+  thumbnailImagePath?: string;
 };

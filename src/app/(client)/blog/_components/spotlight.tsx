@@ -18,7 +18,11 @@ export const Spotlight = ({ article }: SpotlightProps) => {
 
       <Link title={article.title} href={`/blog/${article.slug}`}>
         <Image
-          src={article.thumbnailImagePath ? `${env.NEXT_PUBLIC_S3_ENDPOINT}${article.thumbnailImagePath}` : String(article.thumbnail.url)}
+          src={
+            article.thumbnailImagePath
+              ? `${env.NEXT_PUBLIC_S3_ENDPOINT}${article.thumbnailImagePath}`
+              : String(article.thumbnail.url)
+          }
           alt={article.seo.title}
           title={article.seo.title}
           width={1024}
