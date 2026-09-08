@@ -116,7 +116,7 @@ export function BlogImageUploadForm() {
         <CardContent>
           <FieldGroup>
             {uploadedPath ? (
-              <Field>
+              <Field key="uploaded-path">
                 <FieldLabel htmlFor="blog-image-path">S3 path</FieldLabel>
                 <Input
                   id="blog-image-path"
@@ -130,6 +130,7 @@ export function BlogImageUploadForm() {
               </Field>
             ) : (
               <Field
+                key="image-file"
                 data-invalid={Boolean(errorMessage)}
                 data-disabled={uploadImage.isPending}
               >
