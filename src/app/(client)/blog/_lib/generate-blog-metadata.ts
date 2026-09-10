@@ -23,6 +23,8 @@ export async function generateBlogMetadata(
     title: normalizeSeoText(article.seo.title, 70),
     description: normalizeSeoText(article.seo.description, 160),
     path: `/blog/${slug}`,
-    image: article.thumbnailImagePath ? `${env.NEXT_PUBLIC_S3_ENDPOINT}${article.thumbnailImagePath}` : article.thumbnail.url,
+    image: article.thumbnailImagePath
+      ? `${env.NEXT_PUBLIC_S3_ENDPOINT}${article.thumbnailImagePath}`
+      : article.thumbnail.url,
   });
 }

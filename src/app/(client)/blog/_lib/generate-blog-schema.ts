@@ -14,7 +14,7 @@ export function generateBlogSchema(article: Article) {
         headline: article.title,
         datePublished: new Date(article._publishedAt).toISOString(),
         dateModified: new Date(article._updatedAt).toISOString(),
-        thumbnailUrl: article.thumbnail.url,
+        thumbnailUrl: article?.thumbnail?.url ?? `${env.NEXT_PUBLIC_HOST_URL}${article?.thumbnailImagePath}`,
         articleSection: article.seo.title,
         description: article.seo.description,
         author: {
@@ -25,7 +25,7 @@ export function generateBlogSchema(article: Article) {
         },
         image: {
           "@type": "ImageObject",
-          url: article.thumbnail.url,
+          url: article?.thumbnail?.url ?? `${env.NEXT_PUBLIC_HOST_URL}${article?.thumbnailImagePath}`,
         },
         publisher: {
           "@type": "Organization",
@@ -57,7 +57,7 @@ export function generateBlogSchema(article: Article) {
             "@type": "ListItem",
             position: 3,
             name: article.title,
-            item: articleUrl,
+            item: article?.thumbnail?.url ?? `${env.NEXT_PUBLIC_HOST_URL}${article?.thumbnailImagePath}`
           },
         ],
       },
